@@ -1,12 +1,13 @@
 /* ==========================================================================
-   Tayanch Landing Page — Master JavaScript Engine (Optimized Edition)
+   Tayanch Landing Page — Master JavaScript Engine (Liquid Dynamic Edition)
    Features: 
    - 31 Course Catalog with Search & Category Filtering
-   - Lead Application Form Modal (A2) + Telegram Submission
-   - Proof & Certificate Slider (A3)
-   - Countdown Timer & Top Sticky Announcement
-   - 3D Tilt Physics & Ambient Background Particle Canvas
-   - GSAP ScrollTrigger Frame Animation Engine
+   - Lead Application Form Modal + Telegram Submission
+   - Proof & Certificate Slider
+   - Countdown Timer & Top Announcement
+   - Interactive Fluid Ripple Canvas Overlay Engine
+   - Hero 3D Morphing Liquid Sphere Canvas (Scroll-Driven)
+   - Organic 3D Tilt Physics
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -589,11 +590,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 coursesGrid.appendChild(card);
             });
 
-            // Re-trigger GSAP reveal & 3D tilt initialization
             if (window.gsap) {
                 gsap.fromTo('.course-card', 
                     { opacity: 0, y: 20 },
-                    { opacity: 1, y: 0, duration: 0.4, stagger: 0.04, ease: 'power2.out' }
+                    { opacity: 1, y: 0, duration: 0.4, stagger: 0.03, ease: 'power2.out' }
                 );
             }
             initTiltPhysics();
@@ -602,7 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function createCourseCard(course) {
         const card = document.createElement('div');
-        card.className = 'course-card tilt-card';
+        card.className = 'course-card liquid-card tilt-card';
 
         const catClass = course.category === 'ai' ? 'cat-ai' : (course.category === 'ielts' ? 'cat-ielts' : 'cat-admission');
 
@@ -620,11 +620,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
             <div class="course-actions">
-                <button class="btn btn-sm btn-secondary w-full view-details-btn" data-id="${course.id}">
+                <button class="btn btn-sm btn-secondary w-full view-details-btn liquid-glass-btn" data-id="${course.id}">
                     <i class="fa-solid fa-circle-info"></i> Tafsilotlar
                 </button>
-                <button class="btn btn-sm btn-primary open-lead-modal-btn" data-course="${course.title}">
-                    <i class="fa-solid fa-pen-to-square"></i> Ariza
+                <button class="btn btn-sm btn-primary btn-liquid open-lead-modal-btn" data-course="${course.title}">
+                    <i class="fa-solid fa-pen-to-square"></i> <span class="btn-text">Ariza</span>
+                    <div class="liquid-wave"></div>
                 </button>
             </div>
         `;
@@ -711,8 +712,9 @@ document.addEventListener('DOMContentLoaded', () => {
             </ul>
 
             <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                <button class="btn btn-primary btn-glow w-full open-lead-modal-btn" data-course="${course.title}">
-                    <i class="fa-solid fa-pen-to-square"></i> Kursga Ariza Qoldirish
+                <button class="btn btn-primary btn-glow btn-liquid w-full open-lead-modal-btn" data-course="${course.title}">
+                    <span class="btn-text"><i class="fa-solid fa-pen-to-square"></i> Kursga Ariza Qoldirish</span>
+                    <div class="liquid-wave"></div>
                 </button>
                 <a href="https://t.me/tayanch_go" target="_blank" class="btn btn-secondary w-full">
                     <i class="fa-brands fa-telegram"></i> Telegram Orqali Savol Berish
@@ -723,7 +725,6 @@ document.addEventListener('DOMContentLoaded', () => {
         courseModal.classList.add('active');
         document.body.style.overflow = 'hidden';
 
-        // Bind lead modal buttons inside course modal
         const innerLeadBtn = modalContent.querySelector('.open-lead-modal-btn');
         if (innerLeadBtn) {
             innerLeadBtn.addEventListener('click', () => {
@@ -749,7 +750,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       4. LEAD APPLICATION MODAL FORM & TELEGRAM INTEGRATION (A2)
+       4. LEAD APPLICATION FORM & TELEGRAM INTEGRATION
        ========================================== */
     const leadModal = document.getElementById('leadModal');
     const leadModalCloseBtn = document.getElementById('leadModalCloseBtn');
@@ -757,7 +758,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const leadCourseSelect = document.getElementById('leadCourseSelect');
     const formSuccessMsg = document.getElementById('formSuccessMsg');
 
-    // Populate course select options
     if (leadCourseSelect) {
         coursesData.forEach(c => {
             const opt = document.createElement('option');
@@ -771,7 +771,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!leadModal) return;
 
         if (leadCourseSelect) {
-            // Find option matching course or default
             for (let i = 0; i < leadCourseSelect.options.length; i++) {
                 if (leadCourseSelect.options[i].value === preselectedCourse || leadCourseSelect.options[i].text.includes(preselectedCourse)) {
                     leadCourseSelect.selectedIndex = i;
@@ -787,7 +786,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = 'hidden';
     }
 
-    // Global listener for open-lead-modal-btn
     document.addEventListener('click', (e) => {
         const btn = e.target.closest('.open-lead-modal-btn');
         if (btn) {
@@ -803,7 +801,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Handle Lead Form Submission
     if (leadForm) {
         leadForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -812,7 +809,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const telegram = document.getElementById('leadTelegram').value.trim() || 'Kiritilmadi';
             const selectedCourse = leadCourseSelect ? leadCourseSelect.value : 'Tayanch Kurslari';
 
-            // Construct Telegram Pre-filled Message URL
             const text = encodeURIComponent(
                 `📥 YANGI ARIZA - TAYANCH\n\n` +
                 `👤 Ism: ${name}\n` +
@@ -822,11 +818,9 @@ document.addEventListener('DOMContentLoaded', () => {
             );
             const telegramUrl = `https://t.me/tayanch_go?text=${text}`;
 
-            // Show success animation
             leadForm.style.display = 'none';
             if (formSuccessMsg) formSuccessMsg.style.display = 'block';
 
-            // Open Telegram after 1 second delay
             setTimeout(() => {
                 window.open(telegramUrl, '_blank');
             }, 1000);
@@ -835,7 +829,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       5. PROOF & CERTIFICATE INTERACTIVE SLIDER (A3)
+       5. PROOF & CERTIFICATE SLIDER
        ========================================== */
     const proofCards = document.querySelectorAll('.proof-card');
     const slidePrevBtn = document.getElementById('slidePrevBtn');
@@ -869,7 +863,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Auto-advance slider every 6 seconds
     setInterval(() => {
         showSlide(currentSlide + 1);
     }, 6000);
@@ -883,7 +876,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const cdMins = document.getElementById('cdMins');
     const cdSecs = document.getElementById('cdSecs');
 
-    // 2 days countdown target
     let targetTime = new Date().getTime() + (2 * 24 * 60 * 60 * 1000) + (14 * 60 * 60 * 1000);
 
     function updateCountdown() {
@@ -908,54 +900,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       7. AMBIENT BACKGROUND PARTICLES CANVAS
+       7. INTERACTIVE FLUID RIPPLE CANVAS ENGINE
        ========================================== */
-    const bgCanvas = document.getElementById('bgParticlesCanvas');
-    if (bgCanvas) {
-        const ctx = bgCanvas.getContext('2d');
-        let particles = [];
+    const rippleCanvas = document.getElementById('fluidRippleCanvas');
+    if (rippleCanvas) {
+        const rCtx = rippleCanvas.getContext('2d');
+        let ripples = [];
 
-        function resizeBgCanvas() {
-            bgCanvas.width = window.innerWidth;
-            bgCanvas.height = window.innerHeight;
+        function resizeRippleCanvas() {
+            rippleCanvas.width = window.innerWidth;
+            rippleCanvas.height = window.innerHeight;
         }
 
-        window.addEventListener('resize', resizeBgCanvas);
-        resizeBgCanvas();
+        window.addEventListener('resize', resizeRippleCanvas);
+        resizeRippleCanvas();
 
-        for (let i = 0; i < 40; i++) {
-            particles.push({
-                x: Math.random() * bgCanvas.width,
-                y: Math.random() * bgCanvas.height,
-                radius: Math.random() * 2 + 1,
-                vx: (Math.random() - 0.5) * 0.4,
-                vy: (Math.random() - 0.5) * 0.4,
-                alpha: Math.random() * 0.5 + 0.2
+        function addRipple(x, y) {
+            ripples.push({
+                x,
+                y,
+                radius: 5,
+                maxRadius: 80 + Math.random() * 40,
+                alpha: 0.6,
+                speed: 2 + Math.random() * 1.5,
+                color: Math.random() > 0.5 ? '0, 242, 254' : '168, 85, 247'
             });
         }
 
-        function animateBgParticles() {
-            ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+        window.addEventListener('mousemove', (e) => {
+            if (Math.random() < 0.25) {
+                addRipple(e.clientX, e.clientY);
+            }
+        });
 
-            particles.forEach(p => {
-                p.x += p.vx;
-                p.y += p.vy;
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches[0] && Math.random() < 0.3) {
+                addRipple(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        });
 
-                if (p.x < 0 || p.x > bgCanvas.width) p.vx *= -1;
-                if (p.y < 0 || p.y > bgCanvas.height) p.vy *= -1;
+        function animateRipples() {
+            rCtx.clearRect(0, 0, rippleCanvas.width, rippleCanvas.height);
 
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(0, 242, 254, ${p.alpha})`;
-                ctx.shadowColor = 'rgba(0, 242, 254, 0.5)';
-                ctx.shadowBlur = 8;
-                ctx.fill();
-            });
+            for (let i = ripples.length - 1; i >= 0; i--) {
+                const r = ripples[i];
+                r.radius += r.speed;
+                r.alpha *= 0.94;
 
-            requestAnimationFrame(animateBgParticles);
+                rCtx.beginPath();
+                rCtx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
+                rCtx.strokeStyle = `rgba(${r.color}, ${r.alpha})`;
+                rCtx.lineWidth = 1.5;
+                rCtx.stroke();
+
+                if (r.alpha < 0.01 || r.radius > r.maxRadius) {
+                    ripples.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(animateRipples);
         }
 
-        animateBgParticles();
+        animateRipples();
     }
 
 
@@ -973,10 +979,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
 
-                const rotateX = ((y - centerY) / centerY) * -8;
-                const rotateY = ((x - centerX) / centerX) * 8;
+                const rotateX = ((y - centerY) / centerY) * -9;
+                const rotateY = ((x - centerX) / centerX) * 9;
 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
             });
 
             card.addEventListener('mouseleave', () => {
@@ -989,7 +995,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       9. HERO HTML5 3D CANVAS FRAME ANIMATION ENGINE
+       9. HERO MORPHING LIQUID 3D CANVAS ENGINE
        ========================================== */
     const canvas = document.getElementById('heroFrameCanvas');
     const indicatorBar = document.getElementById('indicatorBar');
@@ -1000,6 +1006,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const ctx = canvas.getContext('2d');
         const TOTAL_FRAMES = 60;
         let currentFrameIndex = 0;
+        let timeOffset = 0;
 
         function resizeCanvas() {
             const rect = canvas.parentElement.getBoundingClientRect();
@@ -1019,47 +1026,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
             ctx.clearRect(0, 0, width, height);
 
-            const bgGrad = ctx.createRadialGradient(cx, cy, 10, cx, cy, width * 0.6);
-            bgGrad.addColorStop(0, 'rgba(0, 242, 254, 0.08)');
-            bgGrad.addColorStop(0.5, 'rgba(168, 85, 247, 0.04)');
-            bgGrad.addColorStop(1, 'rgba(6, 7, 10, 1)');
+            // Radial liquid background gradient
+            const bgGrad = ctx.createRadialGradient(cx, cy, 10, cx, cy, width * 0.65);
+            bgGrad.addColorStop(0, 'rgba(0, 242, 254, 0.12)');
+            bgGrad.addColorStop(0.5, 'rgba(168, 85, 247, 0.06)');
+            bgGrad.addColorStop(1, 'rgba(5, 6, 9, 1)');
             ctx.fillStyle = bgGrad;
             ctx.fillRect(0, 0, width, height);
 
-            const baseRadius = Math.min(width, height) * 0.26 * (1 + Math.sin(progress * Math.PI) * 0.15);
-            const rotationAngle = progress * Math.PI * 2.5;
+            timeOffset += 0.02;
+            const baseRadius = Math.min(width, height) * 0.26;
+            const rotationAngle = progress * Math.PI * 2.5 + timeOffset * 0.5;
 
+            // Render Morphing Liquid Outer Rings
             ctx.save();
             ctx.translate(cx, cy);
             ctx.rotate(rotationAngle * 0.5);
             ctx.beginPath();
-            ctx.ellipse(0, 0, baseRadius * 1.4, baseRadius * 0.5, progress * Math.PI, 0, Math.PI * 2);
-            ctx.strokeStyle = 'rgba(0, 242, 254, 0.4)';
+            const ringR = baseRadius * (1.3 + Math.sin(timeOffset + progress * Math.PI) * 0.08);
+            ctx.ellipse(0, 0, ringR, ringR * 0.45, progress * Math.PI, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(0, 242, 254, 0.45)';
             ctx.lineWidth = 2 * (window.devicePixelRatio || 1);
-            ctx.setLineDash([8, 6]);
+            ctx.setLineDash([10, 6]);
             ctx.stroke();
             ctx.restore();
 
             ctx.save();
             ctx.translate(cx, cy);
-            ctx.rotate(-rotationAngle * 0.8);
+            ctx.rotate(-rotationAngle * 0.7);
             ctx.beginPath();
-            ctx.ellipse(0, 0, baseRadius * 1.2, baseRadius * 0.7, -progress * Math.PI, 0, Math.PI * 2);
-            ctx.strokeStyle = 'rgba(168, 85, 247, 0.4)';
+            const ringR2 = baseRadius * (1.15 + Math.cos(timeOffset * 0.8) * 0.06);
+            ctx.ellipse(0, 0, ringR2 * 1.1, ringR2 * 0.65, -progress * Math.PI, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(168, 85, 247, 0.45)';
             ctx.lineWidth = 2 * (window.devicePixelRatio || 1);
             ctx.stroke();
             ctx.restore();
 
-            const nodeCount = 36;
+            // Render Liquid Morphing 3D Sphere Lattice
+            const nodeCount = 42;
             const nodes = [];
 
             for (let i = 0; i < nodeCount; i++) {
                 const phi = Math.acos(-1 + (2 * i) / nodeCount);
                 const theta = Math.sqrt(nodeCount * Math.PI) * phi + rotationAngle;
 
-                const x3d = baseRadius * Math.cos(theta) * Math.sin(phi);
-                const y3d = baseRadius * Math.sin(theta) * Math.sin(phi);
-                const z3d = baseRadius * Math.cos(phi);
+                // Liquid Morphing Wave Deformation
+                const liquidWave = Math.sin(4 * phi + 3 * theta + timeOffset) * 14;
+                const rDynamic = baseRadius + liquidWave;
+
+                const x3d = rDynamic * Math.cos(theta) * Math.sin(phi);
+                const y3d = rDynamic * Math.sin(theta) * Math.sin(phi);
+                const z3d = rDynamic * Math.cos(phi);
 
                 const scale = 300 / (300 + z3d);
                 const x2d = cx + x3d * scale;
@@ -1068,12 +1085,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 nodes.push({ x: x2d, y: y2d, z: z3d, scale });
             }
 
+            // Draw Node Connectors
             ctx.lineWidth = 1 * (window.devicePixelRatio || 1);
             for (let i = 0; i < nodes.length; i++) {
                 for (let j = i + 1; j < nodes.length; j++) {
                     const dist = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
                     if (dist < baseRadius * 0.85) {
-                        const alpha = (1 - dist / (baseRadius * 0.85)) * 0.35;
+                        const alpha = (1 - dist / (baseRadius * 0.85)) * 0.38;
                         ctx.strokeStyle = `rgba(0, 242, 254, ${alpha})`;
                         ctx.beginPath();
                         ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -1083,20 +1101,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
+            // Draw Glowing Liquid Nodes
             nodes.sort((a, b) => a.z - b.z);
             nodes.forEach(node => {
-                const nodeRadius = Math.max(2, 4.5 * node.scale);
+                const nodeRadius = Math.max(2.2, 5 * node.scale);
                 const alpha = (node.z + baseRadius) / (baseRadius * 2);
 
                 ctx.beginPath();
                 ctx.arc(node.x, node.y, nodeRadius, 0, Math.PI * 2);
                 ctx.fillStyle = node.z > 0 ? `rgba(0, 242, 254, ${0.4 + alpha * 0.6})` : `rgba(168, 85, 247, ${0.3 + alpha * 0.5})`;
                 ctx.shadowColor = 'rgba(0, 242, 254, 0.8)';
-                ctx.shadowBlur = 10;
+                ctx.shadowBlur = 12;
                 ctx.fill();
                 ctx.shadowBlur = 0;
             });
 
+            // Core Text
             ctx.fillStyle = '#ffffff';
             ctx.font = `800 ${16 * (window.devicePixelRatio || 1)}px 'Outfit', sans-serif`;
             ctx.textAlign = 'center';
@@ -1108,9 +1128,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (frameStepLabel) {
                 if (progress < 0.33) {
-                    frameStepLabel.innerText = 'STAGE 1: AI POWERED LEARNING';
+                    frameStepLabel.innerText = 'STAGE 1: AI LIQUID PRODUCTIVITY';
                 } else if (progress < 0.66) {
-                    frameStepLabel.innerText = 'STAGE 2: IELTS BAND 7.0+ MASTERY';
+                    frameStepLabel.innerText = 'STAGE 2: IELTS BAND 7.0+ FLUID MASTERY';
                 } else {
                     frameStepLabel.innerText = 'STAGE 3: TOP UNIVERSITY ADMISSION';
                 }

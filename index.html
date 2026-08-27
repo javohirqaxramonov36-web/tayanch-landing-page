@@ -2,7 +2,7 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Tayanch — AI, IELTS va Admission'ni bir joyda o'rganing</title>
     <meta name="description" content="Tayanch — Zamonaviy Sun'iy Intelekt (AI), IELTS va Xalqaro Universitetlarga kirish (Admission) ta'lim platformasi. Asoschi: IELTS 7.0 va SAT 1420.">
     <meta name="keywords" content="Tayanch, AI, Sun'iy Intelekt, IELTS, SAT, Admission, Grantlar, Ta'lim platformasi, O'zbekiston">
@@ -10,6 +10,9 @@
     <!-- PWA Manifest & Theme -->
     <meta name="theme-color" content="#0e0f15">
     <link rel="manifest" href="manifest.json">
+
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <!-- Open Graph / Facebook / Telegram -->
     <meta property="og:type" content="website">
@@ -62,8 +65,8 @@
     <!-- Sticky Announcement & Countdown Top Bar -->
     <div class="top-announcement-bar liquid-glass">
         <div class="container announcement-content">
-            <span class="announcement-badge"><i class="fa-solid fa-fire"></i> QABUL OCHIQ</span>
-            <span class="announcement-text">Yangi mavsum kurslariga chegirma bilan a'zo bo'ling!</span>
+            <span class="announcement-badge"><i class="fa-solid fa-trophy"></i> AWARDS.GOV.UZ NOMINANT</span>
+            <span class="announcement-text" data-i18n="announcementText">Awards.gov.uz "Best Startup Project" nomzodi. Qabul ochiq!</span>
             <div class="countdown-timer" id="countdownTimer">
                 <span class="time-block"><strong id="cdDays">02</strong>d</span> :
                 <span class="time-block"><strong id="cdHours">14</strong>s</span> :
@@ -71,7 +74,7 @@
                 <span class="time-block"><strong id="cdSecs">50</strong>sek</span>
             </div>
             <button class="announcement-btn open-lead-modal-btn" data-course="Barcha Kurslar (Urgent)">
-                <span>Ariza qoldirish</span> <i class="fa-solid fa-arrow-right"></i>
+                <span data-i18n="applyNow">Ariza qoldirish</span> <i class="fa-solid fa-arrow-right"></i>
             </button>
         </div>
     </div>
@@ -87,16 +90,24 @@
             </a>
 
             <nav class="nav-links liquid-nav-capsule" id="navLinks">
-                <a href="#hero" class="nav-link active">Bosh sahifa</a>
-                <a href="#calculator" class="nav-link">Kalkulyator</a>
-                <a href="#mission" class="nav-link">Nega Tayanch</a>
-                <a href="#courses" class="nav-link">Kurslar <span class="badge-count">31</span></a>
-                <a href="#trust" class="nav-link">Natijalar</a>
+                <a href="#hero" class="nav-link active" data-i18n="navHome">Bosh sahifa</a>
+                <a href="#calculator" class="nav-link" data-i18n="navCalc">Kalkulyator</a>
+                <a href="#placement-quiz" class="nav-link" data-i18n="navQuiz">AI Test</a>
+                <a href="#mission" class="nav-link" data-i18n="navMission">Nega Tayanch</a>
+                <a href="#courses" class="nav-link"><span data-i18n="navCourses">Kurslar</span> <span class="badge-count">31</span></a>
+                <a href="#trust" class="nav-link" data-i18n="navProof">Natijalar</a>
             </nav>
 
             <div class="nav-actions">
+                <!-- Multi-Language Switcher (UZ / EN) -->
+                <div class="lang-switcher liquid-pill">
+                    <button class="lang-btn active" id="langUzBtn">UZ</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" id="langEnBtn">EN</button>
+                </div>
+
                 <button class="btn btn-primary btn-glow btn-liquid open-lead-modal-btn" data-course="Bosh Sahifa Hero">
-                    <span class="btn-text">Kursga a'zo bo'lish</span>
+                    <span class="btn-text" data-i18n="navApply">Kursga a'zo bo'lish</span>
                     <i class="fa-paper-plane fa-solid"></i>
                     <div class="liquid-wave"></div>
                 </button>
@@ -114,13 +125,14 @@
             <button class="drawer-close" id="drawerCloseBtn"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="drawer-links">
-            <a href="#hero" class="drawer-link">Bosh sahifa</a>
-            <a href="#calculator" class="drawer-link">Grant Kalkulyatori</a>
-            <a href="#mission" class="drawer-link">Nega Tayanch</a>
-            <a href="#courses" class="drawer-link">Kurslar (31 ta)</a>
-            <a href="#trust" class="drawer-link">Natijalar & Sertifikatlar</a>
+            <a href="#hero" class="drawer-link" data-i18n="navHome">Bosh sahifa</a>
+            <a href="#calculator" class="drawer-link" data-i18n="navCalc">Grant Kalkulyatori</a>
+            <a href="#placement-quiz" class="drawer-link" data-i18n="navQuiz">AI Daraja Testi</a>
+            <a href="#mission" class="drawer-link" data-i18n="navMission">Nega Tayanch</a>
+            <a href="#courses" class="drawer-link" data-i18n="navCourses">Kurslar (31 ta)</a>
+            <a href="#trust" class="drawer-link" data-i18n="navProof">Natijalar & Sertifikatlar</a>
             <button class="btn btn-primary w-full mt-4 open-lead-modal-btn" data-course="Mobile Drawer">
-                <i class="fa-solid fa-pen-to-square"></i> Ariza Qoldirish
+                <i class="fa-solid fa-pen-to-square"></i> <span data-i18n="applyNow">Ariza Qoldirish</span>
             </button>
             <a href="https://t.me/tayanch_go" target="_blank" class="btn btn-secondary w-full mt-2">
                 <i class="fa-brands fa-telegram"></i> Telegram Kanal
@@ -135,44 +147,44 @@
                 <div class="hero-content">
                     <div class="founder-trust-pill liquid-pill hero-fade">
                         <span class="trust-icon"><i class="fa-solid fa-award"></i></span>
-                        <span class="trust-text">Asoschi: <strong>IELTS 7.0</strong> va <strong>SAT 1420</strong> natijalariga erishgan</span>
+                        <span class="trust-text" data-i18n="founderPill">Asoschi: <strong>IELTS 7.0</strong> va <strong>SAT 1420</strong> natijalariga erishgan</span>
                     </div>
 
-                    <h1 class="hero-title hero-fade">
+                    <h1 class="hero-title hero-fade" data-i18n="heroTitle">
                         AI, IELTS va Admission'ni <br>
                         <span class="gradient-text liquid-gradient">bir joyda o'rganing</span>
                     </h1>
 
-                    <p class="hero-subheadline hero-fade">
+                    <p class="hero-subheadline hero-fade" data-i18n="heroSubheadline">
                         Bugundan yangi ko'nikma egallang va kelajagingizni zamonaviy texnologiyalar hamda xalqaro ta'lim imkoniyatlari bilan birga quring.
                     </p>
 
                     <div class="hero-cta-group hero-fade">
                         <button class="btn btn-lg btn-primary btn-glow btn-liquid open-lead-modal-btn" data-course="Hero Main CTA">
-                            <span class="btn-text">Veb-saytda Ariza Qoldirish</span>
+                            <span class="btn-text" data-i18n="heroCtaMain">Veb-saytda Ariza Qoldirish</span>
                             <i class="fa-solid fa-paper-plane"></i>
                             <div class="liquid-wave"></div>
                         </button>
                         <button class="btn btn-lg btn-secondary liquid-glass-btn open-video-modal-btn" data-title="Tayanch Platformasi Video Prevyusi" data-video="VBvxHIkvjeo">
                             <i class="fa-solid fa-circle-play" style="color: var(--primary-cyan);"></i>
-                            <span>Video Namuna (1 min)</span>
+                            <span data-i18n="heroVideoBtn">Video Namuna (1 min)</span>
                         </button>
                     </div>
 
                     <div class="hero-stats-row hero-fade">
                         <div class="stat-item">
                             <span class="stat-number" data-target="31">31</span>
-                            <span class="stat-label">Intensiv Kurslar</span>
+                            <span class="stat-label" data-i18n="coursesStat">Intensiv Kurslar</span>
                         </div>
                         <div class="stat-divider"></div>
                         <div class="stat-item">
                             <span class="stat-number" data-target="100">100</span><span class="stat-plus">%</span>
-                            <span class="stat-label">Amaliy Metodika</span>
+                            <span class="stat-label" data-i18n="practiceStat">Amaliy Metodika</span>
                         </div>
                         <div class="stat-divider"></div>
                         <div class="stat-item">
                             <span class="stat-number">24/7</span>
-                            <span class="stat-label">Telegram Qo'llab-quvvatlash</span>
+                            <span class="stat-label" data-i18n="supportStat">Telegram Qo'llab-quvvatlash</span>
                         </div>
                     </div>
                 </div>
@@ -200,6 +212,87 @@
                                 <span class="indicator-bar" id="indicatorBar"></span>
                             </div>
                             <span class="frame-count" id="frameCountLabel">Frame 1 / 60</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Startup Pitch & Awards.gov.uz Metrics Banner Section -->
+        <section class="section pitch-section" id="startup-pitch">
+            <div class="container">
+                <div class="pitch-card liquid-glass-card gsap-reveal">
+                    <div class="pitch-grid">
+                        <div class="pitch-content">
+                            <span class="cta-tag liquid-pill"><i class="fa-solid fa-trophy"></i> Best Startup Project Nomzodi</span>
+                            <h2 class="pitch-title mt-2">Awards.gov.uz <span class="gradient-text">Tanlov Integratsiyasi</span></h2>
+                            <p class="pitch-desc">Tayanch — O'zbekistonda yoshlarga 100% ochiq litsenziyali, sifatli va amaliy AI hamda xalqaro ta'lim bilimlari ulashuvchi innovatsion startap loyihadir.</p>
+                            
+                            <div class="pitch-metrics-grid mt-4">
+                                <div class="p-metric-item">
+                                    <span class="p-val">1000+</span>
+                                    <span class="p-lbl">Faol Foydalanuvchilar</span>
+                                </div>
+                                <div class="p-metric-item">
+                                    <span class="p-val">100%</span>
+                                    <span class="p-lbl">Ochiq Litsenziyali Kontent</span>
+                                </div>
+                                <div class="p-metric-item">
+                                    <span class="p-val">$180,000+</span>
+                                    <span class="p-lbl">Talabalar Yutgan Grantlar</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pitch-action-col text-center">
+                            <div class="badge-icon-box liquid-glow-avatar">
+                                <i class="fa-solid fa-rocket"></i>
+                            </div>
+                            <h4 class="mt-3">Startup Pitch & Hujjatlar</h4>
+                            <p class="text-muted text-sm mt-1">Tayanch loyihasining biznes modeli, ochiq manbalar auditi va rivojlanish xaritasi.</p>
+                            <a href="general-english-sources-log.txt" target="_blank" class="btn btn-secondary mt-3">
+                                <i class="fa-solid fa-file-shield"></i> Open Source Audit Log
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive AI Placement Quiz Widget Section -->
+        <section class="section quiz-section" id="placement-quiz">
+            <div class="container">
+                <div class="quiz-card liquid-glass-card gsap-reveal">
+                    <div class="section-header text-center">
+                        <div class="section-tag"><i class="fa-solid fa-brain"></i> Express Test</div>
+                        <h2 class="section-title">3-Daqiqalik <span class="gradient-text">AI Daraja Testi</span></h2>
+                        <p class="section-desc">Ingliz tili va AI bilimlaringizni zudlik bilan baholang hamda shaxsiy CEFR darajangizni oling.</p>
+                    </div>
+
+                    <div class="quiz-widget-body text-center" id="quizContainer">
+                        <div class="quiz-step" id="quizStep1">
+                            <h3 class="quiz-q">1. Select the correct sentence structure for academic writing:</h3>
+                            <div class="quiz-options-grid mt-3">
+                                <button class="quiz-opt-btn" data-score="1">A) "The study demonstrates significant results."</button>
+                                <button class="quiz-opt-btn" data-score="0">B) "The study demonstrate very big results."</button>
+                            </div>
+                        </div>
+
+                        <div class="quiz-step" id="quizStep2" style="display:none;">
+                            <h3 class="quiz-q">2. Which AI tool is specialized for Literature Review & Academic Papers?</h3>
+                            <div class="quiz-options-grid mt-3">
+                                <button class="quiz-opt-btn" data-score="1">A) Consensus & Elicit AI</button>
+                                <button class="quiz-opt-btn" data-score="0">B) Simple Calculator</button>
+                            </div>
+                        </div>
+
+                        <div class="quiz-result-box mt-4" id="quizResultBox" style="display:none;">
+                            <div class="res-badge liquid-pill"><i class="fa-solid fa-award"></i> Tizim Diagnostikasi Natijasi</div>
+                            <h3 class="mt-2" id="quizResultLevel">Darajangiz: CEFR B2 (Upper-Intermediate)</h3>
+                            <p class="text-muted mt-1" id="quizResultText">Siz uchun tavsiya etiladigan kurs: IELTS Writing Task 2 va Practical AI.</p>
+                            <button class="btn btn-primary btn-glow btn-liquid mt-3 open-lead-modal-btn" data-course="AI Quiz Result">
+                                <span class="btn-text">Natija Bilan Ariza Topshirish</span>
+                                <div class="liquid-wave"></div>
+                            </button>
                         </div>
                     </div>
                 </div>

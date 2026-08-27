@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Tayanch Landing Page — Master Stylesheet (Liquid Dynamic & Video Edition)
+   Tayanch Landing Page — Master Stylesheet (Liquid Dynamic & Extended Edition)
    Theme: Cinematic Liquid Holographic Dark Navy (#0e0f15)
    ========================================================================== */
 
@@ -147,6 +147,37 @@ body {
     z-index: -3;
 }
 
+/* Language Switcher */
+.lang-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-subtle);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 2px 4px;
+    transition: color var(--transition-fast);
+}
+
+.lang-btn.active, .lang-btn:hover {
+    color: var(--primary-cyan);
+}
+
+.lang-divider {
+    color: var(--text-dim);
+}
+
 /* Top Announcement Countdown Bar */
 .top-announcement-bar {
     background: linear-gradient(90deg, rgba(0, 242, 254, 0.18) 0%, rgba(168, 85, 247, 0.18) 100%);
@@ -209,6 +240,115 @@ body {
 }
 .announcement-btn:hover {
     text-decoration: underline;
+}
+
+/* Startup Pitch Section */
+.pitch-card {
+    padding: 3rem;
+    background: linear-gradient(135deg, rgba(16, 20, 32, 0.85), rgba(10, 12, 18, 0.95));
+}
+
+.pitch-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.pitch-title {
+    font-size: 2.2rem;
+}
+
+.pitch-desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-top: 0.75rem;
+}
+
+.pitch-metrics-grid {
+    display: flex;
+    gap: 2rem;
+}
+
+.p-metric-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.p-val {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary-cyan);
+}
+
+.p-lbl {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.pitch-action-col {
+    background: rgba(10, 12, 18, 0.8);
+    border: 1px solid var(--border-bright);
+    padding: 2rem;
+    border-radius: var(--radius-xl);
+}
+
+.badge-icon-box {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-cyan), var(--accent-purple));
+    color: #050b14;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto;
+    box-shadow: var(--shadow-glow-cyan);
+}
+
+/* AI Express Quiz Widget Section */
+.quiz-card {
+    padding: 3.5rem;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.quiz-options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    max-width: 580px;
+    margin: 1.5rem auto 0;
+}
+
+.quiz-opt-btn {
+    background: rgba(10, 12, 18, 0.8);
+    border: 1px solid var(--border-subtle);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: left;
+}
+
+.quiz-opt-btn:hover {
+    border-color: var(--primary-cyan);
+    background: rgba(0, 242, 254, 0.12);
+    transform: translateX(6px);
+}
+
+.quiz-result-box {
+    background: rgba(10, 12, 18, 0.9);
+    border: 1px solid var(--border-bright);
+    padding: 2rem;
+    border-radius: var(--radius-xl);
+    max-width: 580px;
+    margin: 1.5rem auto 0;
 }
 
 /* Typography & Utilities */
@@ -1692,6 +1832,10 @@ a {
     .hero-stats-row {
         justify-content: center;
     }
+    .pitch-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
     .calc-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -1717,6 +1861,8 @@ a {
     .mobile-menu-toggle { display: flex; align-items: center; justify-content: center; }
     .hero-title { font-size: 2.4rem; }
     .cta-title { font-size: 2rem; }
+    .pitch-card { padding: 2rem 1.5rem; }
+    .quiz-card { padding: 2rem 1.5rem; }
     .calc-card { padding: 2rem 1.5rem; }
     .trust-box { padding: 2rem 1.5rem; }
     .trust-metrics { flex-direction: column; gap: 1.25rem; }

@@ -692,11 +692,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       13. 3D TILT PHYSICS FOR CARDS
+    /* ==========================================
+       13. SCROLLCRAFT 3D TILT PHYSICS FOR CARDS
        ========================================== */
     function initTiltPhysics() {
         const tiltCards = document.querySelectorAll('.tilt-card');
         tiltCards.forEach(card => {
+            if (!card.querySelector('.tilt-glare')) {
+                const glare = document.createElement('div');
+                glare.className = 'tilt-glare';
+                card.appendChild(glare);
+            }
+
+            const glare = card.querySelector('.tilt-glare');
+
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
@@ -705,14 +714,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
 
-                const rotateX = ((y - centerY) / centerY) * -9;
-                const rotateY = ((x - centerX) / centerX) * 9;
+                const rotateX = ((y - centerY) / centerY) * -10;
+                const rotateY = ((x - centerX) / centerX) * 10;
 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.01)`;
+                if (glare) {
+                    glare.style.opacity = '1';
+                    glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 65%)`;
+                }
             });
 
             card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) scale(1)`;
+                if (glare) glare.style.opacity = '0';
             });
         });
     }
@@ -721,7 +735,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       14. HERO MORPHING LIQUID 3D CANVAS ENGINE
+       14. TOP GLOBAL SCROLL PROGRESS INDICATOR
+       ========================================== */
+    const globalScrollProgress = document.getElementById('globalScrollProgress');
+    function updateScrollProgress() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if (docHeight > 0 && globalScrollProgress) {
+            const progress = (scrollTop / docHeight) * 100;
+            globalScrollProgress.style.width = `${progress}%`;
+        }
+    }
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    updateScrollProgress();
+
+
+    /* ==========================================
+       15. HERO MORPHING LIQUID 3D CANVAS ENGINE
        ========================================== */
     const canvas = document.getElementById('heroFrameCanvas');
     const indicatorBar = document.getElementById('indicatorBar');
@@ -753,14 +783,14 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.clearRect(0, 0, width, height);
 
             const bgGrad = ctx.createRadialGradient(cx, cy, 10, cx, cy, width * 0.65);
-            bgGrad.addColorStop(0, 'rgba(0, 242, 254, 0.12)');
-            bgGrad.addColorStop(0.5, 'rgba(168, 85, 247, 0.06)');
+            bgGrad.addColorStop(0, 'rgba(0, 242, 254, 0.14)');
+            bgGrad.addColorStop(0.5, 'rgba(168, 85, 247, 0.08)');
             bgGrad.addColorStop(1, 'rgba(5, 6, 9, 1)');
             ctx.fillStyle = bgGrad;
             ctx.fillRect(0, 0, width, height);
 
-            timeOffset += 0.02;
-            const baseRadius = Math.min(width, height) * 0.26;
+            timeOffset += 0.025;
+            const baseRadius = Math.min(width, height) * 0.27;
             const rotationAngle = progress * Math.PI * 2.5 + timeOffset * 0.5;
 
             ctx.save();
@@ -769,7 +799,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             const ringR = baseRadius * (1.3 + Math.sin(timeOffset + progress * Math.PI) * 0.08);
             ctx.ellipse(0, 0, ringR, ringR * 0.45, progress * Math.PI, 0, Math.PI * 2);
-            ctx.strokeStyle = 'rgba(0, 242, 254, 0.45)';
+            ctx.strokeStyle = 'rgba(0, 242, 254, 0.5)';
             ctx.lineWidth = 2 * (window.devicePixelRatio || 1);
             ctx.setLineDash([10, 6]);
             ctx.stroke();
@@ -781,7 +811,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             const ringR2 = baseRadius * (1.15 + Math.cos(timeOffset * 0.8) * 0.06);
             ctx.ellipse(0, 0, ringR2 * 1.1, ringR2 * 0.65, -progress * Math.PI, 0, Math.PI * 2);
-            ctx.strokeStyle = 'rgba(168, 85, 247, 0.45)';
+            ctx.strokeStyle = 'rgba(168, 85, 247, 0.5)';
             ctx.lineWidth = 2 * (window.devicePixelRatio || 1);
             ctx.stroke();
             ctx.restore();
@@ -812,7 +842,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (let j = i + 1; j < nodes.length; j++) {
                     const dist = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
                     if (dist < baseRadius * 0.85) {
-                        const alpha = (1 - dist / (baseRadius * 0.85)) * 0.38;
+                        const alpha = (1 - dist / (baseRadius * 0.85)) * 0.4;
                         ctx.strokeStyle = `rgba(0, 242, 254, ${alpha})`;
                         ctx.beginPath();
                         ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -824,20 +854,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
             nodes.sort((a, b) => a.z - b.z);
             nodes.forEach(node => {
-                const nodeRadius = Math.max(2.2, 5 * node.scale);
+                const nodeRadius = Math.max(2.4, 5.5 * node.scale);
                 const alpha = (node.z + baseRadius) / (baseRadius * 2);
 
                 ctx.beginPath();
                 ctx.arc(node.x, node.y, nodeRadius, 0, Math.PI * 2);
-                ctx.fillStyle = node.z > 0 ? `rgba(0, 242, 254, ${0.4 + alpha * 0.6})` : `rgba(168, 85, 247, ${0.3 + alpha * 0.5})`;
-                ctx.shadowColor = 'rgba(0, 242, 254, 0.8)';
-                ctx.shadowBlur = 12;
+                ctx.fillStyle = node.z > 0 ? `rgba(0, 242, 254, ${0.45 + alpha * 0.55})` : `rgba(168, 85, 247, ${0.35 + alpha * 0.55})`;
+                ctx.shadowColor = 'rgba(0, 242, 254, 0.85)';
+                ctx.shadowBlur = 14;
                 ctx.fill();
                 ctx.shadowBlur = 0;
             });
 
             ctx.fillStyle = '#ffffff';
-            ctx.font = `800 ${16 * (window.devicePixelRatio || 1)}px 'Outfit', sans-serif`;
+            ctx.font = `800 ${17 * (window.devicePixelRatio || 1)}px 'Outfit', sans-serif`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText('TAYANCH', cx, cy);
@@ -882,29 +912,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       15. GSAP SCROLL REVEALS & MOBILE DRAWER
+       16. GSAP SCROLL TRIGGER REVEALS & MOBILE DRAWER
        ========================================== */
     if (window.gsap && window.ScrollTrigger) {
         gsap.from('.hero-fade', {
             opacity: 0,
-            y: 30,
-            duration: 0.8,
+            y: 35,
+            duration: 0.9,
             stagger: 0.15,
             ease: 'power3.out'
         });
 
         gsap.utils.toArray('.gsap-reveal').forEach(elem => {
-            gsap.from(elem, {
-                opacity: 0,
-                y: 40,
-                duration: 0.8,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: elem,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
+            gsap.fromTo(elem, 
+                { opacity: 0, y: 45, scale: 0.96 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.85,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
                 }
-            });
+            );
         });
     }
 

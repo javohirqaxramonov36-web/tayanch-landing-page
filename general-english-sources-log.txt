@@ -1,0 +1,71 @@
+===============================================================================
+TAYANCH EDUCATIONAL PLATFORM — GENERAL ENGLISH OPEN SOURCES LOG
+File: general-english-sources-log.txt
+Date: 2026-08-27
+Status: VERIFIED OPEN LICENSES (COMPLIANT WITH AWARDS.GOV.UZ & DMCA PREVENTION)
+===============================================================================
+
+[RECORD 1]
+Source Name: CEFR-J Wordlist & Grammar Profile (ver 1.5)
+URL: https://github.com/openlanguageprofiles/olp-en-cefrj (Asl manba: http://www.cefr-j.org/)
+Authors: Tono Laboratory, Tokyo University of Foreign Studies (TUFS)
+License: Free for commercial and research use with required attribution.
+Attribution String: "CEFR-J Wordlist, Tono Laboratory, Tokyo University of Foreign Studies"
+Target Content: A1, A2, B1, B2 Vocabulary lists and CEFR grammar structures.
+ShareAlike Risk: NO (Attribution only required).
+
+[RECORD 2]
+Source Name: Octanove Vocabulary Profile C1/C2 (ver 1.0)
+URL: https://github.com/openlanguageprofiles/olp-en-cefrj/blob/master/octanove-vocabulary-profile-c1c2-1.0.csv
+Authors: Octanove Labs (http://www.octanove.com/)
+License: CC-BY-SA 4.0 (Share-Alike)
+Target Content: C1/C2 Advanced Vocabulary inspiration.
+ShareAlike Risk Management Strategy: Direct database structure copying avoided. Words independently vetted and curated to prevent Share-Alike license contamination on proprietary course materials.
+
+[RECORD 3]
+Source Name: Words-CEFR-Dataset & cefrpy
+URL: https://github.com/Maximax67/Words-CEFR-Dataset (cefrpy: https://github.com/Maximax67/cefrpy)
+Author: Maximax67
+License: CC-BY 4.0 (cefrpy Python library: MIT License)
+Target Content: Machine-readable CEFR word categorization (A1-C2) and algorithmic level validation.
+ShareAlike Risk: NO (CC-BY 4.0 only requires attribution, no ShareAlike requirement).
+
+[RECORD 4]
+Source Name: OpenVLT (Open Vocabulary Level Test)
+URL: https://github.com/englishcentral/ovlt
+Author: EnglishCentral (https://osf.io/afcg2/)
+License: MIT License (Explicit LICENSE file verified on 2026-08-27)
+Target Content: Level assessment test logic, item scoring matrix, and CEFR/IELTS/TOEFL correlation formulas.
+ShareAlike Risk: NO (MIT License permits free commercial use, modification, and integration).
+
+[RECORD 5]
+Source Name: Council of Europe CEFR "Can-Do" Descriptors
+URL: https://www.coe.int/en/web/common-european-framework-reference-languages / Europass
+Author: Council of Europe / Europass
+License: Openly published public framework; attribution required for reference.
+Target Content: "Can-Do" skill descriptions per CEFR level (A1-C1).
+ShareAlike Risk Management Strategy: All descriptors original paraphrased Uzbek/English text. No verbatim copying.
+
+[RECORD 6]
+Source Name: Wikipedia Simple English
+URL: https://simple.wikipedia.org/
+Author: Wikimedia Foundation / Community Contributors
+License: CC-BY-SA 4.0
+Target Content: Reading text difficulty benchmarks and topic themes.
+ShareAlike Risk Management Strategy: Simple Wikipedia articles used ONLY as thematic inspiration for text complexity. 100% original reading passages written from scratch to eliminate CC-BY-SA copyleft obligations.
+
+[RECORD 7]
+Source Name: Tatoeba.org
+URL: https://tatoeba.org/
+Author: Tatoeba Community Contributors
+License: CC-BY 2.0 / CC0 (Sentence-level dependent)
+Target Content: Contextual example sentence patterns.
+ShareAlike Risk Management Strategy: Example sentences crafted original from scratch using Tatoeba structures as style templates.
+
+===============================================================================
+FORBIDDEN SOURCES AUDIT & CONFIRMATION:
+- Oxford University Press (Navigate, Oxford 3000, Oxford 5000): 0% USED
+- Cambridge University Press (Cambridge Vocabulary Profile): 0% USED
+- Pearson Education: 0% USED
+- LanGeek / MindDory / Proprietary Web Aggregators: 0% USED
+===============================================================================

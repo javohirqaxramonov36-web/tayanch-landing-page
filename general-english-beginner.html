@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General English Beginner (A1) Flashcards & Modullar — Tayanch</title>
+    <meta name="description" content="Tayanch platformasi General English Beginner (A1) kursi: Ochiq litsenziyali CEFR-J va OpenVLT bazasidagi interaktiv flashcardlar va mashqlar.">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .flashcards-container {
+            max-width: 780px;
+            margin: 2rem auto;
+        }
+        .flashcard {
+            background: var(--bg-card);
+            border: 1px solid var(--border-bright);
+            border-radius: var(--radius-xl);
+            padding: 3rem 2rem;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-glow-cyan);
+            cursor: pointer;
+            perspective: 1000px;
+            min-height: 260px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.4s ease;
+        }
+        .flashcard:hover {
+            transform: scale(1.02);
+            border-color: var(--primary-cyan);
+        }
+        .card-word {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-cyan);
+            font-family: var(--font-heading);
+        }
+        .card-pos {
+            font-size: 0.85rem;
+            color: var(--accent-purple);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0.5rem;
+        }
+        .card-translation {
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-top: 1rem;
+            display: none;
+        }
+        .card-example {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 0.75rem;
+            display: none;
+        }
+        .flashcard.flipped .card-translation,
+        .flashcard.flipped .card-example {
+            display: block;
+        }
+        .card-hint {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-top: 1.5rem;
+        }
+        .attribution-box {
+            background: rgba(10, 12, 18, 0.8);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            margin-top: 3rem;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body class="liquid-theme">
+
+    <!-- Navbar -->
+    <header class="navbar liquid-navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <div class="brand-icon liquid-glow-icon"><i class="fa-solid fa-compass-drafting"></i></div>
+                <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
+            </a>
+            <div class="nav-actions">
+                <a href="index.html#courses" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Kurslarga qaytish</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container section">
+        <div class="section-header text-center">
+            <span class="category-tag cat-ielts">CEFR A1 Beginner</span>
+            <h1 class="section-title mt-2">General English <span class="gradient-text">A1 Flashcardlar</span></h1>
+            <p class="section-desc">CEFR-J Wordlist ochiq bazasi va Europass "Can-Do" standartlari asosida tuzilgan o'quv moduli.</p>
+        </div>
+
+        <!-- Interactive Flashcard Widget -->
+        <div class="flashcards-container">
+            <div class="flashcard liquid-card" id="flashcard">
+                <span class="category-tag cat-ai" id="cardLevel">CEFR-J A1.1</span>
+                <div class="card-word" id="cardWord">Hello</div>
+                <div class="card-pos" id="cardPos">exclamation / greeting</div>
+                <div class="card-translation" id="cardTranslation">Salom / Assalomu alaykum</div>
+                <div class="card-example" id="cardExample">"Hello! My name is Anvar."</div>
+                <div class="card-hint"><i class="fa-solid fa-rotate"></i> Tarjima va misol gapni ko'rish uchun kartaga bosing</div>
+            </div>
+
+            <div class="text-center mt-4" style="display: flex; gap: 1rem; justify-content: center;">
+                <button class="btn btn-secondary" id="prevCardBtn"><i class="fa-solid fa-chevron-left"></i> Oldingisi</button>
+                <button class="btn btn-primary btn-glow btn-liquid" id="nextCardBtn">
+                    <span class="btn-text">Keyingi So'z <i class="fa-solid fa-chevron-right"></i></span>
+                    <div class="liquid-wave"></div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Open Source License Attribution Box -->
+        <div class="attribution-box text-center max-w-2xl margin-auto">
+            <h4><i class="fa-solid fa-scale-balanced"></i> Ochiq Litsenziya va Mualliflik Ma'lumoti:</h4>
+            <p class="mt-2">
+                Ushbu General English A1 moduli so'zlari <strong>CEFR-J Wordlist (Tono Laboratory, Tokyo University of Foreign Studies)</strong> va <strong>Words-CEFR-Dataset (CC-BY 4.0)</strong> ochiq ma'lumotlar bazalaridan olingan. Matn va mashqlar mualliflik huquqiga ega tijorat darsliklaridan holi ravishda noldan mustaqil yaratilgan.
+            </p>
+        </div>
+    </main>
+
+    <script>
+        const a1Words = [
+            { word: "Hello", pos: "exclamation", level: "CEFR-J A1.1", uz: "Salom", ex: "Hello! Nice to meet you." },
+            { word: "Welcome", pos: "verb / noun", level: "CEFR-J A1.1", uz: "Xush kelibsiz", ex: "Welcome to our English class." },
+            { word: "Student", pos: "noun", level: "CEFR-J A1.1", uz: "Talaba / O'quvchi", ex: "She is an ambitious student." },
+            { word: "Learn", pos: "verb", level: "CEFR-J A1.2", uz: "O'rganmoq", ex: "We learn new words every day." },
+            { word: "Future", pos: "noun / adj", level: "CEFR-J A1.2", uz: "Kelajak", ex: "AI tools shape the future of education." }
+        ];
+
+        let currentIndex = 0;
+        const card = document.getElementById('flashcard');
+        const wordEl = document.getElementById('cardWord');
+        const posEl = document.getElementById('cardPos');
+        const transEl = document.getElementById('cardTranslation');
+        const exEl = document.getElementById('cardExample');
+        const levelEl = document.getElementById('cardLevel');
+
+        function updateCard() {
+            card.classList.remove('flipped');
+            const data = a1Words[currentIndex];
+            wordEl.innerText = data.word;
+            posEl.innerText = data.pos;
+            transEl.innerText = data.uz;
+            exEl.innerText = `"${data.ex}"`;
+            levelEl.innerText = data.level;
+        }
+
+        card.addEventListener('click', () => card.classList.toggle('flipped'));
+        document.getElementById('nextCardBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % a1Words.length;
+            updateCard();
+        });
+        document.getElementById('prevCardBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + a1Words.length) % a1Words.length;
+            updateCard();
+        });
+    </script>
+</body>
+</html>

@@ -1,12 +1,14 @@
 /* ==========================================================================
-   Tayanch Landing Page — Master JavaScript Engine (Liquid Dynamic Edition)
+   Tayanch Landing Page — Master JavaScript Engine (Video & Interactive Edition)
    Features: 
    - 31 Course Catalog with Search & Category Filtering
+   - Interactive Grant & Course Eligibility Calculator
+   - Video Preview Modal Widget
    - Lead Application Form Modal + Telegram Submission
    - Proof & Certificate Slider
    - Countdown Timer & Top Announcement
    - Interactive Fluid Ripple Canvas Overlay Engine
-   - Hero 3D Morphing Liquid Sphere Canvas (Scroll-Driven)
+   - Hero 3D Morphing Liquid Sphere Canvas (Scroll-Driven 360°)
    - Organic 3D Tilt Physics
    ========================================================================== */
 
@@ -636,7 +638,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return card;
     }
 
-    // Category Tabs Switching
     if (filterTabs) {
         filterTabs.addEventListener('click', (e) => {
             const btn = e.target.closest('.tab-btn');
@@ -684,7 +685,111 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       3. COURSE MODAL PREVIEW ENGINE
+       3. INTERACTIVE GRANT & COURSE ELIGIBILITY CALCULATOR
+       ========================================== */
+    const calcLevel = document.getElementById('calcLevel');
+    const calcIelts = document.getElementById('calcIelts');
+    const calcGoal = document.getElementById('calcGoal');
+    const resGrantProgress = document.getElementById('resGrantProgress');
+    const resGrantPercent = document.getElementById('resGrantPercent');
+    const resGrantAmount = document.getElementById('resGrantAmount');
+    const resCoursesList = document.getElementById('resCoursesList');
+    const calcApplyBtn = document.getElementById('calcApplyBtn');
+
+    function calculateGrantEligibility() {
+        if (!calcLevel || !calcIelts || !calcGoal) return;
+
+        const level = calcLevel.value;
+        const ielts = parseFloat(calcIelts.value);
+        const goal = calcGoal.value;
+
+        let basePercent = 60;
+        let amount = "$60,000 - $100,000";
+        let recommended = [];
+
+        if (level === 'b2' || level === 'c1') basePercent += 20;
+        if (ielts >= 7.0) basePercent += 15;
+
+        if (basePercent > 98) basePercent = 98;
+
+        if (ielts >= 7.5) {
+            amount = "$180,000 - $250,000+ (Full-Ride)";
+        } else if (ielts >= 7.0) {
+            amount = "$120,000 - $180,000 (Tuition + Stipend)";
+        }
+
+        if (goal === 'ai') {
+            recommended = [coursesData[0], coursesData[1], coursesData[5]];
+        } else if (goal === 'sat') {
+            recommended = [coursesData[21], coursesData[22], coursesData[26]];
+        } else {
+            recommended = [coursesData[10], coursesData[23], coursesData[24]];
+        }
+
+        if (resGrantProgress) resGrantProgress.style.width = `${basePercent}%`;
+        if (resGrantPercent) resGrantPercent.innerText = `${basePercent}%`;
+        if (resGrantAmount) resGrantAmount.innerText = amount;
+
+        if (resCoursesList) {
+            resCoursesList.innerHTML = recommended.map(c => `<li><i class="fa-solid fa-check"></i> ${c.title}</li>`).join('');
+        }
+
+        if (calcApplyBtn) {
+            calcApplyBtn.dataset.course = `Grant Calculator (${basePercent}% Grant - ${recommended[0].title})`;
+        }
+    }
+
+    if (calcLevel) calcLevel.addEventListener('change', calculateGrantEligibility);
+    if (calcIelts) calcIelts.addEventListener('change', calculateGrantEligibility);
+    if (calcGoal) calcGoal.addEventListener('change', calculateGrantEligibility);
+
+    calculateGrantEligibility();
+
+
+    /* ==========================================
+       4. INTERACTIVE VIDEO PREVIEW MODAL WIDGET
+       ========================================== */
+    const videoModal = document.getElementById('videoModal');
+    const videoIframe = document.getElementById('videoIframe');
+    const videoModalTitle = document.getElementById('videoModalTitle');
+    const videoModalCloseBtn = document.getElementById('videoModalCloseBtn');
+
+    function openVideoModal(title = 'Tayanch Video Prevyusi', videoId = 'VBvxHIkvjeo') {
+        if (!videoModal || !videoIframe) return;
+
+        if (videoModalTitle) videoModalTitle.innerText = title;
+        videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+
+        videoModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideoModal() {
+        if (!videoModal) return;
+        videoModal.classList.remove('active');
+        if (videoIframe) videoIframe.src = '';
+        document.body.style.overflow = '';
+    }
+
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.open-video-modal-btn');
+        if (btn) {
+            const title = btn.dataset.title || 'Tayanch Platformasi Prevyusi';
+            const videoId = btn.dataset.video || 'VBvxHIkvjeo';
+            openVideoModal(title, videoId);
+        }
+    });
+
+    if (videoModalCloseBtn) videoModalCloseBtn.addEventListener('click', closeVideoModal);
+    if (videoModal) {
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) closeVideoModal();
+        });
+    }
+
+
+    /* ==========================================
+       5. COURSE MODAL PREVIEW ENGINE
        ========================================== */
     const courseModal = document.getElementById('courseModal');
     const modalContent = document.getElementById('modalContent');
@@ -716,9 +821,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="btn-text"><i class="fa-solid fa-pen-to-square"></i> Kursga Ariza Qoldirish</span>
                     <div class="liquid-wave"></div>
                 </button>
-                <a href="https://t.me/tayanch_go" target="_blank" class="btn btn-secondary w-full">
-                    <i class="fa-brands fa-telegram"></i> Telegram Orqali Savol Berish
-                </a>
+                <button class="btn btn-secondary w-full open-video-modal-btn" data-title="${course.title} - Video Namuna" data-video="VBvxHIkvjeo">
+                    <i class="fa-solid fa-circle-play" style="color: var(--primary-cyan);"></i> Video Namuna Darsini Ko'rish
+                </button>
             </div>
         `;
 
@@ -750,7 +855,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       4. LEAD APPLICATION FORM & TELEGRAM INTEGRATION
+       6. LEAD APPLICATION FORM & TELEGRAM INTEGRATION
        ========================================== */
     const leadModal = document.getElementById('leadModal');
     const leadModalCloseBtn = document.getElementById('leadModalCloseBtn');
@@ -785,14 +890,6 @@ document.addEventListener('DOMContentLoaded', () => {
         leadModal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
-
-    document.addEventListener('click', (e) => {
-        const btn = e.target.closest('.open-lead-modal-btn');
-        if (btn) {
-            const courseName = btn.dataset.course || 'Barcha Kurslar (Maslahat)';
-            openLeadModal(courseName);
-        }
-    });
 
     if (leadModalCloseBtn) leadModalCloseBtn.addEventListener('click', () => closeModal(leadModal));
     if (leadModal) {
@@ -829,7 +926,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       5. PROOF & CERTIFICATE SLIDER
+       7. PROOF & CERTIFICATE SLIDER
        ========================================== */
     const proofCards = document.querySelectorAll('.proof-card');
     const slidePrevBtn = document.getElementById('slidePrevBtn');
@@ -869,7 +966,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       6. COUNTDOWN TIMER ENGINE
+       8. COUNTDOWN TIMER ENGINE
        ========================================== */
     const cdDays = document.getElementById('cdDays');
     const cdHours = document.getElementById('cdHours');
@@ -900,7 +997,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       7. INTERACTIVE FLUID RIPPLE CANVAS ENGINE
+       9. INTERACTIVE FLUID RIPPLE CANVAS ENGINE
        ========================================== */
     const rippleCanvas = document.getElementById('fluidRippleCanvas');
     if (rippleCanvas) {
@@ -966,7 +1063,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       8. 3D TILT PHYSICS FOR CARDS
+       10. 3D TILT PHYSICS FOR CARDS
        ========================================== */
     function initTiltPhysics() {
         const tiltCards = document.querySelectorAll('.tilt-card');
@@ -995,7 +1092,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       9. HERO MORPHING LIQUID 3D CANVAS ENGINE
+       11. HERO MORPHING LIQUID 3D CANVAS ENGINE (360° APPLE STYLE)
        ========================================== */
     const canvas = document.getElementById('heroFrameCanvas');
     const indicatorBar = document.getElementById('indicatorBar');
@@ -1026,7 +1123,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             ctx.clearRect(0, 0, width, height);
 
-            // Radial liquid background gradient
             const bgGrad = ctx.createRadialGradient(cx, cy, 10, cx, cy, width * 0.65);
             bgGrad.addColorStop(0, 'rgba(0, 242, 254, 0.12)');
             bgGrad.addColorStop(0.5, 'rgba(168, 85, 247, 0.06)');
@@ -1038,7 +1134,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const baseRadius = Math.min(width, height) * 0.26;
             const rotationAngle = progress * Math.PI * 2.5 + timeOffset * 0.5;
 
-            // Render Morphing Liquid Outer Rings
             ctx.save();
             ctx.translate(cx, cy);
             ctx.rotate(rotationAngle * 0.5);
@@ -1062,7 +1157,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.stroke();
             ctx.restore();
 
-            // Render Liquid Morphing 3D Sphere Lattice
             const nodeCount = 42;
             const nodes = [];
 
@@ -1070,7 +1164,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const phi = Math.acos(-1 + (2 * i) / nodeCount);
                 const theta = Math.sqrt(nodeCount * Math.PI) * phi + rotationAngle;
 
-                // Liquid Morphing Wave Deformation
                 const liquidWave = Math.sin(4 * phi + 3 * theta + timeOffset) * 14;
                 const rDynamic = baseRadius + liquidWave;
 
@@ -1085,7 +1178,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 nodes.push({ x: x2d, y: y2d, z: z3d, scale });
             }
 
-            // Draw Node Connectors
             ctx.lineWidth = 1 * (window.devicePixelRatio || 1);
             for (let i = 0; i < nodes.length; i++) {
                 for (let j = i + 1; j < nodes.length; j++) {
@@ -1101,7 +1193,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Draw Glowing Liquid Nodes
             nodes.sort((a, b) => a.z - b.z);
             nodes.forEach(node => {
                 const nodeRadius = Math.max(2.2, 5 * node.scale);
@@ -1116,7 +1207,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.shadowBlur = 0;
             });
 
-            // Core Text
             ctx.fillStyle = '#ffffff';
             ctx.font = `800 ${16 * (window.devicePixelRatio || 1)}px 'Outfit', sans-serif`;
             ctx.textAlign = 'center';
@@ -1163,7 +1253,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       10. GSAP SCROLL REVEALS & MOBILE DRAWER
+       12. GSAP SCROLL REVEALS & MOBILE DRAWER
        ========================================== */
     if (window.gsap && window.ScrollTrigger) {
         gsap.from('.hero-fade', {

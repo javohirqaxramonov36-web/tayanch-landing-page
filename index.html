@@ -56,7 +56,7 @@
     <div class="liquid-blob blob-3"></div>
     <div class="bg-grid-pattern"></div>
 
-    <!-- Interactive Fluid Ripple & Glowing Trail Canvas -->
+    <!-- Interactive Fluid Ripple Canvas Overlay -->
     <canvas id="fluidRippleCanvas"></canvas>
 
     <!-- Sticky Announcement & Countdown Top Bar -->
@@ -88,9 +88,10 @@
 
             <nav class="nav-links liquid-nav-capsule" id="navLinks">
                 <a href="#hero" class="nav-link active">Bosh sahifa</a>
+                <a href="#calculator" class="nav-link">Kalkulyator</a>
                 <a href="#mission" class="nav-link">Nega Tayanch</a>
                 <a href="#courses" class="nav-link">Kurslar <span class="badge-count">31</span></a>
-                <a href="#trust" class="nav-link">Natijalar & Sertifikatlar</a>
+                <a href="#trust" class="nav-link">Natijalar</a>
             </nav>
 
             <div class="nav-actions">
@@ -114,6 +115,7 @@
         </div>
         <div class="drawer-links">
             <a href="#hero" class="drawer-link">Bosh sahifa</a>
+            <a href="#calculator" class="drawer-link">Grant Kalkulyatori</a>
             <a href="#mission" class="drawer-link">Nega Tayanch</a>
             <a href="#courses" class="drawer-link">Kurslar (31 ta)</a>
             <a href="#trust" class="drawer-link">Natijalar & Sertifikatlar</a>
@@ -151,10 +153,10 @@
                             <i class="fa-solid fa-paper-plane"></i>
                             <div class="liquid-wave"></div>
                         </button>
-                        <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-secondary liquid-glass-btn">
-                            <i class="fa-brands fa-telegram"></i>
-                            <span>Telegram'ga o'tish</span>
-                        </a>
+                        <button class="btn btn-lg btn-secondary liquid-glass-btn open-video-modal-btn" data-title="Tayanch Platformasi Video Prevyusi" data-video="VBvxHIkvjeo">
+                            <i class="fa-solid fa-circle-play" style="color: var(--primary-cyan);"></i>
+                            <span>Video Namuna (1 min)</span>
+                        </button>
                     </div>
 
                     <div class="hero-stats-row hero-fade">
@@ -175,7 +177,7 @@
                     </div>
                 </div>
 
-                <!-- Canvas Morphing Liquid 3D Frame Container -->
+                <!-- Apple-Style 360° Scroll-Driven 3D Canvas Frame Visualizer -->
                 <div class="hero-visual-wrapper">
                     <div class="visual-card liquid-glass-card tilt-card">
                         <div class="canvas-header">
@@ -184,13 +186,13 @@
                                 <span class="dot yellow"></span>
                                 <span class="dot green"></span>
                             </div>
-                            <span class="canvas-title"><i class="fa-solid fa-droplet"></i> Tayanch Liquid Morphing 3D</span>
-                            <span class="canvas-badge liquid-pulse">Fluid Interactive</span>
+                            <span class="canvas-title"><i class="fa-brands fa-apple"></i> Apple 360° 3D Scroll Visualizer</span>
+                            <span class="canvas-badge liquid-pulse">360° Interactive</span>
                         </div>
                         <div class="canvas-body">
                             <canvas id="heroFrameCanvas"></canvas>
                             <div class="canvas-overlay-text liquid-badge-overlay">
-                                <span id="frameStepLabel">SCROLL DOWN TO CONTROL LIQUID MORPHING</span>
+                                <span id="frameStepLabel">SCROLL DOWN FOR 360° ROTATION SEQUENCE</span>
                             </div>
                         </div>
                         <div class="canvas-footer">
@@ -198,6 +200,82 @@
                                 <span class="indicator-bar" id="indicatorBar"></span>
                             </div>
                             <span class="frame-count" id="frameCountLabel">Frame 1 / 60</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Grant & Course Eligibility Calculator Section -->
+        <section class="section calc-section" id="calculator">
+            <div class="container">
+                <div class="calc-card liquid-glass-card gsap-reveal">
+                    <div class="section-header text-center">
+                        <div class="section-tag"><i class="fa-solid fa-calculator"></i> Interaktiv Kalkulyator</div>
+                        <h2 class="section-title">Grant va Kurs <span class="gradient-text">Mosligini Hisoblang</span></h2>
+                        <p class="section-desc">Joriy ingliz tili darajangiz va maqsadingizni tanlang, tizim siz uchun 100% grant imkoniyatlarini va mos kurslarni chiqarib beradi.</p>
+                    </div>
+
+                    <div class="calc-grid">
+                        <div class="calc-inputs-col">
+                            <div class="calc-group">
+                                <label><i class="fa-solid fa-signal"></i> Joriy Ingliz tili darajangiz:</label>
+                                <select id="calcLevel" class="form-select">
+                                    <option value="a2">A2 (Elementary)</option>
+                                    <option value="b1">B1 (Intermediate)</option>
+                                    <option value="b2" selected>B2 (Upper-Intermediate)</option>
+                                    <option value="c1">C1 (Advanced)</option>
+                                </select>
+                            </div>
+
+                            <div class="calc-group">
+                                <label><i class="fa-solid fa-bullseye"></i> Maqsadingizdagi IELTS Balli:</label>
+                                <select id="calcIelts" class="form-select">
+                                    <option value="6.5">Band 6.5 (Xalqaro universitetlar)</option>
+                                    <option value="7.0" selected>Band 7.0 (Top 100 Grantlar)</option>
+                                    <option value="7.5">Band 7.5+ (Ivy League & Full-Ride)</option>
+                                </select>
+                            </div>
+
+                            <div class="calc-group">
+                                <label><i class="fa-solid fa-robot"></i> AI va SAT yo'nalishi bo'yicha maqsad:</label>
+                                <select id="calcGoal" class="form-select">
+                                    <option value="ai">AI vositalari va Unumdorlik</option>
+                                    <option value="sat">SAT Math 750+ va Digitial SAT</option>
+                                    <option value="admission" selected>US & European Top Universities Full-Ride</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="calc-results-col">
+                            <div class="results-box liquid-card">
+                                <h4>Hisoblangan Natijangiz:</h4>
+                                <div class="result-metric">
+                                    <span class="res-title">Grant Ehtimoli:</span>
+                                    <div class="progress-bar-bg">
+                                        <div class="progress-fill" id="resGrantProgress" style="width: 85%;"></div>
+                                    </div>
+                                    <span class="res-val" id="resGrantPercent">85%</span>
+                                </div>
+
+                                <div class="result-metric mt-3">
+                                    <span class="res-title">Taxminiy Grant Miqdori:</span>
+                                    <span class="res-highlight" id="resGrantAmount">$120,000 - $180,000</span>
+                                </div>
+
+                                <div class="recommended-courses-list mt-3">
+                                    <span>Tavsiya etiladigan mos Tayanch kurslari:</span>
+                                    <ul id="resCoursesList">
+                                        <li><i class="fa-solid fa-check"></i> IELTS Writing Task 2 Masterclass (Band 7.5+)</li>
+                                        <li><i class="fa-solid fa-check"></i> US College Application Essay (Personal Statement)</li>
+                                    </ul>
+                                </div>
+
+                                <button class="btn btn-primary btn-glow btn-liquid w-full mt-4 open-lead-modal-btn" id="calcApplyBtn" data-course="Kalkulyator Natijasi bo'yicha">
+                                    <span class="btn-text"><i class="fa-solid fa-paper-plane"></i> Ushbu Natija Bilan Ariza Topshirish</span>
+                                    <div class="liquid-wave"></div>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -489,6 +567,7 @@
                         <h4>Navigatsiya</h4>
                         <ul>
                             <li><a href="#hero">Bosh sahifa</a></li>
+                            <li><a href="#calculator">Kalkulyator</a></li>
                             <li><a href="#mission">Nega Tayanch</a></li>
                             <li><a href="#courses">Kurslar katalogi</a></li>
                             <li><a href="#proofs">Natijalar & Sertifikatlar</a></li>
@@ -580,6 +659,30 @@
                     <a href="https://t.me/tayanch_go" target="_blank" class="btn btn-secondary mt-3">
                         <i class="fa-brands fa-telegram"></i> Telegram kanalimizga o'tish
                     </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Preview Modal Widget -->
+    <div class="modal-overlay" id="videoModal">
+        <div class="modal-card video-modal-card liquid-modal">
+            <button class="modal-close" id="videoModalCloseBtn" aria-label="Yopish"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body">
+                <div class="text-center mb-3">
+                    <span class="cta-tag liquid-pill"><i class="fa-solid fa-circle-play"></i> Bevosita Video Prevyu</span>
+                    <h3 class="modal-course-title mt-2" id="videoModalTitle">Tayanch Platformasi Video Prevyusi</h3>
+                </div>
+
+                <div class="video-responsive-wrapper">
+                    <iframe id="videoIframe" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn btn-primary btn-glow btn-liquid w-full open-lead-modal-btn" data-course="Video Prevyu Orqali">
+                        <span class="btn-text"><i class="fa-solid fa-pen-to-square"></i> Ushbu Kursga Ariza Qoldirish</span>
+                        <div class="liquid-wave"></div>
+                    </button>
                 </div>
             </div>
         </div>

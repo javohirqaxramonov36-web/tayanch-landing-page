@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcha 31 ta Bepul Kurslar Katalogi — Tayanch</title>
+    <meta name="description" content="Tayanch platformasining 31 ta amaliy kurslar katalogi: AI, ChatGPT, IELTS Band 7.5+, SAT Math 800 va AQSh grantlariga bepul tayyorgarlik.">
+    
+    <!-- Canonical & Favicon -->
+    <link rel="canonical" href="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/courses.html">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <link rel="apple-touch-icon" href="assets/images/founder.jpg">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+</head>
+<body class="liquid-theme">
+
+    <!-- Sticky Announcement Top Bar -->
+    <div class="top-announcement-bar liquid-glass">
+        <div class="container announcement-content">
+            <span class="announcement-badge"><i class="fa-solid fa-gift"></i> VIP BEPUL RUKSAT</span>
+            <span class="announcement-text">Email: <strong>javohirqaxramonov36@gmail.com</strong> — Barcha 31 ta kurslar va materiallar 100% bepul ochiq!</span>
+            <a href="general-english-beginner.html" class="announcement-btn">
+                <span>English Hub'ga o'tish</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="navbar liquid-navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <div class="brand-icon liquid-glow-icon">
+                    <i class="fa-solid fa-compass-drafting"></i>
+                </div>
+                <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
+            </a>
+
+            <nav class="nav-links liquid-nav-capsule" id="navLinks">
+                <a href="index.html" class="nav-link">Bosh sahifa</a>
+                <a href="courses.html" class="nav-link active">Kurslar Katalogi (31)</a>
+                <a href="general-english-beginner.html" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> English Hub</a>
+                <a href="index.html#trust" class="nav-link">Natijalar</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-glow btn-liquid">
+                    <span class="btn-text">Telegram Kanal</span>
+                    <i class="fa-brands fa-telegram"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main style="padding-top: 130px; padding-bottom: 80px;">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="cta-tag liquid-pill"><i class="fa-solid fa-unlock-keyhole"></i> 100% Bepul Ochiq Platforma</span>
+                <h1 class="hero-title mt-2">Barcha <span class="gradient-text liquid-gradient">31 ta Kurslar</span> Portali</h1>
+                <p class="section-desc">Sun'iy Intelekt (AI), IELTS Band 7.5+ va Digital SAT hamda Admission bo'yicha to'liq amaliy o'quv modullari.</p>
+            </div>
+
+            <!-- Filter Controls & Search -->
+            <div class="catalog-controls mt-4">
+                <div class="search-box liquid-search">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="courseSearchInput" placeholder="Kurs nomi yoki kalit so'zni kiriting..." aria-label="Kurslarni qidirish">
+                    <button id="clearSearchBtn" class="clear-btn" style="display:none;" aria-label="Tozalash"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <div class="filter-tabs" id="filterTabs">
+                    <button class="tab-btn active liquid-tab" data-category="all">
+                        <span>Barchasi</span>
+                        <span class="tab-count" id="countAll">31</span>
+                    </button>
+                    <button class="tab-btn liquid-tab" data-category="ai">
+                        <i class="fa-solid fa-robot"></i>
+                        <span>Sun'iy Intelekt (AI)</span>
+                        <span class="tab-count">10</span>
+                    </button>
+                    <button class="tab-btn liquid-tab" data-category="ielts">
+                        <i class="fa-solid fa-language"></i>
+                        <span>IELTS & Ingliz tili</span>
+                        <span class="tab-count">11</span>
+                    </button>
+                    <button class="tab-btn liquid-tab" data-category="admission">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <span>Admission & SAT</span>
+                        <span class="tab-count">10</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Courses Grid -->
+            <div class="grid grid-3 courses-grid mt-4" id="coursesGrid">
+                <!-- Dynamically rendered via script.js -->
+            </div>
+
+            <div class="no-results" id="noResultsMsg" style="display: none;">
+                <i class="fa-regular fa-folder-open"></i>
+                <h3>Kurs topilmadi</h3>
+                <p>Qidiruv bo'yicha hech qanday mos keluvchi kurs mavjud emas.</p>
+                <button class="btn btn-secondary mt-3" id="resetFilterBtn">Barcha kurslarni ko'rsatish</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Course Details Modal -->
+    <div class="modal-overlay" id="courseModal" role="dialog" aria-modal="true" aria-labelledby="modalCourseTitle">
+        <div class="modal-card liquid-modal">
+            <button class="modal-close" id="modalCloseBtn" aria-label="Yopish"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body" id="modalContent">
+                <!-- Dynamically filled by script.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Lead Application Form Modal -->
+    <div class="modal-overlay" id="leadModal" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+        <div class="modal-card lead-form-card liquid-modal">
+            <button class="modal-close" id="leadModalCloseBtn" aria-label="Yopish"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body">
+                <div class="text-center mb-4">
+                    <span class="cta-tag liquid-pill"><i class="fa-solid fa-pen-to-square"></i> Tayanch Kurslariga Ariza</span>
+                    <h3 class="modal-course-title mt-2" id="leadModalTitle">Bugundan ta'limni boshlang</h3>
+                    <p class="modal-desc">Ma'lumotlaringizni kiriting va biz siz bilan zudlik bilan Telegram orqali bog'lanamiz.</p>
+                </div>
+
+                <form id="leadForm" class="lead-form">
+                    <div class="form-group">
+                        <label for="leadName"><i class="fa-solid fa-user"></i> Ismingiz va Familiyangiz</label>
+                        <input type="text" id="leadName" required placeholder="Masalan: Jasur Rahimov">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="leadPhone"><i class="fa-solid fa-phone"></i> Telefon raqamingiz</label>
+                        <input type="tel" id="leadPhone" required placeholder="+998 90 123 45 67">
+                        <span class="field-error-msg" id="phoneErrorMsg" style="display:none; color: #ef4444; font-size: 0.8rem; margin-top: 4px;">Raqam formati: +998 90 123 45 67 bo'lishi kerak.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="leadTelegram"><i class="fa-brands fa-telegram"></i> Telegram Username (Ixtiyoriy)</label>
+                        <input type="text" id="leadTelegram" placeholder="@username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="leadCourseSelect"><i class="fa-solid fa-book"></i> Qaysi kursga qiziqyapsiz?</label>
+                        <select id="leadCourseSelect" required class="form-select">
+                            <option value="Barcha Kurslar (Maslahat)">Barcha Kurslar bo'yicha maslahat</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-glow btn-liquid w-full mt-3">
+                        <span class="btn-text">Arizani Yuborish</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <div class="liquid-wave"></div>
+                    </button>
+                </form>
+
+                <div class="form-success-msg" id="formSuccessMsg" style="display: none;">
+                    <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+                    <h3>Arizangiz qabul qilindi!</h3>
+                    <p>Tez orada Telegram orqali siz bilan bog'lanamiz.</p>
+                    <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-secondary mt-3">
+                        <i class="fa-brands fa-telegram"></i> Telegram kanalimizga o'tish
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Preview Modal Widget -->
+    <div class="modal-overlay" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
+        <div class="modal-card video-modal-card liquid-modal">
+            <button class="modal-close" id="videoModalCloseBtn" aria-label="Yopish"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body">
+                <div class="text-center mb-3">
+                    <span class="cta-tag liquid-pill"><i class="fa-solid fa-circle-play"></i> Bevosita Video Prevyu</span>
+                    <h3 class="modal-course-title mt-2" id="videoModalTitle">Tayanch Platformasi Video Prevyusi</h3>
+                </div>
+
+                <div class="video-responsive-wrapper">
+                    <iframe id="videoIframe" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container text-center">
+            <p>&copy; 2026 Tayanch Educational Platform. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+
+    <!-- JS Engine -->
+    <script src="script.js" defer></script>
+</body>
+</html>

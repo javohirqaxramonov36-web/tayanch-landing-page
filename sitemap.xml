@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://javohirqaxramonov36-web.github.io/tayanch-landing-page/</loc>
@@ -7,9 +8,15 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://javohirqaxramonov36-web.github.io/tayanch-landing-page/courses.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://javohirqaxramonov36-web.github.io/tayanch-landing-page/general-english-beginner.html</loc>
     <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.90</priority>
   </url>
 </urlset>

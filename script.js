@@ -224,11 +224,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.className = 'course-card liquid-card tilt-card';
         const catClass = course.category === 'ai' ? 'cat-ai' : (course.category === 'ielts' ? 'cat-ielts' : 'cat-admission');
+        const catImg = course.category === 'ai' ? 'assets/images/ai_hero.jpg' : (course.category === 'ielts' ? 'assets/images/founder.jpg' : 'assets/images/university_grant.jpg');
 
         card.innerHTML = `
             <div class="course-top">
+                <div class="course-thumb-wrapper">
+                    <img src="${catImg}" alt="${course.title}" class="course-thumb-img" loading="lazy">
+                    <div class="course-thumb-overlay"></div>
+                    <span class="category-tag ${catClass} thumb-tag">${course.catName}</span>
+                </div>
                 <div class="course-meta">
-                    <span class="category-tag ${catClass}">${course.catName}</span>
                     <span class="course-badge"><i class="${course.icon}"></i> ${course.badge}</span>
                 </div>
                 <h3 class="course-title">${course.title}</h3>

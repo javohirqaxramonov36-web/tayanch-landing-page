@@ -40,6 +40,25 @@
             transform: scale(1.02);
             border-color: var(--primary-cyan);
         }
+        .card-img-wrapper {
+            width: 200px;
+            height: 200px;
+            margin: 1.2rem auto 0.8rem auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.25);
+            border: 2px solid rgba(0, 242, 254, 0.4);
+            background: #121622;
+        }
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .flashcard:hover .card-img {
+            transform: scale(1.06);
+        }
         .card-word {
             font-size: 2.5rem;
             font-weight: 800;
@@ -51,7 +70,7 @@
             color: var(--accent-purple);
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-top: 0.5rem;
+            margin-top: 0.25rem;
         }
         .card-translation {
             font-size: 1.4rem;
@@ -105,13 +124,16 @@
         <div class="section-header text-center">
             <span class="category-tag cat-ielts">CEFR A1 Beginner</span>
             <h1 class="section-title mt-2">General English <span class="gradient-text">A1 Flashcardlar</span></h1>
-            <p class="section-desc">CEFR-J Wordlist ochiq bazasi va Europass "Can-Do" standartlari asosida tuzilgan o'quv moduli.</p>
+            <p class="section-desc">CEFR-J Wordlist ochiq bazasi va Europass "Can-Do" standartlari asosida tuzilgan interaktiv visual o'quv moduli.</p>
         </div>
 
         <!-- Interactive Flashcard Widget -->
         <div class="flashcards-container">
             <div class="flashcard liquid-card" id="flashcard">
                 <span class="category-tag cat-ai" id="cardLevel">CEFR-J A1.1</span>
+                <div class="card-img-wrapper">
+                    <img id="cardImg" class="card-img" src="assets/images/flashcard_hello.jpg" alt="Hello Flashcard Illustration">
+                </div>
                 <div class="card-word" id="cardWord">Hello</div>
                 <div class="card-pos" id="cardPos">exclamation / greeting</div>
                 <div class="card-translation" id="cardTranslation">Salom / Assalomu alaykum</div>
@@ -139,11 +161,11 @@
 
     <script>
         const a1Words = [
-            { word: "Hello", pos: "exclamation", level: "CEFR-J A1.1", uz: "Salom", ex: "Hello! Nice to meet you." },
-            { word: "Welcome", pos: "verb / noun", level: "CEFR-J A1.1", uz: "Xush kelibsiz", ex: "Welcome to our English class." },
-            { word: "Student", pos: "noun", level: "CEFR-J A1.1", uz: "Talaba / O'quvchi", ex: "She is an ambitious student." },
-            { word: "Learn", pos: "verb", level: "CEFR-J A1.2", uz: "O'rganmoq", ex: "We learn new words every day." },
-            { word: "Future", pos: "noun / adj", level: "CEFR-J A1.2", uz: "Kelajak", ex: "AI tools shape the future of education." }
+            { word: "Hello", pos: "exclamation", level: "CEFR-J A1.1", uz: "Salom / Assalomu alaykum", ex: "Hello! Nice to meet you.", img: "assets/images/flashcard_hello.jpg" },
+            { word: "Welcome", pos: "verb / noun", level: "CEFR-J A1.1", uz: "Xush kelibsiz", ex: "Welcome to our English class.", img: "assets/images/flashcard_welcome.jpg" },
+            { word: "Student", pos: "noun", level: "CEFR-J A1.1", uz: "Talaba / O'quvchi", ex: "She is an ambitious student.", img: "assets/images/flashcard_student.jpg" },
+            { word: "Learn", pos: "verb", level: "CEFR-J A1.2", uz: "O'rganmoq", ex: "We learn new words every day.", img: "assets/images/flashcard_learn.jpg" },
+            { word: "Future", pos: "noun / adj", level: "CEFR-J A1.2", uz: "Kelajak", ex: "AI tools shape the future of education.", img: "assets/images/flashcard_future.jpg" }
         ];
 
         let currentIndex = 0;
@@ -153,6 +175,7 @@
         const transEl = document.getElementById('cardTranslation');
         const exEl = document.getElementById('cardExample');
         const levelEl = document.getElementById('cardLevel');
+        const imgEl = document.getElementById('cardImg');
 
         function updateCard() {
             card.classList.remove('flipped');
@@ -162,7 +185,22 @@
             transEl.innerText = data.uz;
             exEl.innerText = `"${data.ex}"`;
             levelEl.innerText = data.level;
+            if (imgEl && data.img) {
+                imgEl.src = data.img;
+                imgEl.alt = data.word + " Flashcard Illustration";
+            }
         }
+
+        card.addEventListener('click', () => card.classList.toggle('flipped'));
+        document.getElementById('nextCardBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % a1Words.length;
+            updateCard();
+        });
+        document.getElementById('prevCardBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + a1Words.length) % a1Words.length;
+            updateCard();
+        });
+    </script>
 
         card.addEventListener('click', () => card.classList.toggle('flipped'));
         document.getElementById('nextCardBtn').addEventListener('click', () => {

@@ -1,6 +1,12 @@
 /* ==========================================================================
-   Tayanch Landing Page — JavaScript Engine
-   Features: GSAP ScrollTrigger, HTML5 3D Canvas Frame Sequence, 31 Course Catalog Search & Filter, Modal Preview
+   Tayanch Landing Page — Master JavaScript Engine (Optimized Edition)
+   Features: 
+   - 31 Course Catalog with Search & Category Filtering
+   - Lead Application Form Modal (A2) + Telegram Submission
+   - Proof & Certificate Slider (A3)
+   - Countdown Timer & Top Sticky Announcement
+   - 3D Tilt Physics & Ambient Background Particle Canvas
+   - GSAP ScrollTrigger Frame Animation Engine
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -553,12 +559,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterTabs = document.getElementById('filterTabs');
     const noResultsMsg = document.getElementById('noResultsMsg');
     const resetFilterBtn = document.getElementById('resetFilterBtn');
-    const countAllLabel = document.getElementById('countAll');
 
     let currentCategory = 'all';
     let currentSearchQuery = '';
 
-    // Initialize Catalog Render
     function renderCourses() {
         if (!coursesGrid) return;
 
@@ -585,19 +589,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 coursesGrid.appendChild(card);
             });
 
-            // Re-trigger GSAP reveal on rendered cards
+            // Re-trigger GSAP reveal & 3D tilt initialization
             if (window.gsap) {
                 gsap.fromTo('.course-card', 
                     { opacity: 0, y: 20 },
-                    { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power2.out' }
+                    { opacity: 1, y: 0, duration: 0.4, stagger: 0.04, ease: 'power2.out' }
                 );
             }
+            initTiltPhysics();
         }
     }
 
     function createCourseCard(course) {
         const card = document.createElement('div');
-        card.className = 'course-card';
+        card.className = 'course-card tilt-card';
 
         const catClass = course.category === 'ai' ? 'cat-ai' : (course.category === 'ielts' ? 'cat-ielts' : 'cat-admission');
 
@@ -618,13 +623,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="btn btn-sm btn-secondary w-full view-details-btn" data-id="${course.id}">
                     <i class="fa-solid fa-circle-info"></i> Tafsilotlar
                 </button>
-                <a href="https://t.me/tayanch_go" target="_blank" class="btn btn-sm btn-primary">
-                    <i class="fa-brands fa-telegram"></i>
-                </a>
+                <button class="btn btn-sm btn-primary open-lead-modal-btn" data-course="${course.title}">
+                    <i class="fa-solid fa-pen-to-square"></i> Ariza
+                </button>
             </div>
         `;
 
-        // Event listener for modal view
         const detailsBtn = card.querySelector('.view-details-btn');
         detailsBtn.addEventListener('click', () => openCourseModal(course));
 
@@ -645,7 +649,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Search input handler
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             currentSearchQuery = e.target.value;
@@ -676,19 +679,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Initial render
     renderCourses();
 
 
     /* ==========================================
        3. COURSE MODAL PREVIEW ENGINE
        ========================================== */
-    const modalOverlay = document.getElementById('courseModal');
+    const courseModal = document.getElementById('courseModal');
     const modalContent = document.getElementById('modalContent');
     const modalCloseBtn = document.getElementById('modalCloseBtn');
 
     function openCourseModal(course) {
-        if (!modalOverlay || !modalContent) return;
+        if (!courseModal || !modalContent) return;
 
         const catClass = course.category === 'ai' ? 'cat-ai' : (course.category === 'ielts' ? 'cat-ielts' : 'cat-admission');
         const modulesList = course.modules.map(m => `<li><i class="fa-solid fa-circle-check"></i> ${m}</li>`).join('');
@@ -703,42 +705,291 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="detail-item"><i class="fa-solid fa-signal"></i> Daraja: <strong>${course.level}</strong></span>
             </div>
 
-            <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 0.75rem;">O'quv Modullari:</h4>
+            <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 0.75rem;">O'quv Modullari Mundarijasi:</h4>
             <ul class="modal-modules-list">
                 ${modulesList}
             </ul>
 
-            <div style="margin-top: 2rem; display: flex; gap: 1rem;">
-                <a href="https://t.me/tayanch_go" target="_blank" class="btn btn-primary btn-glow w-full">
-                    <i class="fa-brands fa-telegram"></i> Telegram Orqali A'zo Bo'lish
+            <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button class="btn btn-primary btn-glow w-full open-lead-modal-btn" data-course="${course.title}">
+                    <i class="fa-solid fa-pen-to-square"></i> Kursga Ariza Qoldirish
+                </button>
+                <a href="https://t.me/tayanch_go" target="_blank" class="btn btn-secondary w-full">
+                    <i class="fa-brands fa-telegram"></i> Telegram Orqali Savol Berish
                 </a>
             </div>
         `;
 
-        modalOverlay.classList.add('active');
+        courseModal.classList.add('active');
         document.body.style.overflow = 'hidden';
+
+        // Bind lead modal buttons inside course modal
+        const innerLeadBtn = modalContent.querySelector('.open-lead-modal-btn');
+        if (innerLeadBtn) {
+            innerLeadBtn.addEventListener('click', () => {
+                closeModal(courseModal);
+                openLeadModal(course.title);
+            });
+        }
     }
 
-    function closeModal() {
-        if (modalOverlay) {
-            modalOverlay.classList.remove('active');
+    function closeModal(modal) {
+        if (modal) {
+            modal.classList.remove('active');
             document.body.style.overflow = '';
         }
     }
 
-    if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
-    if (modalOverlay) {
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) closeModal();
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', () => closeModal(courseModal));
+    if (courseModal) {
+        courseModal.addEventListener('click', (e) => {
+            if (e.target === courseModal) closeModal(courseModal);
         });
     }
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
-    });
 
 
     /* ==========================================
-       4. HERO HTML5 3D CANVAS FRAME ANIMATION ENGINE
+       4. LEAD APPLICATION MODAL FORM & TELEGRAM INTEGRATION (A2)
+       ========================================== */
+    const leadModal = document.getElementById('leadModal');
+    const leadModalCloseBtn = document.getElementById('leadModalCloseBtn');
+    const leadForm = document.getElementById('leadForm');
+    const leadCourseSelect = document.getElementById('leadCourseSelect');
+    const formSuccessMsg = document.getElementById('formSuccessMsg');
+
+    // Populate course select options
+    if (leadCourseSelect) {
+        coursesData.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c.title;
+            opt.textContent = `[${c.catName}] ${c.title}`;
+            leadCourseSelect.appendChild(opt);
+        });
+    }
+
+    function openLeadModal(preselectedCourse = 'Barcha Kurslar (Maslahat)') {
+        if (!leadModal) return;
+
+        if (leadCourseSelect) {
+            // Find option matching course or default
+            for (let i = 0; i < leadCourseSelect.options.length; i++) {
+                if (leadCourseSelect.options[i].value === preselectedCourse || leadCourseSelect.options[i].text.includes(preselectedCourse)) {
+                    leadCourseSelect.selectedIndex = i;
+                    break;
+                }
+            }
+        }
+
+        if (formSuccessMsg) formSuccessMsg.style.display = 'none';
+        if (leadForm) leadForm.style.display = 'flex';
+
+        leadModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Global listener for open-lead-modal-btn
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.open-lead-modal-btn');
+        if (btn) {
+            const courseName = btn.dataset.course || 'Barcha Kurslar (Maslahat)';
+            openLeadModal(courseName);
+        }
+    });
+
+    if (leadModalCloseBtn) leadModalCloseBtn.addEventListener('click', () => closeModal(leadModal));
+    if (leadModal) {
+        leadModal.addEventListener('click', (e) => {
+            if (e.target === leadModal) closeModal(leadModal);
+        });
+    }
+
+    // Handle Lead Form Submission
+    if (leadForm) {
+        leadForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('leadName').value.trim();
+            const phone = document.getElementById('leadPhone').value.trim();
+            const telegram = document.getElementById('leadTelegram').value.trim() || 'Kiritilmadi';
+            const selectedCourse = leadCourseSelect ? leadCourseSelect.value : 'Tayanch Kurslari';
+
+            // Construct Telegram Pre-filled Message URL
+            const text = encodeURIComponent(
+                `📥 YANGI ARIZA - TAYANCH\n\n` +
+                `👤 Ism: ${name}\n` +
+                `📞 Tel: ${phone}\n` +
+                `💬 Telegram: ${telegram}\n` +
+                `📚 Tanlangan kurs: ${selectedCourse}`
+            );
+            const telegramUrl = `https://t.me/tayanch_go?text=${text}`;
+
+            // Show success animation
+            leadForm.style.display = 'none';
+            if (formSuccessMsg) formSuccessMsg.style.display = 'block';
+
+            // Open Telegram after 1 second delay
+            setTimeout(() => {
+                window.open(telegramUrl, '_blank');
+            }, 1000);
+        });
+    }
+
+
+    /* ==========================================
+       5. PROOF & CERTIFICATE INTERACTIVE SLIDER (A3)
+       ========================================== */
+    const proofCards = document.querySelectorAll('.proof-card');
+    const slidePrevBtn = document.getElementById('slidePrevBtn');
+    const slideNextBtn = document.getElementById('slideNextBtn');
+    const sliderDots = document.getElementById('sliderDots');
+
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        if (!proofCards.length) return;
+        if (index < 0) currentSlide = proofCards.length - 1;
+        else if (index >= proofCards.length) currentSlide = 0;
+        else currentSlide = index;
+
+        proofCards.forEach((card, i) => {
+            card.classList.toggle('active', i === currentSlide);
+        });
+
+        if (sliderDots) {
+            const dots = sliderDots.querySelectorAll('.dot-item');
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
+        }
+    }
+
+    if (slidePrevBtn) slidePrevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+    if (slideNextBtn) slideNextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+    if (sliderDots) {
+        sliderDots.addEventListener('click', (e) => {
+            const dot = e.target.closest('.dot-item');
+            if (dot) showSlide(parseInt(dot.dataset.index));
+        });
+    }
+
+    // Auto-advance slider every 6 seconds
+    setInterval(() => {
+        showSlide(currentSlide + 1);
+    }, 6000);
+
+
+    /* ==========================================
+       6. COUNTDOWN TIMER ENGINE
+       ========================================== */
+    const cdDays = document.getElementById('cdDays');
+    const cdHours = document.getElementById('cdHours');
+    const cdMins = document.getElementById('cdMins');
+    const cdSecs = document.getElementById('cdSecs');
+
+    // 2 days countdown target
+    let targetTime = new Date().getTime() + (2 * 24 * 60 * 60 * 1000) + (14 * 60 * 60 * 1000);
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const diff = targetTime - now;
+
+        if (diff <= 0) return;
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+        if (cdDays) cdDays.innerText = String(d).padStart(2, '0');
+        if (cdHours) cdHours.innerText = String(h).padStart(2, '0');
+        if (cdMins) cdMins.innerText = String(m).padStart(2, '0');
+        if (cdSecs) cdSecs.innerText = String(s).padStart(2, '0');
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+
+    /* ==========================================
+       7. AMBIENT BACKGROUND PARTICLES CANVAS
+       ========================================== */
+    const bgCanvas = document.getElementById('bgParticlesCanvas');
+    if (bgCanvas) {
+        const ctx = bgCanvas.getContext('2d');
+        let particles = [];
+
+        function resizeBgCanvas() {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeBgCanvas);
+        resizeBgCanvas();
+
+        for (let i = 0; i < 40; i++) {
+            particles.push({
+                x: Math.random() * bgCanvas.width,
+                y: Math.random() * bgCanvas.height,
+                radius: Math.random() * 2 + 1,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                alpha: Math.random() * 0.5 + 0.2
+            });
+        }
+
+        function animateBgParticles() {
+            ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > bgCanvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > bgCanvas.height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 242, 254, ${p.alpha})`;
+                ctx.shadowColor = 'rgba(0, 242, 254, 0.5)';
+                ctx.shadowBlur = 8;
+                ctx.fill();
+            });
+
+            requestAnimationFrame(animateBgParticles);
+        }
+
+        animateBgParticles();
+    }
+
+
+    /* ==========================================
+       8. 3D TILT PHYSICS FOR CARDS
+       ========================================== */
+    function initTiltPhysics() {
+        const tiltCards = document.querySelectorAll('.tilt-card');
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = ((y - centerY) / centerY) * -8;
+                const rotateY = ((x - centerX) / centerX) * 8;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+            });
+        });
+    }
+
+    initTiltPhysics();
+
+
+    /* ==========================================
+       9. HERO HTML5 3D CANVAS FRAME ANIMATION ENGINE
        ========================================== */
     const canvas = document.getElementById('heroFrameCanvas');
     const indicatorBar = document.getElementById('indicatorBar');
@@ -750,7 +1001,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const TOTAL_FRAMES = 60;
         let currentFrameIndex = 0;
 
-        // Resize Canvas dynamically
         function resizeCanvas() {
             const rect = canvas.parentElement.getBoundingClientRect();
             canvas.width = rect.width * (window.devicePixelRatio || 1);
@@ -760,17 +1010,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.addEventListener('resize', resizeCanvas);
 
-        // Procedural 3D Holographic Visual Frame Renderer
         function drawFrame(frameIdx) {
             const width = canvas.width;
             const height = canvas.height;
             const cx = width / 2;
             const cy = height / 2;
-            const progress = frameIdx / (TOTAL_FRAMES - 1); // 0.0 to 1.0
+            const progress = frameIdx / (TOTAL_FRAMES - 1);
 
             ctx.clearRect(0, 0, width, height);
 
-            // Background subtle gradient inside canvas
             const bgGrad = ctx.createRadialGradient(cx, cy, 10, cx, cy, width * 0.6);
             bgGrad.addColorStop(0, 'rgba(0, 242, 254, 0.08)');
             bgGrad.addColorStop(0.5, 'rgba(168, 85, 247, 0.04)');
@@ -778,11 +1026,9 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.fillStyle = bgGrad;
             ctx.fillRect(0, 0, width, height);
 
-            // Animated 3D Sphere & Orbital Lattice Nodes
             const baseRadius = Math.min(width, height) * 0.26 * (1 + Math.sin(progress * Math.PI) * 0.15);
             const rotationAngle = progress * Math.PI * 2.5;
 
-            // Draw Outer Glowing Orbital Ring
             ctx.save();
             ctx.translate(cx, cy);
             ctx.rotate(rotationAngle * 0.5);
@@ -794,7 +1040,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.stroke();
             ctx.restore();
 
-            // Draw Second Inverse Ring
             ctx.save();
             ctx.translate(cx, cy);
             ctx.rotate(-rotationAngle * 0.8);
@@ -805,7 +1050,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.stroke();
             ctx.restore();
 
-            // Render 3D Particle Points & Interconnecting Lines
             const nodeCount = 36;
             const nodes = [];
 
@@ -813,12 +1057,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const phi = Math.acos(-1 + (2 * i) / nodeCount);
                 const theta = Math.sqrt(nodeCount * Math.PI) * phi + rotationAngle;
 
-                // 3D sphere coordinates
                 const x3d = baseRadius * Math.cos(theta) * Math.sin(phi);
                 const y3d = baseRadius * Math.sin(theta) * Math.sin(phi);
                 const z3d = baseRadius * Math.cos(phi);
 
-                // Perspective Projection
                 const scale = 300 / (300 + z3d);
                 const x2d = cx + x3d * scale;
                 const y2d = cy + y3d * scale;
@@ -826,7 +1068,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 nodes.push({ x: x2d, y: y2d, z: z3d, scale });
             }
 
-            // Draw Node Connectors
             ctx.lineWidth = 1 * (window.devicePixelRatio || 1);
             for (let i = 0; i < nodes.length; i++) {
                 for (let j = i + 1; j < nodes.length; j++) {
@@ -842,8 +1083,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Draw Glowing Nodes
-            nodes.sort((a, b) => a.z - b.z); // Depth sort
+            nodes.sort((a, b) => a.z - b.z);
             nodes.forEach(node => {
                 const nodeRadius = Math.max(2, 4.5 * node.scale);
                 const alpha = (node.z + baseRadius) / (baseRadius * 2);
@@ -857,14 +1097,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.shadowBlur = 0;
             });
 
-            // Center Glowing Core Text/Icon
             ctx.fillStyle = '#ffffff';
             ctx.font = `800 ${16 * (window.devicePixelRatio || 1)}px 'Outfit', sans-serif`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText('TAYANCH', cx, cy);
 
-            // Update UI Labels
             if (indicatorBar) indicatorBar.style.width = `${((frameIdx + 1) / TOTAL_FRAMES) * 100}%`;
             if (frameCountLabel) frameCountLabel.innerText = `Frame ${frameIdx + 1} / ${TOTAL_FRAMES}`;
             
@@ -879,10 +1117,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Initialize Canvas size
         resizeCanvas();
 
-        // GSAP ScrollTrigger Scrub for Hero Canvas Sequence
         if (window.gsap && window.ScrollTrigger) {
             gsap.registerPlugin(ScrollTrigger);
 
@@ -907,25 +1143,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       5. GENERAL GSAP SCROLL REVEAL ANIMATIONS
+       10. GSAP SCROLL REVEALS & MOBILE DRAWER
        ========================================== */
     if (window.gsap && window.ScrollTrigger) {
-        // Navbar Scrolled Glass State
-        ScrollTrigger.create({
-            start: 'top -50',
-            onUpdate: (self) => {
-                const navbar = document.getElementById('navbar');
-                if (navbar) {
-                    if (self.scroll() > 50) {
-                        navbar.classList.add('scrolled');
-                    } else {
-                        navbar.classList.remove('scrolled');
-                    }
-                }
-            }
-        });
-
-        // Hero Text Fade Ins
         gsap.from('.hero-fade', {
             opacity: 0,
             y: 30,
@@ -934,7 +1154,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ease: 'power3.out'
         });
 
-        // Section Reveal Animations
         gsap.utils.toArray('.gsap-reveal').forEach(elem => {
             gsap.from(elem, {
                 opacity: 0,
@@ -950,26 +1169,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
-    /* ==========================================
-       6. MOBILE DRAWER NAVIGATION TOGGLE
-       ========================================== */
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileDrawer = document.getElementById('mobileDrawer');
     const drawerCloseBtn = document.getElementById('drawerCloseBtn');
 
     if (mobileMenuBtn && mobileDrawer) {
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileDrawer.classList.add('open');
-        });
+        mobileMenuBtn.addEventListener('click', () => mobileDrawer.classList.add('open'));
     }
-
     if (drawerCloseBtn && mobileDrawer) {
-        drawerCloseBtn.addEventListener('click', () => {
-            mobileDrawer.classList.remove('open');
-        });
+        drawerCloseBtn.addEventListener('click', () => mobileDrawer.classList.remove('open'));
     }
-
     document.querySelectorAll('.drawer-link').forEach(link => {
         link.addEventListener('click', () => {
             if (mobileDrawer) mobileDrawer.classList.remove('open');

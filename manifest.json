@@ -1,0 +1,16 @@
+{
+  "name": "Tayanch Educational Platform",
+  "short_name": "Tayanch",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0e0f15",
+  "theme_color": "#0e0f15",
+  "description": "AI, IELTS va Admission bo'yicha O'zbekistondagi yetakchi amaliy ta'lim platformasi.",
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=192",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

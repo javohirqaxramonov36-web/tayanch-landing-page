@@ -7,19 +7,38 @@
     <meta name="description" content="Tayanch — Zamonaviy Sun'iy Intelekt (AI), IELTS va Xalqaro Universitetlarga kirish (Admission) ta'lim platformasi. Asoschi: IELTS 7.0 va SAT 1420.">
     <meta name="keywords" content="Tayanch, AI, Sun'iy Intelekt, IELTS, SAT, Admission, Grantlar, Ta'lim platformasi, O'zbekiston">
     
+    <!-- PWA Manifest & Theme -->
+    <meta name="theme-color" content="#0e0f15">
+    <link rel="manifest" href="manifest.json">
+
     <!-- Open Graph / Facebook / Telegram -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tayanch.edu.uz">
+    <meta property="og:url" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/">
     <meta property="og:title" content="Tayanch — AI, IELTS va Admission'ni bir joyda o'rganing">
     <meta property="og:description" content="Bugundan yangi ko'nikma egallang. Asoschi: IELTS 7.0 va SAT 1420 natijalariga erishgan.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200">
+
+    <!-- Structured Data / SEO Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Tayanch",
+      "url": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/",
+      "logo": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/favicon.png",
+      "description": "AI, IELTS va Admission bo'yicha O'zbekistondagi amaliy ta'lim platformasi.",
+      "sameAs": [
+        "https://t.me/tayanch_go"
+      ]
+    }
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- FontAwesome / Lucide Icons -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- CSS -->
@@ -31,10 +50,28 @@
 </head>
 <body>
 
-    <!-- Background Grid Effect & Glows -->
+    <!-- Background Grid Effect & Dynamic Particles Canvas -->
     <div class="ambient-glow glow-1"></div>
     <div class="ambient-glow glow-2"></div>
     <div class="bg-grid-pattern"></div>
+    <canvas id="bgParticlesCanvas"></canvas>
+
+    <!-- Sticky Announcement & Countdown Top Bar -->
+    <div class="top-announcement-bar">
+        <div class="container announcement-content">
+            <span class="announcement-badge"><i class="fa-solid fa-fire"></i> QABUL OCHIQ</span>
+            <span class="announcement-text">Yangi mavsum kurslariga chegirma bilan a'zo bo'ling!</span>
+            <div class="countdown-timer" id="countdownTimer">
+                <span class="time-block"><strong id="cdDays">02</strong>d</span> :
+                <span class="time-block"><strong id="cdHours">14</strong>s</span> :
+                <span class="time-block"><strong id="cdMins">35</strong>m</span> :
+                <span class="time-block"><strong id="cdSecs">50</strong>sek</span>
+            </div>
+            <button class="announcement-btn open-lead-modal-btn" data-course="Barcha Kurslar (Urgent)">
+                <span>Ariza qoldirish</span> <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
 
     <!-- Header / Navbar -->
     <header class="navbar" id="navbar">
@@ -50,15 +87,15 @@
                 <a href="#hero" class="nav-link active">Bosh sahifa</a>
                 <a href="#mission" class="nav-link">Nega Tayanch</a>
                 <a href="#courses" class="nav-link">Kurslar <span class="badge-count">31</span></a>
-                <a href="#trust" class="nav-link">Asoschi va Natijalar</a>
+                <a href="#trust" class="nav-link">Natijalar & Sertifikatlar</a>
             </nav>
 
             <div class="nav-actions">
-                <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-glow">
-                    <span>A'zo bo'lish</span>
-                    <i class="fa-paper-plane fa-brands"></i>
-                </a>
-                <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Menu vaqtini ochish">
+                <button class="btn btn-primary btn-glow open-lead-modal-btn" data-course="Bosh Sahifa Hero">
+                    <span>Kursga a'zo bo'lish</span>
+                    <i class="fa-paper-plane fa-solid"></i>
+                </button>
+                <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Menu ochish">
                     <i class="fa-solid fa-bars-staggered"></i>
                 </button>
             </div>
@@ -75,9 +112,12 @@
             <a href="#hero" class="drawer-link">Bosh sahifa</a>
             <a href="#mission" class="drawer-link">Nega Tayanch</a>
             <a href="#courses" class="drawer-link">Kurslar (31 ta)</a>
-            <a href="#trust" class="drawer-link">Asoschi va Natijalar</a>
-            <a href="https://t.me/tayanch_go" target="_blank" class="btn btn-primary w-full mt-4">
-                <i class="fa-brands fa-telegram"></i> Telegram jamiyatga qo'shilish
+            <a href="#trust" class="drawer-link">Natijalar & Sertifikatlar</a>
+            <button class="btn btn-primary w-full mt-4 open-lead-modal-btn" data-course="Mobile Drawer">
+                <i class="fa-solid fa-pen-to-square"></i> Ariza Qoldirish
+            </button>
+            <a href="https://t.me/tayanch_go" target="_blank" class="btn btn-secondary w-full mt-2">
+                <i class="fa-brands fa-telegram"></i> Telegram Kanal
             </a>
         </div>
     </div>
@@ -102,13 +142,13 @@
                     </p>
 
                     <div class="hero-cta-group hero-fade">
-                        <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-primary btn-glow">
-                            <span>Telegram'da boshlash</span>
+                        <button class="btn btn-lg btn-primary btn-glow open-lead-modal-btn" data-course="Hero Main CTA">
+                            <span>Veb-saytda Ariza Qoldirish</span>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                        <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-secondary">
                             <i class="fa-brands fa-telegram"></i>
-                        </a>
-                        <a href="#courses" class="btn btn-lg btn-secondary">
-                            <span>Kurslarni ko'rish</span>
-                            <i class="fa-solid fa-arrow-down-long"></i>
+                            <span>Telegram'ga o'tish</span>
                         </a>
                     </div>
 
@@ -132,7 +172,7 @@
 
                 <!-- Canvas Scroll-Animation Frame Container -->
                 <div class="hero-visual-wrapper">
-                    <div class="visual-card">
+                    <div class="visual-card tilt-card">
                         <div class="canvas-header">
                             <div class="canvas-dots">
                                 <span class="dot red"></span>
@@ -169,7 +209,7 @@
                 </div>
 
                 <div class="grid grid-4 mission-grid">
-                    <div class="mission-card gsap-reveal">
+                    <div class="mission-card tilt-card gsap-reveal">
                         <div class="card-icon icon-cyan">
                             <i class="fa-solid fa-brain"></i>
                         </div>
@@ -178,7 +218,7 @@
                         <div class="card-glow"></div>
                     </div>
 
-                    <div class="mission-card gsap-reveal">
+                    <div class="mission-card tilt-card gsap-reveal">
                         <div class="card-icon icon-purple">
                             <i class="fa-solid fa-bullseye"></i>
                         </div>
@@ -187,7 +227,7 @@
                         <div class="card-glow"></div>
                     </div>
 
-                    <div class="mission-card gsap-reveal">
+                    <div class="mission-card tilt-card gsap-reveal">
                         <div class="card-icon icon-gold">
                             <i class="fa-solid fa-graduation-cap"></i>
                         </div>
@@ -196,7 +236,7 @@
                         <div class="card-glow"></div>
                     </div>
 
-                    <div class="mission-card gsap-reveal">
+                    <div class="mission-card tilt-card gsap-reveal">
                         <div class="card-icon icon-blue">
                             <i class="fa-solid fa-users"></i>
                         </div>
@@ -258,6 +298,85 @@
                     <h3>Kurs topilmadi</h3>
                     <p>Qidiruv bo'yicha hech qanday mos keluvchi kurs mavjud emas.</p>
                     <button class="btn btn-secondary mt-3" id="resetFilterBtn">Barcha kurslarni ko'rsatish</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proof & Certificates Interactive Slider Section -->
+        <section class="section proof-section" id="proofs">
+            <div class="container">
+                <div class="section-header text-center gsap-reveal">
+                    <div class="section-tag">Ishonch va Isbotlar</div>
+                    <h2 class="section-title">Sertifikatlar va <span class="gradient-text">Talabalar Natijalari</span></h2>
+                    <p class="section-desc">Real natijalarga asoslangan tajriba hamda xalqaro sertifikatlar tasdiqlari.</p>
+                </div>
+
+                <!-- Interactive Proof Cards Slider -->
+                <div class="proof-slider-wrapper gsap-reveal">
+                    <button class="slider-arrow prev-arrow" id="slidePrevBtn" aria-label="Oldingi slide"><i class="fa-solid fa-chevron-left"></i></button>
+                    
+                    <div class="proof-track" id="proofTrack">
+                        <!-- Slide 1: Founder IELTS Certificate -->
+                        <div class="proof-card active">
+                            <div class="proof-header">
+                                <div class="proof-icon-badge"><i class="fa-solid fa-certificate"></i></div>
+                                <div>
+                                    <h4>Official IELTS Official Score Report</h4>
+                                    <span class="proof-sub">British Council Verified</span>
+                                </div>
+                                <span class="proof-score-tag">Overall 7.0</span>
+                            </div>
+                            <div class="proof-breakdown-grid">
+                                <div class="breakdown-item"><span>Listening:</span> <strong>7.5</strong></div>
+                                <div class="breakdown-item"><span>Reading:</span> <strong>7.0</strong></div>
+                                <div class="breakdown-item"><span>Speaking:</span> <strong>7.0</strong></div>
+                                <div class="breakdown-item"><span>Writing:</span> <strong>6.5</strong></div>
+                            </div>
+                            <p class="proof-quote">"Writing va Speaking qoliplari orqali 1 oy ichida o'z bandimni 7.0 ga ko'targan real metodika."</p>
+                        </div>
+
+                        <!-- Slide 2: Founder SAT Certificate -->
+                        <div class="proof-card">
+                            <div class="proof-header">
+                                <div class="proof-icon-badge icon-gold"><i class="fa-solid fa-square-root-variable"></i></div>
+                                <div>
+                                    <h4>Digital SAT Official Score Report</h4>
+                                    <span class="proof-sub">College Board Verified</span>
+                                </div>
+                                <span class="proof-score-tag gold-tag">Score: 1420</span>
+                            </div>
+                            <div class="proof-breakdown-grid">
+                                <div class="breakdown-item"><span>SAT Math:</span> <strong>780 / 800</strong></div>
+                                <div class="breakdown-item"><span>Reading & Writing:</span> <strong>640 / 800</strong></div>
+                            </div>
+                            <p class="proof-quote">"Desmos kalkulyatori va formulalarni to'g'ri qo'llab, SAT Math dan top 98% natijaga erishish siri."</p>
+                        </div>
+
+                        <!-- Slide 3: University Acceptance & Full Ride Grants -->
+                        <div class="proof-card">
+                            <div class="proof-header">
+                                <div class="proof-icon-badge icon-purple"><i class="fa-solid fa-building-columns"></i></div>
+                                <div>
+                                    <h4>Top US & Europe Universities Admission</h4>
+                                    <span class="proof-sub">Full-Ride & Merit Scholarship Offers</span>
+                                </div>
+                                <span class="proof-score-tag purple-tag">$180,000+ Grant</span>
+                            </div>
+                            <div class="proof-breakdown-grid">
+                                <div class="breakdown-item"><span>Common App Essay:</span> <strong>100% Accept</strong></div>
+                                <div class="breakdown-item"><span>Financial Aid:</span> <strong>Full Tuition + Housing</strong></div>
+                            </div>
+                            <p class="proof-quote">"AQSh oliygohlariga insho yozish va moliyaviy hujjatlar orqali to'liq grantlar yutish bosqichlari."</p>
+                        </div>
+                    </div>
+
+                    <button class="slider-arrow next-arrow" id="slideNextBtn" aria-label="Keyingi slide"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+
+                <div class="slider-dots" id="sliderDots">
+                    <span class="dot-item active" data-index="0"></span>
+                    <span class="dot-item" data-index="1"></span>
+                    <span class="dot-item" data-index="2"></span>
                 </div>
             </div>
         </section>
@@ -324,13 +443,17 @@
                         <span class="cta-tag"><i class="fa-solid fa-bolt"></i> Bugundanoq Boshlang</span>
                         <h2 class="cta-title">Orzularingizni kechiktirmang. <br><span class="gradient-text">Tayanch bilan birga yuksaling.</span></h2>
                         <p class="cta-desc">
-                            Telegram kanalimizga a'zo bo'ling, bepul darsliklar va 31 ta kurs bo'yicha eng so'nggi qo'llanmalarni oling.
+                            Veb-saytimiz orqali zudlik bilan ariza qoldiring yoki Telegram kanalimizga a'zo bo'lib bepul darslarni oling.
                         </p>
                         
                         <div class="cta-actions">
-                            <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-xl btn-primary btn-glow">
+                            <button class="btn btn-xl btn-primary btn-glow open-lead-modal-btn" data-course="CTA Banner Main">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Ariza Qoldirish (Chegirma bilan)</span>
+                            </button>
+                            <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-xl btn-secondary">
                                 <i class="fa-brands fa-telegram"></i>
-                                <span>t.me/tayanch_go kanaliga o'tish</span>
+                                <span>Telegram Kanalimiz</span>
                             </a>
                         </div>
                     </div>
@@ -362,7 +485,7 @@
                             <li><a href="#hero">Bosh sahifa</a></li>
                             <li><a href="#mission">Nega Tayanch</a></li>
                             <li><a href="#courses">Kurslar katalogi</a></li>
-                            <li><a href="#trust">Asoschi va Natijalar</a></li>
+                            <li><a href="#proofs">Natijalar & Sertifikatlar</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
@@ -403,7 +526,69 @@
         </div>
     </div>
 
-    <!-- JS -->
+    <!-- Lead Application Form Modal (A2 Requirement) -->
+    <div class="modal-overlay" id="leadModal">
+        <div class="modal-card lead-form-card">
+            <button class="modal-close" id="leadModalCloseBtn" aria-label="Yopish"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body">
+                <div class="text-center mb-4">
+                    <span class="cta-tag"><i class="fa-solid fa-pen-to-square"></i> Tayanch Kurslariga Ariza</span>
+                    <h3 class="modal-course-title mt-2">Bugundan ta'limni boshlang</h3>
+                    <p class="modal-desc">Ma'lumotlaringizni kiriting va biz siz bilan zudlik bilan Telegram orqali bog'lanamiz.</p>
+                </div>
+
+                <form id="leadForm" class="lead-form">
+                    <div class="form-group">
+                        <label for="leadName"><i class="fa-solid fa-user"></i> Ismingiz va Familiyangiz</label>
+                        <input type="text" id="leadName" required placeholder="Masalan: Jasur Rahimov">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="leadPhone"><i class="fa-solid fa-phone"></i> Telefon raqamingiz</label>
+                        <input type="tel" id="leadPhone" required placeholder="+998 90 123 45 67">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="leadTelegram"><i class="fa-brands fa-telegram"></i> Telegram Username (Ixtiyoriy)</label>
+                        <input type="text" id="leadTelegram" placeholder="@username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="leadCourseSelect"><i class="fa-solid fa-book"></i> Qaysi kursga qiziqyapsiz?</label>
+                        <select id="leadCourseSelect" required class="form-select">
+                            <option value="Barcha Kurslar (Maslahat)">Barcha Kurslar bo'yicha maslahat</option>
+                            <!-- Dynamically populated from coursesData in script.js -->
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-glow w-full mt-3">
+                        <span>Arizani Yuborish</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+
+                <div class="form-success-msg" id="formSuccessMsg" style="display: none;">
+                    <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+                    <h3>Arizangiz qabul qilindi!</h3>
+                    <p>Tez orada Telegram orqali siz bilan bog'lanamiz.</p>
+                    <a href="https://t.me/tayanch_go" target="_blank" class="btn btn-secondary mt-3">
+                        <i class="fa-brands fa-telegram"></i> Telegram kanalimizga o'tish
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').catch(err => console.log('SW reg error:', err));
+            });
+        }
+    </script>
+
+    <!-- JS Engine -->
     <script src="script.js"></script>
 </body>
 </html>

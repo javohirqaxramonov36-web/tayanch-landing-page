@@ -535,8 +535,19 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const name = document.getElementById('leadName').value.trim();
             const phone = document.getElementById('leadPhone').value.trim();
+            const phoneErrorMsg = document.getElementById('phoneErrorMsg');
             const telegram = document.getElementById('leadTelegram').value.trim() || 'Kiritilmadi';
             const selectedCourse = leadCourseSelect ? leadCourseSelect.value : 'Tayanch Kurslari';
+
+            // Uzbekistan Phone validation regex
+            const phoneRegex = /^(\+?998)?[\s-]?\d{2}[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/;
+            if (!phoneRegex.test(phone)) {
+                if (phoneErrorMsg) phoneErrorMsg.style.display = 'block';
+                document.getElementById('leadPhone').focus();
+                return;
+            } else {
+                if (phoneErrorMsg) phoneErrorMsg.style.display = 'none';
+            }
 
             const text = encodeURIComponent(
                 `📥 YANGI ARIZA - TAYANCH\n\n` +
@@ -551,10 +562,18 @@ document.addEventListener('DOMContentLoaded', () => {
             if (formSuccessMsg) formSuccessMsg.style.display = 'block';
 
             setTimeout(() => {
-                window.open(telegramUrl, '_blank');
-            }, 1000);
+                window.open(telegramUrl, '_blank', 'noopener,noreferrer');
+            }, 800);
         });
     }
+
+    // WCAG Escape Key Modal Listener
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const activeModal = document.querySelector('.modal-overlay.active');
+            if (activeModal) closeModal(activeModal);
+        }
+    });
 
 
     /* ==========================================
@@ -598,14 +617,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       11. COUNTDOWN TIMER ENGINE
+       11. COUNTDOWN TIMER ENGINE (Real Target Deadline)
        ========================================== */
     const cdDays = document.getElementById('cdDays');
     const cdHours = document.getElementById('cdHours');
     const cdMins = document.getElementById('cdMins');
     const cdSecs = document.getElementById('cdSecs');
 
-    let targetTime = new Date().getTime() + (2 * 24 * 60 * 60 * 1000) + (14 * 60 * 60 * 1000);
+    let savedTarget = localStorage.getItem('tayanch_qabul_deadline');
+    if (!savedTarget) {
+        savedTarget = new Date().getTime() + (7 * 24 * 60 * 60 * 1000);
+        localStorage.setItem('tayanch_qabul_deadline', savedTarget);
+    }
+    let targetTime = parseInt(savedTarget, 10);
 
     function updateCountdown() {
         const now = new Date().getTime();

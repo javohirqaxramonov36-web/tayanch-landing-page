@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://javohirqaxramonov36-web.github.io/tayanch-landing-page/sitemap.xml

@@ -1986,3 +1986,17 @@ a {
     letter-spacing: 0.5px;
 }
 
+/* Accessibility: WCAG Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .liquid-blob, #fluidRippleCanvas, .liquid-wave, .liquid-pulse {
+        display: none !important;
+    }
+}
+
+

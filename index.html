@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tayanch — AI, IELTS va Admission'ni bir joyda o'rganing</title>
+    <meta name="description" content="Tayanch — Zamonaviy Sun'iy Intelekt (AI), IELTS va Xalqaro Universitetlarga kirish (Admission) ta'lim platformasi. Asoschi: IELTS 7.0 va SAT 1420.">
+    <meta name="keywords" content="Tayanch, AI, Sun'iy Intelekt, IELTS, SAT, Admission, Grantlar, Ta'lim platformasi, O'zbekiston">
+    
+    <!-- Open Graph / Facebook / Telegram -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tayanch.edu.uz">
+    <meta property="og:title" content="Tayanch — AI, IELTS va Admission'ni bir joyda o'rganing">
+    <meta property="og:description" content="Bugundan yangi ko'nikma egallang. Asoschi: IELTS 7.0 va SAT 1420 natijalariga erishgan.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome / Lucide Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- GSAP & ScrollTrigger CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+    <!-- Background Grid Effect & Glows -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div class="bg-grid-pattern"></div>
+
+    <!-- Header / Navbar -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-compass-drafting"></i>
+                </div>
+                <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
+            </a>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#hero" class="nav-link active">Bosh sahifa</a>
+                <a href="#mission" class="nav-link">Nega Tayanch</a>
+                <a href="#courses" class="nav-link">Kurslar <span class="badge-count">31</span></a>
+                <a href="#trust" class="nav-link">Asoschi va Natijalar</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-glow">
+                    <span>A'zo bo'lish</span>
+                    <i class="fa-paper-plane fa-brands"></i>
+                </a>
+                <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Menu vaqtini ochish">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
+            <button class="drawer-close" id="drawerCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-links">
+            <a href="#hero" class="drawer-link">Bosh sahifa</a>
+            <a href="#mission" class="drawer-link">Nega Tayanch</a>
+            <a href="#courses" class="drawer-link">Kurslar (31 ta)</a>
+            <a href="#trust" class="drawer-link">Asoschi va Natijalar</a>
+            <a href="https://t.me/tayanch_go" target="_blank" class="btn btn-primary w-full mt-4">
+                <i class="fa-brands fa-telegram"></i> Telegram jamiyatga qo'shilish
+            </a>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" id="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="founder-trust-pill hero-fade">
+                        <span class="trust-icon"><i class="fa-solid fa-award"></i></span>
+                        <span class="trust-text">Asoschi: <strong>IELTS 7.0</strong> va <strong>SAT 1420</strong> natijalariga erishgan</span>
+                    </div>
+
+                    <h1 class="hero-title hero-fade">
+                        AI, IELTS va Admission'ni <br>
+                        <span class="gradient-text">bir joyda o'rganing</span>
+                    </h1>
+
+                    <p class="hero-subheadline hero-fade">
+                        Bugundan yangi ko'nikma egallang va kelajagingizni zamonaviy texnologiyalar hamda xalqaro ta'lim imkoniyatlari bilan birga quring.
+                    </p>
+
+                    <div class="hero-cta-group hero-fade">
+                        <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-primary btn-glow">
+                            <span>Telegram'da boshlash</span>
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+                        <a href="#courses" class="btn btn-lg btn-secondary">
+                            <span>Kurslarni ko'rish</span>
+                            <i class="fa-solid fa-arrow-down-long"></i>
+                        </a>
+                    </div>
+
+                    <div class="hero-stats-row hero-fade">
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="31">31</span>
+                            <span class="stat-label">Intensiv Kurslar</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="100">100</span><span class="stat-plus">%</span>
+                            <span class="stat-label">Amaliy Metodika</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Telegram Qo'llab-quvvatlash</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Canvas Scroll-Animation Frame Container -->
+                <div class="hero-visual-wrapper">
+                    <div class="visual-card">
+                        <div class="canvas-header">
+                            <div class="canvas-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="canvas-title"><i class="fa-solid fa-cube"></i> Tayanch 3D Frame Sequence</span>
+                            <span class="canvas-badge">Scroll Interactive</span>
+                        </div>
+                        <div class="canvas-body">
+                            <canvas id="heroFrameCanvas"></canvas>
+                            <div class="canvas-overlay-text">
+                                <span id="frameStepLabel">SCROLL DOWN TO ANIMATE FRAME SEQUENCE</span>
+                            </div>
+                        </div>
+                        <div class="canvas-footer">
+                            <div class="sequence-indicator">
+                                <span class="indicator-bar" id="indicatorBar"></span>
+                            </div>
+                            <span class="frame-count" id="frameCountLabel">Frame 1 / 60</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission / Nega Tayanch Section -->
+        <section class="section mission-section" id="mission">
+            <div class="container">
+                <div class="section-header text-center gsap-reveal">
+                    <div class="section-tag">Nega aynan biz?</div>
+                    <h2 class="section-title">Kelajak ta'limining <span class="gradient-text">4 ta tayanchi</span></h2>
+                    <p class="section-desc">Eski nazariyalardan voz kechib, real natija beradigan va zamonaviy ko'nikmalarni rivojlantiruvchi tizim.</p>
+                </div>
+
+                <div class="grid grid-4 mission-grid">
+                    <div class="mission-card gsap-reveal">
+                        <div class="card-icon icon-cyan">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3>Amaliy Sun'iy Intelekt (AI)</h3>
+                        <p>ChatGPT, Midjourney va AI vositalaridan foydalanib o'qish, ish va tadqiqot unumdorligini 5x ga oshiring.</p>
+                        <div class="card-glow"></div>
+                    </div>
+
+                    <div class="mission-card gsap-reveal">
+                        <div class="card-icon icon-purple">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h3>IELTS Band 7.0+ Strategiyasi</h3>
+                        <p>Imtihon topshiruvchining shaxsiy tajribasiga tayangan holda aniq qoliplar va Writing/Speaking sirlari.</p>
+                        <div class="card-glow"></div>
+                    </div>
+
+                    <div class="mission-card gsap-reveal">
+                        <div class="card-icon icon-gold">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h3>Admission & SAT Prep</h3>
+                        <p>AQSh va Yevropa Top universitetlariga 100% grant yutish uchun Insho, Rezyume va Portfolio tayyorlash.</p>
+                        <div class="card-glow"></div>
+                    </div>
+
+                    <div class="mission-card gsap-reveal">
+                        <div class="card-icon icon-blue">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h3>Yopiq Telegram Jamiyat</h3>
+                        <p>Bir xil maqsad sari intiluvchi iqtidorli yoshlar bilan muloqot, mentorlik va kunlik savol-javoblar.</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Section (31 Course Cards) -->
+        <section class="section courses-section" id="courses">
+            <div class="container">
+                <div class="section-header text-center gsap-reveal">
+                    <div class="section-tag">O'quv Dasturlari</div>
+                    <h2 class="section-title">Barcha <span class="gradient-text">31 ta Kurslar</span> katalogi</h2>
+                    <p class="section-desc">O'zingizga mos yo'nalishni tanlang va bilimlaringizni amalda qo'llang.</p>
+                </div>
+
+                <!-- Filter Controls & Search -->
+                <div class="catalog-controls gsap-reveal">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="courseSearchInput" placeholder="Kurs nomi yoki kalit so'zni kiriting..." aria-label="Kurslarni qidirish">
+                        <button id="clearSearchBtn" class="clear-btn" style="display:none;"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+
+                    <div class="filter-tabs" id="filterTabs">
+                        <button class="tab-btn active" data-category="all">
+                            <span>Barchasi</span>
+                            <span class="tab-count" id="countAll">31</span>
+                        </button>
+                        <button class="tab-btn" data-category="ai">
+                            <i class="fa-solid fa-robot"></i>
+                            <span>Sun'iy Intelekt (AI)</span>
+                            <span class="tab-count">10</span>
+                        </button>
+                        <button class="tab-btn" data-category="ielts">
+                            <i class="fa-solid fa-language"></i>
+                            <span>IELTS & Ingliz tili</span>
+                            <span class="tab-count">11</span>
+                        </button>
+                        <button class="tab-btn" data-category="admission">
+                            <i class="fa-solid fa-building-columns"></i>
+                            <span>Admission & SAT</span>
+                            <span class="tab-count">10</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Courses Grid -->
+                <div class="grid grid-3 courses-grid" id="coursesGrid">
+                    <!-- Dynamic rendering via script.js -->
+                </div>
+
+                <div class="no-results" id="noResultsMsg" style="display: none;">
+                    <i class="fa-regular fa-folder-open"></i>
+                    <h3>Kurs topilmadi</h3>
+                    <p>Qidiruv bo'yicha hech qanday mos keluvchi kurs mavjud emas.</p>
+                    <button class="btn btn-secondary mt-3" id="resetFilterBtn">Barcha kurslarni ko'rsatish</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonial & Trust Signal Section -->
+        <section class="section trust-section" id="trust">
+            <div class="container">
+                <div class="trust-box gsap-reveal">
+                    <div class="trust-grid">
+                        <div class="trust-profile">
+                            <div class="profile-avatar-frame">
+                                <div class="avatar-placeholder">
+                                    <i class="fa-solid fa-user-graduate"></i>
+                                </div>
+                                <div class="verified-badge"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <h3 class="profile-name">Tayanch Asoschisi</h3>
+                            <p class="profile-title">IELTS 7.0 | SAT 1420 Holder & AI Educator</p>
+                            
+                            <div class="score-pills">
+                                <div class="score-pill">
+                                    <span class="pill-title">IELTS Overall</span>
+                                    <span class="pill-value">7.0</span>
+                                </div>
+                                <div class="score-pill">
+                                    <span class="pill-title">SAT Score</span>
+                                    <span class="pill-value">1420</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="trust-quote-content">
+                            <div class="quote-mark"><i class="fa-solid fa-quote-left"></i></div>
+                            <blockquote class="trust-quote">
+                                "Mening maqsadim — O'zbekiston yoshlariga qimmat va samorasiz kurslarsiz, to'g'ridan-to mehnati va zamonaviy AI vositalari orqali xalqaro standartdagi bilim hamda grantlarni qo'lga kiritishda ko'maklashish."
+                            </blockquote>
+                            
+                            <div class="trust-metrics">
+                                <div class="metric">
+                                    <span class="metric-val">1000+</span>
+                                    <span class="metric-desc">Faol o'quvchilar va jamiyat a'zolari</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-val">31 ta</span>
+                                    <span class="metric-desc">Strukturallashgan amaliy o'quv moduli</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-val">100%</span>
+                                    <span class="metric-desc">Bepul Telegram hamjamiyat qo'llab-quvvatlovi</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Banner Section -->
+        <section class="section cta-section" id="cta">
+            <div class="container">
+                <div class="cta-card text-center gsap-reveal">
+                    <div class="cta-glow"></div>
+                    <div class="cta-content">
+                        <span class="cta-tag"><i class="fa-solid fa-bolt"></i> Bugundanoq Boshlang</span>
+                        <h2 class="cta-title">Orzularingizni kechiktirmang. <br><span class="gradient-text">Tayanch bilan birga yuksaling.</span></h2>
+                        <p class="cta-desc">
+                            Telegram kanalimizga a'zo bo'ling, bepul darsliklar va 31 ta kurs bo'yicha eng so'nggi qo'llanmalarni oling.
+                        </p>
+                        
+                        <div class="cta-actions">
+                            <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-xl btn-primary btn-glow">
+                                <i class="fa-brands fa-telegram"></i>
+                                <span>t.me/tayanch_go kanaliga o'tish</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#hero" class="nav-brand">
+                        <div class="brand-icon">
+                            <i class="fa-solid fa-compass-drafting"></i>
+                        </div>
+                        <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
+                    </a>
+                    <p class="footer-text">
+                        AI, IELTS va Admission bo'yicha O'zbekistondagi yetakchi amaliy ta'lim platformasi.
+                    </p>
+                </div>
+
+                <div class="footer-nav">
+                    <div class="footer-col">
+                        <h4>Navigatsiya</h4>
+                        <ul>
+                            <li><a href="#hero">Bosh sahifa</a></li>
+                            <li><a href="#mission">Nega Tayanch</a></li>
+                            <li><a href="#courses">Kurslar katalogi</a></li>
+                            <li><a href="#trust">Asoschi va Natijalar</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Yo'nalishlar</h4>
+                        <ul>
+                            <li><a href="#courses">Sun'iy Intelekt (AI)</a></li>
+                            <li><a href="#courses">IELTS Intensive</a></li>
+                            <li><a href="#courses">SAT & Math Prep</a></li>
+                            <li><a href="#courses">Chet elda ta'lim (Admission)</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Aka-uka & Jamiyat</h4>
+                        <ul>
+                            <li><a href="https://t.me/tayanch_go" target="_blank"><i class="fa-brands fa-telegram"></i> Telegram Kanal</a></li>
+                            <li><a href="https://t.me/tayanch_go" target="_blank"><i class="fa-brands fa-telegram"></i> Muhokama Guruhi</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Tayanch Educational Platform. Barcha huquqlar himoyalangan.</p>
+                <div class="founder-credit">
+                    <span>Asoschi: IELTS 7.0 & SAT 1420 Holder</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Course Details Modal -->
+    <div class="modal-overlay" id="courseModal">
+        <div class="modal-card">
+            <button class="modal-close" id="modalCloseBtn" aria-label="Yopish"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body" id="modalContent">
+                <!-- Dynamically filled by script.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -262,6 +262,20 @@
                 <div class="brand-icon liquid-glow-icon"><i class="fa-solid fa-compass-drafting"></i></div>
                 <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
             </a>
+            
+            <!-- Gamification HUD Bar -->
+            <div class="gamify-hud-container">
+                <div class="gamify-stat xp-badge" id="xpBadgeHUD">
+                    <i class="fa-solid fa-bolt"></i> <span id="userXPVal">250 XP</span>
+                </div>
+                <div class="gamify-stat streak-badge" id="streakBadgeHUD">
+                    <span id="userStreakVal">🔥 3 Combo</span>
+                </div>
+                <button class="badges-hud-btn" id="badgesHudBtn">
+                    <i class="fa-solid fa-trophy"></i> Yutuqlar
+                </button>
+            </div>
+
             <div class="nav-actions">
                 <a href="index.html#courses" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Kurslarga qaytish</a>
             </div>
@@ -272,7 +286,7 @@
         <div class="section-header text-center">
             <span class="category-tag cat-ielts">Oxford Navigate & CEFR Standard</span>
             <h1 class="section-title mt-2">General English <span class="gradient-text liquid-gradient">Multi-Aspect Hub</span></h1>
-            <p class="section-desc">Barcha 6 ta til aspektlari bo'yicha mukammal amaliyot, darslik modullari va interaktiv mashqlar.</p>
+            <p class="section-desc">Barcha 6 ta til aspektlari bo'yicha mukammal amaliyot, darslik modullari va interaktiv gamifikatsiya mashqlari.</p>
         </div>
 
         <!-- 6 Aspects Navigation Tabs Bar -->
@@ -293,7 +307,12 @@
                     <div class="card-img-wrapper">
                         <img id="cardImg" class="card-img" src="assets/images/flashcard_hello.jpg" alt="Hello Flashcard Illustration">
                     </div>
-                    <div class="card-word" id="cardWord">Hello</div>
+                    <div class="card-word-row" style="display:flex; align-items:center; justify-content:center; gap:8px;">
+                        <div class="card-word" id="cardWord">Hello</div>
+                        <button class="speech-btn" id="cardSpeechBtn" data-speech="Hello" title="Talaffuzni eshitish">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                    </div>
                     <div class="card-pos" id="cardPos">exclamation / greeting</div>
                     <div class="card-translation" id="cardTranslation">Salom / Assalomu alaykum</div>
                     <div class="card-example" id="cardExample">"Hello! Nice to meet you."</div>
@@ -314,17 +333,17 @@
                 <h3 class="module-title"><i class="fa-solid fa-list-check"></i> Oxford Navigate Topic Lexical Sets (CEFR Alignment)</h3>
                 <div class="fmp-grid">
                     <div class="fmp-card">
-                        <h4>A1 Personal Information</h4>
+                        <h4>A1 Personal Information <button class="speech-btn" data-speech="Name, Country, Occupation, Nationality, Age"><i class="fa-solid fa-volume-high"></i></button></h4>
                         <p><strong>Words:</strong> Name, Country, Occupation, Nationality, Age</p>
                         <p class="text-muted text-sm mt-1">Collocation: "Fill in a form", "Introduce yourself"</p>
                     </div>
                     <div class="fmp-card">
-                        <h4>A2 Daily Routines</h4>
+                        <h4>A2 Daily Routines <button class="speech-btn" data-speech="Commute, Schedule, Habit, Leisure, Productivity"><i class="fa-solid fa-volume-high"></i></button></h4>
                         <p><strong>Words:</strong> Commute, Schedule, Habit, Leisure, Productivity</p>
                         <p class="text-muted text-sm mt-1">Collocation: "Catch a train", "Make time for"</p>
                     </div>
                     <div class="fmp-card">
-                        <h4>B1 Modern Technology & AI</h4>
+                        <h4>B1 Modern Technology & AI <button class="speech-btn" data-speech="Innovation, Automation, Artificial Intelligence, Digital"><i class="fa-solid fa-volume-high"></i></button></h4>
                         <p><strong>Words:</strong> Innovation, Automation, Artificial Intelligence, Digital</p>
                         <p class="text-muted text-sm mt-1">Collocation: "Shape the future", "Boost productivity"</p>
                     </div>
@@ -351,7 +370,7 @@
                         <p>• <em>Present Continuous:</em> Aynan hozir sodir bo'layotgan harakatlar.</p>
                     </div>
                     <div class="fmp-card">
-                        <h4>3. PRONUNCIATION (Talaffuz)</h4>
+                        <h4>3. PRONUNCIATION (Talaffuz) <button class="speech-btn" data-speech="I am. He is. They are. Works, Plays, Watches."><i class="fa-solid fa-volume-high"></i></button></h4>
                         <p>• Contractions: <em>I'm / He's / They're</em></p>
                         <p>• Endings: /s/, /z/, /ɪz/ (Works, Plays, Watches)</p>
                     </div>
@@ -359,14 +378,14 @@
 
                 <div class="ccq-box">
                     <strong><i class="fa-solid fa-circle-question"></i> Concept Checking Questions (CCQ):</strong>
-                    <p class="mt-1">Gap: <em>"Jasur is currently studying AI tools."</em></p>
+                    <p class="mt-1">Gap: <em>"Jasur is currently studying AI tools."</em> <button class="speech-btn" data-speech="Jasur is currently studying AI tools."><i class="fa-solid fa-volume-high"></i></button></p>
                     <p class="text-sm text-muted">1. Is he studying right now? <strong>Yes.</strong> | 2. Is it a permanent life habit? <strong>No, temporary.</strong></p>
                 </div>
             </div>
 
             <!-- Interactive Grammar Practice Quiz -->
             <div class="module-box">
-                <h3 class="module-title"><i class="fa-solid fa-pen-to-square"></i> Interaktiv Grammatika Amaliyoti</h3>
+                <h3 class="module-title"><i class="fa-solid fa-pen-to-square"></i> Interaktiv Grammatika Amaliyoti (+50 XP)</h3>
                 <div class="interactive-quiz-q" id="gQuiz1">
                     <p><strong>1. Select the correct sentence for a daily routine:</strong></p>
                     <button class="quiz-opt-btn" onclick="checkGrammarAns(this, true)">A) "She walks to university every morning."</button>
@@ -384,9 +403,14 @@
         <!-- ASPECT 3: READING WORKSHOP -->
         <div class="aspect-content-section" id="aspect-reading">
             <div class="module-box">
-                <h3 class="module-title"><i class="fa-solid fa-book-open"></i> Reading Workshop: Skimming & Scanning</h3>
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                    <h3 class="module-title" style="margin:0;"><i class="fa-solid fa-book-open"></i> Reading Workshop: Skimming & Scanning</h3>
+                    <button class="btn btn-secondary speech-btn" data-speech="Education is undergoing a dramatic transformation worldwide. Modern students no longer rely solely on physical textbooks; instead, generative AI tools, digital flashcards, and personalized learning algorithms provide immediate feedback." style="padding: 6px 14px; font-size: 0.85rem;">
+                        <i class="fa-solid fa-volume-high"></i> Matnni Ovozli Eshitish (TTS)
+                    </button>
+                </div>
                 
-                <div class="reading-passage">
+                <div class="reading-passage mt-3">
                     <h4>The Evolution of Learning with Artificial Intelligence</h4>
                     <p>
                         Education is undergoing a dramatic transformation worldwide. Modern students no longer rely solely on physical textbooks; instead, generative AI tools, digital flashcards, and personalized learning algorithms provide immediate feedback. Educational platforms like Tayanch integrate practical AI methods alongside international standards such as IELTS and Digital SAT preparation. By balancing core language skills with technology, learners accelerate their language acquisition by up to 5x.
@@ -419,17 +443,17 @@
 
                 <div class="fmp-grid">
                     <div class="fmp-card">
-                        <h4>1. Linking /r/ & Vowels</h4>
+                        <h4>1. Linking /r/ & Vowels <button class="speech-btn" data-speech="Far away. Far away."><i class="fa-solid fa-volume-high"></i></button></h4>
                         <p><em>"Far away"</em> -> /fɑːr-ə-weɪ/</p>
                         <p class="text-sm text-muted">Ikki unli tovush silliq birga qo'shilib o'qiladi.</p>
                     </div>
                     <div class="fmp-card">
-                        <h4>2. Weak Forms (Kuchsiz shakllar)</h4>
+                        <h4>2. Weak Forms (Kuchsiz shakllar) <button class="speech-btn" data-speech="I can do it. I can do it."><i class="fa-solid fa-volume-high"></i></button></h4>
                         <p><em>"I can do it"</em> -> /kən/ (not /kæn/)</p>
                         <p class="text-sm text-muted">Tezkor muloqotda yordamchi fe'llar kuchsiz aytiladi.</p>
                     </div>
                     <div class="fmp-card">
-                        <h4>3. Sentence Stress (Urg'u)</h4>
+                        <h4>3. Sentence Stress (Urg'u) <button class="speech-btn" data-speech="AI tools shape the future of global education."><i class="fa-solid fa-volume-high"></i></button></h4>
                         <p>Content words (ot, fe'l) urg'u oladi; grammar words kuchsizlanadi.</p>
                     </div>
                 </div>
@@ -437,6 +461,9 @@
                 <div class="ccq-box text-center">
                     <strong><i class="fa-solid fa-volume-high"></i> Practical Audio Shadowing Strategy:</strong>
                     <p class="mt-1">Darslik audiosini eshitib, bir vaqtning o'zida spiker ortidan talaffuzni 100% takrorlash mashqi.</p>
+                    <button class="btn btn-primary btn-sm mt-2 speech-btn" data-speech="Practice shadowing: Artificial Intelligence enables students to learn five times faster.">
+                        <i class="fa-solid fa-play"></i> Shadowing Audio Mashqini Yoqish
+                    </button>
                 </div>
             </div>
         </div>
@@ -448,25 +475,44 @@
 
                 <div class="fmp-grid">
                     <div class="fmp-card">
-                        <h4>Giving Opinions</h4>
+                        <h4>Giving Opinions <button class="speech-btn" data-speech="From my perspective. In my view, AI tools enhance learning."><i class="fa-solid fa-volume-high"></i></button></h4>
                         <p>• "From my perspective..."</p>
                         <p>• "In my view, AI tools enhance..."</p>
                     </div>
                     <div class="fmp-card">
-                        <h4>Polite Agreement / Disagreement</h4>
+                        <h4>Polite Agreement / Disagreement <button class="speech-btn" data-speech="I completely agree with that. I see your point, but..."><i class="fa-solid fa-volume-high"></i></button></h4>
                         <p>• "I completely agree with that."</p>
                         <p>• "I see your point, but..."</p>
                     </div>
                     <div class="fmp-card">
-                        <h4>Asking for Clarification</h4>
+                        <h4>Asking for Clarification <button class="speech-btn" data-speech="Could you elaborate on that? What exactly do you mean by that?"><i class="fa-solid fa-volume-high"></i></button></h4>
                         <p>• "Could you elaborate on that?"</p>
                         <p>• "What exactly do you mean by...?"</p>
                     </div>
                 </div>
 
-                <div class="module-box mt-3" style="background: rgba(10, 12, 18, 0.6);">
-                    <h4><i class="fa-solid fa-users-viewfinder"></i> Roleplay Simulation Scenario:</h4>
-                    <p class="text-muted text-sm mt-1">Siz xalqaro konferensiyada qatnashyapsiz. Hamkorga o'zingizni tanishtiring hamda yangi AI ta'lim loyihangiz bo'yicha fikr alashing.</p>
+                <!-- Interactive Speaking Roleplay Chatbot Widget -->
+                <div class="roleplay-container mt-4">
+                    <div class="scenario-header mb-3">
+                        <h4 style="color:var(--primary-cyan); display:flex; align-items:center; gap:8px;">
+                            <i class="fa-solid fa-comments"></i> Speaking Roleplay Chatbot Simulyatori (Interaktiv Muloqot)
+                        </h4>
+                        <p class="text-muted text-sm">Ssenariyni tanlang, variantlar orqali javob bering va AI sherigingiz bilan jonli muloqot qiling!</p>
+                    </div>
+
+                    <div class="scenario-tabs">
+                        <button class="scenario-btn active" data-scenario="cafe"><i class="fa-solid fa-mug-hot"></i> ☕ Kafe Buyurtmasi</button>
+                        <button class="scenario-btn" data-scenario="airport"><i class="fa-solid fa-plane-departure"></i> ✈️ Aeroport Tekshiruvi</button>
+                        <button class="scenario-btn" data-scenario="interview"><i class="fa-solid fa-user-tie"></i> 💼 Ish Intervyusi</button>
+                    </div>
+
+                    <div class="roleplay-chat-box" id="roleplayChatBox">
+                        <!-- Dynamic Chat Bubbles rendered by JS -->
+                    </div>
+
+                    <div class="roleplay-options-grid" id="roleplayOptionsGrid">
+                        <!-- Dynamic User Options rendered by JS -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -484,7 +530,7 @@
                         <p><strong>CS:</strong> Concluding sentence (Xulosa)</p>
                     </div>
                     <div class="fmp-card">
-                        <h4>2. Cohesive Devices (Ulagichlar)</h4>
+                        <h4>2. Cohesive Devices (Ulagichlar) <button class="speech-btn" data-speech="Furthermore. Moreover. However. On the other hand. Consequently. Therefore."><i class="fa-solid fa-volume-high"></i></button></h4>
                         <p>• <em>Addition:</em> Furthermore, Moreover</p>
                         <p>• <em>Contrast:</em> However, On the other hand</p>
                         <p>• <em>Result:</em> Consequently, Therefore</p>
@@ -493,6 +539,58 @@
                         <h4>3. Formal Tone Checklist</h4>
                         <p>• Avoid contractions (don't -> do not)</p>
                         <p>• Use academic collocations & passive voice</p>
+                    </div>
+                </div>
+
+                <!-- Instant IELTS Essay Score Checker Widget -->
+                <div class="essay-checker-container mt-4">
+                    <h4 style="color:var(--accent-purple); display:flex; align-items:center; gap:8px;">
+                        <i class="fa-solid fa-calculator"></i> Instant IELTS Essay Score Checker & Diagnostika
+                    </h4>
+                    <p class="text-muted text-sm">Insho matningizni joylashtiring. Tizim avtomatik tarzda 4 ta IELTS mezonlari bo'yicha diagnostika va Band ball beradi!</p>
+
+                    <textarea id="essayTextarea" class="essay-textarea" placeholder="Inshoingizni shu yerga yozing yoki paste qiling (masalan: Education is undergoing a dramatic transformation worldwide. Furthermore, incorporating artificial intelligence into modern educational frameworks substantially elevates student productivity...)"></textarea>
+
+                    <div class="essay-stat-bar">
+                        <span><i class="fa-solid fa-font"></i> So'zlar: <strong id="liveWordCount" style="color:var(--primary-cyan);">0 ta so'z</strong></span>
+                        <span><i class="fa-solid fa-paragraph"></i> Paragraflar: <strong id="liveParagraphCount" style="color:var(--accent-purple);">0 ta paragraf</strong></span>
+                    </div>
+
+                    <button class="btn btn-primary btn-glow btn-liquid w-full" id="analyzeEssayBtn">
+                        <span class="btn-text"><i class="fa-solid fa-wand-magic-sparkles"></i> Inshoni Tekshirish & Band Ball Diagnostic</span>
+                        <div class="liquid-wave"></div>
+                    </button>
+
+                    <div class="band-diagnostic-card" id="essayDiagnosticCard">
+                        <div class="text-center mb-3">
+                            <span class="text-muted text-sm">Prognoz Qilingan IELTS Balli:</span>
+                            <div>
+                                <span class="band-score-pill" id="overallBandScore">Band 7.5</span>
+                            </div>
+                        </div>
+
+                        <div class="criteria-grid">
+                            <div class="criteria-item">
+                                <h5>Task Response</h5>
+                                <div class="score-val" id="scoreTR">7.5</div>
+                            </div>
+                            <div class="criteria-item">
+                                <h5>Coherence & Cohesion</h5>
+                                <div class="score-val" id="scoreCC">7.0</div>
+                            </div>
+                            <div class="criteria-item">
+                                <h5>Lexical Resource</h5>
+                                <div class="score-val" id="scoreLR">7.5</div>
+                            </div>
+                            <div class="criteria-item">
+                                <h5>Grammatical Accuracy</h5>
+                                <div class="score-val" id="scoreGRA">7.0</div>
+                            </div>
+                        </div>
+
+                        <div class="ccq-box" id="essayFeedbackText" style="background: rgba(168, 85, 247, 0.1); border-left-color: var(--accent-purple);">
+                            <!-- Dynamic diagnostic feedback rendered by JS -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -507,6 +605,23 @@
         </div>
     </main>
 
+    <!-- Badges Modal Drawer -->
+    <div class="modal-overlay" id="badgesModal">
+        <div class="modal-card liquid-card" style="max-width: 600px;">
+            <button class="modal-close-btn" id="badgesModalCloseBtn">&times;</button>
+            <div class="text-center">
+                <span class="category-tag cat-ai">Gamification Unlocks</span>
+                <h2 style="color:#fff; margin-top:0.5rem;"><i class="fa-solid fa-trophy" style="color:#fbbf24;"></i> Erishilgan Yutuq Nishonlari</h2>
+                <p class="text-muted text-sm">Darslik va portal topshiriqlarini bajarib, barcha nishonlarni oching!</p>
+            </div>
+            <div class="badges-modal-grid" id="badgesGridContent">
+                <!-- Rendered dynamically by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Master Scripts -->
+    <script src="script.js"></script>
     <script>
         // --- 1. ASPECT TABS SWITCHING LOGIC ---
         const tabBtns = document.querySelectorAll('.aspect-tab-btn');
@@ -542,6 +657,7 @@
         const exEl = document.getElementById('cardExample');
         const levelEl = document.getElementById('cardLevel');
         const imgEl = document.getElementById('cardImg');
+        const cardSpeechBtn = document.getElementById('cardSpeechBtn');
 
         function updateCard() {
             if (!card) return;
@@ -552,6 +668,7 @@
             transEl.innerText = data.uz;
             exEl.innerText = `"${data.ex}"`;
             levelEl.innerText = data.level;
+            if (cardSpeechBtn) cardSpeechBtn.dataset.speech = data.word;
             if (imgEl && data.img) {
                 imgEl.src = data.img;
                 imgEl.alt = data.word + " Flashcard Illustration";
@@ -559,7 +676,12 @@
         }
 
         if (card) {
-            card.addEventListener('click', () => card.classList.toggle('flipped'));
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('.speech-btn')) {
+                    card.classList.toggle('flipped');
+                    if (window.addXP) addXP(10, "Flashcard ko'rildi");
+                }
+            });
         }
         const nextBtn = document.getElementById('nextCardBtn');
         const prevBtn = document.getElementById('prevCardBtn');
@@ -577,7 +699,7 @@
             });
         }
 
-        // --- 3. INTERACTIVE QUIZ CHECKER ---
+        // --- 3. INTERACTIVE QUIZ CHECKER WITH GAMIFICATION ---
         function checkGrammarAns(btn, isCorrect) {
             const parent = btn.parentElement;
             const options = parent.querySelectorAll('.quiz-opt-btn');
@@ -585,6 +707,10 @@
 
             if (isCorrect) {
                 btn.classList.add('correct');
+                if (window.addXP) {
+                    addXP(50, "Grammatika Testi To'g'ri!");
+                    if (window.unlockBadge) unlockBadge('grammar_master');
+                }
             } else {
                 btn.classList.add('incorrect');
             }

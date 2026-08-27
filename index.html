@@ -136,6 +136,19 @@
                 <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
             </a>
 
+            <!-- Gamification HUD Bar -->
+            <div class="gamify-hud-container">
+                <div class="gamify-stat xp-badge" id="xpBadgeHUD">
+                    <i class="fa-solid fa-bolt"></i> <span id="userXPVal">250 XP</span>
+                </div>
+                <div class="gamify-stat streak-badge" id="streakBadgeHUD">
+                    <span id="userStreakVal">🔥 3 Combo</span>
+                </div>
+                <button class="badges-hud-btn" id="badgesHudBtn">
+                    <i class="fa-solid fa-trophy"></i> Yutuqlar
+                </button>
+            </div>
+
             <nav class="nav-links liquid-nav-capsule" id="navLinks">
                 <a href="#hero" class="nav-link active" data-i18n="navHome">Bosh sahifa</a>
                 <a href="general-english-beginner.html" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> English Hub</a>
@@ -866,6 +879,21 @@
                         <div class="liquid-wave"></div>
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Badges Modal Drawer -->
+    <div class="modal-overlay" id="badgesModal">
+        <div class="modal-card liquid-card" style="max-width: 600px;">
+            <button class="modal-close-btn" id="badgesModalCloseBtn">&times;</button>
+            <div class="text-center">
+                <span class="category-tag cat-ai">Gamification Unlocks</span>
+                <h2 style="color:#fff; margin-top:0.5rem;"><i class="fa-solid fa-trophy" style="color:#fbbf24;"></i> Erishilgan Yutuq Nishonlari</h2>
+                <p class="text-muted text-sm">Darslik va portal topshiriqlarini bajarib, barcha nishonlarni oching!</p>
+            </div>
+            <div class="badges-modal-grid" id="badgesGridContent">
+                <!-- Rendered dynamically by JS -->
             </div>
         </div>
     </div>

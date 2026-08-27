@@ -47,6 +47,19 @@
                 <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
             </a>
 
+            <!-- Gamification HUD Bar -->
+            <div class="gamify-hud-container">
+                <div class="gamify-stat xp-badge" id="xpBadgeHUD">
+                    <i class="fa-solid fa-bolt"></i> <span id="userXPVal">250 XP</span>
+                </div>
+                <div class="gamify-stat streak-badge" id="streakBadgeHUD">
+                    <span id="userStreakVal">🔥 3 Combo</span>
+                </div>
+                <button class="badges-hud-btn" id="badgesHudBtn">
+                    <i class="fa-solid fa-trophy"></i> Yutuqlar
+                </button>
+            </div>
+
             <nav class="nav-links liquid-nav-capsule" id="navLinks">
                 <a href="index.html" class="nav-link">Bosh sahifa</a>
                 <a href="courses.html" class="nav-link active">Kurslar Katalogi (31)</a>
@@ -100,6 +113,39 @@
                         <span class="tab-count">10</span>
                     </button>
                 </div>
+            </div>
+
+            <!-- Live AI Prompt Playground Widget -->
+            <div class="ai-prompt-playground mt-4">
+                <div class="ai-playground-header">
+                    <div>
+                        <span class="category-tag cat-ai"><i class="fa-solid fa-bolt"></i> Live AI Prompt Playground (+50 XP)</span>
+                        <h3 class="mt-1" style="color:#fff;"><i class="fa-solid fa-terminal"></i> ChatGPT & Claude Sun'iy AI Prompt Simulyatori</h3>
+                    </div>
+                    <button class="btn btn-secondary" id="copyPromptBtn" style="padding: 6px 14px; font-size:0.85rem;">
+                        <i class="fa-regular fa-copy"></i> Natijani Nusxalash
+                    </button>
+                </div>
+
+                <p class="text-muted text-sm mb-2">Andozalardan birini tanlang yoki o'z prompt matningizni kiriting hamda jonli sun'iy intellekt javobini ko'ring:</p>
+
+                <div class="ai-presets-chips">
+                    <button class="chip-btn active" data-preset="ielts"><i class="fa-solid fa-pen-nib"></i> IELTS Writing Tutor</button>
+                    <button class="chip-btn" data-preset="vocab"><i class="fa-solid fa-book"></i> Academic Vocab Builder</button>
+                    <button class="chip-btn" data-preset="grammar"><i class="fa-solid fa-code"></i> Grammar Inversion</button>
+                    <button class="chip-btn" data-preset="email"><i class="fa-solid fa-envelope"></i> Grant Fee Waiver Email</button>
+                </div>
+
+                <div class="prompt-input-wrapper">
+                    <textarea id="promptInput" class="prompt-textarea" placeholder="Prompt matnini kiritishingiz mumkin...">Act as an IELTS Band 9 Writing Tutor. Analyze the essay prompt 'Should higher education be free for all students?' and generate a Band 9 outline, thesis statement, and 4 advanced academic collocations.</textarea>
+                </div>
+
+                <button class="btn btn-primary btn-glow btn-liquid w-full" id="runPromptBtn">
+                    <span class="btn-text"><i class="fa-solid fa-play"></i> AI Promptni Run Qilish (+50 XP)</span>
+                    <div class="liquid-wave"></div>
+                </button>
+
+                <div class="prompt-output-terminal" id="promptTerminalOutput">🤖 Prompt simulyatoriga xush kelibsiz! Yuqoridagi "AI Promptni Run Qilish" tugmasini bosing...</div>
             </div>
 
             <!-- Courses Grid -->
@@ -193,6 +239,21 @@
                 <div class="video-responsive-wrapper">
                     <iframe id="videoIframe" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Badges Modal Drawer -->
+    <div class="modal-overlay" id="badgesModal">
+        <div class="modal-card liquid-card" style="max-width: 600px;">
+            <button class="modal-close-btn" id="badgesModalCloseBtn">&times;</button>
+            <div class="text-center">
+                <span class="category-tag cat-ai">Gamification Unlocks</span>
+                <h2 style="color:#fff; margin-top:0.5rem;"><i class="fa-solid fa-trophy" style="color:#fbbf24;"></i> Erishilgan Yutuq Nishonlari</h2>
+                <p class="text-muted text-sm">Darslik va portal topshiriqlarini bajarib, barcha nishonlarni oching!</p>
+            </div>
+            <div class="badges-modal-grid" id="badgesGridContent">
+                <!-- Rendered dynamically by JS -->
             </div>
         </div>
     </div>

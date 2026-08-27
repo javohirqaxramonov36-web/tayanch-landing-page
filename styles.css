@@ -1986,6 +1986,512 @@ a {
     letter-spacing: 0.5px;
 }
 
+/* ==========================================
+   GAMIFICATION & INTERACTIVE LESSON ENGINE STYLES
+   ========================================== */
+
+/* Gamification Sticky Header Bar */
+.gamify-header-bar {
+    background: rgba(18, 22, 34, 0.95);
+    border-bottom: 1px solid rgba(0, 242, 254, 0.3);
+    padding: 0.75rem 1.5rem;
+    position: sticky;
+    top: 72px;
+    z-index: 95;
+    backdrop-filter: blur(15px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================
+   GAMIFICATION HUD & BADGES STYLES
+   ========================================== */
+.gamify-hud-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.gamify-stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.xp-badge {
+    background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(168, 85, 247, 0.2));
+    border: 1px solid var(--primary-cyan);
+    color: var(--primary-cyan);
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+}
+
+.xp-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+}
+
+.streak-badge {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(239, 68, 68, 0.2));
+    border: 1px solid #fbbf24;
+    color: #fbbf24;
+    animation: streakPulse 2s infinite ease-in-out;
+}
+
+@keyframes streakPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(251, 191, 36, 0.3); }
+    50% { transform: scale(1.05); box-shadow: 0 0 22px rgba(251, 191, 36, 0.7); }
+}
+
+.badges-hud-btn {
+    background: rgba(168, 85, 247, 0.15);
+    border: 1px solid var(--accent-purple);
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.badges-hud-btn:hover {
+    background: var(--accent-purple);
+    color: #ffffff;
+    box-shadow: 0 0 15px var(--accent-purple);
+    transform: translateY(-2px);
+}
+
+/* Badges Grid Modal */
+.badges-modal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.badge-item-card {
+    background: rgba(10, 12, 18, 0.8);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    opacity: 0.5;
+    filter: grayscale(1);
+    transition: all 0.4s ease;
+}
+
+.badge-item-card.unlocked {
+    opacity: 1;
+    filter: grayscale(0);
+    border: 1px solid var(--primary-cyan);
+    background: linear-gradient(145deg, rgba(0, 242, 254, 0.1), rgba(168, 85, 247, 0.1));
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
+}
+
+.badge-item-card .badge-icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.badge-item-card h4 {
+    font-size: 0.9rem;
+    color: #fff;
+    margin-bottom: 0.25rem;
+}
+
+.badge-item-card p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================
+   NATIVE WEB SPEECH AUDIO BUTTONS
+   ========================================== */
+.audio-btn, .speech-btn {
+    background: rgba(0, 242, 254, 0.15);
+    border: 1px solid var(--primary-cyan);
+    color: var(--primary-cyan);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 8px;
+    vertical-align: middle;
+    outline: none;
+}
+
+.audio-btn:hover, .speech-btn:hover {
+    background: var(--primary-cyan);
+    color: #000;
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 0 15px var(--primary-cyan);
+}
+
+.audio-btn.speaking, .speech-btn.speaking {
+    background: var(--accent-purple) !important;
+    color: #fff !important;
+    border-color: var(--accent-purple) !important;
+    animation: audioPulse 0.8s infinite alternate ease-in-out;
+}
+
+@keyframes audioPulse {
+    0% { box-shadow: 0 0 5px var(--accent-purple); transform: scale(1); }
+    100% { box-shadow: 0 0 25px var(--accent-purple); transform: scale(1.2); }
+}
+
+/* ==========================================
+   LIVE AI PROMPT PLAYGROUND
+   ========================================== */
+.ai-prompt-playground {
+    background: linear-gradient(145deg, rgba(14, 15, 23, 0.95), rgba(8, 10, 15, 0.98));
+    border: 1px solid rgba(0, 242, 254, 0.3);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-playground-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.ai-presets-chips {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.chip-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chip-btn:hover, .chip-btn.active {
+    background: rgba(0, 242, 254, 0.2);
+    border-color: var(--primary-cyan);
+    color: #fff;
+}
+
+.prompt-input-wrapper {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.prompt-textarea {
+    width: 100%;
+    min-height: 100px;
+    background: rgba(10, 12, 18, 0.8);
+    border: 1px solid var(--border-bright);
+    border-radius: 12px;
+    padding: 1rem;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    outline: none;
+    resize: vertical;
+    transition: all 0.3s ease;
+}
+
+.prompt-textarea:focus {
+    border-color: var(--primary-cyan);
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
+}
+
+.prompt-output-terminal {
+    background: #05070a;
+    border: 1px solid #1e2638;
+    border-radius: 12px;
+    padding: 1.25rem;
+    color: #38bdf8;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.92rem;
+    min-height: 140px;
+    white-space: pre-wrap;
+    line-height: 1.6;
+    position: relative;
+    margin-top: 1rem;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+.terminal-meta-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 0.5rem;
+}
+
+.typing-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background: var(--primary-cyan);
+    margin-left: 4px;
+    animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* ==========================================
+   SPEAKING ROLEPLAY CHATBOT SIMULATOR
+   ========================================== */
+.roleplay-container {
+    background: rgba(18, 22, 34, 0.9);
+    border: 1px solid var(--border-bright);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.scenario-tabs {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.scenario-btn {
+    padding: 0.65rem 1.25rem;
+    border-radius: 12px;
+    background: rgba(10, 12, 18, 0.8);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.scenario-btn.active {
+    background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(168, 85, 247, 0.2));
+    border-color: var(--primary-cyan);
+    color: #fff;
+}
+
+.roleplay-chat-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-height: 380px;
+    overflow-y: auto;
+    padding: 1rem;
+    background: rgba(10, 12, 18, 0.7);
+    border-radius: 14px;
+    border: 1px solid var(--border-subtle);
+    margin-bottom: 1.25rem;
+}
+
+.chat-bubble {
+    max-width: 82%;
+    padding: 1rem 1.25rem;
+    border-radius: 16px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    position: relative;
+    animation: fadeIn 0.4s ease;
+}
+
+.chat-bubble.ai {
+    background: rgba(168, 85, 247, 0.18);
+    border: 1px solid var(--accent-purple);
+    color: #fff;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+.chat-bubble.user {
+    background: rgba(0, 242, 254, 0.18);
+    border: 1px solid var(--primary-cyan);
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+.roleplay-options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.roleplay-opt-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    padding: 0.85rem 1.25rem;
+    border-radius: 12px;
+    color: var(--text-main);
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.roleplay-opt-btn:hover {
+    background: rgba(0, 242, 254, 0.12);
+    border-color: var(--primary-cyan);
+    transform: translateX(4px);
+}
+
+/* ==========================================
+   INSTANT IELTS ESSAY SCORE CHECKER
+   ========================================== */
+.essay-checker-container {
+    background: linear-gradient(145deg, rgba(18, 22, 34, 0.9), rgba(10, 12, 18, 0.95));
+    border: 1px solid rgba(168, 85, 247, 0.35);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.essay-textarea {
+    width: 100%;
+    min-height: 180px;
+    background: rgba(10, 12, 18, 0.85);
+    border: 1px solid var(--border-bright);
+    border-radius: 14px;
+    padding: 1.25rem;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    outline: none;
+    resize: vertical;
+    margin: 1rem 0;
+}
+
+.essay-textarea:focus {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.3);
+}
+
+.essay-stat-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.band-diagnostic-card {
+    background: rgba(10, 12, 18, 0.8);
+    border: 1px solid var(--border-bright);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.band-score-pill {
+    font-size: 2.2rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    color: var(--primary-cyan);
+    display: inline-block;
+    background: rgba(0, 242, 254, 0.15);
+    padding: 4px 20px;
+    border-radius: 30px;
+    border: 1px solid var(--primary-cyan);
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+}
+
+.criteria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 1.25rem 0;
+}
+
+.criteria-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.criteria-item h5 {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.criteria-item .score-val {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+}
+
+/* ==========================================
+   TOAST FLOATING XP NOTIFICATION
+   ========================================== */
+.xp-toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #00f2fe, #a855f7);
+    color: #000;
+    font-weight: 800;
+    padding: 12px 24px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.5);
+    z-index: 9999;
+    animation: toastPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), fadeOut 0.5s 2.5s forwards;
+    pointer-events: none;
+    font-size: 1.1rem;
+}
+
+@keyframes toastPop {
+    0% { transform: translateY(50px) scale(0.5); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: translateY(-20px); }
+}
+
 /* Accessibility: WCAG Prefers Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
     *, ::before, ::after {
@@ -1998,5 +2504,7 @@ a {
         display: none !important;
     }
 }
+
+
 
 

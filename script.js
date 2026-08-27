@@ -985,4 +985,478 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+
+    /* ==========================================
+       17. GAMIFICATION & WEB SPEECH AUDIO ENGINE
+       ========================================== */
+    
+    // User Gamification State & LocalStorage
+    let userXP = parseInt(localStorage.getItem('tayanch_user_xp') || '250', 10);
+    let userStreak = parseInt(localStorage.getItem('tayanch_user_streak') || '3', 10);
+    let unlockedBadges = JSON.parse(localStorage.getItem('tayanch_unlocked_badges') || '["vocab_champion"]');
+
+    const badgeDefinitions = [
+        { id: 'vocab_champion', name: "🏆 Vocab Champion", desc: "5 ta so'z va flashcardni o'rgandingiz!" },
+        { id: 'grammar_master', name: "🎓 Grammar Master", desc: "Grammatika testlarini xatosiz yakunladingiz!" },
+        { id: 'prompt_wizard', name: "⚡ Prompt Wizard", desc: "AI Prompt Playground simulyatoridan foydalandingiz!" },
+        { id: 'speaking_maestro', name: "🗣️ Speaking Maestro", desc: "Roleplay Chatbot simulyatsiyasida muloqot qildingiz!" },
+        { id: 'essay_master', name: "✍️ Essay Master", desc: "IELTS Insho diagnostikasi vositasini sinab ko'rdingiz!" }
+    ];
+
+    function updateGamifyUI() {
+        const xpEl = document.getElementById('userXPVal');
+        const streakEl = document.getElementById('userStreakVal');
+        if (xpEl) xpEl.textContent = `${userXP} XP`;
+        if (streakEl) streakEl.textContent = `🔥 ${userStreak} Combo`;
+        renderBadgesModal();
+    }
+
+    function unlockBadge(badgeId) {
+        if (!unlockedBadges.includes(badgeId)) {
+            unlockedBadges.push(badgeId);
+            localStorage.setItem('tayanch_unlocked_badges', JSON.stringify(unlockedBadges));
+            const badge = badgeDefinitions.find(b => b.id === badgeId);
+            if (badge) {
+                showToast(`🏆 YANGI YUTUQ: ${badge.name}!`);
+            }
+            updateGamifyUI();
+        }
+    }
+
+    function addXP(points, reason = 'Mashq bajarildi!') {
+        userXP += points;
+        userStreak += 1;
+        localStorage.setItem('tayanch_user_xp', userXP);
+        localStorage.setItem('tayanch_user_streak', userStreak);
+        updateGamifyUI();
+
+        // Web Audio Chime Sound Synthesizer
+        try {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.2);
+            gain.gain.setValueAtTime(0.15, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.25);
+        } catch (e) {}
+
+        showToast(`+${points} XP! (${reason})`);
+
+        if (userXP >= 300) unlockBadge('vocab_champion');
+    }
+
+    function showToast(msg) {
+        const existing = document.querySelector('.xp-toast');
+        if (existing) existing.remove();
+        const toast = document.createElement('div');
+        toast.className = 'xp-toast';
+        toast.innerHTML = `<i class="fa-solid fa-bolt"></i> ${msg}`;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    // Render Badges Modal Grid
+    function renderBadgesModal() {
+        const badgesContainer = document.getElementById('badgesGridContent');
+        if (!badgesContainer) return;
+        badgesContainer.innerHTML = badgeDefinitions.map(b => {
+            const isUnlocked = unlockedBadges.includes(b.id);
+            return `
+                <div class="badge-item-card ${isUnlocked ? 'unlocked' : ''}">
+                    <span class="badge-icon">${b.name.split(' ')[0]}</span>
+                    <h4>${b.name.substring(3)}</h4>
+                    <p>${b.desc}</p>
+                    <span style="font-size: 0.7rem; color: ${isUnlocked ? '#00f2fe' : 'rgba(255,255,255,0.4)'}; margin-top: 4px; display: block;">
+                        ${isUnlocked ? '✅ Olingan' : '🔒 Qulflangan'}
+                    </span>
+                </div>
+            `;
+        }).join('');
+    }
+
+    const badgesHudBtn = document.getElementById('badgesHudBtn');
+    const badgesModal = document.getElementById('badgesModal');
+    const badgesModalCloseBtn = document.getElementById('badgesModalCloseBtn');
+
+    if (badgesHudBtn && badgesModal) {
+        badgesHudBtn.addEventListener('click', () => {
+            renderBadgesModal();
+            badgesModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+    if (badgesModalCloseBtn && badgesModal) {
+        badgesModalCloseBtn.addEventListener('click', () => closeModal(badgesModal));
+    }
+    if (badgesModal) {
+        badgesModal.addEventListener('click', (e) => {
+            if (e.target === badgesModal) closeModal(badgesModal);
+        });
+    }
+
+
+    // Native Web Speech API Text-to-Speech Pronunciation Synthesizer
+    function speakText(text, lang = 'en-US', onStart, onEnd) {
+        if (!('speechSynthesis' in window)) {
+            alert("Afsus, brauzeringiz matnni talaffuz qilishni qo'llab-quvvatlamaydi.");
+            return;
+        }
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        utterance.rate = 0.9;
+        utterance.pitch = 1.0;
+
+        if (onStart) utterance.onstart = onStart;
+        if (onEnd) utterance.onend = onEnd;
+        utterance.onerror = () => { if (onEnd) onEnd(); };
+
+        window.speechSynthesis.speak(utterance);
+    }
+
+    // Universal Audio Buttons Handler (.audio-btn & .speech-btn)
+    document.addEventListener('click', (e) => {
+        const audioBtn = e.target.closest('.audio-btn, .speech-btn');
+        if (audioBtn) {
+            const textToSpeak = audioBtn.dataset.speech || audioBtn.parentElement.innerText.replace('🔊', '').replace('Ovozli eshitish', '').trim();
+            if (textToSpeak) {
+                audioBtn.classList.add('speaking');
+                speakText(
+                    textToSpeak, 
+                    'en-US', 
+                    () => audioBtn.classList.add('speaking'),
+                    () => audioBtn.classList.remove('speaking')
+                );
+                addXP(15, "Talaffuz tinglandi");
+            }
+        }
+    });
+
+
+    // ==========================================
+    // LIVE AI PROMPT PLAYGROUND ENGINE
+    // ==========================================
+    const promptInput = document.getElementById('promptInput');
+    const promptTerminal = document.getElementById('promptTerminalOutput');
+    const runPromptBtn = document.getElementById('runPromptBtn');
+    const copyPromptBtn = document.getElementById('copyPromptBtn');
+
+    const promptPresets = {
+        ielts: "Act as an IELTS Band 9 Writing Tutor. Analyze the essay prompt 'Should higher education be free for all students?' and generate a Band 9 outline, thesis statement, and 4 advanced academic collocations.",
+        vocab: "Generate 5 C1-level academic collocations for technology and learning with clear Uzbek translations and context example sentences.",
+        grammar: "Rewrite this sentence using an academic inversion structure: 'If students use generative AI tools every day, they will master language skills much faster.'",
+        email: "Write a formal email to a University Admissions Committee requesting a 100% full-ride scholarship application fee waiver."
+    };
+
+    document.querySelectorAll('.chip-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const key = btn.dataset.preset;
+            if (promptInput && promptPresets[key]) {
+                promptInput.value = promptPresets[key];
+            }
+        });
+    });
+
+    if (runPromptBtn && promptTerminal) {
+        runPromptBtn.addEventListener('click', () => {
+            const promptText = promptInput ? promptInput.value.trim() : promptPresets.ielts;
+            promptTerminal.innerHTML = '<span style="color: var(--primary-cyan);"><i class="fa-solid fa-spinner fa-spin"></i> ChatGPT & Claude sun\'iy intellekt modeli javob yaratmoqda...</span>';
+
+            setTimeout(() => {
+                const simulatedResponse = 
+                    `🤖 [GPT-4o & Claude 3.5 Sonnet Live Engine Output]\n\n` +
+                    `✨ PROMPT TAHLILI: Muvaffaqiyatli bajarildi.\n\n` +
+                    `📌 TAVSIYA ETILGAN AKADEMIK JAVOB:\n` +
+                    `"Furthermore, incorporating artificial intelligence into modern educational frameworks substantially elevates student productivity while enabling real-time formative assessment."\n\n` +
+                    `📊 BAND 8.5 LUG'AT BO'YICHA TAHLIL:\n` +
+                    `• 'incorporating' (Fe'l) — O'zlashtirmoq / Qo'shmoq (C1 level)\n` +
+                    `• 'substantially elevates' (Collocation) — Keskin oshiradi (Band 8+)\n` +
+                    `• 'formative assessment' (Termin) — Rivojlantiruvchi baholash tizimi\n\n` +
+                    `💡 O'QUV MASLAHAT: Ushbu qurilmani Writing Task 2 insholarining 2-paragrafida bemalol qo'llashingiz mumkin.`;
+                
+                let i = 0;
+                promptTerminal.textContent = '';
+                const interval = setInterval(() => {
+                    promptTerminal.textContent += simulatedResponse[i];
+                    i++;
+                    if (i >= simulatedResponse.length) {
+                        clearInterval(interval);
+                        addXP(50, "AI Prompt Sinab Ko'rildi!");
+                        unlockBadge('prompt_wizard');
+                    }
+                }, 12);
+            }, 500);
+        });
+    }
+
+    if (copyPromptBtn && promptTerminal) {
+        copyPromptBtn.addEventListener('click', () => {
+            const text = promptTerminal.textContent;
+            if (text) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast("📋 AI javobi nusxalandi!");
+                });
+            }
+        });
+    }
+
+
+    // ==========================================
+    // SPEAKING ROLEPLAY CHATBOT ENGINE
+    // ==========================================
+    const roleplayChatBox = document.getElementById('roleplayChatBox');
+    const roleplayOptionsGrid = document.getElementById('roleplayOptionsGrid');
+    const scenarioBtns = document.querySelectorAll('.scenario-btn');
+
+    const roleplayScenarios = {
+        cafe: {
+            title: "☕ Kafe Buyurtmasi (Cafe Order)",
+            initialAi: "Hello! Welcome to Tayanch Coffee & Study Lounge. What can I get started for you today?",
+            options: [
+                {
+                    text: "A) Hi! I'd like an iced americano with oat milk and a croissant, please.",
+                    aiReply: "Great choice! Would you like that to stay or take away?",
+                    xp: 50,
+                    nextOptions: [
+                        { text: "A) To stay, please. Also, can I get the Wi-Fi password?", aiReply: "Sure thing! The Wi-Fi is 'Tayanch2026'. Have a wonderful study session!", xp: 50 },
+                        { text: "B) Take away, thanks. How long will it take?", aiReply: "It will be ready in 2 minutes at the counter. Thank you!", xp: 40 }
+                    ]
+                },
+                {
+                    text: "B) Give me coffee quick.",
+                    aiReply: "Sure, what kind of coffee would you like?",
+                    xp: 20,
+                    nextOptions: [
+                        { text: "A) An espresso, please.", aiReply: "Single or double shot? Coming right up!", xp: 30 }
+                    ]
+                },
+                {
+                    text: "C) What do you recommend for a long study session?",
+                    aiReply: "I highly recommend our signature Cold Brew with almond milk — it keeps you energized!",
+                    xp: 50,
+                    nextOptions: [
+                        { text: "A) Perfect! I'll take a large Cold Brew.", aiReply: "Excellent! That will be $4.50. Enjoy your learning session!", xp: 50 }
+                    ]
+                }
+            ]
+        },
+        airport: {
+            title: "✈️ Aeroport Tekshiruvi (Airport Security & Check-in)",
+            initialAi: "Good day! May I see your passport and flight booking confirmation, please?",
+            options: [
+                {
+                    text: "A) Here you go. I'm flying to London for an international academic conference.",
+                    aiReply: "Thank you! Do you have any check-in luggage, or just hand baggage?",
+                    xp: 50,
+                    nextOptions: [
+                        { text: "A) Just one check-in suitcase and my laptop backpack.", aiReply: "Perfect! Place your suitcase on the scale. Your flight departs from Gate B12.", xp: 50 }
+                    ]
+                },
+                {
+                    text: "B) Yes, here is my passport.",
+                    aiReply: "Thank you. Where are you traveling today?",
+                    xp: 30,
+                    nextOptions: [
+                        { text: "A) I am going to London.", aiReply: "Have a safe flight! Your gate is B12.", xp: 40 }
+                    ]
+                }
+            ]
+        },
+        interview: {
+            title: "💼 Universitet & Ish Intervyusi (Interview Simulation)",
+            initialAi: "Welcome! Tell me about a time you solved a complex problem using modern technology.",
+            options: [
+                {
+                    text: "A) In my recent project, I integrated generative AI tools to streamline content analysis, reducing processing time by 60%.",
+                    aiReply: "Impressive! How did you ensure data accuracy while using AI?",
+                    xp: 50,
+                    nextOptions: [
+                        { text: "A) I established a verification workflow with peer reviews to validate all generated outputs.", aiReply: "Outstanding leadership and critical thinking! You are a top candidate.", xp: 50 }
+                    ]
+                },
+                {
+                    text: "B) I use AI apps on my phone every day.",
+                    aiReply: "Can you elaborate on a specific achievement or outcome?",
+                    xp: 20,
+                    nextOptions: [
+                        { text: "A) I built a vocabulary study tool for my class.", aiReply: "That sounds practical and proactive. Good job!", xp: 40 }
+                    ]
+                }
+            ]
+        }
+    };
+
+    let currentScenarioKey = 'cafe';
+
+    function loadRoleplayScenario(key) {
+        currentScenarioKey = key;
+        const scenario = roleplayScenarios[key];
+        if (!scenario || !roleplayChatBox || !roleplayOptionsGrid) return;
+
+        roleplayChatBox.innerHTML = `
+            <div class="chat-bubble ai">
+                <strong><i class="fa-solid fa-robot"></i> AI Partner:</strong> ${scenario.initialAi}
+                <button class="speech-btn" data-speech="${scenario.initialAi}" style="margin-left:8px; padding:2px 8px; font-size:0.75rem;"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+        `;
+        speakText(scenario.initialAi);
+
+        renderRoleplayOptions(scenario.options);
+    }
+
+    function renderRoleplayOptions(options) {
+        if (!roleplayOptionsGrid) return;
+        roleplayOptionsGrid.innerHTML = options.map((opt, idx) => `
+            <button class="roleplay-opt-btn" data-idx="${idx}">
+                <span>${opt.text}</span>
+                <span class="badge-tag" style="background: rgba(0, 242, 254, 0.2); color: #00f2fe; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem;">+${opt.xp} XP</span>
+            </button>
+        `).join('');
+
+        roleplayOptionsGrid.querySelectorAll('.roleplay-opt-btn').forEach((btn, i) => {
+            btn.addEventListener('click', () => {
+                const selected = options[i];
+                if (!selected) return;
+
+                // Append User Bubble
+                const userBubble = document.createElement('div');
+                userBubble.className = 'chat-bubble user';
+                userBubble.innerHTML = `<strong><i class="fa-solid fa-user"></i> Siz:</strong> ${selected.text}`;
+                roleplayChatBox.appendChild(userBubble);
+
+                addXP(selected.xp, "Speaking Roleplay Bajarildi!");
+                unlockBadge('speaking_maestro');
+
+                // Append AI Reply Bubble after brief delay
+                setTimeout(() => {
+                    const aiBubble = document.createElement('div');
+                    aiBubble.className = 'chat-bubble ai';
+                    aiBubble.innerHTML = `
+                        <strong><i class="fa-solid fa-robot"></i> AI Partner:</strong> ${selected.aiReply}
+                        <button class="speech-btn" data-speech="${selected.aiReply}" style="margin-left:8px; padding:2px 8px; font-size:0.75rem;"><i class="fa-solid fa-volume-high"></i></button>
+                    `;
+                    roleplayChatBox.appendChild(aiBubble);
+                    roleplayChatBox.scrollTop = roleplayChatBox.scrollHeight;
+                    speakText(selected.aiReply);
+
+                    if (selected.nextOptions && selected.nextOptions.length) {
+                        renderRoleplayOptions(selected.nextOptions);
+                    } else {
+                        roleplayOptionsGrid.innerHTML = `
+                            <div style="text-align:center; padding:1rem; background:rgba(34, 197, 94, 0.15); border:1px solid #22c55e; border-radius:12px; color:#fff;">
+                                🎉 <strong>Muloqot muvaffaqiyatli yakunlandi!</strong> Fluency & Pronunciation ballingiz yuqori darajada!
+                            </div>
+                        `;
+                    }
+                }, 600);
+            });
+        });
+    }
+
+    if (scenarioBtns.length) {
+        scenarioBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                scenarioBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const key = btn.dataset.scenario;
+                loadRoleplayScenario(key);
+            });
+        });
+        loadRoleplayScenario('cafe');
+    }
+
+
+    // ==========================================
+    // INSTANT IELTS ESSAY SCORE CHECKER ENGINE
+    // ==========================================
+    const essayTextarea = document.getElementById('essayTextarea');
+    const analyzeEssayBtn = document.getElementById('analyzeEssayBtn');
+    const essayDiagnosticCard = document.getElementById('essayDiagnosticCard');
+    const liveWordCount = document.getElementById('liveWordCount');
+    const liveParagraphCount = document.getElementById('liveParagraphCount');
+
+    if (essayTextarea) {
+        essayTextarea.addEventListener('input', () => {
+            const text = essayTextarea.value.trim();
+            const words = text ? text.split(/\s+/).filter(Boolean).length : 0;
+            const paragraphs = text ? text.split(/\n\s*\n/).filter(Boolean).length : 0;
+
+            if (liveWordCount) liveWordCount.textContent = `${words} ta so'z`;
+            if (liveParagraphCount) liveParagraphCount.textContent = `${paragraphs} ta paragraf`;
+        });
+    }
+
+    if (analyzeEssayBtn && essayTextarea && essayDiagnosticCard) {
+        analyzeEssayBtn.addEventListener('click', () => {
+            const text = essayTextarea.value.trim();
+            const words = text ? text.split(/\s+/).filter(Boolean).length : 0;
+
+            if (words < 40) {
+                alert("Iltimos, insho diagnostikasi uchun kamida 40-50 ta so'z kiriting.");
+                return;
+            }
+
+            // Diagnostic Calculation Rules
+            let tr = 6.0, cc = 6.0, lr = 6.0, gra = 6.0;
+
+            // Word count bonus
+            if (words >= 250) { tr += 1.5; cc += 1.0; }
+            else if (words >= 180) { tr += 1.0; cc += 0.5; }
+
+            // Academic cohesive devices check
+            const cohesiveWords = ['furthermore', 'however', 'consequently', 'moreover', 'therefore', 'in addition', 'on the other hand', 'in conclusion'];
+            const foundCohesive = cohesiveWords.filter(w => text.toLowerCase().includes(w));
+            if (foundCohesive.length >= 3) cc += 1.0;
+            else if (foundCohesive.length >= 1) cc += 0.5;
+
+            // Vocabulary richness check
+            const academicVocab = ['substantially', 'incorporate', 'facilitate', 'fundamental', 'paramount', 'implementation', 'perspective', 'empirical'];
+            const foundVocab = academicVocab.filter(w => text.toLowerCase().includes(w));
+            if (foundVocab.length >= 3) lr += 1.5;
+            else if (foundVocab.length >= 1) lr += 1.0;
+
+            // Sentence complexity check (commas & semicolons & complex structures)
+            if (text.includes(';') || (text.match(/,/g) || []).length >= 4) gra += 1.0;
+            if (text.toLowerCase().includes('which') || text.toLowerCase().includes('although')) gra += 0.5;
+
+            // Cap scores at 9.0
+            tr = Math.min(tr, 9.0);
+            cc = Math.min(cc, 9.0);
+            lr = Math.min(lr, 9.0);
+            gra = Math.min(gra, 9.0);
+
+            const overall = ((tr + cc + lr + gra) / 4).toFixed(1);
+
+            document.getElementById('scoreTR').textContent = tr.toFixed(1);
+            document.getElementById('scoreCC').textContent = cc.toFixed(1);
+            document.getElementById('scoreLR').textContent = lr.toFixed(1);
+            document.getElementById('scoreGRA').textContent = gra.toFixed(1);
+            document.getElementById('overallBandScore').textContent = `Band ${overall}`;
+
+            const feedbackText = document.getElementById('essayFeedbackText');
+            if (feedbackText) {
+                feedbackText.innerHTML = `
+                    <p><strong><i class="fa-solid fa-circle-check" style="color:#22c55e;"></i> Topilgan Muvaffaqiyatlar:</strong> ${foundCohesive.length} ta bog'lovchi ibora hamda ${foundVocab.length} ta akademik C1 lug'atlar ishlatilgan.</p>
+                    <p class="mt-1"><strong><i class="fa-solid fa-lightbulb" style="color:#fbbf24;"></i> Band 8.0+ uchun Maslahat:</strong> Inshoda pasiv nisbat (Passive Voice) va Inversion tuzilmalarini ko'proq qo'llash tavsiya etiladi.</p>
+                `;
+            }
+
+            essayDiagnosticCard.style.display = 'block';
+            addXP(100, "IELTS Essay Diagnostikasi Bajarildi!");
+            unlockBadge('essay_master');
+        });
+    }
+
+    // Initialize UI
+    updateGamifyUI();
+
 });
+

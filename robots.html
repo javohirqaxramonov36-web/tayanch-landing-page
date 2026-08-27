@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robots & Crawling Policy — Tayanch Platformasi</title>
+    <meta name="description" content="Tayanch platformasi qidiruv tizimlari (Googlebot, YandexBot) indeksi hamda robots ruxsatnomalari sahifasi.">
+    
+    <!-- Canonical & Favicon -->
+    <link rel="canonical" href="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/robots.html">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <link rel="apple-touch-icon" href="assets/images/founder.jpg">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="liquid-theme">
+
+    <!-- Header / Navbar -->
+    <header class="navbar liquid-navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <div class="brand-icon liquid-glow-icon">
+                    <i class="fa-solid fa-compass-drafting"></i>
+                </div>
+                <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
+            </a>
+
+            <nav class="nav-links liquid-nav-capsule">
+                <a href="index.html" class="nav-link">Bosh sahifa</a>
+                <a href="courses.html" class="nav-link">Kurslar Katalogi (31)</a>
+                <a href="general-english-beginner.html" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> English Hub</a>
+                <a href="sitemap.html" class="nav-link">Sitemap</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="index.html" class="btn btn-primary btn-glow btn-liquid">
+                    <span class="btn-text">Bosh Sahifaga Qaytish</span>
+                    <i class="fa-solid fa-house"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main style="padding-top: 130px; padding-bottom: 80px;">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-header text-center">
+                <span class="cta-tag liquid-pill"><i class="fa-solid fa-robot"></i> SEO & Indexing Policy</span>
+                <h1 class="hero-title mt-2">Robots.txt <span class="gradient-text liquid-gradient">Indekslash Hujjati</span></h1>
+                <p class="section-desc">Qidiruv tizimi botlari (Google, Yandex, Bing) uchun platformaning ruxsatnomalar tartibi.</p>
+            </div>
+
+            <div class="liquid-glass-card mt-4" style="padding: 2.5rem; border-radius: 20px;">
+                <h3 class="mb-3"><i class="fa-solid fa-shield-halved" style="color: var(--primary-cyan);"></i> Qidiruv Botlari Sozlamalari:</h3>
+                
+                <div class="p-3 mb-3" style="background: rgba(0, 0, 0, 0.4); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); font-family: monospace; color: #00f2fe;">
+                    User-agent: *<br>
+                    Allow: /<br><br>
+                    Sitemap: https://javohirqaxramonov36-web.github.io/tayanch-landing-page/sitemap.xml
+                </div>
+
+                <ul style="list-style: none; padding: 0;" class="mt-4">
+                    <li class="mb-2"><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <strong>Status:</strong> Barcha sahifalar to'liqligicha indekslash uchun ochiq (Allow: /).</li>
+                    <li class="mb-2"><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <strong>Sitemap XML:</strong> Google Search Console uchun sitemap XML manzili ko'rsatilgan.</li>
+                </ul>
+
+                <div class="mt-4 pt-3 text-center" style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                    <a href="robots.txt" target="_blank" rel="noopener noreferrer" class="btn btn-secondary me-2">
+                        <i class="fa-solid fa-file-lines"></i> Raw robots.txt Fayli
+                    </a>
+                    <a href="sitemap.html" class="btn btn-primary btn-glow btn-liquid">
+                        <span class="btn-text">Visual Sitemap'ni Ko'rish</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 Tayanch Educational Platform. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+</body>
+</html>

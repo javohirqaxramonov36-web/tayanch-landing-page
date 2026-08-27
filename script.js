@@ -442,6 +442,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="btn-text"><i class="fa-solid fa-pen-to-square"></i> Kursga Ariza Qoldirish</span>
                     <div class="liquid-wave"></div>
                 </button>
+                <a href="general-english-beginner.html" class="btn btn-secondary w-full">
+                    <i class="fa-solid fa-graduation-cap" style="color: var(--primary-cyan);"></i> Interaktiv Darslik Hub (6 Aspects & Practice)
+                </a>
                 <button class="btn btn-secondary w-full open-video-modal-btn" data-title="${course.title} - Video Namuna" data-video="VBvxHIkvjeo">
                     <i class="fa-solid fa-circle-play" style="color: var(--primary-cyan);"></i> Video Namuna Darsini Ko'rish
                 </button>

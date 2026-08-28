@@ -1,3 +1,111 @@
+
+// =========================================================================
+// TAYANCH SECURITY & RESILIENCE ENGINE (Enterprise Null-Safety & Sanitizer)
+// =========================================================================
+
+// 1. XSS Himoyasi (HTML Sanitizer)
+function escapeHtml(str) {
+  if (typeof str !== 'string') return '';
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+// 2. Zamonaviy Glass Toast xabarnoma tizimi
+function showToast(message, type = 'info') {
+  let toast = document.getElementById('tayanchToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'tayanchToast';
+    toast.className = 'tayanch-toast';
+    document.body.appendChild(toast);
+  }
+  const icons = {
+    success: '<i class="fa-solid fa-circle-check" style="color:#3ecf8e;"></i>',
+    error: '<i class="fa-solid fa-triangle-exclamation" style="color:#ff6b6b;"></i>',
+    info: '<i class="fa-solid fa-circle-info" style="color:#00f2fe;"></i>'
+  };
+  toast.className = `tayanch-toast ${type} show`;
+  toast.innerHTML = `${icons[type] || icons.info} <span>${escapeHtml(message)}</span>`;
+  
+  clearTimeout(toast.timer);
+  toast.timer = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 4000);
+}
+
+// 3. Xavfsiz LocalStorage Wrapper (Crash-proof)
+const SafeStorage = {
+  get: function(key, defaultVal = null) {
+    try {
+      const val = localStorage.getItem(key);
+      return val ? JSON.parse(val) : defaultVal;
+    } catch (e) {
+      console.warn(`[SafeStorage] get failed for key: ${key}`, e);
+      return defaultVal;
+    }
+  },
+  set: function(key, val) {
+    try {
+      localStorage.setItem(key, JSON.stringify(val));
+      return true;
+    } catch (e) {
+      console.warn(`[SafeStorage] set failed for key: ${key}`, e);
+      return false;
+    }
+  }
+};
+
+// 4. Null-Safe Event Listener Helper
+function safeListen(selector, event, handler) {
+  const el = typeof selector === 'string' ? document.querySelector(selector) : selector;
+  if (el) {
+    el.addEventListener(event, function(e) {
+      try { handler.call(this, e); } catch (err) { console.warn(`[safeListen] Error in ${event} on ${selector}:`, err); }
+    });
+  }
+}
+
+// 5. Forma Validatsiyasi (Ariza Qoldirish)
+document.addEventListener('DOMContentLoaded', () => {
+  const leadForms = document.querySelectorAll('form, .lead-form-box');
+  leadForms.forEach(form => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nameInput = form.querySelector('input[name="name"], input[type="text"]');
+      const phoneInput = form.querySelector('input[name="phone"], input[type="tel"]');
+      
+      const name = nameInput ? nameInput.value.trim() : '';
+      const phone = phoneInput ? phoneInput.value.trim() : '';
+      
+      if (!name || name.length < 2) {
+        showToast("Iltimos, to'liq ismingizni kiriting.", "error");
+        if (nameInput) nameInput.focus();
+        return;
+      }
+      
+      const phoneClean = phone.replace(/[^0-9+]/g, '');
+      if (!phoneClean || phoneClean.length < 7) {
+        showToast("Iltimos, to'g'ri telefon raqamingizni kiriting.", "error");
+        if (phoneInput) phoneInput.focus();
+        return;
+      }
+      
+      showToast("Arizangiz muvaffaqiyatli qabul qilindi! Tez orada bog'lanamiz.", "success");
+      form.reset();
+      
+      // Agar modal ichida bo'lsa, 1.5 soniyadan keyin yopish
+      setTimeout(() => {
+        const modal = form.closest('.modal-overlay');
+        if (modal) modal.classList.remove('active');
+      }, 1500);
+    });
+  });
+});
+
 /* ==========================================================================
    Tayanch Landing Page — Master JavaScript Engine (Multi-Lang & WebApp Edition)
    ========================================================================== */

@@ -4307,3 +4307,17 @@ a {
 .resource-views { font-size: .76rem; color: var(--text-muted); display: flex; align-items: center; gap: .35rem; }
 .btn-sm { padding: .35rem .7rem; font-size: .78rem; }
 .resource-empty-note { text-align: center; color: var(--text-muted); padding: 2rem; }
+
+/* Kafolatlangan Hero ko'rinishi */
+.hero-section,
+.liquid-obsidian-hero,
+.hero-container,
+.hero-content,
+main {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
+}
+.hero-fade {
+  visibility: visible !important;
+}

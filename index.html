@@ -2,6 +2,19 @@
 <html lang="uz">
 <!-- deploy: cache-cleanup 2026-08-28 -->
 <head>
+    <script>
+        /* Force-unregister any stale Service Worker so the browser stops serving cached old pages */
+        (function () {
+            if (!('serviceWorker' in navigator)) return;
+            navigator.serviceWorker.getRegistration && navigator.serviceWorker.getRegistration().then(function (reg) {
+                if (reg) {
+                    reg.unregister().then(function () {
+                        if (navigator.serviceWorker.controller) window.location.reload();
+                    });
+                }
+            }).catch(function () {});
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tayanch — AI, IELTS va Admission'ni bir joyda o'rganing</title>

@@ -440,16 +440,14 @@ document.addEventListener('DOMContentLoaded', () => {
             recommended = [coursesData[10], coursesData[23], coursesData[24]];
         }
 
-        if (resGrantProgress) resGrantProgress.style.width = `${basePercent}%`;
-        if (resGrantPercent) resGrantPercent.innerText = `${basePercent}%`;
-        if (resGrantAmount) resGrantAmount.innerText = amount;
+        // Grant foiz/$ chiqishi olib tashlandi: asossiz aniq va'da ko'rsatilmaydi
 
         if (resCoursesList) {
             resCoursesList.innerHTML = recommended.map(c => `<li><i class="fa-solid fa-check"></i> ${c.title}</li>`).join('');
         }
 
         if (calcApplyBtn) {
-            calcApplyBtn.dataset.course = `Grant Calculator (${basePercent}% Grant - ${recommended[0].title})`;
+            calcApplyBtn.dataset.course = 'Grant Kalkulyatori natijasi';
         }
     }
 

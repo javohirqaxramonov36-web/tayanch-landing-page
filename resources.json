@@ -1,0 +1,18 @@
+{
+  "_izoh": "Phase 7 — Resurslar kutubxonasi. Har bir yozuv CEFR daraja va janr bilan teglangan. 'views' ijtimoiy dalil uchun baza ko'rishlar soni; foydalanuvchi ochganda localStorage'da qo'shimcha hisoblanadi. Cover rasm yo'q — FontAwesome ikonka + gradient ishlatiladi (404 xavfsiz).",
+  "books": [
+    { "id": "book_01", "title": "The Little Prince", "author": "Antoine de Saint-Exupéry", "genre": "Fantasy", "cefr": "A2", "views": 1820, "blurb": "Oddiy til bilan yozilgan, lekin chuqur falsafiy hikoya. Boshlang'ich daraja uchun ideal." },
+    { "id": "book_02", "title": "Charlotte's Web", "author": "E. B. White", "genre": "Fantasy", "cefr": "A1", "views": 2450, "blurb": "Hayvonlar haqidagi iliq hikoya, eng sodda grammatika bilan." },
+    { "id": "book_03", "title": "Sapiens: A Brief History of Humankind", "author": "Yuval Noah Harari", "genre": "Education", "cefr": "C1", "views": 980, "blurb": "Ilmiy-ommabop asar; keng lug'at va murakkab gaplar bilan." },
+    { "id": "book_04", "title": "Atomic Habits", "author": "James Clear", "genre": "Business", "cefr": "B2", "views": 3110, "blurb": "Odatlar psixologiyasi; amaliy inglizcha biznes leksikasi." },
+    { "id": "book_05", "title": "The Curious Incident of the Dog in the Night-Time", "author": "Mark Haddon", "genre": "Education", "cefr": "B1", "views": 1340, "blurb": "Birinchi shaxs hikoyasi, o'quvchiga tushunarli tilda." },
+    { "id": "book_06", "title": "A Brief History of Time", "author": "Stephen Hawking", "genre": "Science", "cefr": "B2", "views": 760, "blurb": "Koinot fizikasi haqida; ilmiy terminlarni o'rganish uchun." }
+  ],
+  "podcasts": [
+    { "id": "pod_01", "title": "The English We Speak", "author": "BBC Learning English", "genre": "Education", "cefr": "A2", "views": 4200, "blurb": "Har kuni bitta yangi ibora va talaffuz tushuntirishi." },
+    { "id": "pod_02", "title": "Coffee Break English", "author": "Coffee Break Languages", "genre": "Education", "cefr": "B1", "views": 2890, "blurb": "Qisqa darslar, real suhbat namunalari bilan." },
+    { "id": "pod_03", "title": "Science Vs", "author": "Spotify Studios", "genre": "Science", "cefr": "B2", "views": 1650, "blurb": "Ilmiy mavzularni oddiy tilda muhokama qiladi." },
+    { "id": "pod_04", "title": "The Entrepreneurs' Bookclub", "author": "Foundr", "genre": "Business", "cefr": "C1", "views": 920, "blurb": "Biznes va startaplar haqida chuqur suhbatlar." },
+    { "id": "pod_05", "title": "Storynory", "author": "Storynory", "genre": "Fantasy", "cefr": "A1", "views": 5300, "blurb": "Bolalar ertaklari audio shaklda — tinglab o'rganish uchun." }
+  ]
+}

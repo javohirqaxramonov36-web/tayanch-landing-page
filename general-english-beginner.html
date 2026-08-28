@@ -306,6 +306,44 @@
         <!-- Gamified Learning Path Roadmap -->
         <div class="gamify-path-container" id="roadmapPathContainer"></div>
 
+        <!-- Phase 7: Resource Library (Books & Podcasts) -->
+        <section class="resource-library-section mt-5">
+            <div class="section-header text-center">
+                <span class="category-tag cat-ielts"><i class="fa-solid fa-book-open-reader"></i> Resurslar Kutubxonasi</span>
+                <h2 class="section-title mt-2">Kitoblar va <span class="gradient-text liquid-gradient">Podkastlar</span></h2>
+                <p class="section-desc">CEFR daraja va janr bo'yicha tanlangan bepul o'quv resurslari. Oching — va ko'rishlar soni ortsin (ijtimoiy dalil).</p>
+            </div>
+
+            <div class="resource-filters" id="resourceFilters">
+                <div class="filter-group" data-filter="type">
+                    <span class="filter-label">Tur:</span>
+                    <button class="res-filter-btn active" data-value="all">Hammasi</button>
+                    <button class="res-filter-btn" data-value="book"><i class="fa-solid fa-book"></i> Kitoblar</button>
+                    <button class="res-filter-btn" data-value="podcast"><i class="fa-solid fa-podcast"></i> Podkastlar</button>
+                </div>
+                <div class="filter-group" data-filter="cefr">
+                    <span class="filter-label">Daraja:</span>
+                    <button class="res-filter-btn active" data-value="all">Barchasi</button>
+                    <button class="res-filter-btn" data-value="A1">A1</button>
+                    <button class="res-filter-btn" data-value="A2">A2</button>
+                    <button class="res-filter-btn" data-value="B1">B1</button>
+                    <button class="res-filter-btn" data-value="B2">B2</button>
+                    <button class="res-filter-btn" data-value="C1">C1</button>
+                </div>
+                <div class="filter-group" data-filter="genre">
+                    <span class="filter-label">Janr:</span>
+                    <button class="res-filter-btn active" data-value="all">Barchasi</button>
+                    <button class="res-filter-btn" data-value="Fantasy">Fantasy</button>
+                    <button class="res-filter-btn" data-value="Education">Education</button>
+                    <button class="res-filter-btn" data-value="Science">Science</button>
+                    <button class="res-filter-btn" data-value="Business">Business</button>
+                </div>
+            </div>
+
+            <div class="resource-grid" id="resourceGrid"></div>
+            <p class="resource-empty-note" id="resourceEmptyNote" style="display:none;">Tanlangan filtrlarga mos resurs topilmadi.</p>
+        </section>
+
         <!-- 6 Aspects & Resource Library Navigation Tabs Bar -->
         <div class="aspect-tabs-bar">
             <button class="aspect-tab-btn active" data-aspect="vocab"><i class="fa-solid fa-layer-group"></i> 1. Lug'at (Vocabulary)</button>

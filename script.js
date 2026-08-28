@@ -2735,5 +2735,115 @@ document.addEventListener('DOMContentLoaded', () => {
     renderVocabCard();
 });
 
+/* ============================================================
+   20. PHASE 7 — RESOURCE LIBRARY (Books & Podcasts)
+   Englify tahlili asosida: CEFR + janr teglari, ko'rishlar soni.
+   Backend'siz: faqat localStorage'da ochilish soni saqlanadi.
+   ============================================================ */
+(function () {
+    const grid = document.getElementById('resourceGrid');
+    if (!grid) return; // faqat GE sahifasida
+
+    const RESOURCES_KEY = 'tayanch_resource_views_v1';
+    let resources = [];
+    const filters = { type: 'all', cefr: 'all', genre: 'all' };
+
+    function getViews() { try { return JSON.parse(localStorage.getItem(RESOURCES_KEY)) || {}; } catch (e) { return {}; } }
+    function saveViews(v) { localStorage.setItem(RESOURCES_KEY, JSON.stringify(v)); }
+
+    function typeLabel(t) { return t === 'book' ? 'Kitob' : 'Podkast'; }
+    function iconFor(item) { return item.typeLabel === 'book' ? 'fa-book' : 'fa-podcast'; }
+    function gradFor(cefr) {
+        return { A1: 'a1', A2: 'a2', B1: 'b1', B2: 'b2', C1: 'c1' }[cefr] || 'b1';
+    }
+
+    function totalViews(item, viewsMap) {
+        return (item.views || 0) + (viewsMap[item.id] || 0);
+    }
+
+    function cardHTML(item, viewsMap) {
+        const tv = totalViews(item, viewsMap).toLocaleString('en-US');
+        return `
+            <div class="resource-card liquid-card" data-id="${item.id}" data-type="${item.typeLabel}" data-cefr="${item.cefr}" data-genre="${item.genre}">
+                <div class="resource-cover res-grad-${gradFor(item.cefr)}">
+                    <i class="fa-solid ${iconFor(item)}"></i>
+                </div>
+                <div class="resource-body">
+                    <div class="resource-type-badge"><i class="fa-solid ${iconFor(item)}"></i> ${typeLabel(item.typeLabel)}</div>
+                    <h4 class="resource-title">${item.title}</h4>
+                    <div class="resource-author">${item.author || ''}</div>
+                    <div class="resource-tags">
+                        <span class="res-tag cefr">${item.cefr}</span>
+                        <span class="res-tag genre">${item.genre}</span>
+                    </div>
+                    <p class="resource-blurb">${item.blurb || ''}</p>
+                    <div class="resource-foot">
+                        <span class="resource-views"><i class="fa-solid fa-eye"></i> ${tv} ko'rish</span>
+                        <button class="btn btn-sm btn-secondary resource-open-btn">Ochish</button>
+                    </div>
+                </div>
+            </div>`;
+    }
+
+    function applyFilters() {
+        let list = resources.slice();
+        if (filters.type !== 'all') list = list.filter(x => x.typeLabel === filters.type);
+        if (filters.cefr !== 'all') list = list.filter(x => x.cefr === filters.cefr);
+        if (filters.genre !== 'all') list = list.filter(x => x.genre === filters.genre);
+        grid.innerHTML = list.map(it => cardHTML(it, getViews())).join('');
+        const emptyNote = document.getElementById('resourceEmptyNote');
+        if (emptyNote) emptyNote.style.display = list.length ? 'none' : 'block';
+    }
+
+    function openResource(id) {
+        const views = getViews();
+        views[id] = (views[id] || 0) + 1;
+        saveViews(views);
+        const card = grid.querySelector(`.resource-card[data-id="${id}"]`);
+        const item = resources.find(r => r.id === id);
+        if (card && item) {
+            const vEl = card.querySelector('.resource-views');
+            if (vEl) vEl.innerHTML = `<i class="fa-solid fa-eye"></i> ${totalViews(item, views).toLocaleString('en-US')} ko'rish`;
+            card.classList.add('just-opened');
+        }
+        if (typeof showToast === 'function') showToast("📚 Resurs ochildi va ko'rishlar soni yangilandi");
+    }
+
+    grid.addEventListener('click', (e) => {
+        const card = e.target.closest('.resource-card');
+        if (card) openResource(card.dataset.id);
+    });
+
+    const filtersEl = document.getElementById('resourceFilters');
+    if (filtersEl) {
+        filtersEl.addEventListener('click', (e) => {
+            const btn = e.target.closest('.res-filter-btn');
+            if (!btn) return;
+            const group = btn.closest('.filter-group').dataset.filter;
+            btn.closest('.filter-group').querySelectorAll('.res-filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            filters[group] = btn.dataset.value;
+            applyFilters();
+        });
+    }
+
+    async function initResources() {
+        try {
+            const res = await fetch('./resources.json');
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            const data = await res.json();
+            resources = []
+                .concat((data.books || []).map(b => Object.assign({ typeLabel: 'book' }, b)))
+                .concat((data.podcasts || []).map(p => Object.assign({ typeLabel: 'podcast' }, p)));
+            applyFilters();
+        } catch (err) {
+            grid.innerHTML = `<p class="resource-empty-note">Resurslar yuklanmadi (${err.message}).</p>`;
+        }
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initResources);
+    else initResources();
+})();
+
 
 

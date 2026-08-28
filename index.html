@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="uz">
+<!-- deploy: cache-cleanup 2026-08-28 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -894,15 +895,6 @@
             </div>
         </div>
     </div>
-
-    <!-- PWA Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js').catch(err => console.log('SW reg error:', err));
-            });
-        }
-    </script>
 
     <!-- JS Engine -->
     <script src="script.js" defer></script>

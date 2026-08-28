@@ -3,8 +3,16 @@
 <!-- deploy: cache-cleanup 2026-08-28 -->
 <head>
     <script>
-        /* Force-unregister any stale Service Worker so the browser stops serving cached old pages */
+        /* Force-unregister any stale Service Worker AND clear all caches so the browser
+           stops serving cached (pre-fix) old pages. Runs on every fresh load. */
         (function () {
+            try {
+                if ('caches' in window) {
+                    caches.keys().then(function (ks) {
+                        ks.forEach(function (k) { try { caches.delete(k); } catch (e) {} });
+                    });
+                }
+            } catch (e) {}
             if (!('serviceWorker' in navigator)) return;
             navigator.serviceWorker.getRegistration && navigator.serviceWorker.getRegistration().then(function (reg) {
                 if (reg) {
@@ -16,6 +24,7 @@
         })();
     </script>
     <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tayanch — AI, IELTS va Admission'ni bir joyda o'rganing</title>
     <meta name="description" content="Tayanch — Zamonaviy Sun'iy Intelekt (AI), IELTS va Xalqaro Universitetlarga kirish (Admission) ta'lim platformasi. Asoschi: IELTS 7.0 va SAT 1420.">

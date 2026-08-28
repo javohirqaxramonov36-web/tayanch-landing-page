@@ -272,6 +272,32 @@
       color: #f87171;
     }
 
+
+    .parent-badge-box {
+      background: linear-gradient(135deg, rgba(79, 140, 255, 0.1), rgba(168, 85, 247, 0.1));
+      border: 1px solid rgba(79, 140, 255, 0.3);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .input-glass {
+      background: rgba(26, 33, 52, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #ffffff;
+      font-size: 0.95rem;
+      outline: none;
+      width: 100%;
+    }
+    .input-glass:focus {
+      border-color: #00f2fe;
+    }
+
 </style>
 </head>
 <body>
@@ -312,6 +338,21 @@
       <div class="glass-card">
         <h2><i class="fa-solid fa-fire" style="color:#ffb454;"></i> Kunlik faollik (Streak)</h2>
         <div id="streak-display" style="font-size:1.05rem;color:#e5e7eb;">Yuklanmoqda...</div>
+      </div>
+
+      
+      <!-- Guruh / Sinf Kodi (Phase 1.5) -->
+      <div class="glass-card" style="padding:18px 24px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+          <div>
+            <div style="font-weight:700;font-size:1.05rem;color:#ffffff;"><i class="fa-solid fa-graduation-cap" style="color:#00f2fe;"></i> O'quv markazi / Sinf kodi</div>
+            <div style="font-size:0.82rem;color:#9ca3af;margin-top:2px;">O'qituvchingiz bergan guruh kodini kiriting (masalan: TAYANCH-SAT-01)</div>
+          </div>
+          <div style="display:flex;gap:8px;min-width:260px;">
+            <input type="text" id="class-code-input" class="input-glass" placeholder="Sinf kodi..." style="text-transform:uppercase;">
+            <button class="btn-secondary" id="save-code-btn" style="white-space:nowrap;">Saqlash</button>
+          </div>
+        </div>
       </div>
 
       <div class="glass-card">
@@ -367,6 +408,17 @@
         
         <h2><i class="fa-solid fa-chart-pie" style="color:#ec4899;"></i> Bo'limlar bo'yicha taqsimot</h2>
         <div id="domain-breakdown"></div>
+
+        
+        <div class="parent-badge-box">
+          <div>
+            <div style="font-weight:700;color:#ffffff;font-size:0.95rem;"><i class="fa-solid fa-user-shield" style="color:#3ecf8e;"></i> Ota-ona / Ustoz uchun hisobot havolasi</div>
+            <div style="font-size:0.82rem;color:#9ca3af;margin-top:2px;">Farzandingiz / o'quvchingiz natijasini tasdiqlangan read-only shaklda ulashing</div>
+          </div>
+          <button class="btn-action" id="parent-share-btn" style="white-space:nowrap;padding:8px 16px;font-size:0.85rem;">
+            <i class="fa-solid fa-paper-plane"></i> Ota-onaga Yuborish
+          </button>
+        </div>
 
         <div style="display:flex;gap:12px;margin-top:20px;">
           <button class="btn-action" id="tg-share-btn" style="flex:1;"><i class="fa-brands fa-telegram"></i> Telegramga yuborish</button>
@@ -678,7 +730,32 @@
     document.getElementById('save-exit-btn').addEventListener('click', () => {
       clearInterval(timerInterval);
       upsertAttempt(currentAttempt);
-      renderHome();
+      
+    // URL orqali Parent Read-Only rejimini tekshirish
+    function checkUrlReportView() {
+      const params = new URLSearchParams(window.location.search);
+      const viewId = params.get('view_report');
+      if (viewId) {
+        setTimeout(() => {
+          viewReport(viewId);
+        }, 100);
+      }
+    }
+
+    // Sinf kodini saqlash
+    const codeInput = document.getElementById('class-code-input');
+    const saveCodeBtn = document.getElementById('save-code-btn');
+    if (codeInput && saveCodeBtn) {
+      codeInput.value = localStorage.getItem('tayanch_class_code') || '';
+      saveCodeBtn.onclick = () => {
+        const val = codeInput.value.trim().toUpperCase();
+        localStorage.setItem('tayanch_class_code', val);
+        alert(val ? `Sinf kodi muvaffaqiyatli saqlandi: ${val}` : 'Sinf kodi tozalandi.');
+      };
+    }
+
+    renderHome();
+    checkUrlReportView();
     });
 
     function finishAttempt() {
@@ -762,6 +839,15 @@
         reviewList.appendChild(card);
       });
 
+      
+      // Ota-onaga yuborish (Parent Access Link)
+      document.getElementById('parent-share-btn').onclick = () => {
+        const shareUrl = `${window.location.origin}${window.location.pathname}?view_report=${attempt.id}`;
+        const studentClass = localStorage.getItem('tayanch_class_code') ? ` (Guruh: ${localStorage.getItem('tayanch_class_code')})` : '';
+        const msg = encodeURIComponent(`Assalomu alaykum! Farzandingiz Tayanch platformasida Digital SAT Mock-Test topshirdi${studentClass}. Umumiy ball: ${satScore} / 1600. To'liq hisobot: ${shareUrl}`);
+        window.open(`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${msg}`, '_blank');
+      };
+
       // Telegram Share tugmasi
       document.getElementById('tg-share-btn').onclick = () => {
         const msg = encodeURIComponent(`Men Tayanch platformasida Digital SAT Mock-Test topshirdim va ${satScore} ball oldim! 🚀`);
@@ -777,7 +863,32 @@
 
     document.getElementById('back-home-btn').addEventListener('click', renderHome);
 
+    
+    // URL orqali Parent Read-Only rejimini tekshirish
+    function checkUrlReportView() {
+      const params = new URLSearchParams(window.location.search);
+      const viewId = params.get('view_report');
+      if (viewId) {
+        setTimeout(() => {
+          viewReport(viewId);
+        }, 100);
+      }
+    }
+
+    // Sinf kodini saqlash
+    const codeInput = document.getElementById('class-code-input');
+    const saveCodeBtn = document.getElementById('save-code-btn');
+    if (codeInput && saveCodeBtn) {
+      codeInput.value = localStorage.getItem('tayanch_class_code') || '';
+      saveCodeBtn.onclick = () => {
+        const val = codeInput.value.trim().toUpperCase();
+        localStorage.setItem('tayanch_class_code', val);
+        alert(val ? `Sinf kodi muvaffaqiyatli saqlandi: ${val}` : 'Sinf kodi tozalandi.');
+      };
+    }
+
     renderHome();
+    checkUrlReportView();
   </script>
 
     <!-- Legal / Trademark Disclaimer (College Board) -->

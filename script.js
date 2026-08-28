@@ -1032,40 +1032,44 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ==========================================
        16. GSAP SCROLL TRIGGER REVEALS & MOBILE DRAWER
        ========================================== */
-    if (window.gsap && window.ScrollTrigger) {
-        gsap.from('.hero-fade', {
-            opacity: 0,
-            y: 35,
-            duration: 0.9,
-            stagger: 0.15,
-            ease: 'power3.out'
-        });
+    try {
+        if (window.gsap && window.ScrollTrigger) {
+            gsap.from('.hero-fade', {
+                opacity: 0,
+                y: 35,
+                duration: 0.9,
+                stagger: 0.15,
+                ease: 'power3.out'
+            });
 
-        gsap.utils.toArray('.gsap-reveal').forEach(elem => {
-            gsap.fromTo(elem,
-                { opacity: 0, y: 45, scale: 0.96 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    duration: 0.85,
-                    ease: 'power3.out',
-                    immediateRender: false,
-                    scrollTrigger: {
-                        trigger: elem,
-                        start: 'top 90%',
-                        toggleActions: 'play none none none',
-                        once: true
+            gsap.utils.toArray('.gsap-reveal').forEach(elem => {
+                gsap.fromTo(elem,
+                    { opacity: 0, y: 45, scale: 0.96 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.85,
+                        ease: 'power3.out',
+                        immediateRender: false,
+                        scrollTrigger: {
+                            trigger: elem,
+                            start: 'top 90%',
+                            toggleActions: 'play none none none',
+                            once: true
+                        }
                     }
-                }
-            );
-        });
+                );
+            });
+        }
+    } catch (e) {
+        console.warn('[gsap] reveal init skipped:', e);
     }
 
     // Safety net: guarantee all .gsap-reveal content stays visible even if
     // ScrollTrigger fails to fire (layout/scroll miscalculation). Runs after load.
     setTimeout(() => {
-        document.querySelectorAll('.gsap-reveal').forEach(elem => {
+        document.querySelectorAll('.gsap-reveal, .hero-fade').forEach(elem => {
             if (parseFloat(getComputedStyle(elem).opacity) < 0.05) {
                 elem.style.setProperty('opacity', '1', 'important');
                 elem.style.setProperty('transform', 'none', 'important');

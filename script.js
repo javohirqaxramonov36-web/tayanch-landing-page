@@ -1545,7 +1545,10 @@ document.addEventListener('DOMContentLoaded', () => {
         listContainer.innerHTML = filtered.map(item => `
             <div class="dict-word-card">
                 <div>
-                    <div class="dict-word-en">${item.en}</div>
+                    <div class="dict-word-en" style="display:flex; align-items:center; gap:8px;">
+                        <span>${item.en}</span>
+                        <button class="speech-btn" data-speech="${item.en}" title="Talaffuzini tinglash" style="font-size:0.85rem; padding:4px 8px;"><i class="fa-solid fa-volume-high"></i></button>
+                    </div>
                     <div class="dict-word-uz">${item.uz}</div>
                     <div class="dict-word-meta">Saqlangan: ${new Date(item.addedAt).toLocaleDateString()}</div>
                 </div>
@@ -1885,6 +1888,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadCEFRLevelModules(level) {
         currentCEFRLevel = level;
+        localStorage.setItem('tayanch_selected_cefr_level', level);
         try {
             const fileName = `modules-${level.toLowerCase()}.json`;
             const res = await fetch(`./${fileName}`);
@@ -1913,8 +1917,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initialize Gamification Engine
-    loadCEFRLevelModules("A1");
+    // Initialize Gamification Engine with saved level
+    const initialSavedLevel = localStorage.getItem('tayanch_selected_cefr_level') || "A1";
+    document.querySelectorAll('.cefr-tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.level === initialSavedLevel);
+    });
+    loadCEFRLevelModules(initialSavedLevel);
 
     // Initialize UI
     updateGamifyUI();

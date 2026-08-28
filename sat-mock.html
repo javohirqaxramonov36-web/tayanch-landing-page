@@ -220,7 +220,59 @@
       font-size: 0.9rem;
       color: #d1d5db;
     }
-  </style>
+  
+    .nav-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0;
+    }
+    .nav-num-btn {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: rgba(26, 33, 52, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #9ca3af;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+    .nav-num-btn.current { border-color: #00f2fe; color: #00f2fe; background: rgba(0, 242, 254, 0.15); }
+    .nav-num-btn.answered { background: rgba(62, 207, 142, 0.15); border-color: rgba(62, 207, 142, 0.4); color: #3ecf8e; }
+    .nav-num-btn.flagged::after {
+      content: '🚩';
+      position: absolute;
+      top: -8px;
+      right: -6px;
+      font-size: 0.7rem;
+    }
+    .flag-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #9ca3af;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .flag-btn.active {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: #ef4444;
+      color: #f87171;
+    }
+
+</style>
 </head>
 <body>
 
@@ -282,6 +334,11 @@
           <div class="timer" id="timer-display">32:00</div>
         </div>
         <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill"></div></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
+          <div style="font-size:0.85rem;color:#9ca3af;">Savollar navigatori:</div>
+          <button class="flag-btn" id="flag-toggle-btn"><i class="fa-solid fa-bookmark"></i> <span id="flag-label">Mark for Review</span></button>
+        </div>
+        <div class="nav-grid" id="question-nav-grid"></div>
       </div>
 
       <div class="question-box">
@@ -544,6 +601,38 @@
 
     function renderQuestion() {
       const q = SAMPLE_QUESTIONS[currentAttempt.currentIndex];
+      
+      // Question Navigator Grid render
+      const navGrid = document.getElementById('question-nav-grid');
+      navGrid.innerHTML = '';
+      if (!currentAttempt.flags) currentAttempt.flags = {};
+
+      SAMPLE_QUESTIONS.forEach((sq, idx) => {
+        const nBtn = document.createElement('button');
+        nBtn.className = 'nav-num-btn';
+        if (idx === currentAttempt.currentIndex) nBtn.classList.add('current');
+        if (currentAttempt.answers[sq.id] !== undefined) nBtn.classList.add('answered');
+        if (currentAttempt.flags[sq.id]) nBtn.classList.add('flagged');
+        nBtn.textContent = idx + 1;
+        nBtn.onclick = () => {
+          currentAttempt.currentIndex = idx;
+          upsertAttempt(currentAttempt);
+          renderQuestion();
+        };
+        navGrid.appendChild(nBtn);
+      });
+
+      // Flag toggle holati
+      const isFlagged = !!currentAttempt.flags[q.id];
+      const flagBtn = document.getElementById('flag-toggle-btn');
+      flagBtn.className = 'flag-btn' + (isFlagged ? ' active' : '');
+      document.getElementById('flag-label').textContent = isFlagged ? 'Belgilangan (Flagged 🚩)' : 'Mark for Review';
+      flagBtn.onclick = () => {
+        currentAttempt.flags[q.id] = !currentAttempt.flags[q.id];
+        upsertAttempt(currentAttempt);
+        renderQuestion();
+      };
+
       document.getElementById('q-counter').textContent =
         `Savol ${currentAttempt.currentIndex + 1} / ${SAMPLE_QUESTIONS.length}`;
       document.getElementById('progress-fill').style.width =
@@ -690,5 +779,11 @@
 
     renderHome();
   </script>
+
+    <!-- Legal / Trademark Disclaimer (College Board) -->
+    <div class="trademark-disclaimer" style="margin-top: 2rem; padding: 1.25rem; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.78rem; color: #71717a; text-align: center; line-height: 1.5;">
+      <p style="margin:0;">* SAT® — College Board’ning roʻyxatdan oʻtgan savdo belgisidir. Tayanch platformasi College Board bilan bevosita bogʻliq emas va uning tomonidan tasdiqlanmagan.</p>
+    </div>
+
 </body>
 </html>

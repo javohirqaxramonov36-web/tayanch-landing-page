@@ -293,10 +293,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (window.gsap) {
-                gsap.fromTo('.course-card', 
-                    { opacity: 0, y: 20 },
-                    { opacity: 1, y: 0, duration: 0.4, stagger: 0.03, ease: 'power2.out' }
-                );
+                const courseCards = document.querySelectorAll('.course-card');
+                if (courseCards.length > 0) {
+                    gsap.fromTo(courseCards,
+                        { opacity: 0, y: 20 },
+                        { opacity: 1, y: 0, duration: 0.4, stagger: 0.03, ease: 'power2.out' }
+                    );
+                }
             }
             initTiltPhysics();
         }
@@ -1033,21 +1036,38 @@ document.addEventListener('DOMContentLoaded', () => {
        16. GSAP SCROLL TRIGGER REVEALS & MOBILE DRAWER
        ========================================== */
     try {
-  if (window.gsap && window.ScrollTrigger) {
-    const fadeEls = document.querySelectorAll('.hero-fade, .hero-title, .hero-subheadline, .hero-cta-group, .hero-stats-row');
-    if (fadeEls.length > 0) {
-      gsap.from(fadeEls, {
-        opacity: 0,
-        y: 35,
-        duration: 0.9,
-        stagger: 0.12,
-        ease: 'power3.out'
-      });
-    }
-  }
-} catch (e) {
-  console.warn('[gsap] hero-fade error:', e);
-}
+        if (window.gsap && window.ScrollTrigger) {
+            const fadeEls = document.querySelectorAll('.hero-fade, .hero-title, .hero-subheadline, .hero-cta-group, .hero-stats-row');
+            if (fadeEls.length > 0) {
+                gsap.from(fadeEls, {
+                    opacity: 0,
+                    y: 35,
+                    duration: 0.9,
+                    stagger: 0.12,
+                    ease: 'power3.out'
+                });
+            }
+
+            gsap.utils.toArray('.gsap-reveal').forEach(elem => {
+                gsap.fromTo(elem,
+                    { opacity: 0, y: 45, scale: 0.96 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.85,
+                        ease: 'power3.out',
+                        immediateRender: false,
+                        scrollTrigger: {
+                            trigger: elem,
+                            start: 'top 90%',
+                            toggleActions: 'play none none none',
+                            once: true
+                        }
+                    }
+                );
+            });
+        }
     } catch (e) {
         console.warn('[gsap] reveal init skipped:', e);
     }

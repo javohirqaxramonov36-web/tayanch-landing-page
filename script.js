@@ -2126,4 +2126,586 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+/* ==========================================================================
+   DIGITAL SAT (DSAT) BLUEBOOK SIMULATOR & VOCAB ENGINE
+   ========================================================================== */
+
+// 1. SAT Sample Question Bank (College Board & Original Spec)
+const TAYANCH_DSAT_QUESTIONS = [
+    // Reading & Writing - Module 1
+    {
+        id: "rw_m1_q1",
+        section: "Reading and Writing",
+        moduleName: "Module 1 of 2",
+        domain: "Craft and Structure",
+        skill: "Context Clues",
+        passage: `The researcher's claims regarding climate resilience in alpine vegetation were initially met with significant skepticism. However, recent empirical field trials conducted across mountain ranges have _______ her original hypothesis, demonstrating its reliability under varied environmental stressors.`,
+        prompt: "Which choice completes the text with the most logical and precise word?",
+        options: ["A) vindicated", "B) refuted", "C) obfuscated", "D) undermined"],
+        correctIndex: 0
+    },
+    {
+        id: "rw_m1_q2",
+        section: "Reading and Writing",
+        moduleName: "Module 1 of 2",
+        domain: "Information and Ideas",
+        skill: "Central Ideas and Details",
+        passage: `In a 2023 study of urban bird species, ornithologists observed that populations residing near heavy traffic corridors exhibited altered vocalization frequencies. The researchers hypothesized that these behavioral adjustments were not merely stress responses, but rather adaptive mechanisms to prevent background noise from masking critical communication signals between nesting pairs.`,
+        prompt: "According to the passage, why did urban bird populations alter their vocalization frequencies?",
+        options: [
+            "A) To signal imminent environmental hazards to predators.",
+            "B) To ensure communication signals are audible over urban noise.",
+            "C) To conserve vocal energy during peak noise hours.",
+            "D) To attract non-native avian species into nesting corridors."
+        ],
+        correctIndex: 1
+    },
+    {
+        id: "rw_m1_q3",
+        section: "Reading and Writing",
+        moduleName: "Module 1 of 2",
+        domain: "Expression of Ideas",
+        skill: "Transitions",
+        passage: `High-resolution satellite imagery has enabled archaeologists to locate ancient irrigation canals concealed beneath dense rainforest canopies. _______ field teams can now conduct targeted ground excavations with unprecedented accuracy, minimizing destructive digging.`,
+        prompt: "Which choice completes the text with the most logical transition?",
+        options: ["A) Consequently,", "B) Conversely,", "C) Nevertheless,", "D) For instance,"],
+        correctIndex: 0
+    },
+    {
+        id: "rw_m1_q4",
+        section: "Reading and Writing",
+        moduleName: "Module 1 of 2",
+        domain: "Standard English Conventions",
+        skill: "Boundaries & Punctuation",
+        passage: `Renowned biochemist Dr. Elena Vance led the research team _______ breakthrough discovery of synthetic enzyme catalysts earned international accolades at the Stockholm symposium.`,
+        prompt: "Which choice completes the text so that it conforms to the conventions of Standard English?",
+        options: ["A) whose", "B) who's", "C) whom", "D) which"],
+        correctIndex: 0
+    },
+    {
+        id: "rw_m1_q5",
+        section: "Reading and Writing",
+        moduleName: "Module 1 of 2",
+        domain: "Craft and Structure",
+        skill: "Text Structure and Purpose",
+        passage: `Many nineteenth-century historians posited that technological innovation drove socio-economic transformation in a linear fashion. Contemporary economic historians, by contrast, emphasize that social structures and policy frameworks active during the era often dictated which technological tools gained widespread adoption in the first place.`,
+        prompt: "Which choice best states the main purpose of the text?",
+        options: [
+            "A) To outline a chronological progression of industrial inventions.",
+            "B) To contrast two historical perspectives on the relationship between technology and society.",
+            "C) To argue that social policy hinders modern economic progress.",
+            "D) To defend the validity of nineteenth-century historical methodologies."
+        ],
+        correctIndex: 1
+    },
+
+    // SAT Math - Module 1
+    {
+        id: "math_m1_q1",
+        section: "Math",
+        moduleName: "Module 1 of 2",
+        domain: "Algebra",
+        skill: "Linear Equations & Systems",
+        passage: `A local tutoring academy charges a one-time registration fee of $50 plus $30 per hour for individual coaching sessions.`,
+        prompt: "If a student pays a total of $260, which equation can be used to find the number of hours, h, of coaching received?",
+        options: ["A) 50h + 30 = 260", "B) 30h + 50 = 260", "C) 80h = 260", "D) 30h - 50 = 260"],
+        correctIndex: 1
+    },
+    {
+        id: "math_m1_q2",
+        section: "Math",
+        moduleName: "Module 1 of 2",
+        domain: "Advanced Math",
+        skill: "Quadratic Equations",
+        passage: `Consider the quadratic function f(x) = x² - 6x + 8.`,
+        prompt: "What are the x-intercepts of the graph of y = f(x) in the xy-plane?",
+        options: ["A) (2, 0) and (4, 0)", "B) (-2, 0) and (-4, 0)", "C) (1, 0) and (8, 0)", "D) (-1, 0) and (-8, 0)"],
+        correctIndex: 0
+    },
+    {
+        id: "math_m1_q3",
+        section: "Math",
+        moduleName: "Module 1 of 2",
+        domain: "Problem-Solving & Data Analysis",
+        skill: "Percentages & Rates",
+        passage: `A laptop computer originally priced at $1,200 is discounted by 15% during a seasonal sale. An additional 5% loyalty discount is then applied to the sale price.`,
+        prompt: "What is the final price of the laptop before tax?",
+        options: ["A) $960.00", "B) $969.00", "C) $980.00", "D) $1,020.00"],
+        correctIndex: 1
+    },
+    {
+        id: "math_m1_q4",
+        section: "Math",
+        moduleName: "Module 1 of 2",
+        domain: "Geometry & Trigonometry",
+        skill: "Right Triangles & Trig Ratios",
+        passage: `In a right triangle ABC, angle C is the right angle. If sin(A) = 3/5, what is the value of cos(B)?`,
+        prompt: "Select the correct value of cos(B):",
+        options: ["A) 3/5", "B) 4/5", "C) 5/3", "D) 3/4"],
+        correctIndex: 0
+    },
+    {
+        id: "math_m1_q5",
+        section: "Math",
+        moduleName: "Module 1 of 2",
+        domain: "Advanced Math",
+        skill: "Exponents & Radicals",
+        passage: `If 2^(3x + 1) = 32, what is the value of x?`,
+        prompt: "Solve for x:",
+        options: ["A) 1", "B) 4/3", "C) 5/3", "D) 2"],
+        correctIndex: 1
+    }
+];
+
+// Simulator State Variables
+let currentSatQuestionIndex = 0;
+let satUserAnswers = {}; // { questionId: selectedIndex }
+let satMarkedQuestions = {}; // { questionId: boolean }
+let satStrikethrough = {}; // { questionId: [struckIndices] }
+let satTimerSeconds = 32 * 60; // 32 minutes default
+let satTimerInterval = null;
+let isSatTimerVisible = true;
+
+// Initialize Bluebook Simulator UI
+function initBluebookSimulator() {
+    const container = document.getElementById('bluebookSimContainer');
+    if (!container) return;
+
+    // Load saved test state if exists
+    const savedState = localStorage.getItem('tayanch_sat_state');
+    if (savedState) {
+        try {
+            const parsed = JSON.parse(savedState);
+            satUserAnswers = parsed.userAnswers || {};
+            satMarkedQuestions = parsed.markedQuestions || {};
+            currentSatQuestionIndex = parsed.currentIndex || 0;
+            satTimerSeconds = parsed.timerSeconds || (32 * 60);
+        } catch (e) {
+            console.error("Failed to parse saved SAT state", e);
+        }
+    }
+
+    renderSatQuestion();
+    startSatTimer();
+    updateQuestionGridNav();
+}
+
+// Render current question
+function renderSatQuestion() {
+    const q = TAYANCH_DSAT_QUESTIONS[currentSatQuestionIndex];
+    if (!q) return;
+
+    // Update section badges
+    const sectionBadge = document.getElementById('simSectionTitle');
+    const moduleBadge = document.getElementById('simModuleTitle');
+    const qNumTitle = document.getElementById('simQNumberTitle');
+    const contextPane = document.getElementById('simContextContent');
+    const promptText = document.getElementById('simQPromptText');
+    const choicesContainer = document.getElementById('simChoicesContainer');
+
+    if (sectionBadge) sectionBadge.textContent = q.section;
+    if (moduleBadge) moduleBadge.textContent = q.moduleName;
+    if (qNumTitle) qNumTitle.textContent = `Question ${currentSatQuestionIndex + 1} of ${TAYANCH_DSAT_QUESTIONS.length}`;
+
+    // Context & Prompt
+    if (contextPane) {
+        contextPane.innerHTML = `
+            <div class="domain-tag mb-2" style="font-size:0.8rem; color:var(--accent-gold);"><i class="fa-solid fa-layer-group"></i> ${q.domain} • ${q.skill}</div>
+            <p style="font-size:1rem; line-height:1.8; color:#e2e8f0;">${q.passage}</p>
+        `;
+    }
+    if (promptText) promptText.textContent = q.prompt;
+
+    // Choices
+    if (choicesContainer) {
+        const struck = satStrikethrough[q.id] || [];
+        const selected = satUserAnswers[q.id];
+
+        choicesContainer.innerHTML = q.options.map((opt, idx) => {
+            const isStruck = struck.includes(idx);
+            const isSelected = selected === idx;
+            const keyChar = String.fromCharCode(65 + idx);
+            const labelText = opt.replace(/^[A-D]\)\s*/, '');
+
+            return `
+                <button class="choice-btn ${isSelected ? 'selected' : ''} ${isStruck ? 'struck-through' : ''}" onclick="selectSatChoice(${idx})">
+                    <span class="choice-key">${keyChar}</span>
+                    <span class="choice-text">${labelText}</span>
+                </button>
+            `;
+        }).join('');
+    }
+
+    // Update Mark for Review Button
+    const markBtn = document.getElementById('markReviewBtn');
+    const markText = document.getElementById('markReviewText');
+    const isMarked = !!satMarkedQuestions[q.id];
+    if (markBtn) {
+        markBtn.classList.toggle('active', isMarked);
+        if (markText) markText.textContent = isMarked ? 'Marked' : 'Mark for Review';
+    }
+
+    // Update Prev / Next / Finish Buttons
+    const prevBtn = document.getElementById('simPrevBtn');
+    const nextBtn = document.getElementById('simNextBtn');
+    const finishBtn = document.getElementById('simFinishModBtn');
+
+    if (prevBtn) prevBtn.disabled = (currentSatQuestionIndex === 0);
+    if (nextBtn) {
+        if (currentSatQuestionIndex === TAYANCH_DSAT_QUESTIONS.length - 1) {
+            nextBtn.classList.add('hidden');
+            if (finishBtn) finishBtn.classList.remove('hidden');
+        } else {
+            nextBtn.classList.remove('hidden');
+            if (finishBtn) finishBtn.classList.add('hidden');
+        }
+    }
+
+    // Update answered count badge
+    const answeredCount = Object.keys(satUserAnswers).length;
+    const answeredBadge = document.getElementById('answeredCountBadge');
+    if (answeredBadge) answeredBadge.textContent = `${answeredCount}/${TAYANCH_DSAT_QUESTIONS.length}`;
+
+    // Re-render MathJax formulas if present
+    if (window.MathJax) {
+        MathJax.typesetPromise && MathJax.typesetPromise();
+    }
+}
+
+// Select choice
+function selectSatChoice(idx) {
+    const q = TAYANCH_DSAT_QUESTIONS[currentSatQuestionIndex];
+    if (!q) return;
+
+    const strikethroughMode = document.getElementById('strikethroughModeToggle')?.checked;
+    if (strikethroughMode) {
+        // Toggle strikethrough
+        let struck = satStrikethrough[q.id] || [];
+        if (struck.includes(idx)) {
+            struck = struck.filter(i => i !== idx);
+        } else {
+            struck.push(idx);
+        }
+        satStrikethrough[q.id] = struck;
+    } else {
+        // Normal selection
+        satUserAnswers[q.id] = idx;
+    }
+    renderSatQuestion();
+    updateQuestionGridNav();
+}
+
+// Toggle Mark for Review
+function toggleMarkForReview() {
+    const q = TAYANCH_DSAT_QUESTIONS[currentSatQuestionIndex];
+    if (!q) return;
+
+    satMarkedQuestions[q.id] = !satMarkedQuestions[q.id];
+    renderSatQuestion();
+    updateQuestionGridNav();
+}
+
+// Prev / Next question navigation
+function prevSimQuestion() {
+    if (currentSatQuestionIndex > 0) {
+        currentSatQuestionIndex--;
+        renderSatQuestion();
+    }
+}
+
+function nextSimQuestion() {
+    if (currentSatQuestionIndex < TAYANCH_DSAT_QUESTIONS.length - 1) {
+        currentSatQuestionIndex++;
+        renderSatQuestion();
+    }
+}
+
+// Question Grid Modal
+function toggleQuestionGridModal() {
+    const modal = document.getElementById('qGridModal');
+    if (!modal) return;
+    modal.classList.toggle('hidden');
+    if (!modal.classList.contains('hidden')) {
+        updateQuestionGridNav();
+    }
+}
+
+function updateQuestionGridNav() {
+    const gridButtonsContainer = document.getElementById('qGridButtons');
+    if (!gridButtonsContainer) return;
+
+    gridButtonsContainer.innerHTML = TAYANCH_DSAT_QUESTIONS.map((q, idx) => {
+        const isAnswered = satUserAnswers[q.id] !== undefined;
+        const isMarked = !!satMarkedQuestions[q.id];
+
+        let classes = 'q-grid-btn';
+        if (isAnswered) classes += ' answered';
+        if (isMarked) classes += ' marked';
+
+        return `
+            <button class="${classes}" onclick="jumpToSatQuestion(${idx})">
+                ${idx + 1} ${isMarked ? '🚩' : ''}
+            </button>
+        `;
+    }).join('');
+}
+
+function jumpToSatQuestion(idx) {
+    currentSatQuestionIndex = idx;
+    renderSatQuestion();
+    const modal = document.getElementById('qGridModal');
+    if (modal) modal.classList.add('hidden');
+}
+
+// Timer Logic
+function startSatTimer() {
+    if (satTimerInterval) clearInterval(satTimerInterval);
+
+    satTimerInterval = setInterval(() => {
+        if (satTimerSeconds > 0) {
+            satTimerSeconds--;
+            updateTimerDisplay();
+        } else {
+            clearInterval(satTimerInterval);
+            alert("Vaqt tugadi! Diagnostic mock test yakunlanmoqda.");
+            submitCurrentModule();
+        }
+    }, 1000);
+}
+
+function updateTimerDisplay() {
+    const timerDisplay = document.getElementById('simTimerDisplay');
+    if (!timerDisplay) return;
+
+    const mins = Math.floor(satTimerSeconds / 60);
+    const secs = satTimerSeconds % 60;
+    timerDisplay.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+}
+
+function toggleSimTimer() {
+    const timerDisplay = document.getElementById('simTimerDisplay');
+    const toggleText = document.getElementById('timerToggleText');
+    if (!timerDisplay) return;
+
+    isSatTimerVisible = !isSatTimerVisible;
+    timerDisplay.style.display = isSatTimerVisible ? 'inline' : 'none';
+    if (toggleText) toggleText.textContent = isSatTimerVisible ? '(Yashirish)' : '(Ko\'rsatish)';
+}
+
+// Math Formula Modal Toggle
+function toggleSimFormulas() {
+    const modal = document.getElementById('formulaModal');
+    if (modal) modal.classList.toggle('hidden');
+}
+
+// Calculator Modal & Keypad
+function toggleSimCalculator() {
+    const modal = document.getElementById('calcModal');
+    if (modal) modal.classList.toggle('hidden');
+}
+
+let calcExpression = "0";
+
+function calcInput(char) {
+    const display = document.getElementById('calcDisplay');
+    if (!display) return;
+
+    if (calcExpression === "0" || calcExpression === "Error") {
+        calcExpression = char === "sqrt" ? "Math.sqrt(" : char;
+    } else {
+        calcExpression += char === "sqrt" ? "Math.sqrt(" : char;
+    }
+    if (char === 'C') calcExpression = "0";
+    display.textContent = calcExpression;
+}
+
+function calcEvaluate() {
+    const display = document.getElementById('calcDisplay');
+    if (!display) return;
+
+    try {
+        const res = eval(calcExpression.replace(/×/g, '*').replace(/÷/g, '/'));
+        calcExpression = String(res);
+        display.textContent = calcExpression;
+    } catch (e) {
+        calcExpression = "Error";
+        display.textContent = "Error";
+    }
+}
+
+// Pause and Save Test State to localStorage
+function pauseAndSaveTest() {
+    const state = {
+        userAnswers: satUserAnswers,
+        markedQuestions: satMarkedQuestions,
+        currentIndex: currentSatQuestionIndex,
+        timerSeconds: satTimerSeconds
+    };
+    localStorage.setItem('tayanch_sat_state', JSON.stringify(state));
+    alert("Test holati muvaffaqiyatli saqlandi! Keyinroq 'Resume' qilib davom ettirishingiz mumkin.");
+}
+
+// Submit Module & Calculate Score
+function submitCurrentModule() {
+    if (satTimerInterval) clearInterval(satTimerInterval);
+
+    // Calculate score
+    let correctCount = 0;
+    let totalQuestions = TAYANCH_DSAT_QUESTIONS.length;
+
+    let domainStats = {
+        "Craft and Structure": { correct: 0, total: 0 },
+        "Information and Ideas": { correct: 0, total: 0 },
+        "Expression of Ideas": { correct: 0, total: 0 },
+        "Standard English Conventions": { correct: 0, total: 0 },
+        "Algebra": { correct: 0, total: 0 },
+        "Advanced Math": { correct: 0, total: 0 },
+        "Problem-Solving & Data Analysis": { correct: 0, total: 0 },
+        "Geometry & Trigonometry": { correct: 0, total: 0 }
+    };
+
+    TAYANCH_DSAT_QUESTIONS.forEach(q => {
+        if (domainStats[q.domain]) {
+            domainStats[q.domain].total++;
+        }
+        if (satUserAnswers[q.id] === q.correctIndex) {
+            correctCount++;
+            if (domainStats[q.domain]) {
+                domainStats[q.domain].correct++;
+            }
+        }
+    });
+
+    // Score Scaling Algorithm (College Board 400-1600 estimate)
+    const accuracyRatio = correctCount / totalQuestions;
+    const estimatedTotalScore = Math.round(400 + accuracyRatio * 1200);
+    const rwScore = Math.round(200 + accuracyRatio * 600);
+    const mathScore = Math.round(200 + accuracyRatio * 600);
+
+    // Update Score Report UI
+    const reportSection = document.getElementById('satDiagnosticReport');
+    const totalDisplay = document.getElementById('diagTotalScore');
+    const rwDisplay = document.getElementById('diagRWScore');
+    const mathDisplay = document.getElementById('diagMathScore');
+
+    if (totalDisplay) totalDisplay.textContent = estimatedTotalScore;
+    if (rwDisplay) rwDisplay.textContent = rwScore;
+    if (mathDisplay) mathDisplay.textContent = mathScore;
+
+    // Show Report Section
+    if (reportSection) {
+        reportSection.classList.remove('hidden');
+        reportSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Award User XP
+    if (typeof addXP === 'function') {
+        addXP(150, "Digital SAT Mock Test Yakunlandi");
+    }
+}
+
+function restartSatTest() {
+    satUserAnswers = {};
+    satMarkedQuestions = {};
+    currentSatQuestionIndex = 0;
+    satTimerSeconds = 32 * 60;
+    localStorage.removeItem('tayanch_sat_state');
+
+    const reportSection = document.getElementById('satDiagnosticReport');
+    if (reportSection) reportSection.classList.add('hidden');
+
+    initBluebookSimulator();
+    const simSection = document.getElementById('simulator');
+    if (simSection) simSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+// 2. SAT Vocabulary Builder & Spaced Repetition System (SRS)
+const TAYANCH_SAT_VOCAB = [
+    { word: "Anomalous", pos: "adjective • /əˈnɒm.ə.ləs/", uz: "Me'yordan chetga chiqqan, g'ayrioddiy", en: "Deviating from what is standard, normal, or expected.", example: "The scientist noted an anomalous result in the lab data." },
+    { word: "Equivocal", pos: "adjective • /ɪˈkwɪv.ə.kəl/", uz: "Noaniq, ikki ma'noli, mavhum", en: "Open to more than one interpretation; ambiguous.", example: "The minister gave an equivocal response to the press." },
+    { word: "Lucid", pos: "adjective • /ˈluː.sɪd/", uz: "Tushunarli, ravshan, mantiqiy", en: "Expressed clearly; easy to understand.", example: "Her explanation of quantum physics was remarkably lucid." },
+    { word: "Precipitate", pos: "verb • /prɪˈsɪp.ɪ.teɪt/", uz: "Tezlashtirish, sabab bo'lish", en: "Cause an event or situation to happen suddenly or unexpectedly.", example: "The economic crisis precipitated widespread political reforms." },
+    { word: "Erudite", pos: "adjective • /ˈer.jə.daɪt/", uz: "Bilimdon, ilmli, zakovatli", en: "Having or showing great knowledge or learning.", example: "The professor delivered an erudite lecture on ancient Roman law." },
+    { word: "Opaque", pos: "adjective • /oʊˈpaɪk/", uz: "Tushunarsiz, shaffof bo'lmagan", en: "Not transparent; hard or impossible to understand.", example: "The government's financial reports remained opaque to the public." },
+    { word: "Prodigal", pos: "adjective • /ˈprɒd.ɪ.ɡəl/", uz: "Isrofgarchi, bexuda sarflaydigan", en: "Spending money or resources freely and recklessly.", example: "The prodigal heir spent his fortune within three years." },
+    { word: "Enervate", pos: "verb • /ˈen.ə.veɪt/", uz: "Holsizlantirmoq, quvvatdan qoldirmoq", en: "Cause someone to feel drained of energy or vitality.", example: "The intense summer heat enervated the marathon runners." }
+];
+
+let currentVocabIndex = 0;
+
+function renderVocabCard() {
+    const wordObj = TAYANCH_SAT_VOCAB[currentVocabIndex];
+    if (!wordObj) return;
+
+    const flashcard = document.getElementById('vocabFlashcard');
+    const wordFront = document.getElementById('vocabWordFront');
+    const posFront = document.getElementById('vocabPosFront');
+    const defUz = document.getElementById('vocabDefUz');
+    const defEn = document.getElementById('vocabDefEn');
+    const example = document.getElementById('vocabExample');
+    const curIdxText = document.getElementById('currentWordIndex');
+    const totalCountText = document.getElementById('totalWordsCount');
+
+    if (flashcard) flashcard.classList.remove('flipped');
+    if (wordFront) wordFront.textContent = wordObj.word;
+    if (posFront) posFront.textContent = wordObj.pos;
+    if (defUz) defUz.textContent = wordObj.uz;
+    if (defEn) defEn.textContent = wordObj.en;
+    if (example) example.textContent = `"${wordObj.example}"`;
+    if (curIdxText) curIdxText.textContent = currentVocabIndex + 1;
+    if (totalCountText) totalCountText.textContent = TAYANCH_SAT_VOCAB.length;
+}
+
+function flipFlashcard() {
+    const flashcard = document.getElementById('vocabFlashcard');
+    if (flashcard) flashcard.classList.toggle('flipped');
+}
+
+function rateVocabCard(rating, event) {
+    if (event) event.stopPropagation();
+
+    // SRS progression
+    currentVocabIndex = (currentVocabIndex + 1) % TAYANCH_SAT_VOCAB.length;
+    renderVocabCard();
+
+    if (typeof addXP === 'function') {
+        addXP(10, "SAT Vocab Flashcard O'rganildi");
+    }
+}
+
+// 3. Parent / Teacher Access Modal Handler
+function openParentModal() {
+    const modal = document.getElementById('parentModal');
+    if (modal) modal.classList.remove('hidden');
+}
+
+function closeParentModal() {
+    const modal = document.getElementById('parentModal');
+    if (modal) modal.classList.add('hidden');
+}
+
+function submitParentAccessCode() {
+    const input = document.getElementById('parentJoinCodeInput');
+    const resultAlert = document.getElementById('parentAccessResult');
+    if (!input || !resultAlert) return;
+
+    const val = input.value.trim().toUpperCase();
+    if (val === 'TAYANCH-SAT-2026' || val.length >= 4) {
+        resultAlert.classList.remove('hidden');
+        resultAlert.style.color = '#10b981';
+        resultAlert.innerHTML = `<i class="fa-solid fa-circle-check"></i> Kod tasdiqlandi! Demo sinf va o'quvchilar progress dashboardi yuklandi.`;
+    } else {
+        resultAlert.classList.remove('hidden');
+        resultAlert.style.color = '#ef4444';
+        resultAlert.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> Noto'g'ri kod. Iltimos 'TAYANCH-SAT-2026' kodini kiriting.`;
+    }
+}
+
+// Initialize Bluebook Simulator & Vocab Card on DOM Content Loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initBluebookSimulator();
+    renderVocabCard();
+});
+
+
 

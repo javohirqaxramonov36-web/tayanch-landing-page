@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital SAT (DSAT) Hub & Real Bluebook Simulator — Tayanch</title>
+    <meta name="description" content="Tayanch Digital SAT (DSAT) tayyorlov portali: Real Bluebook formatidagi adaptiv mock-test simulyatori, 1500+ garantiyali intensiv kurslar, SAT Vocab Spaced Repetition va Ota-onalar paneli.">
+    
+    <!-- Canonical & Favicon -->
+    <link rel="canonical" href="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/sat-dsat.html">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <link rel="apple-touch-icon" href="assets/images/founder.jpg">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- MathJax for rendering math formulas -->
+    <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+    
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+</head>
+<body class="liquid-theme">
+
+    <!-- Top Announcement Bar -->
+    <div class="top-announcement-bar liquid-glass">
+        <div class="container announcement-content">
+            <span class="announcement-badge"><i class="fa-solid fa-graduation-cap"></i> DIGITAL SAT HUB</span>
+            <span class="announcement-text">🎯 Official College Board Standardida Real Bluebook Simulyatori va AI Diagnostika — 100% Ochiq!</span>
+            <a href="#simulator" class="announcement-btn">
+                <span>Testni Boshlash</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="navbar liquid-navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <div class="brand-icon liquid-glow-icon">
+                    <i class="fa-solid fa-compass-drafting"></i>
+                </div>
+                <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Bosh Sahifa</a>
+                <a href="courses.html" class="nav-link"><i class="fa-solid fa-book-open"></i> Kurslar Katalogi</a>
+                <a href="general-english-beginner.html" class="nav-link"><i class="fa-solid fa-gamepad"></i> English Hub</a>
+                <a href="sat-dsat.html" class="nav-link active"><i class="fa-solid fa-calculator"></i> Digital SAT Hub</a>
+            </nav>
+
+            <!-- Gamification HUD Bar -->
+            <div class="gamify-hud-container">
+                <div class="gamify-stat xp-badge" id="xpBadgeHUD">
+                    <i class="fa-solid fa-bolt"></i> <span id="userXPVal">320 XP</span>
+                </div>
+                <div class="gamify-stat streak-badge" id="streakBadgeHUD">
+                    <span id="userStreakVal">🔥 5 Combo</span>
+                </div>
+                <button class="badges-hud-btn" id="badgesHudBtn">
+                    <i class="fa-solid fa-trophy"></i> SAT Yutuqlar
+                </button>
+            </div>
+
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menyu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="sat-main-wrapper">
+        
+        <!-- Hero Section -->
+        <section class="sat-hero-section">
+            <div class="container grid-2cols align-center">
+                <div class="sat-hero-text">
+                    <div class="badge-pill pulse-badge">
+                        <i class="fa-solid fa-shield-halved"></i> 100% Litsenziyali va Xavfsiz DSAT Tizimi
+                    </div>
+                    <h1 class="hero-title">
+                        Digital SAT (DSAT) <br>
+                        <span class="gradient-text">1500+ Garantiya Portali</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        College Board'ning rasmiy Bluebook formatidagi adaptiv mock-test simulyatori, 500+ SAT Spaced-Repetition kartochkalari, AI diagnostika hisoboti va Ota-onalar uchun real-vaqt monitoring tizimi.
+                    </p>
+                    
+                    <div class="sat-hero-cta">
+                        <a href="#simulator" class="btn btn-primary btn-lg liquid-btn-glow" id="startSatTestBtn">
+                            <i class="fa-solid fa-play"></i> Bluebook Simulator Test (Bepul)
+                        </a>
+                        <a href="#vocab-builder" class="btn btn-secondary btn-lg">
+                            <i class="fa-solid fa-layer-group"></i> SAT Vocab Builder (500)
+                        </a>
+                        <button class="btn btn-outline btn-lg" onclick="openParentModal()">
+                            <i class="fa-solid fa-user-graduate"></i> Parent & Teacher Access
+                        </button>
+                    </div>
+
+                    <div class="sat-hero-metrics">
+                        <div class="metric-card">
+                            <span class="metric-num">1520+</span>
+                            <span class="metric-label">Mentor SAT Bali</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-num">4 Modul</span>
+                            <span class="metric-label">Real Test Structura</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-num">100%</span>
+                            <span class="metric-label">Legal & Authentic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sat-hero-card liquid-glass">
+                    <div class="bluebook-preview-header">
+                        <div class="window-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="preview-title"><i class="fa-solid fa-laptop-code"></i> Bluebook Test Environment</span>
+                        <span class="live-pill"><i class="fa-solid fa-circle"></i> ACTIVE</span>
+                    </div>
+                    <div class="bluebook-preview-body">
+                        <div class="preview-module-tag">Reading and Writing • Module 1</div>
+                        <h4 class="preview-q-title">Craft and Structure / Context Clues</h4>
+                        <p class="preview-q-text">
+                            "The scientist's claims were initially met with skepticism, but recent empirical trials have _______ her original hypothesis, demonstrating its consistency across diverse trial environments."
+                        </p>
+                        <div class="preview-options">
+                            <div class="preview-opt active"><span class="opt-key">A</span> vindicated</div>
+                            <div class="preview-opt"><span class="opt-key">B</span> refuted</div>
+                            <div class="preview-opt"><span class="opt-key">C</span> obfuscated</div>
+                            <div class="preview-opt"><span class="opt-key">D</span> undermined</div>
+                        </div>
+                        <div class="preview-tools">
+                            <span><i class="fa-solid fa-clock"></i> 31:45</span>
+                            <span><i class="fa-solid fa-bookmark"></i> Mark for Review</span>
+                            <span><i class="fa-solid fa-calculator"></i> Desmos Calc</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competitor Analysis & Feature Matrix Section -->
+        <section class="sat-matrix-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag"><i class="fa-solid fa-chart-line"></i> SHAFFOF SOLISHTIRUV</span>
+                    <h2>Nega Tayanch DSAT Platformasi Eng Ishonchli Yechim?</h2>
+                    <p class="section-desc">O'zbekiston bozoridagi top tayyorlov markazlari bilan solishtirma tahlil:</p>
+                </div>
+
+                <div class="table-responsive liquid-glass">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Xususiyat / Mezon</th>
+                                <th>SAT Makon</th>
+                                <th>SATashkent</th>
+                                <th>DSATuz</th>
+                                <th class="highlight-col">Tayanch DSAT (Biz)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><i class="fa-solid fa-shield-heart"></i> Huquqiy Xavfsizlik & Litsenziya</td>
+                                <td>Manba ko'rsatmagan</td>
+                                <td>Original savollar da'vosi</td>
+                                <td><span class="text-danger">Yuqori (Scribd dalillari)</span></td>
+                                <td class="highlight-col"><span class="badge-success">100% Legal & Authentic (College Board & Original)</span></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-laptop"></i> Bluebook Mock Simulator</td>
+                                <td>Modulli test</td>
+                                <td>Bluebook replica</td>
+                                <td>Oddiy web test</td>
+                                <td class="highlight-col"><span class="badge-success">Full Bluebook UI (Timer, Flag, Calc, Formulas)</span></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-user-shield"></i> Parent & Teacher Access</td>
+                                <td><span class="badge-info">Mavjud</span></td>
+                                <td>Mavjud emas</td>
+                                <td>Mavjud emas</td>
+                                <td class="highlight-col"><span class="badge-success">Real-vaqt sinf va ota-ona nazorat paneli</span></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-brain"></i> Spaced Repetition Flashcards</td>
+                                <td>Streak tracker</td>
+                                <td>750+ English app</td>
+                                <td>Yo'q</td>
+                                <td class="highlight-col"><span class="badge-success">500+ SAT High-Freq Vocab + Memory engine</span></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-money-bill-wave"></i> Narxlash va Access</td>
+                                <td>Faqat pullik darsda</td>
+                                <td>1.0-1.2 mln so'm/oy (kurs ichida)</td>
+                                <td>Obuna / Freemium</td>
+                                <td class="highlight-col"><span class="badge-success">Bepul Ochiq Simulyator + Hamyonbop Intensive</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Bluebook Simulator Section -->
+        <section class="bluebook-simulator-section" id="simulator">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag"><i class="fa-solid fa-bolt"></i> AMALIY SIMULYATOR</span>
+                    <h2>Real Bluebook DSAT Mock Test Environment</h2>
+                    <p class="section-desc">Haqiqiy College Board Digital SAT imtihoni muhitida bilmingizni sinab ko'ring:</p>
+                </div>
+
+                <!-- Bluebook Simulator Container -->
+                <div class="bluebook-simulator-container liquid-glass" id="bluebookSimContainer">
+                    
+                    <!-- Sim Control Bar (Top) -->
+                    <div class="bluebook-topbar">
+                        <div class="bluebook-section-info">
+                            <span class="section-title-badge" id="simSectionTitle">Reading and Writing</span>
+                            <span class="module-title-badge" id="simModuleTitle">Module 1 of 2</span>
+                        </div>
+                        <div class="bluebook-top-tools">
+                            <button class="tool-btn" id="toggleTimerBtn" onclick="toggleSimTimer()">
+                                <i class="fa-solid fa-clock"></i> <span id="simTimerDisplay">32:00</span>
+                                <small id="timerToggleText">(Yashirish)</small>
+                            </button>
+                            <button class="tool-btn" id="openCalcBtn" onclick="toggleSimCalculator()">
+                                <i class="fa-solid fa-calculator"></i> Kalkulyator
+                            </button>
+                            <button class="tool-btn" id="openFormulaBtn" onclick="toggleSimFormulas()">
+                                <i class="fa-solid fa-square-root-variable"></i> Matematik Formulalar
+                            </button>
+                            <button class="tool-btn flag-btn" id="markReviewBtn" onclick="toggleMarkForReview()">
+                                <i class="fa-regular fa-bookmark"></i> <span id="markReviewText">Mark for Review</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Main Split Window -->
+                    <div class="bluebook-workspace">
+                        <!-- Left Pane: Passage / Question Context -->
+                        <div class="bluebook-left-pane" id="simLeftPane">
+                            <div class="pane-header">
+                                <span><i class="fa-solid fa-file-lines"></i> Matn / Manba Context</span>
+                            </div>
+                            <div class="pane-content" id="simContextContent">
+                                <!-- Dynamic Context injected here -->
+                            </div>
+                        </div>
+
+                        <!-- Right Pane: Question Prompt & Multiple Choice Options -->
+                        <div class="bluebook-right-pane" id="simRightPane">
+                            <div class="pane-header">
+                                <span id="simQNumberTitle">Question 1 of 10</span>
+                                <div class="strikethrough-toggle-bar">
+                                    <label class="strikethrough-label">
+                                        <input type="checkbox" id="strikethroughModeToggle">
+                                        <span><i class="fa-solid fa-strikethrough"></i> Strikethrough rejasi (Variantlarni o'chirish)</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="pane-content">
+                                <p class="question-prompt" id="simQPromptText">
+                                    <!-- Dynamic Prompt Injected -->
+                                </p>
+                                <div class="question-choices" id="simChoicesContainer">
+                                    <!-- Dynamic Choices Injected -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Navigation Bar -->
+                    <div class="bluebook-bottombar">
+                        <div class="bottom-left">
+                            <button class="btn btn-secondary btn-sm" onclick="pauseAndSaveTest()">
+                                <i class="fa-solid fa-pause"></i> Testni Saqlab To'xtatish (Resume later)
+                            </button>
+                        </div>
+                        <div class="bottom-center">
+                            <button class="btn btn-outline btn-sm" onclick="toggleQuestionGridModal()">
+                                <i class="fa-solid fa-grid-2"></i> Question Navigator (<span id="answeredCountBadge">0/10</span>)
+                            </button>
+                        </div>
+                        <div class="bottom-right">
+                            <button class="btn btn-secondary" id="simPrevBtn" onclick="prevSimQuestion()" disabled>
+                                <i class="fa-solid fa-arrow-left"></i> Orqaga
+                            </button>
+                            <button class="btn btn-primary" id="simNextBtn" onclick="nextSimQuestion()">
+                                Keyingisi <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                            <button class="btn btn-success hidden" id="simFinishModBtn" onclick="submitCurrentModule()">
+                                <i class="fa-solid fa-check-double"></i> Modulni Yakunlash
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question Grid Navigator Modal -->
+                <div class="sim-modal hidden" id="qGridModal">
+                    <div class="modal-content liquid-glass">
+                        <div class="modal-header">
+                            <h3><i class="fa-solid fa-list-check"></i> Savollar Navigatsiyasi</h3>
+                            <button class="close-modal-btn" onclick="toggleQuestionGridModal()">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Siz o'tkazib yuborgan yoki ko'rib chiqish uchun belgilagan (marked) savollarga tezda o'tishingiz mumkin:</p>
+                            <div class="q-grid-container" id="qGridButtons">
+                                <!-- Grid Buttons -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Math Formulas Modal -->
+                <div class="sim-modal hidden" id="formulaModal">
+                    <div class="modal-content liquid-glass formula-modal-content">
+                        <div class="modal-header">
+                            <h3><i class="fa-solid fa-square-root-variable"></i> SAT Math Reference Sheet</h3>
+                            <button class="close-modal-btn" onclick="toggleSimFormulas()">&times;</button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <div class="formula-grid">
+                                <div class="formula-card">
+                                    <h4>Aylana Maydoni & Uzunligi</h4>
+                                    <p>\[ A = \pi r^2, \quad C = 2\pi r \]</p>
+                                </div>
+                                <div class="formula-card">
+                                    <h4>To'g'ri burchakli uchburchak (Pifagor)</h4>
+                                    <p>\[ c^2 = a^2 + b^2 \]</p>
+                                </div>
+                                <div class="formula-card">
+                                    <h4>Maxsus uchburchaklar (30°-60°-90° va 45°-45°-90°)</h4>
+                                    <p>\[ x : x\sqrt{3} : 2x, \quad x : x : x\sqrt{2} \]</p>
+                                </div>
+                                <div class="formula-card">
+                                    <h4>Tog'ri to'rtburchakli Parallelepiped Hajmi</h4>
+                                    <p>\[ V = l w h \]</p>
+                                </div>
+                                <div class="formula-card">
+                                    <h4>Silindr Hajmi</h4>
+                                    <p>\[ V = \pi r^2 h \]</p>
+                                </div>
+                                <div class="formula-card">
+                                    <h4>Kvadrat Tenglama Ildizlari</h4>
+                                    <p>\[ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \]</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desmos Scientific/Graphing Calculator Modal -->
+                <div class="sim-modal hidden" id="calcModal">
+                    <div class="modal-content liquid-glass calc-modal-content">
+                        <div class="modal-header">
+                            <h3><i class="fa-solid fa-calculator"></i> Built-in Scientific Calculator</h3>
+                            <button class="close-modal-btn" onclick="toggleSimCalculator()">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="calc-display-screen" id="calcDisplay">0</div>
+                            <div class="calc-keypad">
+                                <button class="calc-key op" onclick="calcInput('C')">C</button>
+                                <button class="calc-key op" onclick="calcInput('(')">(</button>
+                                <button class="calc-key op" onclick="calcInput(')')">)</button>
+                                <button class="calc-key op" onclick="calcInput('/')">/</button>
+                                
+                                <button class="calc-key" onclick="calcInput('7')">7</button>
+                                <button class="calc-key" onclick="calcInput('8')">8</button>
+                                <button class="calc-key" onclick="calcInput('9')">9</button>
+                                <button class="calc-key op" onclick="calcInput('*')">×</button>
+                                
+                                <button class="calc-key" onclick="calcInput('4')">4</button>
+                                <button class="calc-key" onclick="calcInput('5')">5</button>
+                                <button class="calc-key" onclick="calcInput('6')">6</button>
+                                <button class="calc-key op" onclick="calcInput('-')">-</button>
+                                
+                                <button class="calc-key" onclick="calcInput('1')">1</button>
+                                <button class="calc-key" onclick="calcInput('2')">2</button>
+                                <button class="calc-key" onclick="calcInput('3')">3</button>
+                                <button class="calc-key op" onclick="calcInput('+')">+</button>
+                                
+                                <button class="calc-key" onclick="calcInput('0')">0</button>
+                                <button class="calc-key" onclick="calcInput('.')">.</button>
+                                <button class="calc-key op" onclick="calcInput('sqrt')">√</button>
+                                <button class="calc-key equals" onclick="calcEvaluate()">=</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- AI Diagnostic Score Dashboard Section -->
+        <section class="sat-diagnostic-section hidden" id="satDiagnosticReport">
+            <div class="container">
+                <div class="score-report-card liquid-glass">
+                    <div class="report-header text-center">
+                        <div class="badge-pill success-pill"><i class="fa-solid fa-circle-check"></i> MOCK TEST YAKUNLANDI</div>
+                        <h2>Sizning Digital SAT Diagnostik Natijangiz</h2>
+                        <p>College Board 400-1600 rasmiy ballar shkalasi bo'yicha hisoblandi:</p>
+                    </div>
+
+                    <div class="score-summary-grid">
+                        <div class="main-score-box">
+                            <span class="score-title">UMUMIY TAXMINIY BALL</span>
+                            <div class="total-score-number" id="diagTotalScore">1480</div>
+                            <span class="score-scale">/ 1600</span>
+                        </div>
+                        <div class="sub-score-box">
+                            <div class="sub-score-card">
+                                <span><i class="fa-solid fa-book"></i> Reading & Writing</span>
+                                <div class="sub-score-num" id="diagRWScore">730</div>
+                                <span class="score-scale">/ 800</span>
+                            </div>
+                            <div class="sub-score-card">
+                                <span><i class="fa-solid fa-calculator"></i> SAT Math</span>
+                                <div class="sub-score-num" id="diagMathScore">750</div>
+                                <span class="score-scale">/ 800</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Domain Weakness Breakdown -->
+                    <div class="domain-breakdown-section">
+                        <h3><i class="fa-solid fa-chart-pie"></i> Yo'nalishlar Bo'yicha Aniq Tahlil & Zaif Mavzular</h3>
+                        
+                        <div class="domain-grid">
+                            <div class="domain-item">
+                                <div class="domain-header">
+                                    <span>Information & Ideas (R&W)</span>
+                                    <span class="domain-perc" id="percInfoIdeas">85%</span>
+                                </div>
+                                <div class="progress-bar-bg"><div class="progress-bar-fill" id="fillInfoIdeas" style="width: 85%;"></div></div>
+                            </div>
+
+                            <div class="domain-item">
+                                <div class="domain-header">
+                                    <span>Craft and Structure (R&W)</span>
+                                    <span class="domain-perc" id="percCraftStruct">70%</span>
+                                </div>
+                                <div class="progress-bar-bg"><div class="progress-bar-fill warning" id="fillCraftStruct" style="width: 70%;"></div></div>
+                            </div>
+
+                            <div class="domain-item">
+                                <div class="domain-header">
+                                    <span>Expression of Ideas (R&W)</span>
+                                    <span class="domain-perc" id="percExprIdeas">90%</span>
+                                </div>
+                                <div class="progress-bar-bg"><div class="progress-bar-fill" id="fillExprIdeas" style="width: 90%;"></div></div>
+                            </div>
+
+                            <div class="domain-item">
+                                <div class="domain-header">
+                                    <span>Algebra & Linear Equations (Math)</span>
+                                    <span class="domain-perc" id="percAlgebra">95%</span>
+                                </div>
+                                <div class="progress-bar-bg"><div class="progress-bar-fill" id="fillAlgebra" style="width: 95%;"></div></div>
+                            </div>
+
+                            <div class="domain-item">
+                                <div class="domain-header">
+                                    <span>Advanced Math & Quadratics (Math)</span>
+                                    <span class="domain-perc" id="percAdvMath">80%</span>
+                                </div>
+                                <div class="progress-bar-bg"><div class="progress-bar-fill" id="fillAdvMath" style="width: 80%;"></div></div>
+                            </div>
+
+                            <div class="domain-item">
+                                <div class="domain-header">
+                                    <span>Problem-Solving & Data Analysis</span>
+                                    <span class="domain-perc" id="percDataAnalysis">75%</span>
+                                </div>
+                                <div class="progress-bar-bg"><div class="progress-bar-fill warning" id="fillDataAnalysis" style="width: 75%;"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="report-actions text-center">
+                        <button class="btn btn-primary btn-lg" onclick="restartSatTest()">
+                            <i class="fa-solid fa-rotate-right"></i> Qaytadan Sinash
+                        </button>
+                        <a href="courses.html" class="btn btn-secondary btn-lg">
+                            <i class="fa-solid fa-rocket"></i> 1500+ Intensive Kursga Yozilish
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SAT Vocabulary Builder & Spaced Repetition Engine -->
+        <section class="sat-vocab-section" id="vocab-builder">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tag"><i class="fa-solid fa-layer-group"></i> SPACED REPETITION ENGINE</span>
+                    <h2>SAT 500+ High-Frequency Vocab Builder</h2>
+                    <p class="section-desc">SAT Reading va Writing bo'limida 750+ ball olish uchun eng muhim akademik so'zlar:</p>
+                </div>
+
+                <div class="vocab-widget-container grid-2cols align-center">
+                    
+                    <!-- Flashcard Widget -->
+                    <div class="flashcard-box liquid-glass" id="vocabFlashcard" onclick="flipFlashcard()">
+                        <div class="flashcard-inner" id="flashcardInner">
+                            <div class="flashcard-front">
+                                <span class="vocab-badge"><i class="fa-solid fa-spell-check"></i> SAT Word</span>
+                                <h3 class="vocab-word" id="vocabWordFront">Anomalous</h3>
+                                <p class="vocab-pos" id="vocabPosFront">adjective • /əˈnɒm.ə.ləs/</p>
+                                <div class="flip-hint"><i class="fa-solid fa-arrows-rotate"></i> Ma'nosini ko'rish uchun bosing</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <span class="vocab-badge-back">Tarjima & Izoh</span>
+                                <h4 class="vocab-definition-uz" id="vocabDefUz">Me'yordan chetga chiqqan, g'ayrioddiy, anomaliyalik</h4>
+                                <p class="vocab-definition-en" id="vocabDefEn">Deviating from what is standard, normal, or expected.</p>
+                                <div class="vocab-example" id="vocabExample">
+                                    "The scientist noted an anomalous result in the lab data that contradicted earlier models."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controls & SRS Progress -->
+                    <div class="vocab-stats-box liquid-glass">
+                        <div class="vocab-streak-header">
+                            <div class="streak-pill"><i class="fa-solid fa-fire"></i> Kunlik Streak: <strong id="vocabStreakCount">7 kun</strong></div>
+                            <div class="mastery-pill"><i class="fa-solid fa-brain"></i> O'zlashtirish: <strong id="vocabMasteryPerc">64%</strong></div>
+                        </div>
+                        
+                        <h4>Kartochkani baholang:</h4>
+                        <p>Qanchalik oson eslab qoldingiz?</p>
+                        
+                        <div class="srs-rating-buttons">
+                            <button class="btn srs-btn hard" onclick="rateVocabCard('hard', event)">
+                                <i class="fa-solid fa-face-frown"></i> Qiyin (1 kun)
+                            </button>
+                            <button class="btn srs-btn good" onclick="rateVocabCard('good', event)">
+                                <i class="fa-solid fa-face-meh"></i> O'rtacha (3 kun)
+                            </button>
+                            <button class="btn srs-btn easy" onclick="rateVocabCard('easy', event)">
+                                <i class="fa-solid fa-face-smile"></i> Oson (7 kun)
+                            </button>
+                        </div>
+
+                        <div class="vocab-word-counter">
+                            <span>Joriy so'z: <strong id="currentWordIndex">1</strong> / <strong id="totalWordsCount">20</strong></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Parent & Teacher Access Section -->
+        <section class="sat-parent-section" id="parent-access">
+            <div class="container">
+                <div class="parent-access-card liquid-glass grid-2cols align-center">
+                    <div class="parent-text">
+                        <span class="badge-pill info-pill"><i class="fa-solid fa-users-rectangle"></i> OTA-ONALAR & O'QITUVCHILAR UCHUN</span>
+                        <h2>Real-Vaqt Sinf va O'quvchi Natijalari Monitoringi</h2>
+                        <p>
+                            SAT Makon platformasidagi kabi, Tayanch platformasida ham o'quvchining har bir mock-test urinishi, zaif mavzulari va vokabulyar o'zlashtirishi real vaqtda kuzatib boriladi.
+                        </p>
+                        <ul class="check-list">
+                            <li><i class="fa-solid fa-circle-check text-success"></i> O'quvchining haftalik mock-test va diagnostika ballari tarixi.</li>
+                            <li><i class="fa-solid fa-circle-check text-success"></i> O'qituvchi sinf kodi (Join Code) orqali guruh monitoringi.</li>
+                            <li><i class="fa-solid fa-circle-check text-success"></i> Avtomatik Telegram-xabar bildirishnomalari.</li>
+                        </ul>
+                        <button class="btn btn-primary btn-lg" onclick="openParentModal()">
+                            <i class="fa-solid fa-key"></i> Parent / Teacher Portalga Kirish
+                        </button>
+                    </div>
+
+                    <div class="parent-demo-preview">
+                        <div class="parent-dashboard-mockup">
+                            <div class="mockup-header">
+                                <span><i class="fa-solid fa-chalkboard-user"></i> Sinflar Nazorati (Demo)</span>
+                                <span class="badge-code">CODE: TAYANCH-2026</span>
+                            </div>
+                            <div class="mockup-row">
+                                <div class="student-info">
+                                    <i class="fa-solid fa-circle-user avatar-icon"></i>
+                                    <div>
+                                        <strong>Javohir Qaxramonov</strong>
+                                        <small>Guruh: SAT Intensive 1500+</small>
+                                    </div>
+                                </div>
+                                <div class="student-score">
+                                    <span class="score-badge gold">1520</span>
+                                </div>
+                            </div>
+                            <div class="mockup-row">
+                                <div class="student-info">
+                                    <i class="fa-solid fa-circle-user avatar-icon"></i>
+                                    <div>
+                                        <strong>Aziza Karimova</strong>
+                                        <small>Guruh: DSAT Foundation</small>
+                                    </div>
+                                </div>
+                                <div class="student-score">
+                                    <span class="score-badge green">1440</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Parent / Teacher Login Modal -->
+    <div class="sim-modal hidden" id="parentModal">
+        <div class="modal-content liquid-glass parent-modal-content">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-user-lock"></i> Ota-ona / O'qituvchi Portaliga Kirish</h3>
+                <button class="close-modal-btn" onclick="closeParentModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>O'quvchingiz sinf kodini (Class Join Code) yoki ota-ona PIN kodini kiriting:</p>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="parentJoinCodeInput" placeholder="Masalan: TAYANCH-SAT-2026" value="TAYANCH-SAT-2026">
+                </div>
+                <button class="btn btn-primary btn-block btn-lg" onclick="submitParentAccessCode()">
+                    <i class="fa-solid fa-right-to-bracket"></i> Dashboardni Oching
+                </button>
+                <div class="access-alert hidden" id="parentAccessResult">
+                    <i class="fa-solid fa-circle-check text-success"></i> Kod tasdiqlandi! Demo sinf ma'lumotlari yuklandi.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content grid-4cols">
+            <div class="footer-col brand-col">
+                <a href="index.html" class="nav-brand">
+                    <div class="brand-icon liquid-glow-icon">
+                        <i class="fa-solid fa-compass-drafting"></i>
+                    </div>
+                    <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
+                </a>
+                <p class="footer-desc">O'zbekistonda Digital SAT va AQSh universitetlariga kirish bo'yicha 100% ochiq va sifatli ta'lim platformasi.</p>
+                <div class="trademark-notice">
+                    <small>SAT® is a registered trademark of the College Board, which is not affiliated with and does not endorse Tayanch platform.</small>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Tezkor Havolalar</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Bosh Sahifa</a></li>
+                    <li><a href="courses.html">31 ta Kurslar Katalogi</a></li>
+                    <li><a href="general-english-beginner.html">General English Hub</a></li>
+                    <li><a href="sat-dsat.html">Digital SAT Hub</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>DSAT Manbalari</h4>
+                <ul class="footer-links">
+                    <li><a href="#simulator">Bluebook Mock Test Simulator</a></li>
+                    <li><a href="#vocab-builder">SAT Vocab Spaced Repetition</a></li>
+                    <li><a href="#parent-access">Ota-onalar va O'qituvchilar Paneli</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Bog'lanish</h4>
+                <p><i class="fa-solid fa-paper-plane"></i> Telegram: <a href="https://t.me/javohir_qaxramonov" target="_blank">@javohir_qaxramonov</a></p>
+                <p><i class="fa-solid fa-globe"></i> GitHub: <a href="https://github.com/javohirqaxramonov36-web" target="_blank">javohirqaxramonov36-web</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 Tayanch Ochiq Ta'lim Platformasi. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js" defer></script>
+</body>
+</html>

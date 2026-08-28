@@ -127,12 +127,92 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    /* ==========================================
+       3.1 DYNAMIC GRANT & COURSE ELIGIBILITY CALCULATOR
+       ========================================== */
+    function updateGrantCalculator() {
+        const calcLevel = document.getElementById('calcLevel');
+        const calcIelts = document.getElementById('calcIelts');
+        const calcGoal = document.getElementById('calcGoal');
+        const resGrantProgress = document.getElementById('resGrantProgress');
+        const resGrantPercent = document.getElementById('resGrantPercent');
+        const resGrantAmount = document.getElementById('resGrantAmount');
+        const resCoursesList = document.getElementById('resCoursesList');
+
+        if (!calcLevel || !calcIelts || !calcGoal) return;
+
+        const level = calcLevel.value;
+        const ielts = parseFloat(calcIelts.value) || 6.5;
+        const goal = calcGoal.value;
+
+        let scorePercent = 50;
+        let minAmount = 20000;
+        let maxAmount = 60000;
+        let courses = [];
+
+        if (level === 'a2') {
+            scorePercent += 10;
+            courses.push("General English A2-B1 Intensive Foundation");
+        } else if (level === 'b1') {
+            scorePercent += 20;
+            courses.push("General English B1-B2 Mastery");
+        } else if (level === 'b2') {
+            scorePercent += 30;
+            courses.push("IELTS Writing & Speaking Band 7.5+ Masterclass");
+        } else if (level === 'c1') {
+            scorePercent += 40;
+            courses.push("Academic Writing & Research Publication C1");
+        }
+
+        if (ielts >= 7.5) {
+            scorePercent += 25;
+            minAmount = 140000;
+            maxAmount = 220000;
+        } else if (ielts >= 7.0) {
+            scorePercent += 15;
+            minAmount = 80000;
+            maxAmount = 140000;
+        } else {
+            scorePercent += 5;
+            minAmount = 30000;
+            maxAmount = 80000;
+        }
+
+        if (goal === 'ai') {
+            courses.push("Practical AI & ChatGPT Automation for Academic Research");
+        } else if (goal === 'sat') {
+            courses.push("Digital SAT Math 750+ & Digital Reading Strategy");
+        } else {
+            courses.push("US College Full-Ride Application & CSS Financial Aid Blueprint");
+        }
+
+        scorePercent = Math.min(Math.max(scorePercent, 45), 98);
+
+        if (resGrantProgress) resGrantProgress.style.width = `${scorePercent}%`;
+        if (resGrantPercent) resGrantPercent.textContent = `${scorePercent}%`;
+        if (resGrantAmount) resGrantAmount.textContent = `$${minAmount.toLocaleString()} - $${maxAmount.toLocaleString()}`;
+        if (resCoursesList) {
+            resCoursesList.innerHTML = courses.map(c => `<li><i class="fa-solid fa-check"></i> ${c}</li>`).join('');
+        }
+    }
+
+    const calcLevelEl = document.getElementById('calcLevel');
+    const calcIeltsEl = document.getElementById('calcIelts');
+    const calcGoalEl = document.getElementById('calcGoal');
+
+    if (calcLevelEl && calcIeltsEl && calcGoalEl) {
+        calcLevelEl.addEventListener('change', updateGrantCalculator);
+        calcIeltsEl.addEventListener('change', updateGrantCalculator);
+        calcGoalEl.addEventListener('change', updateGrantCalculator);
+        updateGrantCalculator();
+    }
+
 
     /* ==========================================
        4. 31 COURSES DATA STORE & VIP ACCESS ENGINE
        ========================================== */
-    let currentUserEmail = localStorage.getItem('tayanch_user_email') || 'javohirqaxramonov36@gmail.com';
-    let isVIPUser = currentUserEmail.toLowerCase() === 'javohirqaxramonov36@gmail.com';
+    let currentUserEmail = localStorage.getItem('tayanch_user_email') || 'student@tayanch.edu.uz';
+    let isVIPUser = true; // Platform is 100% open access for all users
 
     const coursesData = [
         // --- AI CATEGORY (10 COURSES) ---

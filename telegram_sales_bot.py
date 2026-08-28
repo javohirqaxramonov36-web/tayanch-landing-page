@@ -95,7 +95,7 @@ CATALOG_TEXT = """
 • Full-Ride Scholarship Blueprint — `399,000 UZS`
 • Common App & Financial Aid (CSS Profile) — `299,000 UZS`
 
-👑 *VIP Sinov Foydalanuvchisi:* `javohirqaxramonov36@gmail.com` uchun barcha kurslar sinovda 100% ochiq!
+👑 *Ochiq Platforma Rejimi:* Barcha foydalanuvchilar uchun darslar va amaliyotlar 100% ochiq!
 """
 
 AI_PLAYGROUND_TEXT = """

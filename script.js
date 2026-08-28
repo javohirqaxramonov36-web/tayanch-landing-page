@@ -1019,8 +1019,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateGamifyUI() {
         const xpEl = document.getElementById('userXPVal');
         const streakEl = document.getElementById('userStreakVal');
+        const streakHUDEl = document.getElementById('streakValHUD');
         if (xpEl) xpEl.textContent = `${userXP} XP`;
         if (streakEl) streakEl.textContent = `🔥 ${userStreak} Combo`;
+        if (streakHUDEl) streakHUDEl.textContent = userStreak;
         renderBadgesModal();
     }
 
@@ -1468,8 +1470,455 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /* ==========================================================================
+       18. ⌘K QUICK DICTIONARY SYSTEM (COMMAND PALETTE / LUG'AT MODAL)
+       ========================================================================== */
+    const DICT_KEY = "tayanch_lugat_v1";
+
+    function getDictionary() {
+        try {
+            return JSON.parse(localStorage.getItem(DICT_KEY)) || [];
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function addToDictionary(wordObj) {
+        if (!wordObj || !wordObj.en) return;
+        let dict = getDictionary();
+        const exists = dict.some(w => w.en.toLowerCase() === wordObj.en.toLowerCase());
+        if (!exists) {
+            dict.unshift({
+                en: wordObj.en,
+                uz: wordObj.uz || "",
+                addedAt: new Date().toISOString(),
+                source: "auto-mashq"
+            });
+            localStorage.setItem(DICT_KEY, JSON.stringify(dict));
+            showToast(`📖 Lug'atga qo'shildi: ${wordObj.en}`);
+        }
+    }
+
+    function deleteFromDictionary(enWord) {
+        let dict = getDictionary();
+        dict = dict.filter(w => w.en.toLowerCase() !== enWord.toLowerCase());
+        localStorage.setItem(DICT_KEY, JSON.stringify(dict));
+        renderDictionaryUI();
+        showToast(`O'chirildi: ${enWord}`);
+    }
+
+    function openDictionaryModal() {
+        const modal = document.getElementById('dictModal');
+        if (modal) {
+            modal.classList.add('active');
+            renderDictionaryUI();
+            const input = document.getElementById('dictSearchInput');
+            if (input) {
+                input.value = '';
+                setTimeout(() => input.focus(), 100);
+            }
+        }
+    }
+
+    function closeDictionaryModal() {
+        const modal = document.getElementById('dictModal');
+        if (modal) modal.classList.remove('active');
+    }
+
+    function renderDictionaryUI(filter = '') {
+        const listContainer = document.getElementById('dictBodyList');
+        if (!listContainer) return;
+
+        const dict = getDictionary();
+        const query = filter.trim().toLowerCase();
+        const filtered = dict.filter(w => w.en.toLowerCase().includes(query) || w.uz.toLowerCase().includes(query));
+
+        if (!filtered.length) {
+            listContainer.innerHTML = `
+                <div class="dict-empty-state">
+                    <i class="fa-solid fa-book-open"></i>
+                    <p>${query ? 'Hech qanday so\'z topilmadi' : 'Lug\'atingiz hozircha bo\'sh. Mashqlarda xato qilgan so\'zlaringiz avtomatik shu yerga tushadi.'}</p>
+                </div>`;
+            return;
+        }
+
+        listContainer.innerHTML = filtered.map(item => `
+            <div class="dict-word-card">
+                <div>
+                    <div class="dict-word-en">${item.en}</div>
+                    <div class="dict-word-uz">${item.uz}</div>
+                    <div class="dict-word-meta">Saqlangan: ${new Date(item.addedAt).toLocaleDateString()}</div>
+                </div>
+                <button class="dict-del-btn" data-en="${item.en}" title="O'chirish"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
+        `).join('');
+
+        listContainer.querySelectorAll('.dict-del-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                deleteFromDictionary(btn.dataset.en);
+            });
+        });
+    }
+
+    // ⌘K or Ctrl+K Global Event Listener
+    document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            const modal = document.getElementById('dictModal');
+            if (modal && modal.classList.contains('active')) {
+                closeDictionaryModal();
+            } else {
+                openDictionaryModal();
+            }
+        }
+    });
+
+    const dictCloseBtn = document.getElementById('dictCloseBtn');
+    if (dictCloseBtn) dictCloseBtn.addEventListener('click', closeDictionaryModal);
+
+    const dictSearchInput = document.getElementById('dictSearchInput');
+    if (dictSearchInput) {
+        dictSearchInput.addEventListener('input', (e) => renderDictionaryUI(e.target.value));
+    }
+
+    const dictTriggerBtn = document.getElementById('dictTriggerBtn');
+    if (dictTriggerBtn) dictTriggerBtn.addEventListener('click', openDictionaryModal);
+
+
+    /* ==========================================================================
+       19. ENGLIFY GAMIFICATION ROADMAP ENGINE & MULTI-CEFR LEVEL SWITCHER
+       ========================================================================== */
+    const GAMIFY_STATE_KEY = "tayanch_gamify_state_v1";
+
+    const MODULES_FALLBACK = [
+        {
+            id: "a1_m1", title: "Salomlashish va tanishtirish",
+            exercises: [
+                { type: "choose", prompt: "«Salom» so'zining inglizcha tarjimasi?", options: ["Hello", "Goodbye", "Please", "Thanks"], answer: "Hello", word: { en: "hello", uz: "salom / assalomu alaykum" } },
+                { type: "choose", prompt: "«Mening ismim...» iborasi inglizchada?", options: ["My name is...", "I am from...", "I like...", "How are you..."], answer: "My name is...", word: { en: "my name is", uz: "mening ismim" } },
+                { type: "write", prompt: "«Xayr» so'zini inglizcha yozing:", answer: "goodbye", word: { en: "goodbye", uz: "xayr" } }
+            ]
+        },
+        {
+            id: "a1_m2", title: "To Be fe'li grammatikasi",
+            exercises: [
+                { type: "choose", prompt: "«I ___ a student.» — bo'sh joyga mos so'z?", options: ["am", "is", "are", "be"], answer: "am", word: { en: "am", uz: "be fe'li (I bilan)" } },
+                { type: "choose", prompt: "«She ___ happy.» — bo'sh joyga mos so'z?", options: ["am", "is", "are", "be"], answer: "is", word: { en: "is", uz: "be fe'li (she/he/it bilan)" } },
+                { type: "write", prompt: "«They ___ teachers.» — bo'sh joyni to'ldiring:", answer: "are", word: { en: "are", uz: "be fe'li (ko'plik bilan)" } }
+            ]
+        }
+    ];
+
+    let currentCEFRLevel = "A1";
+    let activeModules = MODULES_FALLBACK;
+
+    function loadGamifyState() {
+        try {
+            return JSON.parse(localStorage.getItem(GAMIFY_STATE_KEY)) || {};
+        } catch (e) {
+            return {};
+        }
+    }
+
+    function saveGamifyState(s) {
+        localStorage.setItem(GAMIFY_STATE_KEY, JSON.stringify(s));
+    }
+
+    let gamifyState = Object.assign({
+        stars: 0,
+        coins: 0,
+        streak: 0,
+        lastActive: null,
+        progress: {}, // moduleId -> {done: n, total: n}
+        solved: {}    // moduleId -> [exerciseIndex, ...] (Anti-cheat double reward protection)
+    }, loadGamifyState());
+
+    function initModuleProgressShape() {
+        activeModules.forEach(m => {
+            if (!gamifyState.progress[m.id]) gamifyState.progress[m.id] = { done: 0, total: m.exercises.length };
+            if (!gamifyState.solved[m.id]) gamifyState.solved[m.id] = [];
+        });
+        saveGamifyState(gamifyState);
+    }
+
+    function touchGamifyStreak() {
+        const today = new Date().toISOString().slice(0, 10);
+        if (gamifyState.lastActive === today) return;
+        const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+        gamifyState.streak = (gamifyState.lastActive === yesterday) ? gamifyState.streak + 1 : 1;
+        gamifyState.lastActive = today;
+        userStreak = Math.max(userStreak, gamifyState.streak);
+        localStorage.setItem('tayanch_user_streak', userStreak);
+        saveGamifyState(gamifyState);
+    }
+
+    function renderGamifyHUD() {
+        const starEl = document.getElementById('starValHUD');
+        const coinEl = document.getElementById('coinValHUD');
+        const streakEl = document.getElementById('streakValHUD');
+        if (starEl) starEl.textContent = gamifyState.stars;
+        if (coinEl) coinEl.textContent = gamifyState.coins;
+        if (streakEl) streakEl.textContent = gamifyState.streak || userStreak;
+        updateGamifyUI();
+    }
+
+    function renderGamifySkills() {
+        const container = document.getElementById('skillsDashboardContainer');
+        if (!container) return;
+
+        const skillMap = {
+            Vocabulary: [activeModules[0]?.id, activeModules[2]?.id].filter(Boolean),
+            Grammar: [activeModules[1]?.id, activeModules[4]?.id].filter(Boolean),
+            Reading: [activeModules[0]?.id, activeModules[3]?.id].filter(Boolean),
+            Listening: [activeModules[4]?.id].filter(Boolean),
+            Writing: [activeModules[1]?.id, activeModules[3]?.id].filter(Boolean)
+        };
+
+        container.innerHTML = Object.entries(skillMap).map(([name, ids]) => {
+            let done = 0, total = 0;
+            ids.forEach(id => {
+                const p = gamifyState.progress[id];
+                if (p) { done += p.done; total += p.total; }
+            });
+            const pct = total ? Math.round((done / total) * 100) : 0;
+            return `
+                <div class="gamify-skill-item">
+                    <div class="bar-wrapper"><div class="bar-fill" style="--h:${pct}%"></div></div>
+                    <span>${name.toUpperCase()}</span>
+                    <b>${pct}%</b>
+                </div>`;
+        }).join('');
+    }
+
+    function getModuleStatus(idx) {
+        const m = activeModules[idx];
+        if (!m || !gamifyState.progress[m.id]) return "locked";
+        const p = gamifyState.progress[m.id];
+        const pct = Math.round((p.done / p.total) * 100);
+        if (pct >= 100) return "done";
+        if (idx === 0) return "current";
+        
+        const prevM = activeModules[idx - 1];
+        const prevP = gamifyState.progress[prevM.id];
+        if (prevP && Math.round((prevP.done / prevP.total) * 100) >= 100) return "current";
+        return "locked";
+    }
+
+    function renderGamifyRoadmap() {
+        const container = document.getElementById('roadmapPathContainer');
+        if (!container) return;
+
+        container.innerHTML = '';
+        activeModules.forEach((m, idx) => {
+            const p = gamifyState.progress[m.id] || { done: 0, total: m.exercises.length };
+            const pct = Math.round((p.done / p.total) * 100);
+            const status = getModuleStatus(idx);
+
+            const node = document.createElement('div');
+            node.className = `path-node ${status}`;
+            node.innerHTML = `
+                ${status === "current" ? `<div class="node-flag"><i class="fa-solid fa-location-dot"></i> Hozirgi Bosqich</div>` : ''}
+                <div class="ring-progress" style="--p:${pct}"><b>${pct}%</b></div>
+                <div class="node-body">
+                    <div class="node-title">${String(idx + 1).padStart(2, "0")} · ${m.title}</div>
+                    <div class="node-sub">${p.done}/${p.total} mashq tugallandi</div>
+                </div>
+                <span class="node-tag">${status === "done" ? "Tugallandi" : status === "locked" ? "Qulflangan" : "Boshlash"}</span>
+            `;
+
+            if (status !== "locked") {
+                node.addEventListener('click', () => openGamifyModule(idx));
+            }
+            container.appendChild(node);
+
+            if (idx < activeModules.length - 1) {
+                const connector = document.createElement('div');
+                connector.className = 'connector-line';
+                container.appendChild(connector);
+            }
+        });
+    }
+
+    /* Exercise Interactive Panel */
+    let activeModuleIdx = null;
+    let activeQIndex = 0;
+    let questionLocked = false; // Double click / fast-click prevention flag
+
+    function openGamifyModule(idx) {
+        activeModuleIdx = idx;
+        activeQIndex = 0;
+        const modal = document.getElementById('exercisePanelModal');
+        const titleEl = document.getElementById('exercisePanelTitle');
+        if (titleEl) titleEl.textContent = activeModules[idx].title;
+        if (modal) modal.classList.add('active');
+        renderGamifyQuestion();
+    }
+
+    function closeGamifyModule() {
+        const modal = document.getElementById('exercisePanelModal');
+        if (modal) modal.classList.remove('active');
+    }
+
+    const panelCloseBtn = document.getElementById('exercisePanelCloseBtn');
+    if (panelCloseBtn) panelCloseBtn.addEventListener('click', closeGamifyModule);
+
+    function renderGamifyQuestion() {
+        const m = activeModules[activeModuleIdx];
+        if (!m) return;
+        const total = m.exercises.length;
+        const fillEl = document.getElementById('exerciseProgressFill');
+        if (fillEl) fillEl.style.width = `${(activeQIndex / total) * 100}%`;
+
+        const area = document.getElementById('exerciseQuizArea');
+        if (!area) return;
+
+        if (activeQIndex >= total) {
+            const solvedCount = (gamifyState.solved[m.id] || []).length;
+            const allCorrect = solvedCount >= total;
+            area.innerHTML = `
+                <div class="text-center py-4">
+                    <i class="fa-solid ${allCorrect ? 'fa-trophy' : 'fa-flag-checkered'}" style="font-size:3.5rem; color:${allCorrect ? '#fbbf24' : '#00f2fe'}; margin-bottom:12px;"></i>
+                    <h4 class="text-xl font-bold mb-2">${allCorrect ? "Tabriklaymiz! Modul to'liq bajarildi! 🏆" : "Modul yakunlandi!"}</h4>
+                    <p class="text-muted mb-4">${solvedCount}/${total} ta savolga to'g'ri javob berdingiz.</p>
+                    <button class="btn btn-primary btn-glow" id="exerciseFinishBtn">Yopish va Davom Etish</button>
+                </div>`;
+            document.getElementById('exerciseFinishBtn')?.addEventListener('click', closeGamifyModule);
+            return;
+        }
+
+        const q = m.exercises[activeQIndex];
+        questionLocked = false;
+
+        if (q.type === "choose") {
+            area.innerHTML = `
+                <span class="q-type-badge choose"><i class="fa-solid fa-list-check"></i> TANLANG</span>
+                <div class="exercise-prompt">${q.prompt}</div>
+                <div class="exercise-options-grid">
+                    ${q.options.map((opt, i) => `<button class="exercise-opt-btn" data-i="${i}">${opt}</button>`).join('')}
+                </div>
+                <div class="exercise-feedback" id="exerciseFB"></div>
+            `;
+            const buttons = Array.from(area.querySelectorAll('.exercise-opt-btn'));
+            buttons.forEach((btn, i) => {
+                btn.addEventListener('click', () => {
+                    if (questionLocked) return;
+                    questionLocked = true;
+                    const isCorrect = q.options[i] === q.answer;
+                    buttons.forEach(b => b.disabled = true);
+                    if (isCorrect) {
+                        btn.classList.add('correct');
+                    } else {
+                        btn.classList.add('wrong');
+                        const correctBtn = buttons.find(b => q.options[Number(b.dataset.i)] === q.answer);
+                        if (correctBtn) correctBtn.classList.add('correct');
+                    }
+                    handleGamifyAnswer(isCorrect, q.answer);
+                });
+            });
+        } else {
+            area.innerHTML = `
+                <span class="q-type-badge write"><i class="fa-solid fa-keyboard"></i> YOZING</span>
+                <div class="exercise-prompt">${q.prompt}</div>
+                <div class="exercise-write-row">
+                    <input type="text" class="exercise-write-input" id="exerciseWriteInput" placeholder="Javobingizni yozing..." autocomplete="off">
+                    <button class="btn btn-primary" id="exerciseWriteSubmit">Tekshirish</button>
+                </div>
+                <div class="exercise-feedback" id="exerciseFB"></div>
+            `;
+            const input = document.getElementById('exerciseWriteInput');
+            const submitBtn = document.getElementById('exerciseWriteSubmit');
+            const submit = () => {
+                if (questionLocked) return;
+                questionLocked = true;
+                input.disabled = true;
+                submitBtn.disabled = true;
+                const isCorrect = input.value.trim().toLowerCase() === q.answer.toLowerCase();
+                handleGamifyAnswer(isCorrect, q.answer);
+            };
+            submitBtn?.addEventListener('click', submit);
+            input?.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
+        }
+    }
+
+    function handleGamifyAnswer(isCorrect, correctAnswer) {
+        const fb = document.getElementById('exerciseFB');
+        const m = activeModules[activeModuleIdx];
+        const q = m.exercises[activeQIndex];
+        const solvedList = gamifyState.solved[m.id] || [];
+        const alreadyRewarded = solvedList.includes(activeQIndex);
+
+        if (isCorrect) {
+            if (fb) {
+                fb.textContent = alreadyRewarded ? "To'g'ri! (Takroriy mashq — mukofotsiz)" : "To'g'ri! +1 ⭐ +1 🪙 +25 XP";
+                fb.className = "exercise-feedback ok";
+            }
+            if (!alreadyRewarded) {
+                gamifyState.stars += 1;
+                gamifyState.coins += 1;
+                solvedList.push(activeQIndex);
+                gamifyState.solved[m.id] = solvedList;
+                addXP(25, "Modul Mashqi Bajarildi!");
+            }
+        } else {
+            if (fb) {
+                fb.textContent = `To'g'ri javob: ${correctAnswer}`;
+                fb.className = "exercise-feedback bad";
+            }
+            if (q.word) {
+                addToDictionary(q.word);
+            }
+        }
+
+        gamifyState.progress[m.id].done = Math.max(gamifyState.progress[m.id].done, solvedList.length);
+        touchGamifyStreak();
+        saveGamifyState(gamifyState);
+        renderGamifyHUD();
+        renderGamifySkills();
+        renderGamifyRoadmap();
+
+        setTimeout(() => {
+            activeQIndex++;
+            renderGamifyQuestion();
+        }, 1100);
+    }
+
+    async function loadCEFRLevelModules(level) {
+        currentCEFRLevel = level;
+        try {
+            const fileName = `modules-${level.toLowerCase()}.json`;
+            const res = await fetch(`./${fileName}`);
+            if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+            const data = await res.json();
+            if (Array.isArray(data.modules) && data.modules.length) {
+                activeModules = data.modules;
+            }
+        } catch (e) {
+            console.info(`[Tayanch] ${level} modullari fallback massividan yuklandi: ${e.message}`);
+            activeModules = MODULES_FALLBACK;
+        }
+        initModuleProgressShape();
+        renderGamifyHUD();
+        renderGamifySkills();
+        renderGamifyRoadmap();
+    }
+
+    // CEFR Level Tabs Switching
+    document.querySelectorAll('.cefr-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.cefr-tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const level = btn.dataset.level || "A1";
+            loadCEFRLevelModules(level);
+        });
+    });
+
+    // Initialize Gamification Engine
+    loadCEFRLevelModules("A1");
+
     // Initialize UI
     updateGamifyUI();
 
 });
+
 

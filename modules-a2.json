@@ -1,0 +1,137 @@
+{
+  "level": "A2",
+  "title": "Elementary — Foundation",
+  "description": "O'tgan zamon (Past Simple), oila va do'stlar, xarid qilish, kundalik odatlar va joylashuvlar.",
+  "modules": [
+    {
+      "id": "a2_m1",
+      "title": "Present Simple & Daily Routines",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "«He ___ to work every day.» — qaysi zamon fe'li to'g'ri?",
+          "options": ["goes", "go", "went", "going"],
+          "answer": "goes",
+          "word": { "en": "go to work", "uz": "ishga bormoq" }
+        },
+        {
+          "type": "write",
+          "prompt": "«Har kuni ertalab soat 7 da uyg'onaman» — «I wake ___ at 7 AM.» bo'sh joyni yozing:",
+          "answer": "up",
+          "word": { "en": "wake up", "uz": "uyg'onmoq" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«Always» so'zining ma'nosi nima?",
+          "options": ["Har doim", "Ba'zan", "Hech qachon", "Tez-tez"],
+          "answer": "Har doim",
+          "word": { "en": "always", "uz": "har doim / hamisha" }
+        }
+      ]
+    },
+    {
+      "id": "a2_m2",
+      "title": "Past Simple: O'tgan zamon",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "«Yesterday I ___ a new book.» — Past Simple shakli?",
+          "options": ["bought", "buy", "buying", "buys"],
+          "answer": "bought",
+          "word": { "en": "buy / bought", "uz": "sotib olmoq / sotib oldi" }
+        },
+        {
+          "type": "write",
+          "prompt": "«Go» fe'lining o'tgan zamon (Past Simple) shakli nima?",
+          "answer": "went",
+          "word": { "en": "go / went", "uz": "bormoq / bordi" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«Kecha qayerda edingiz?» ingliz tilida?",
+          "options": ["Where were you yesterday?", "Where are you yesterday?", "Where do you go?", "Where is you yesterday?"],
+          "answer": "Where were you yesterday?",
+          "word": { "en": "where were you?", "uz": "qayerda edingiz?" }
+        }
+      ]
+    },
+    {
+      "id": "a2_m3",
+      "title": "Xarid qilish va narx-navolar",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "«Bu qancha turadi?» iborasi inglizcha qanday?",
+          "options": ["How much is this?", "How many is this?", "What price is?", "How dollar is this?"],
+          "answer": "How much is this?",
+          "word": { "en": "how much is this?", "uz": "bu qancha turadi?" }
+        },
+        {
+          "type": "write",
+          "prompt": "«Arzon» so'zining inglizcha qarama-qarshi shakli (Cheap / ___):",
+          "answer": "expensive",
+          "word": { "en": "expensive", "uz": "qimmat" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«Karta bilan to'lay olasizmi?» iborasidagi «pay» nima ma'noni bildiradi?",
+          "options": ["To'lamoq", "Olmoq", "Sotmoq", "Tanlamoq"],
+          "answer": "To'lamoq",
+          "word": { "en": "pay", "uz": "to'lamoq / to'lov qilmoq" }
+        }
+      ]
+    },
+    {
+      "id": "a2_m4",
+      "title": "Joylashuvlar va ko'rsatmalar",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "«Turn left» nimani bildiradi?",
+          "options": ["Chapga buriling", "O'ngga buriling", "To'g'riga yuring", "To'xtang"],
+          "answer": "Chapga buriling",
+          "word": { "en": "turn left", "uz": "chapga burilmoq" }
+        },
+        {
+          "type": "write",
+          "prompt": "«Kutubxona» so'zining inglizcha tarjimasini yozing:",
+          "answer": "library",
+          "word": { "en": "library", "uz": "kutubxona" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«Next to» predlogi nimani anglatadi?",
+          "options": ["Yonida / Yonma-yon", "Rarida / Qarshisida", "Ichida", "Orqasida"],
+          "answer": "Yonida / Yonma-yon",
+          "word": { "en": "next to", "uz": "yonida" }
+        }
+      ]
+    },
+    {
+      "id": "a2_m5",
+      "title": "Kelajak rejalari (Going to)",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "«I am going to ___ English tomorrow.» — Bo'sh joyga mos fe'l?",
+          "options": ["study", "studied", "studies", "studying"],
+          "answer": "study",
+          "word": { "en": "be going to", "uz": "maqsad qilmoq / rejalashtirmoq" }
+        },
+        {
+          "type": "write",
+          "prompt": "«Ertaga» so'zini inglizcha yozing:",
+          "answer": "tomorrow",
+          "word": { "en": "tomorrow", "uz": "ertaga" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«We are going to travel.» iborasi nimani anglatadi?",
+          "options": ["Biz sayohat qilmoqchimiz", "Biz uyda qolamiz", "Biz ishlayapmiz", "Biz uxlayapmiz"],
+          "answer": "Biz sayohat qilmoqchimiz",
+          "word": { "en": "travel", "uz": "sayohat qilmoq" }
+        }
+      ]
+    }
+  ]
+}

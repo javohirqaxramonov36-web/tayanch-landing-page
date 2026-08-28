@@ -265,12 +265,13 @@
             
             <!-- Gamification HUD Bar -->
             <div class="gamify-hud-container">
-                <div class="gamify-stat xp-badge" id="xpBadgeHUD">
-                    <i class="fa-solid fa-bolt"></i> <span id="userXPVal">250 XP</span>
-                </div>
-                <div class="gamify-stat streak-badge" id="streakBadgeHUD">
-                    <span id="userStreakVal">🔥 3 Combo</span>
-                </div>
+                <div class="hud-pill star" title="To'plangan Yulduzlar">⭐ <span id="starValHUD">0</span></div>
+                <div class="hud-pill coin" title="To'plangan Tanganiz">🪙 <span id="coinValHUD">0</span></div>
+                <div class="hud-pill streak" title="Ketma-ket Kunlar (Combo)">🔥 <span id="streakValHUD">0</span></div>
+                <div class="hud-pill xp" title="Tajriba Ballari"><i class="fa-solid fa-bolt"></i> <span id="userXPVal">250 XP</span></div>
+                <button class="hud-pill" id="dictTriggerBtn" style="cursor:pointer; background:rgba(168,85,247,0.2); border-color:rgba(168,85,247,0.4); color:#fff;" title="Tezkor Lug'at Modalini Ochish">
+                    <i class="fa-solid fa-book-bookmark"></i> ⌘K Lug'at
+                </button>
                 <button class="badges-hud-btn" id="badgesHudBtn">
                     <i class="fa-solid fa-trophy"></i> Yutuqlar
                 </button>
@@ -286,8 +287,23 @@
         <div class="section-header text-center">
             <span class="category-tag cat-ielts">Oxford Navigate & CEFR Standard</span>
             <h1 class="section-title mt-2">General English <span class="gradient-text liquid-gradient">Multi-Aspect Hub</span></h1>
-            <p class="section-desc">Barcha 6 ta til aspektlari bo'yicha mukammal amaliyot, darslik modullari va interaktiv gamifikatsiya mashqlari.</p>
+            <p class="section-desc">Barcha 6 ta til aspektlari bo'yicha mukammal amaliyot, CEFR bosqichli gamifikatsiya yo'l xaritasi va interaktiv mashqlar.</p>
         </div>
+
+        <!-- CEFR Level Selector Tabs -->
+        <div class="cefr-level-tabs-bar">
+            <button class="cefr-tab-btn active" data-level="A1"><i class="fa-solid fa-seedling"></i> A1 Beginner</button>
+            <button class="cefr-tab-btn" data-level="A2"><i class="fa-solid fa-stairs"></i> A2 Elementary</button>
+            <button class="cefr-tab-btn" data-level="B1"><i class="fa-solid fa-chart-line"></i> B1 Pre-Intermediate</button>
+            <button class="cefr-tab-btn" data-level="B2"><i class="fa-solid fa-graduation-cap"></i> B2 Intermediate</button>
+            <button class="cefr-tab-btn" data-level="C1"><i class="fa-solid fa-crown"></i> C1 Advanced</button>
+        </div>
+
+        <!-- Skill Progress Dashboard -->
+        <div class="gamify-skills-container" id="skillsDashboardContainer"></div>
+
+        <!-- Gamified Learning Path Roadmap -->
+        <div class="gamify-path-container" id="roadmapPathContainer"></div>
 
         <!-- 6 Aspects Navigation Tabs Bar -->
         <div class="aspect-tabs-bar">
@@ -617,6 +633,35 @@
             <div class="badges-modal-grid" id="badgesGridContent">
                 <!-- Rendered dynamically by JS -->
             </div>
+        </div>
+    </div>
+
+    <!-- Gamification Interactive Exercise Panel Modal -->
+    <div class="exercise-modal-overlay" id="exercisePanelModal">
+        <div class="exercise-panel-box">
+            <div class="panel-head">
+                <h3 id="exercisePanelTitle">Modul Topshiriqlar</h3>
+                <button class="panel-close-btn" id="exercisePanelCloseBtn">&times;</button>
+            </div>
+            <div class="exercise-progress-track">
+                <div class="exercise-progress-fill" id="exerciseProgressFill"></div>
+            </div>
+            <div id="exerciseQuizArea"></div>
+        </div>
+    </div>
+
+    <!-- ⌘K Quick Dictionary Modal (Command Palette) -->
+    <div class="dict-modal-overlay" id="dictModal">
+        <div class="dict-modal-box">
+            <div class="dict-modal-head">
+                <h3><i class="fa-solid fa-book-bookmark" style="color:var(--accent-purple);"></i> Shaxsiy ⌘K Lug'at Hub</h3>
+                <button class="panel-close-btn" id="dictCloseBtn">&times;</button>
+            </div>
+            <div class="dict-search-wrapper">
+                <i class="fa-solid fa-magnifying-glass dict-search-icon"></i>
+                <input type="text" class="dict-search-input" id="dictSearchInput" placeholder="Lug'atdan so'z qidirish (⌘K)...">
+            </div>
+            <div class="dict-body-list" id="dictBodyList"></div>
         </div>
     </div>
 

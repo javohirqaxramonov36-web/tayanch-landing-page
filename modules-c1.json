@@ -1,0 +1,137 @@
+{
+  "level": "C1",
+  "title": "Advanced — Mastery & Academic Standard",
+  "description": "C1/C2 darajadagi akademik kollokatsiyalar, inverting strukturalar, IELTS Band 8+ iboralar va chuqur tahlil.",
+  "modules": [
+    {
+      "id": "c1_m1",
+      "title": "Inversion & Advanced Grammar Structures",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "«Rarely ___ such an extraordinary discovery.» — Inversion to'g'ri shakli?",
+          "options": ["have I witnessed", "I have witnessed", "did I witnessed", "I witnessed"],
+          "answer": "have I witnessed",
+          "word": { "en": "rarely have I...", "uz": "inversiya: kamdan-kam holatda men ko'rganman" }
+        },
+        {
+          "type": "write",
+          "prompt": "«Not only did he succeed, ___ he also inspired others.» — juft bog'lovchi so'zni yozing:",
+          "answer": "but",
+          "word": { "en": "not only... but also", "uz": "nafaqat... balki ham" }
+        },
+        {
+          "type": "choose",
+          "prompt": "Inversion (Inverted sentence structure) akademik yozuvda nima beradi?",
+          "options": ["Stylistic emphasis va ritorik ta'sirchanlik", "Grammatik xato hosil qiladi", "Gapni qisqartiradi", "Faqat ogzaki nutqda ishlatiladi"],
+          "answer": "Stylistic emphasis va ritorik ta'sirchanlik",
+          "word": { "en": "inversion", "uz": "gap bo'laklari tartibining almashishi" }
+        }
+      ]
+    },
+    {
+      "id": "c1_m2",
+      "title": "C1 Academic Collocations & Precision",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "«Paramount» so'zining eng aniq ta'rifi va darajasi qaysi?",
+          "options": ["Supreme / Of greatest importance (Juda oliy va eng muhim)", "Ordinary and common", "Dangerous and volatile", "Obsolete and old"],
+          "answer": "Supreme / Of greatest importance (Juda oliy va eng muhim)",
+          "word": { "en": "paramount", "uz": "juda oliy / eng birinchi darajali" }
+        },
+        {
+          "type": "write",
+          "prompt": "«Facilitate» fe'lining o'zbekcha akademik ma'nosini yozing (engillashtirmoq / ___):",
+          "answer": "yengillashtirmoq",
+          "word": { "en": "facilitate", "uz": "yengillashtirmoq / qulaylik yaratmoq" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«Empirical evidence» iborasi nimani anglatadi?",
+          "options": ["Tajriba va kuzatuvlarga asoslangan ilmiy dalil", "Faqat taxmin va nazariya", "Yolg'on ma'lumot", "Shaxsiy xohish"],
+          "answer": "Tajriba va kuzatuvlarga asoslangan ilmiy dalil",
+          "word": { "en": "empirical evidence", "uz": "tajriba va kuzatuv dalillari" }
+        }
+      ]
+    },
+    {
+      "id": "c1_m3",
+      "title": "IELTS Band 8+ Writing & Cohesion",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "Qaysi ibora Band 8+ insholarida sabab-oqibat zanjirini ko'rsatish uchun eng mos keladi?",
+          "options": ["This stems fundamentally from...", "Because of...", "So...", "And then..."],
+          "answer": "This stems fundamentally from...",
+          "word": { "en": "stem from", "uz": "tubdan ... dan kelib chiqmoq" }
+        },
+        {
+          "type": "write",
+          "prompt": "«Muqarrar / Qochib bo'lmaydigan» — C1 sifatini yozing (inevitable / ___):",
+          "answer": "inevitable",
+          "word": { "en": "inevitable", "uz": "muqarrar / qochib bo'lmaydigan" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«Ubiquitous» so'zining tarjimasi va qo'llanishi?",
+          "options": ["Hamma joyda uchraydigan / Har yerda hozir (Present everywhere)", "Kamdan-kam uchraydigan", "Qimmatbaho", "Tushunarsiz"],
+          "answer": "Hamma joyda uchraydigan / Har yerda hozir (Present everywhere)",
+          "word": { "en": "ubiquitous", "uz": "hamma joyda mavjud / uchraydigan" }
+        }
+      ]
+    },
+    {
+      "id": "c1_m4",
+      "title": "C1 Discourse Analysis & Critical Reading",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "Matnda yozuvchining «implicit assertion»i nimani anglatadi?",
+          "options": ["Ochiq aytilmagan, lekin matn ostida nazarda tutilgan tasdiq", "Aniq va oshkora aytilgan raqamlar", "Inkor etilgan dalillar", "Manbaning nomi"],
+          "answer": "Ochiq aytilmagan, lekin matn ostida nazarda tutilgan tasdiq",
+          "word": { "en": "implicit assertion", "uz": "yaqin / matn ostidagi tasdiq" }
+        },
+        {
+          "type": "write",
+          "prompt": "«Nuqtai nazar / Perspektiva» — «Point of view» iborasining C1 sinonimi:",
+          "answer": "perspective",
+          "word": { "en": "perspective", "uz": "perspektiva / nuqtai nazar" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«To scrutinize» fe'li nima bildiradi?",
+          "options": ["Tafsilotigacha sinchiklab o'rganmoq", "Yuzaki qarab chiqmoq", "Vaqtni o'tkazmoq", "E'tiborsiz qoldirmoq"],
+          "answer": "Tafsilotigacha sinchiklab o'rganmoq",
+          "word": { "en": "scrutinize", "uz": "sinchiklab o'rganmoq" }
+        }
+      ]
+    },
+    {
+      "id": "c1_m5",
+      "title": "Flawless Nuance & Native Idiomatic Expressions",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "«To hit the nail on the head» nimani bildiradi?",
+          "options": ["Muammoning ayni o'zagini / to'g'ri nuqtasini topmoq", "Qurilishda ishlamoq", "Xatoga yo'l qo mezon qo'ymoq", "Vaqtni boy bermoq"],
+          "answer": "Muammoning ayni o'zagini / to'g'ri nuqtasini topmoq",
+          "word": { "en": "hit the nail on the head", "uz": "to'g'ri nuqtasini / o'zagini topmoq" }
+        },
+        {
+          "type": "write",
+          "prompt": "«Pragmatic» so'zining o'zbekcha tarjimasini yozing:",
+          "answer": "pragmatik",
+          "word": { "en": "pragmatic", "uz": "pragmatik / amaliy yondashadigan" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«Pivotal moment» iborasining ma'nosi?",
+          "options": ["Burilish nuqtasi / Hal qiluvchi pallada", "Oddiy kun", "Xafagarchilik", "Tugallangan ish"],
+          "answer": "Burilish nuqtasi / Hal qiluvchi pallada",
+          "word": { "en": "pivotal moment", "uz": "burilish nuqtasi / hal qiluvchi palla" }
+        }
+      ]
+    }
+  ]
+}

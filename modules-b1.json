@@ -1,0 +1,137 @@
+{
+  "level": "B1",
+  "title": "Pre-Intermediate — Intermediate Core",
+  "description": "Present Perfect, nisbiy bog'lovchilar, tajriba va fikr bildirish, soha lug'ati.",
+  "modules": [
+    {
+      "id": "b1_m1",
+      "title": "Present Perfect: Tajriba va Natija",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "«I have ___ London twice.» — mos o'tgan zamon sifatdoshi?",
+          "options": ["visited", "visit", "visiting", "visits"],
+          "answer": "visited",
+          "word": { "en": "visit / visited", "uz": "tashrif buyurmoq / bo'lmoq" }
+        },
+        {
+          "type": "write",
+          "prompt": "«He has ___ his key.» (yo'qotmoq — lose fe'lining III shakli):",
+          "answer": "lost",
+          "word": { "en": "lose / lost", "uz": "yo'qotmoq / yo'qotgan" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«Have you ever try sushi?» gapida qaysi grammatik xato bor?",
+          "options": ["«try» o'rniga «tried» bo'lishi kerak", "«ever» bo'lmasligi kerak", "«Have» o'rniga «Has» bo'lishi kerak", "Xato yo'q"],
+          "answer": "«try» o'rniga «tried» bo'lishi kerak",
+          "word": { "en": "have you ever...?", "uz": "hech qachon ... qilganmisiz?" }
+        }
+      ]
+    },
+    {
+      "id": "b1_m2",
+      "title": "Conditionals: Shart ergash gaplar (1st & 2nd)",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "«If it rains tomorrow, we ___ stay at home.» — 1st Conditional?",
+          "options": ["will", "would", "are", "were"],
+          "answer": "will",
+          "word": { "en": "first conditional", "uz": "real kelajak sharti (if + present, will)" }
+        },
+        {
+          "type": "write",
+          "prompt": "«If I had money, I ___ buy a car.» (2nd Conditional):",
+          "answer": "would",
+          "word": { "en": "second conditional", "uz": "noreal hozirgi shart (if + past, would)" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«If I were you, I would take this course.» — Bu nima bildiradi?",
+          "options": ["Maslahat berish", "Buyruq berish", "Savol berish", "Shikoyat qilish"],
+          "answer": "Maslahat berish",
+          "word": { "en": "if I were you", "uz": "sizning o'rningizda bo'lganimda" }
+        }
+      ]
+    },
+    {
+      "id": "b1_m3",
+      "title": "Fikr bildirish va Rozi bo'lish",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "«In my opinion» iborasining o'zbekcha muqvili nima?",
+          "options": ["Mening fikrimcha", "Mening tajribamda", "Mening bilishimcha", "Mening uyimda"],
+          "answer": "Mening fikrimcha",
+          "word": { "en": "in my opinion", "uz": "mening fikrimcha" }
+        },
+        {
+          "type": "write",
+          "prompt": "«Men to'liq qo'shilaman» — «I completely ___ with you.» bo'sh joyni to'ldiring:",
+          "answer": "agree",
+          "word": { "en": "agree", "uz": "rozi bo'lmoq / qo'shilmoq" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«I am afraid I disagree.» iborasi nima uchun ishlatiladi?",
+          "options": ["Hushmomolalik bilan e'tiroz bildirish", "Qo'rquvni izhor qilish", "Rahmat aytish", "Salomlashish"],
+          "answer": "Hushmomolalik bilan e'tiroz bildirish",
+          "word": { "en": "disagree", "uz": "qo'shilmaslik / rozi bo'lmaslik" }
+        }
+      ]
+    },
+    {
+      "id": "b1_m4",
+      "title": "Ish va Karyera lug'ati",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "«Applicant» so'zining tarjimasi qaysi?",
+          "options": ["Nomzod / Arizachi", "Ish beruvchi", "Menejer", "Xodim"],
+          "answer": "Nomzod / Arizachi",
+          "word": { "en": "applicant", "uz": "nomzod / arizachi" }
+        },
+        {
+          "type": "write",
+          "prompt": "«Rezyume / CV» inglizchada nima deyiladi?",
+          "answer": "resume",
+          "word": { "en": "resume", "uz": "rezyume" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«Deadline» nimani anglatadi?",
+          "options": ["Topshirishning oxirgi muddati", "Ish vaqtining boshlanishi", "Maosh miqdori", "Dam olish kuni"],
+          "answer": "Topshirishning oxirgi muddati",
+          "word": { "en": "deadline", "uz": "oxirgi muddat" }
+        }
+      ]
+    },
+    {
+      "id": "b1_m5",
+      "title": "Passiv Nisbat (Passive Voice)",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "«This website ___ created in 2024.» — to'g'ri passiv fe'l shakli?",
+          "options": ["was", "is", "were", "been"],
+          "answer": "was",
+          "word": { "en": "passive voice", "uz": "majhul nisbat (be + Past Participle)" }
+        },
+        {
+          "type": "write",
+          "prompt": "«Ingliz tili butun dunyoda gapiriladi» — «English is ___ all over the world.» (speak fe'lining III shakli):",
+          "answer": "spoken",
+          "word": { "en": "speak / spoken", "uz": "gapiriladi" }
+        },
+        {
+          "type": "choose",
+          "prompt": "Passiv nisbat nimaga urg'u beradi?",
+          "options": ["Harakat natijasi va obyektiga", "Harakatni kim bajarganiga", "Vaqtga", "Joyga"],
+          "answer": "Harakat natijasi va obyektiga",
+          "word": { "en": "object focus", "uz": "obyektga urg'u berish" }
+        }
+      ]
+    }
+  ]
+}

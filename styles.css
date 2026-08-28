@@ -2505,6 +2505,529 @@ a {
     }
 }
 
+/* ==========================================================================
+   ENGLIFY GAMIFICATION ROADMAP, SKILLS DASHBOARD & ⌘K LUG'AT SYSTEM
+   ========================================================================== */
+
+/* HUD Pills */
+.gamify-hud-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.hud-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(22, 26, 41, 0.9);
+    border: 1px solid var(--border-subtle);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-main);
+    backdrop-filter: blur(12px);
+    transition: all 0.25s ease;
+}
+.hud-pill:hover {
+    border-color: var(--border-bright);
+    transform: translateY(-1px);
+}
+.hud-pill.star { color: #22c55e; border-color: rgba(34, 197, 94, 0.3); }
+.hud-pill.coin { color: #fbbf24; border-color: rgba(251, 191, 36, 0.3); }
+.hud-pill.streak { color: #ff8a5c; border-color: rgba(255, 138, 92, 0.3); }
+.hud-pill.xp { color: #00f2fe; border-color: rgba(0, 242, 254, 0.3); }
+
+/* CEFR Level Tabs */
+.cefr-level-tabs-bar {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0 2rem 0;
+}
+.cefr-tab-btn {
+    padding: 0.65rem 1.2rem;
+    border-radius: 12px;
+    background: rgba(16, 19, 30, 0.8);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.cefr-tab-btn:hover {
+    border-color: var(--primary-cyan);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+.cefr-tab-btn.active {
+    background: linear-gradient(135deg, rgba(0, 242, 254, 0.25), rgba(168, 85, 247, 0.25));
+    border-color: var(--primary-cyan);
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+}
+
+/* Skills Dashboard */
+.gamify-skills-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    background: rgba(16, 19, 30, 0.85);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(16px);
+}
+@media (max-width: 640px) {
+    .gamify-skills-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.gamify-skill-item {
+    text-align: center;
+}
+.gamify-skill-item .bar-wrapper {
+    height: 70px;
+    width: 16px;
+    margin: 0 auto 8px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+.gamify-skill-item .bar-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 8px;
+    background: linear-gradient(180deg, var(--primary-cyan), var(--accent-purple));
+    height: var(--h, 0%);
+    transition: height 0.5s ease;
+}
+.gamify-skill-item span {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    display: block;
+}
+.gamify-skill-item b {
+    display: block;
+    font-size: 13px;
+    color: var(--text-main);
+    margin-top: 2px;
+}
+
+/* Roadmap Path */
+.gamify-path-container {
+    position: relative;
+    max-width: 680px;
+    margin: 2rem auto 3rem auto;
+}
+.path-node {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: rgba(18, 22, 34, 0.85);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(16px);
+}
+.path-node:hover {
+    border-color: rgba(0, 242, 254, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+.path-node.current {
+    border-color: var(--primary-cyan);
+    box-shadow: 0 0 0 3px rgba(0, 242, 254, 0.2), 0 10px 30px rgba(0, 242, 254, 0.15);
+}
+.path-node.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.path-node.locked:hover {
+    transform: none;
+    border-color: var(--border-subtle);
+    box-shadow: none;
+}
+.connector-line {
+    width: 2px;
+    height: 24px;
+    margin-left: 36px;
+    background: repeating-linear-gradient(to bottom, var(--primary-cyan) 0 6px, transparent 6px 12px);
+    opacity: 0.6;
+}
+.ring-progress {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    flex: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 13px;
+    background: conic-gradient(var(--primary-cyan) calc(var(--p, 0) * 1%), var(--border-subtle) 0);
+}
+.ring-progress::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background: #10131e;
+}
+.ring-progress b {
+    position: relative;
+    z-index: 1;
+    font-size: 12px;
+    color: var(--text-main);
+}
+.path-node.locked .ring-progress {
+    background: var(--border-subtle);
+}
+.node-body {
+    flex: 1;
+    min-width: 0;
+}
+.node-title {
+    font-weight: 700;
+    font-size: 16px;
+    margin: 0 0 4px;
+    color: var(--text-main);
+}
+.node-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0;
+}
+.node-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(0, 242, 254, 0.15);
+    color: var(--primary-cyan);
+    border: 1px solid rgba(0, 242, 254, 0.3);
+}
+.path-node.locked .node-tag {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    border-color: var(--border-subtle);
+}
+.path-node.done .node-tag {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+    border-color: rgba(34, 197, 94, 0.3);
+}
+.node-flag {
+    position: absolute;
+    right: 14px;
+    top: -12px;
+    background: #161a29;
+    border: 1px solid var(--primary-cyan);
+    color: var(--primary-cyan);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 242, 254, 0.2);
+}
+
+/* Exercise Panel Modal */
+.exercise-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 8, 12, 0.85);
+    backdrop-filter: blur(16px);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.exercise-modal-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+.exercise-panel-box {
+    background: rgba(16, 19, 30, 0.95);
+    border: 1px solid var(--border-bright);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    max-width: 620px;
+    width: 100%;
+    box-shadow: var(--shadow-glow-cyan);
+    position: relative;
+}
+.panel-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.panel-head h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--primary-cyan);
+    font-family: var(--font-heading);
+}
+.panel-close-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+.panel-close-btn:hover {
+    color: #ffffff;
+}
+.exercise-progress-track {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+.exercise-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-cyan), var(--accent-purple));
+    width: 0%;
+    transition: width 0.35s ease;
+}
+.q-type-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+}
+.q-type-badge.choose {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+.q-type-badge.write {
+    background: rgba(168, 85, 247, 0.15);
+    color: var(--accent-purple);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+}
+.exercise-prompt {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 22px;
+    color: var(--text-main);
+    line-height: 1.4;
+}
+.exercise-options-grid {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+.exercise-opt-btn {
+    text-align: left;
+    background: rgba(22, 26, 41, 0.8);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-main);
+    padding: 14px 18px;
+    border-radius: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.exercise-opt-btn:hover:not(:disabled) {
+    border-color: var(--primary-cyan);
+    background: rgba(0, 242, 254, 0.08);
+    transform: translateX(4px);
+}
+.exercise-opt-btn.correct {
+    border-color: #22c55e !important;
+    background: rgba(34, 197, 94, 0.2) !important;
+    color: #ffffff;
+}
+.exercise-opt-btn.wrong {
+    border-color: #ef4444 !important;
+    background: rgba(239, 68, 68, 0.2) !important;
+    color: #ffffff;
+}
+.exercise-write-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+.exercise-write-input {
+    flex: 1;
+    background: rgba(22, 26, 41, 0.8);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-main);
+    padding: 14px 18px;
+    border-radius: 14px;
+    font-size: 1rem;
+}
+.exercise-write-input:focus {
+    outline: none;
+    border-color: var(--primary-cyan);
+}
+.exercise-feedback {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 16px;
+    min-height: 22px;
+}
+.exercise-feedback.ok { color: #22c55e; }
+.exercise-feedback.bad { color: #f87171; }
+
+/* ⌘K Quick Dictionary Modal */
+.dict-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 8, 12, 0.85);
+    backdrop-filter: blur(16px);
+    z-index: 10001;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.dict-modal-overlay.active {
+    display: flex;
+    animation: fadeIn 0.25s ease;
+}
+.dict-modal-box {
+    background: rgba(16, 19, 30, 0.95);
+    border: 1px solid var(--border-bright);
+    border-radius: var(--radius-lg);
+    max-width: 640px;
+    width: 100%;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-glow-purple);
+    overflow: hidden;
+}
+.dict-modal-head {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.dict-modal-head h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #ffffff;
+    font-family: var(--font-heading);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.dict-search-wrapper {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border-subtle);
+    position: relative;
+}
+.dict-search-input {
+    width: 100%;
+    background: rgba(22, 26, 41, 0.9);
+    border: 1px solid var(--border-bright);
+    color: var(--text-main);
+    padding: 12px 16px 12px 42px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+}
+.dict-search-input:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+}
+.dict-search-icon {
+    position: absolute;
+    left: 38px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+.dict-body-list {
+    padding: 20px 24px;
+    overflow-y: auto;
+    flex: 1;
+    display: grid;
+    gap: 12px;
+}
+.dict-word-card {
+    background: rgba(22, 26, 41, 0.7);
+    border: 1px solid var(--border-subtle);
+    padding: 14px 18px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+}
+.dict-word-card:hover {
+    border-color: rgba(0, 242, 254, 0.4);
+    background: rgba(26, 33, 52, 0.85);
+}
+.dict-word-en {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-cyan);
+}
+.dict-word-uz {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    margin-top: 2px;
+}
+.dict-word-meta {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 4px;
+}
+.dict-del-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 6px;
+    transition: color 0.2s ease;
+}
+.dict-del-btn:hover {
+    color: #ef4444;
+}
+.dict-empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+}
+.dict-empty-state i {
+    font-size: 3rem;
+    color: var(--border-bright);
+    margin-bottom: 12px;
+    display: block;
+}
+
 
 
 

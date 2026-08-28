@@ -1,0 +1,137 @@
+{
+  "level": "B2",
+  "title": "Intermediate — Upper Intermediate",
+  "description": "Murakkab grammatika, akademik lug'at, argumentli yozuv va tahliliy o'qish.",
+  "modules": [
+    {
+      "id": "b2_m1",
+      "title": "Complex Grammar & Mixed Conditionals",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "«If I had studied harder, I ___ have a better job now.» — Mixed Conditional?",
+          "options": ["would", "will", "had", "would have"],
+          "answer": "would",
+          "word": { "en": "mixed conditional", "uz": "aralash shart ergash gap" }
+        },
+        {
+          "type": "write",
+          "prompt": "«I wish I ___ (know) the answer yesterday.» — afsuslanish izhor qilish:",
+          "answer": "had known",
+          "word": { "en": "I wish + Past Perfect", "uz": "o'tgan zamondagi afsus" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«In spite of» va «Although» o'rtasidagi asosiy grammatik farq nima?",
+          "options": ["«In spite of»dan so'ng ot/gerund, «Although»dan so mezon gap keladi", "Ikkalasi bir xil grammatik shakl oladi", "«Although» faqat gap oxirida keladi", "Xatolar yo'q"],
+          "answer": "«In spite of»dan so'ng ot/gerund, «Although»dan so mezon gap keladi",
+          "word": { "en": "in spite of / although", "uz": "qaramasdan / -ga qaramay" }
+        }
+      ]
+    },
+    {
+      "id": "b2_m2",
+      "title": "Akademik Lug'at & Collocations",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "«Substantially» so'zining eng yaqin sinonimi qaysi?",
+          "options": ["Significantly", "Slightly", "Barely", "Rarely"],
+          "answer": "Significantly",
+          "word": { "en": "substantially", "uz": "sezilarli darajada / ancha" }
+        },
+        {
+          "type": "write",
+          "prompt": "«Tadqiqot o'tkazmoq» iborasini inglizcha collocations shaklida yozing: «___ research»",
+          "answer": "conduct",
+          "word": { "en": "conduct research", "uz": "tadqiqot o'tkazmoq" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«Implement a strategy» iborasining ma'nosi nima?",
+          "options": ["Strategiyani amaliyotga joriy etish", "Strategiyani bekor qilish", "Strategiyani muhokama qilish", "Strategiyani rad etish"],
+          "answer": "Strategiyani amaliyotga joriy etish",
+          "word": { "en": "implement", "uz": "joriy etish / amalga oshirish" }
+        }
+      ]
+    },
+    {
+      "id": "b2_m3",
+      "title": "Argumentli Insho & Linking Words",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "Qaysi bog'lovchi kutilmagan zidlash va qarama-qarshilikni ko'rsatadi?",
+          "options": ["Nevertheless", "Furthermore", "Consequently", "Therefore"],
+          "answer": "Nevertheless",
+          "word": { "en": "nevertheless", "uz": "shunga qaramay / baribir" }
+        },
+        {
+          "type": "write",
+          "prompt": "«Xulosa qilib aytganda» — «In ___» (bir so'z yozing):",
+          "answer": "conclusion",
+          "word": { "en": "in conclusion", "uz": "xulosa qilib aytganda" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«On the one hand... On the other hand» strukturasi nimada qo'llaniladi?",
+          "options": ["Muammoning ikkala tomonini solishtirishda", "Faqat bir tomonlama dalil keltirishda", "Vaqt ketma-ketligini izohlashda", "Misollar keltirishda"],
+          "answer": "Muammoning ikkala tomonini solishtirishda",
+          "word": { "en": "on the other hand", "uz": "boshqa tomondan esa" }
+        }
+      ]
+    },
+    {
+      "id": "b2_m4",
+      "title": "Advanced Listening & Paraphrasing",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "Listening matnida parafraza (boshqacha so'zlar bilan qayta ifodalash) nima uchun muhim?",
+          "options": ["To'g'ri kalit so'zlarni va ma'nodoshlarni anglash uchun", "Matnni yodlab olish uchun", "Grammatikani tekshirish uchun", "Faqat tezlikni oshirish uchun"],
+          "answer": "To'g'ri kalit so'zlarni va ma'nodoshlarni anglash uchun",
+          "word": { "en": "paraphrase", "uz": "boshqacha so'zlar bilan ifodalash" }
+        },
+        {
+          "type": "write",
+          "prompt": "«Kengaymoq / Oshmoq» — «Increase» so'zining B2 sinonimini yozing (expand / ___):",
+          "answer": "expand",
+          "word": { "en": "expand", "uz": "kengaytirmoq / oshirmoq" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«Crucial» so'zining darajasi va ma'nosi?",
+          "options": ["Juda muhim / Hal qiluvchi (Extremely important)", "Kichik / Arzimagan", "Sekin / Oddiy", "Xavfli / Qo'rqinchli"],
+          "answer": "Juda muhim / Hal qiluvchi (Extremely important)",
+          "word": { "en": "crucial", "uz": "juda muhim / hal qiluvchi" }
+        }
+      ]
+    },
+    {
+      "id": "b2_m5",
+      "title": "Muloqot: Debat va Taqdimot",
+      "exercises": [
+        {
+          "type": "choose",
+          "prompt": "Taqdimot boshida e'tiborni tortish uchun qaysi ibora to'g'ri keladi?",
+          "options": ["Let me draw your attention to...", "I don't know what to say...", "That is all for today...", "Goodbye everyone..."],
+          "answer": "Let me draw your attention to...",
+          "word": { "en": "draw attention to", "uz": "e'tiboringizni qaratishga ruxsat bering" }
+        },
+        {
+          "type": "write",
+          "prompt": "«Clarify» so mezon fe'li o'zbekcha nima ma'noni beradi?",
+          "answer": "oydinlashtirmoq",
+          "word": { "en": "clarify", "uz": "oydinlashtirmoq / aniqlik kiritmoq" }
+        },
+        {
+          "type": "choose",
+          "prompt": "«To play devil's advocate» idiomasining ma'nosi nima?",
+          "options": ["Bahsni rivojlantirish uchun qarshi tomondan dalil keltirish", "Yomon niyatda urishish", "Advoqatlik qilish", "O'yin o'ynash"],
+          "answer": "Bahsni rivojlantirish uchun qarshi tomondan dalil keltirish",
+          "word": { "en": "play devil's advocate", "uz": "munozarani qizdirish uchun unga qarshi chiqmoq" }
+        }
+      ]
+    }
+  ]
+}

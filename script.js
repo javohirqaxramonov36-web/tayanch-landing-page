@@ -1776,14 +1776,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const area = document.getElementById('exerciseQuizArea');
         if (!area) return;
 
+        const solvedCount = (gamifyState.solved[m.id] || []).length;
+        const videoWatchedKey = `tayanch_video_watched_${m.id}`;
+        const isVideoWatched = localStorage.getItem(videoWatchedKey) === 'true';
+
         if (activeQIndex >= total) {
-            const solvedCount = (gamifyState.solved[m.id] || []).length;
             const allCorrect = solvedCount >= total;
             area.innerHTML = `
                 <div class="text-center py-4">
                     <i class="fa-solid ${allCorrect ? 'fa-trophy' : 'fa-flag-checkered'}" style="font-size:3.5rem; color:${allCorrect ? '#fbbf24' : '#00f2fe'}; margin-bottom:12px;"></i>
                     <h4 class="text-xl font-bold mb-2">${allCorrect ? "Tabriklaymiz! Modul to'liq bajarildi! 🏆" : "Modul yakunlandi!"}</h4>
-                    <p class="text-muted mb-4">${solvedCount}/${total} ta savolga to'g'ri javob berdingiz.</p>
+                    <p class="text-muted mb-4">${solvedCount}/${total} ta mashq bajarildi · ⭐ +${gamifyState.stars} 🪙 +${gamifyState.coins}</p>
                     <button class="btn btn-primary btn-glow" id="exerciseFinishBtn">Yopish va Davom Etish</button>
                 </div>`;
             document.getElementById('exerciseFinishBtn')?.addEventListener('click', closeGamifyModule);
@@ -1793,14 +1796,45 @@ document.addEventListener('DOMContentLoaded', () => {
         const q = m.exercises[activeQIndex];
         questionLocked = false;
 
+        const submodulesHeaderHTML = `
+            <div class="unit-submodules-container">
+                <div class="unit-submodule-item">
+                    <div class="unit-submodule-info">
+                        <div class="unit-submodule-icon"><i class="fa-solid fa-circle-play"></i></div>
+                        <div>
+                            <div style="font-weight:700; font-size:0.95rem; color:#fff;">1. Video Submodul</div>
+                            <div style="font-size:0.78rem; color:var(--text-muted);">${isVideoWatched ? 'Progress 1/1 (Bajarildi)' : 'Progress 0/1 (Ko\'rilmagan)'} · +10 XP</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" id="watchVideoBtn" style="padding:6px 12px; font-size:0.8rem;">
+                        <i class="fa-solid ${isVideoWatched ? 'fa-circle-check' : 'fa-play'}"></i> ${isVideoWatched ? 'Ko\'rilgan' : 'Darsni Ko\'rish'}
+                    </button>
+                </div>
+                <div class="unit-submodule-item" style="border-color:rgba(0,242,254,0.3);">
+                    <div class="unit-submodule-info">
+                        <div class="unit-submodule-icon" style="background:rgba(168,85,247,0.15); color:var(--accent-purple);"><i class="fa-solid fa-pen-ruler"></i></div>
+                        <div>
+                            <div style="font-weight:700; font-size:0.95rem; color:#fff;">2. Homework Compulsory</div>
+                            <div style="font-size:0.78rem; color:var(--text-muted);">Progress ${solvedCount}/${total} · ⭐ +1 | 🪙 +1 | +25 XP</div>
+                        </div>
+                    </div>
+                    <span style="font-size:0.8rem; font-weight:700; color:var(--primary-cyan);">${activeQIndex + 1}/${total} Mashq</span>
+                </div>
+            </div>
+        `;
+
         if (q.type === "choose") {
             area.innerHTML = `
-                <span class="q-type-badge choose"><i class="fa-solid fa-list-check"></i> TANLANG</span>
+                ${submodulesHeaderHTML}
+                <span class="q-type-badge choose"><i class="fa-solid fa-list-check"></i> CHOOSE ANSWER (TANLANG)</span>
                 <div class="exercise-prompt">${q.prompt}</div>
                 <div class="exercise-options-grid">
                     ${q.options.map((opt, i) => `<button class="exercise-opt-btn" data-i="${i}">${opt}</button>`).join('')}
                 </div>
                 <div class="exercise-feedback" id="exerciseFB"></div>
+                <div style="font-size:0.75rem; color:var(--text-dim); text-align:center; margin-top:10px;">
+                    <i class="fa-solid fa-database"></i> Faqat shu brauzerda saqlanadi (localStorage)
+                </div>
             `;
             const buttons = Array.from(area.querySelectorAll('.exercise-opt-btn'));
             buttons.forEach((btn, i) => {
@@ -1821,13 +1855,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         } else {
             area.innerHTML = `
-                <span class="q-type-badge write"><i class="fa-solid fa-keyboard"></i> YOZING</span>
+                ${submodulesHeaderHTML}
+                <span class="q-type-badge write"><i class="fa-solid fa-keyboard"></i> WRITE ANSWER (YOZING)</span>
                 <div class="exercise-prompt">${q.prompt}</div>
                 <div class="exercise-write-row">
                     <input type="text" class="exercise-write-input" id="exerciseWriteInput" placeholder="Javobingizni yozing..." autocomplete="off">
                     <button class="btn btn-primary" id="exerciseWriteSubmit">Tekshirish</button>
                 </div>
                 <div class="exercise-feedback" id="exerciseFB"></div>
+                <div style="font-size:0.75rem; color:var(--text-dim); text-align:center; margin-top:10px;">
+                    <i class="fa-solid fa-database"></i> Faqat shu brauzerda saqlanadi (localStorage)
+                </div>
             `;
             const input = document.getElementById('exerciseWriteInput');
             const submitBtn = document.getElementById('exerciseWriteSubmit');
@@ -1842,6 +1880,13 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn?.addEventListener('click', submit);
             input?.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
         }
+
+        document.getElementById('watchVideoBtn')?.addEventListener('click', () => {
+            localStorage.setItem(videoWatchedKey, 'true');
+            addXP(10, "Video darslik ko'rildi!");
+            showToast("📺 Video darslik ko'rildi! +10 XP");
+            renderGamifyQuestion();
+        });
     }
 
     function handleGamifyAnswer(isCorrect, correctAnswer) {

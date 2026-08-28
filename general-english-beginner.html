@@ -305,7 +305,7 @@
         <!-- Gamified Learning Path Roadmap -->
         <div class="gamify-path-container" id="roadmapPathContainer"></div>
 
-        <!-- 6 Aspects Navigation Tabs Bar -->
+        <!-- 6 Aspects & Resource Library Navigation Tabs Bar -->
         <div class="aspect-tabs-bar">
             <button class="aspect-tab-btn active" data-aspect="vocab"><i class="fa-solid fa-layer-group"></i> 1. Lug'at (Vocabulary)</button>
             <button class="aspect-tab-btn" data-aspect="grammar"><i class="fa-solid fa-code-branch"></i> 2. Grammatika & FMP</button>
@@ -313,6 +313,7 @@
             <button class="aspect-tab-btn" data-aspect="listening"><i class="fa-solid fa-headphones"></i> 4. Tinglash & Talaffuz</button>
             <button class="aspect-tab-btn" data-aspect="speaking"><i class="fa-solid fa-comments"></i> 5. Muloqot (Speaking)</button>
             <button class="aspect-tab-btn" data-aspect="writing"><i class="fa-solid fa-pen-nib"></i> 6. Yozuv (Writing)</button>
+            <button class="aspect-tab-btn" data-aspect="library"><i class="fa-solid fa-book-bookmark"></i> 7. Kutubxona & Podkastlar</button>
         </div>
 
         <!-- ASPECT 1: VOCABULARY & FLASHCARDS -->
@@ -612,6 +613,20 @@
             </div>
         </div>
 
+        <!-- ASPECT 7: RESOURCE LIBRARY (KITOB LAR & PODKASTLAR) -->
+        <div class="aspect-content-section" id="aspect-library">
+            <div class="module-box">
+                <div class="module-title">
+                    <i class="fa-solid fa-book-bookmark" style="color:var(--accent-purple);"></i> Resurslar Kutubxonasi (Kitoblar & Podkastlar)
+                </div>
+                <p class="text-muted text-sm">CEFR darajangiz va qiziqishingizga mos inglizcha badiiy kitoblar, audio podkastlar hamda o'qish materiallari.</p>
+
+                <div class="library-grid" id="libraryGridContainer">
+                    <!-- Rendered dynamically by JS -->
+                </div>
+            </div>
+        </div>
+
         <!-- Open Source License Attribution Box -->
         <div class="attribution-box text-center max-w-2xl margin-auto">
             <h4><i class="fa-solid fa-scale-balanced"></i> Ochiq Litsenziya va Mualliflik Ma'lumoti:</h4>
@@ -647,6 +662,21 @@
                 <div class="exercise-progress-fill" id="exerciseProgressFill"></div>
             </div>
             <div id="exerciseQuizArea"></div>
+        </div>
+    </div>
+
+    <!-- CEFR Level Transition Confirmation Lock Modal -->
+    <div class="cefr-lock-modal-overlay" id="cefrLockModal">
+        <div class="cefr-lock-modal-box">
+            <div class="cefr-lock-icon">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <div class="cefr-lock-title" id="cefrLockTargetTitle">Bosqichga O'tish</div>
+            <div class="cefr-lock-desc" id="cefrLockTargetDesc">Siz haqiqatan ham ushbu CEFR darajasiga o'tmoqchimisiz?</div>
+            <div class="cefr-lock-actions">
+                <button class="btn btn-secondary" id="cefrLockCancelBtn">Orqaga Qaytish</button>
+                <button class="btn btn-primary btn-glow" id="cefrLockConfirmBtn">Ha, O'tish va Davom Etish</button>
+            </div>
         </div>
     </div>
 

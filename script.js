@@ -1907,15 +1907,86 @@ document.addEventListener('DOMContentLoaded', () => {
         renderGamifyRoadmap();
     }
 
-    // CEFR Level Tabs Switching
+    /* CEFR Level Transition Confirmation Lock Modal */
+    let pendingCEFRLevel = null;
+
+    function openCEFRLockModal(targetLevel) {
+        pendingCEFRLevel = targetLevel;
+        const modal = document.getElementById('cefrLockModal');
+        const title = document.getElementById('cefrLockTargetTitle');
+        const desc = document.getElementById('cefrLockTargetDesc');
+        if (title) title.textContent = `${targetLevel} Bosqichiga O'tish`;
+        if (desc) desc.textContent = `Siz hozir ${currentCEFRLevel} bosqichidasiz. ${targetLevel} bosqichi darslari va topshiriqlariga o'tmoqchimisiz?`;
+        if (modal) modal.classList.add('active');
+    }
+
+    function closeCEFRLockModal() {
+        const modal = document.getElementById('cefrLockModal');
+        if (modal) modal.classList.remove('active');
+        pendingCEFRLevel = null;
+    }
+
+    const cefrLockConfirmBtn = document.getElementById('cefrLockConfirmBtn');
+    if (cefrLockConfirmBtn) {
+        cefrLockConfirmBtn.addEventListener('click', () => {
+            if (pendingCEFRLevel) {
+                const targetLevel = pendingCEFRLevel;
+                closeCEFRLockModal();
+                document.querySelectorAll('.cefr-tab-btn').forEach(b => {
+                    b.classList.toggle('active', b.dataset.level === targetLevel);
+                });
+                loadCEFRLevelModules(targetLevel);
+                showToast(`🚀 ${targetLevel} bosqichiga o'tildi!`);
+            }
+        });
+    }
+
+    const cefrLockCancelBtn = document.getElementById('cefrLockCancelBtn');
+    if (cefrLockCancelBtn) cefrLockCancelBtn.addEventListener('click', closeCEFRLockModal);
+
+    // CEFR Level Tabs Switching with Lock Confirmation
     document.querySelectorAll('.cefr-tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            document.querySelectorAll('.cefr-tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
             const level = btn.dataset.level || "A1";
-            loadCEFRLevelModules(level);
+            if (level !== currentCEFRLevel) {
+                openCEFRLockModal(level);
+            }
         });
     });
+
+    /* Resource Library (Kitoblar va Podkastlar) */
+    const LIBRARY_RESOURCES = [
+        { title: "The Elephant Man", type: "Book", cefr: "CEFR A1", genre: "Classic Story", views: "1.4k ko'rildi", desc: "Boshlang'ich darajadagi moslashtirilgan o'qish kitobi va so'zlar jamlanmasi." },
+        { title: "Sherlock Holmes & The Blue Diamond", type: "Book", cefr: "CEFR A2", genre: "Mystery & Crime", views: "2.9k ko'rildi", desc: "A2 Elementary darajasi uchun qiziqarli detektiv hikoya hamda grammatik tahlil." },
+        { title: "Circle of Life: Nature Stories", type: "Book", cefr: "CEFR B1", genre: "Education", views: "3.2k ko'rildi", desc: "B1 Pre-Intermediate darajasi uchun tabiat va jamiyat haqidagi akademik hikoyalar." },
+        { title: "6 Minute English: Daily Habits", type: "Podcast", cefr: "CEFR B1-B2", genre: "Listening & Pronunciation", views: "8.9k eshitildi", desc: "BBC uslubidagi 6 daqiqali audio dars va haqiqiy talaffuz mashqlari." },
+        { title: "AI & Future of Education", type: "Book", cefr: "CEFR B2", genre: "Science & Tech", views: "4.6k ko mezon", desc: "B2 Upper-Intermediate darajasidagi texnologik va akademik o'qish matnlari." },
+        { title: "Global Economy & Leadership", type: "Podcast", cefr: "CEFR C1", genre: "Academic Podcast", views: "12.4k eshitildi", desc: "C1 Advanced darajasidagi biznes va akademik tahliliy audio podkast." }
+    ];
+
+    function renderResourceLibrary() {
+        const container = document.getElementById('libraryGridContainer');
+        if (!container) return;
+
+        container.innerHTML = LIBRARY_RESOURCES.map(item => `
+            <div class="library-card">
+                <div>
+                    <div class="library-card-header">
+                        <span class="library-badge">${item.type} · ${item.cefr}</span>
+                        <span class="library-views"><i class="fa-solid fa-eye"></i> ${item.views}</span>
+                    </div>
+                    <div class="library-card-title">${item.title}</div>
+                    <div class="library-card-desc">${item.desc}</div>
+                </div>
+                <div class="library-card-footer">
+                    <span style="color:var(--accent-purple); font-weight:600;"><i class="fa-solid fa-tag"></i> ${item.genre}</span>
+                    <button class="btn btn-secondary speech-btn" data-speech="${item.title}. ${item.desc}" style="padding:6px 12px; font-size:12px;">
+                        <i class="fa-solid ${item.type === 'Podcast' ? 'fa-headphones' : 'fa-book-open'}"></i> ${item.type === 'Podcast' ? 'Tinglash' : 'O\'qish'}
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
 
     // Initialize Gamification Engine with saved level
     const initialSavedLevel = localStorage.getItem('tayanch_selected_cefr_level') || "A1";
@@ -1923,6 +1994,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.classList.toggle('active', btn.dataset.level === initialSavedLevel);
     });
     loadCEFRLevelModules(initialSavedLevel);
+    renderResourceLibrary();
 
     // Initialize UI
     updateGamifyUI();

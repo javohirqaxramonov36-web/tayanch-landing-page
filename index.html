@@ -23,6 +23,22 @@
             }).catch(function () {});
         })();
     </script>
+    <script>
+        /* Failsafe: script.js xato bersa yoki GSAP yuklanmasa ham barcha kontent
+           ko'rinadigan bo'ladi. script.js'dan mustaqil, ertaroq rejalashtirilgan. */
+        (function () {
+            function revealAll() {
+                document.querySelectorAll('.gsap-reveal, .hero-fade').forEach(function (el) {
+                    el.style.setProperty('opacity', '1', 'important');
+                    el.style.setProperty('transform', 'none', 'important');
+                    el.style.setProperty('visibility', 'visible', 'important');
+                });
+            }
+            document.addEventListener('DOMContentLoaded', function () { setTimeout(revealAll, 2000); });
+            window.addEventListener('load', function () { setTimeout(revealAll, 1500); });
+            setTimeout(revealAll, 3000); // load hodisasi uzilib qolsa ham ishlashi uchun
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

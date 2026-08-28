@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tayanch-v2';
+const CACHE_NAME = 'tayanch-v3';
 const ASSETS = [
   './',
   './index.html',

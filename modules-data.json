@@ -1,136 +1,50 @@
 {
-  "level": "A1",
-  "title": "Beginner — Starter",
-  "description": "Boshlang'ich iboralar, salomlashish, Be fe'li va kundalik eng kerakli muloqot so'zlari.",
+  "_izoh": "Bu fayl demo HTML ichidagi qattiq kodlangan massiv o'rniga ishlatiladi. Kontent yozuvchi (dasturchi bo'lmasa ham) shu faylni tahrirlab yangi savol qo'sha oladi. Har bir 'word' maydoni — mashqda xato javob berilsa avtomatik ⌘K lug'atiga qo'shiladigan so'z (qarang: englify-tahlil-va-prompt.md, Bosqich 6).",
+
   "modules": [
     {
-      "id": "a1_m1",
+      "id": "m1",
       "title": "Salomlashish va tanishtirish",
       "exercises": [
-        {
-          "type": "choose",
-          "prompt": "«Salom» so'zining inglizcha tarjimasi?",
-          "options": ["Hello", "Goodbye", "Please", "Thanks"],
-          "answer": "Hello",
-          "word": { "en": "hello", "uz": "salom / assalomu alaykum" }
-        },
-        {
-          "type": "choose",
-          "prompt": "«Mening ismim...» iborasi inglizchada qanday bo'ladi?",
-          "options": ["My name is...", "I am from...", "I like...", "How are you..."],
-          "answer": "My name is...",
-          "word": { "en": "my name is", "uz": "mening ismim..." }
-        },
-        {
-          "type": "write",
-          "prompt": "«Xayr» so'zini inglizcha yozing:",
-          "answer": "goodbye",
-          "word": { "en": "goodbye", "uz": "xayr / ko'rishguncha" }
-        }
+        { "type": "choose", "prompt": "«Salom» so'zining inglizcha tarjimasi?", "options": ["Hello", "Goodbye", "Please", "Thanks"], "answer": "Hello", "word": { "en": "hello", "uz": "salom" } },
+        { "type": "choose", "prompt": "«Mening ismim...» iborasi inglizchada?", "options": ["My name is...", "I am from...", "I like...", "How are you..."], "answer": "My name is...", "word": { "en": "my name is", "uz": "mening ismim" } },
+        { "type": "write", "prompt": "«Xayr» so'zini inglizcha yozing:", "answer": "goodbye", "word": { "en": "goodbye", "uz": "xayr" } }
       ]
     },
     {
-      "id": "a1_m2",
-      "title": "To Be fe'li grammatikasi",
+      "id": "m2",
+      "title": "Be fe'li",
       "exercises": [
-        {
-          "type": "choose",
-          "prompt": "«I ___ a student.» — bo'sh joyga mos so'zni tanlang:",
-          "options": ["am", "is", "are", "be"],
-          "answer": "am",
-          "word": { "en": "I am a student", "uz": "Men talabaman" }
-        },
-        {
-          "type": "choose",
-          "prompt": "«She ___ happy.» — bo'sh joyga mos so'z?",
-          "options": ["am", "is", "are", "be"],
-          "answer": "is",
-          "word": { "en": "she is happy", "uz": "u xursand" }
-        },
-        {
-          "type": "write",
-          "prompt": "«They ___ teachers.» — bo'sh joyga mos to be shaklini yozing:",
-          "answer": "are",
-          "word": { "en": "they are teachers", "uz": "ular o'qituvchilar" }
-        }
+        { "type": "choose", "prompt": "«I ___ a student.» — bo'sh joyga mos so'z?", "options": ["am", "is", "are", "be"], "answer": "am", "word": { "en": "am", "uz": "be fe'li (I bilan)" } },
+        { "type": "choose", "prompt": "«She ___ happy.» — bo'sh joyga mos so'z?", "options": ["am", "is", "are", "be"], "answer": "is", "word": { "en": "is", "uz": "be fe'li (she/he/it bilan)" } },
+        { "type": "write", "prompt": "«Ular o'qituvchi.» — «They ___ teachers.» bo'sh joyni yozing:", "answer": "are", "word": { "en": "are", "uz": "be fe'li (ko'plik bilan)" } }
       ]
     },
     {
-      "id": "a1_m3",
-      "title": "Kundalik so'zlar va buyumlar",
+      "id": "m3",
+      "title": "Kundalik so'zlar",
       "exercises": [
-        {
-          "type": "choose",
-          "prompt": "«Suv» so'zining inglizcha tarjimasi?",
-          "options": ["Water", "Bread", "Milk", "Tea"],
-          "answer": "Water",
-          "word": { "en": "water", "uz": "suv" }
-        },
-        {
-          "type": "write",
-          "prompt": "«Non» so'zini inglizcha yozing:",
-          "answer": "bread",
-          "word": { "en": "bread", "uz": "non" }
-        },
-        {
-          "type": "choose",
-          "prompt": "«Uy» so'zining inglizcha tarjimasi qaysi?",
-          "options": ["House", "Car", "Book", "Chair"],
-          "answer": "House",
-          "word": { "en": "house", "uz": "uy" }
-        }
+        { "type": "choose", "prompt": "«Suv» so'zining inglizcha tarjimasi?", "options": ["Water", "Bread", "Milk", "Tea"], "answer": "Water", "word": { "en": "water", "uz": "suv" } },
+        { "type": "write", "prompt": "«Non» so'zini inglizcha yozing:", "answer": "bread", "word": { "en": "bread", "uz": "non" } },
+        { "type": "choose", "prompt": "«Uy» so'zining inglizcha tarjimasi?", "options": ["House", "Car", "Book", "Chair"], "answer": "House", "word": { "en": "house", "uz": "uy" } }
       ]
     },
     {
-      "id": "a1_m4",
-      "title": "Sodda savollar berish",
+      "id": "m4",
+      "title": "Sodda savollar",
       "exercises": [
-        {
-          "type": "choose",
-          "prompt": "«Siz qayerdansiz?» iborasi inglizchada qanday?",
-          "options": ["Where are you from?", "What is your name?", "How old are you?", "What time is it?"],
-          "answer": "Where are you from?",
-          "word": { "en": "where are you from?", "uz": "siz qayerdansiz?" }
-        },
-        {
-          "type": "write",
-          "prompt": "«Necha yoshdasiz?» — «How old ___ you?» bo'sh joyni to'ldiring:",
-          "answer": "are",
-          "word": { "en": "how old are you?", "uz": "yoshingiz nechada?" }
-        },
-        {
-          "type": "choose",
-          "prompt": "«Soat necha?» ingliz tilida qanday so'raladi?",
-          "options": ["What time is it?", "Where is it?", "What is it?", "Who is it?"],
-          "answer": "What time is it?",
-          "word": { "en": "what time is it?", "uz": "soat necha bo'ldi?" }
-        }
+        { "type": "choose", "prompt": "«Siz qayerdansiz?» inglizchada qanday?", "options": ["Where are you from?", "What is your name?", "How old are you?", "What time is it?"], "answer": "Where are you from?", "word": { "en": "where are you from", "uz": "siz qayerdansiz" } },
+        { "type": "write", "prompt": "«Necha yoshdasiz?» — «How old ___ you?» bo'sh joyni yozing:", "answer": "are", "word": { "en": "how old are you", "uz": "necha yoshdasiz" } },
+        { "type": "choose", "prompt": "«Soat necha?» inglizchada qanday?", "options": ["What time is it?", "Where is it?", "What is it?", "Who is it?"], "answer": "What time is it?", "word": { "en": "what time is it", "uz": "soat necha" } }
       ]
     },
     {
-      "id": "a1_m5",
-      "title": "Audirlash va ko'rsatmalar",
+      "id": "m5",
+      "title": "Qisqa listening",
       "exercises": [
-        {
-          "type": "choose",
-          "prompt": "«Listen» so'zining o'zbekcha tarjimasi?",
-          "options": ["Tinglamoq", "Ko'rmoq", "O'qimoq", "Yozmoq"],
-          "answer": "Tinglamoq",
-          "word": { "en": "listen", "uz": "tinglamoq / quloq solmoq" }
-        },
-        {
-          "type": "write",
-          "prompt": "«Tushunmoq» so'zining inglizchasini yozing:",
-          "answer": "understand",
-          "word": { "en": "understand", "uz": "tushunmoq" }
-        },
-        {
-          "type": "choose",
-          "prompt": "«Repeat, please» — iborasining ma'nosi nima?",
-          "options": ["Qayta ayting, iltimos", "Sekinroq gapiring", "Yozib bering", "Tarjima qiling"],
-          "answer": "Qayta ayting, iltimos",
-          "word": { "en": "repeat, please", "uz": "qayta ayting, iltimos" }
-        }
+        { "type": "choose", "prompt": "«Listen» so'zining o'zbekcha tarjimasi?", "options": ["Tinglamoq", "Ko'rmoq", "O'qimoq", "Yozmoq"], "answer": "Tinglamoq", "word": { "en": "listen", "uz": "tinglamoq" } },
+        { "type": "write", "prompt": "«Tushunmoq» so'zini inglizcha yozing:", "answer": "understand", "word": { "en": "understand", "uz": "tushunmoq" } },
+        { "type": "choose", "prompt": "«Repeat, please» — bu iltimos nima haqida?", "options": ["Qayta ayting", "Sekinroq gapiring", "Yozib bering", "Tarjima qiling"], "answer": "Qayta ayting", "word": { "en": "repeat, please", "uz": "qayta ayting" } }
       ]
     }
   ]

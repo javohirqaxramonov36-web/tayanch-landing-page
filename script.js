@@ -2857,3 +2857,84 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+
+// --- Dinamik Countdown Taymer (Kun - Soat - Daqiqa - Soniya) ---
+(function initCountdown() {
+  // Keyingi qabul muddati (hozirgi vaqtdan 3 kun keyinga)
+  let targetDate = localStorage.getItem('tayanch_deadline_v1');
+  if (!targetDate || new Date(targetDate) <= new Date()) {
+    targetDate = new Date(Date.now() + (2 * 24 * 3600 + 14 * 3600 + 35 * 60 + 50) * 1000).toISOString();
+    localStorage.setItem('tayanch_deadline_v1', targetDate);
+  }
+
+  function updateTimer() {
+    const diff = Math.max(0, Math.floor((new Date(targetDate) - new Date()) / 1000));
+    const d = Math.floor(diff / (24 * 3600));
+    const h = Math.floor((diff % (24 * 3600)) / 3600);
+    const m = Math.floor((diff % 3600) / 60);
+    const s = diff % 60;
+
+    const elD = document.getElementById('cd-days');
+    const elH = document.getElementById('cd-hours');
+    const elM = document.getElementById('cd-minutes');
+    const elS = document.getElementById('cd-seconds');
+
+    if (elD) elD.textContent = String(d).padStart(2, '0');
+    if (elH) elH.textContent = String(h).padStart(2, '0');
+    if (elM) elM.textContent = String(m).padStart(2, '0');
+    if (elS) elS.textContent = String(s).padStart(2, '0');
+  }
+
+  setInterval(updateTimer, 1000);
+  updateTimer();
+})();
+
+
+// --- 360 Scroll Visualizer (Progressive Frame Loader + Mobile Fallback) ---
+(function optimizeVisualizer() {
+  const canvas = document.getElementById('heroFrameCanvas');
+  if (!canvas) return;
+
+  const isMobile = window.innerWidth < 768;
+  const TOTAL_FRAMES = isMobile ? 20 : 60; // Mobilda yengil rejim
+  const frames = [];
+  let loadedCount = 0;
+
+  // 1-kadrni darhol yuklaymiz (LCP tezlashishi uchun)
+  function loadFrame(idx, callback) {
+    if (frames[idx]) return;
+    const img = new Image();
+    img.src = `assets/frames/frame_${String(idx).padStart(3, '0')}.jpg`;
+    img.onload = () => {
+      frames[idx] = img;
+      loadedCount++;
+      if (callback) callback(img);
+    };
+    img.onerror = () => {
+      // Fallback agar kadr rasm fayli bo'lmasa
+      frames[idx] = null;
+    };
+  }
+
+  loadFrame(0);
+
+  // Qolgan kadrlarni foydalanuvchi scroll qilganda / idle vaqtda yuklaymiz
+  let idleLoader = null;
+  function startLazyFramesLoad() {
+    if (idleLoader) return;
+    let nextIdx = 1;
+    idleLoader = setInterval(() => {
+      if (nextIdx < TOTAL_FRAMES) {
+        loadFrame(nextIdx);
+        nextIdx += (isMobile ? 3 : 1);
+      } else {
+        clearInterval(idleLoader);
+      }
+    }, 40);
+  }
+
+  // Scroll hodisasi yoki 1.5 soniyadan keyin yuklashni boshlash
+  window.addEventListener('scroll', startLazyFramesLoad, { once: true, passive: true });
+  setTimeout(startLazyFramesLoad, 1500);
+})();

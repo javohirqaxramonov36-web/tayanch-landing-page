@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tayanch — Digital SAT Mock-Test & Resume Tizimi</title>
+  <title>Tayanch — Digital SAT Mock-Test Platformasi</title>
   
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
   <link rel="stylesheet" href="styles.css">
   
+  <!-- Telegram WebApp SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
   <style>
     body {
       background: #080b10;
@@ -22,7 +24,7 @@
       padding-bottom: 60px;
     }
     .mock-wrap {
-      max-width: 860px;
+      max-width: 900px;
       margin: 100px auto 40px;
       padding: 0 1.5rem;
     }
@@ -73,7 +75,6 @@
       padding: 5px 12px;
       border-radius: 999px;
       font-weight: 700;
-      letter-spacing: 0.02em;
     }
     .badge.active { background: rgba(255, 180, 84, 0.15); color: #ffb454; border: 1px solid rgba(255, 180, 84, 0.3); }
     .badge.completed { background: rgba(62, 207, 142, 0.15); color: #3ecf8e; border: 1px solid rgba(62, 207, 142, 0.3); }
@@ -186,13 +187,13 @@
     }
     .score-big {
       font-family: 'Outfit', sans-serif;
-      font-size: 3.5rem;
+      font-size: 4rem;
       font-weight: 800;
       text-align: center;
       background: linear-gradient(135deg, #00f2fe, #ec4899);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin: 10px 0 4px;
+      margin: 10px 0 2px;
     }
     .domain-row {
       display: flex;
@@ -200,6 +201,24 @@
       padding: 12px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       font-size: 0.95rem;
+    }
+    .review-card {
+      background: rgba(26, 33, 52, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+    .review-card.correct { border-left: 4px solid #3ecf8e; }
+    .review-card.incorrect { border-left: 4px solid #ff6b6b; }
+    .explanation-box {
+      background: rgba(0, 242, 254, 0.06);
+      border: 1px solid rgba(0, 242, 254, 0.15);
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #d1d5db;
     }
   </style>
 </head>
@@ -235,7 +254,7 @@
     <div id="home-screen">
       <h1 class="mock-header-title">Digital SAT Mock-Test Hub</h1>
       <p style="color:#9ca3af;margin-bottom:24px;font-size:1.05rem;">
-        Haqiqiy Bluebook formati, oraliq saqlash (Resume) va har bir Domain bo'yicha tahlil tizimi.
+        Haqiqiy Bluebook formati, oraliq saqlash (Resume), 1600 shkalali ball va tahlillar tizimi.
       </p>
 
       <div class="glass-card">
@@ -247,7 +266,7 @@
         <h2><i class="fa-solid fa-list-check" style="color:#00f2fe;"></i> Mock-Test Urinishlaringiz</h2>
         <div id="attempts-list"></div>
         <button id="new-test-btn" class="btn-action" style="margin-top:14px;width:100%;padding:14px;font-size:1rem;">
-          <i class="fa-solid fa-plus"></i> Yangi Mock-Testni Boshlash
+          <i class="fa-solid fa-plus"></i> Yangi Mock-Testni Boshlash (8 Savol · Reading & Math)
         </button>
       </div>
     </div>
@@ -258,7 +277,7 @@
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <div>
             <div style="font-size:0.85rem;color:#9ca3af;" id="test-name-label">To'liq Mock-Test</div>
-            <div style="font-size:1.1rem;font-weight:700;margin-top:2px;" id="q-counter">Savol 1 / 6</div>
+            <div style="font-size:1.1rem;font-weight:700;margin-top:2px;" id="q-counter">Savol 1 / 8</div>
           </div>
           <div class="timer" id="timer-display">32:00</div>
         </div>
@@ -283,13 +302,28 @@
     <!-- 3. Natijalar hisoboti ekrani -->
     <div id="report-screen" style="display:none;">
       <h1 class="mock-header-title">Imtihon Natijasi</h1>
+      
       <div class="glass-card">
-        <div class="score-big" id="report-score">0/6</div>
-        <div style="text-align:center;color:#9ca3af;font-size:1rem;margin-bottom:24px;" id="report-sub">To'g'ri javoblar ulushi</div>
-        <h2><i class="fa-solid fa-chart-pie" style="color:#ec4899;"></i> Domainlar bo'yicha tahlil</h2>
+        <div style="text-align:center;font-size:0.9rem;color:#9ca3af;text-transform:uppercase;letter-spacing:0.1em;">Hisoblangan SAT Balli</div>
+        <div class="score-big" id="report-sat-score">1480</div>
+        <div style="text-align:center;color:#00f2fe;font-size:1.1rem;font-weight:700;margin-bottom:20px;" id="report-sub">8 tadan 7 ta to'g'ri (88%)</div>
+        
+        <h2><i class="fa-solid fa-chart-pie" style="color:#ec4899;"></i> Bo'limlar bo'yicha taqsimot</h2>
         <div id="domain-breakdown"></div>
+
+        <div style="display:flex;gap:12px;margin-top:20px;">
+          <button class="btn-action" id="tg-share-btn" style="flex:1;"><i class="fa-brands fa-telegram"></i> Telegramga yuborish</button>
+          <button class="btn-secondary" id="toggle-review-btn" style="flex:1;"><i class="fa-solid fa-book-open"></i> Xatolar tahlili</button>
+        </div>
       </div>
-      <button class="btn-action" id="back-home-btn" style="width:100%;padding:14px;">
+
+      <!-- Xatolar va Tushuntirishlar bloki -->
+      <div id="review-section" style="display:none;">
+        <h2 style="font-family:'Outfit';margin-bottom:16px;color:#ffffff;"><i class="fa-solid fa-list-check" style="color:#3ecf8e;"></i> Savollar tahlili va tushuntirishlar</h2>
+        <div id="review-list"></div>
+      </div>
+
+      <button class="btn-secondary" id="back-home-btn" style="width:100%;padding:14px;margin-top:10px;">
         <i class="fa-solid fa-house"></i> Testlar Paneliga Qaytish
       </button>
     </div>
@@ -300,52 +334,75 @@
     const STORAGE_KEY = 'tayanch_mock_attempts_v1';
     const STREAK_KEY = 'tayanch_streak_v1';
 
+    // Haqiqiy SAT formatidagi kengaytirilgan savollar banki
     const SAMPLE_QUESTIONS = [
       {
         id: 'q1',
-        domain: 'Craft & Structure',
-        text: "Matnda muallif shahar transporti tizimidagi kechikishlarni tasvirlaydi. Quyidagi so'zlardan qaysi biri matn ohangini eng yaxshi ifodalaydi?",
-        options: ['Optimistik', 'Tanqidiy', 'Loqayd', 'Hazilomuz'],
-        correct: 1
+        domain: 'Craft & Structure (Reading)',
+        text: "The author describes urban transportation delays with subtle irony. Which choice best characterizes the tone of the passage?",
+        options: ['Unreservedly optimistic', 'Critical yet satirical', 'Completely indifferent', 'Aggressively hostile'],
+        correct: 1,
+        explanation: "'Critical yet satirical' to'g'ri: Muallif muammoni tanqid qiladi, lekin buni yengil kinoya (irony) orqali ifodalaydi."
       },
       {
         id: 'q2',
-        domain: 'Information & Ideas',
-        text: "Grafikda ko'rsatilgan ma'lumotlarga asoslanib, quyidagi xulosalardan qaysi biri eng to'g'ri?",
-        options: ['Daromad har yili bir xil o'sgan', 'O'sish sur'ati 2023-yilda pasaygan', 'Ma'lumot yetarli emas', '2021-yil eng past ko'rsatkichga ega'],
-        correct: 1
+        domain: 'Information & Ideas (Reading)',
+        text: "Based on the economic data provided, which finding, if true, would most directly support the researchers' hypothesis regarding market volatility?",
+        options: ['Consumer spending remained constant across all quarters.', 'Stock fluctuations intensified following unexpected policy changes.', 'Inflation dropped to historical lows in 2022.', 'International trade tariffs were universally repealed.'],
+        correct: 1,
+        explanation: "Kutilmagan siyosiy o'zgarishlar tebranishni (volatility) oshirishi tadqiqotchilar gipotezasini to'g'ridan-to'g'ri tasdiqlaydi."
       },
       {
         id: 'q3',
-        domain: 'Standard English Conventions',
-        text: "Gapdagi bo'sh joyga qaysi variant to'g'ri keladi: 'Talabalar, ___ testga tayyorlanmoqda, kutubxonada uchrashishdi.'",
-        options: ['kim', 'kimlar', 'ular', 'qaysi'],
-        correct: 2
+        domain: 'Standard English Conventions (Writing)',
+        text: "Choose the correct punctuation: 'The team of researchers _______ conducted extensive field experiments across three continents, published their landmark study yesterday.'",
+        options: ['who', 'which', 'whom', 'whose'],
+        correct: 0,
+        explanation: "'who' shaxslarga (researchers) nisbatan subyekt o'rnida to'g'ri keladi."
       },
       {
         id: 'q4',
-        domain: 'Algebra',
-        text: "Agar 3x + 7 = 22 bo'lsa, x ning qiymati nechaga teng?",
-        options: ['3', '5', '7', '9'],
-        correct: 1
+        domain: 'Expression of Ideas (Writing)',
+        text: "Which choice most effectively combines the two sentences at the underlined portion: 'The ancient manuscript was discovered in 1947. It revolutionized scholars\' understanding of early Mediterranean trade.'",
+        options: ['discovered in 1947, revolutionizing', 'discovered in 1947, it revolutionized', 'discovered in 1947; and revolutionized', 'discovered in 1947, having revolutionized'],
+        correct: 0,
+        explanation: "Qisqa va ravon bog'lovchi participial phrase ('discovered in 1947, revolutionizing...') eng samarali uslubdir."
       },
       {
         id: 'q5',
-        domain: 'Problem-Solving & Data Analysis',
-        text: "100 talabadan 65 tasi matematikadan, 40 tasi ingliz tilidan yuqori ball oldi. Agar 20 tasi ikkalasidan ham yuqori ball olgan bo'lsa, hech qaysi biridan yuqori ball olmagan talabalar soni nechta?",
-        options: ['5', '10', '15', '20'],
-        correct: 2
+        domain: 'Algebra (Math)',
+        text: "If 4x - 3(2 - x) = 15, what is the value of x?",
+        options: ['1', '3', '5', '7'],
+        correct: 1,
+        explanation: "4x - 6 + 3x = 15 => 7x = 21 => x = 3."
       },
       {
         id: 'q6',
-        domain: 'Advanced Math',
-        text: "f(x) = x² - 4x + 3 funksiyaning nol nuqtalari yig'indisi nechaga teng?",
-        options: ['1', '3', '4', '7'],
-        correct: 2
+        domain: 'Advanced Math (Math)',
+        text: "For the quadratic function f(x) = x² - 8x + 12, what is the sum of the zeros of the function?",
+        options: ['4', '6', '8', '12'],
+        correct: 2,
+        explanation: "Viyet teoremasiga ko'ra nol nuqtalar yig'indisi: -b/a = -(-8)/1 = 8."
+      },
+      {
+        id: 'q7',
+        domain: 'Problem-Solving & Data Analysis (Math)',
+        text: "A sample of 250 students showed that 60% participated in sports and 40% participated in music. If 20% participated in both, how many students participated in neither?",
+        options: ['25', '50', '75', '100'],
+        correct: 1,
+        explanation: "Kamida birida qatnashganlar: 60% + 40% - 20% = 80%. Qatnashmaganlar: 20%. 250 ning 20% = 50 nafar."
+      },
+      {
+        id: 'q8',
+        domain: 'Geometry & Trigonometry (Math)',
+        text: "In a right triangle ABC with right angle at C, if sin(A) = 3/5, what is the value of cos(B)?",
+        options: ['3/5', '4/5', '3/4', '5/3'],
+        correct: 0,
+        explanation: "To'g'ri burchakli uchburchakda o'tkir burchaklar uchun: sin(A) = cos(B) = 3/5."
       }
     ];
 
-    const TEST_DURATION_SEC = 32 * 60;
+    const TEST_DURATION_SEC = 35 * 60;
     let currentAttempt = null;
     let timerInterval = null;
 
@@ -389,7 +446,7 @@
 
       const streak = getStreak();
       document.getElementById('streak-display').textContent =
-        streak.count > 0 ? `${streak.count} kunlik streak — ajoyib natija!` : 'Hozircha streak yo'q — bugun 1 ta test yechib boshlang!';
+        streak.count > 0 ? `${streak.count} kunlik streak — ajoyib natija!` : 'Hozircha streak yo\'q — bugun 1 ta test yechib boshlang!';
       
       const navStreak = document.getElementById('nav-streak-val');
       if (navStreak) navStreak.textContent = streak.count > 0 ? `${streak.count} Combo` : '1 Combo';
@@ -399,7 +456,7 @@
       list.innerHTML = '';
 
       if (attempts.length === 0) {
-        list.innerHTML = '<div style="text-align:center;padding:24px;color:#9ca3af;">Hali urinishlar yo'q. Yangi mock-test boshlang.</div>';
+        list.innerHTML = '<div style="text-align:center;padding:24px;color:#9ca3af;">Hali urinishlar yo\'q. Yangi mock-test boshlang.</div>';
         return;
       }
 
@@ -410,7 +467,7 @@
 
         let badgeHtml, actionHtml;
         if (a.status === 'completed') {
-          badgeHtml = '<span class="badge completed"><i class="fa-solid fa-check"></i> Tugallangan</span>';
+          badgeHtml = '<span class="badge completed"><i class="fa-solid fa-check"></i> Tugallangan (' + (a.satScore || '1400') + ' ball)</span>';
           actionHtml = `<button class="btn-secondary" onclick="viewReport('${a.id}')">Natija</button>`;
         } else if (a.currentIndex > 0) {
           badgeHtml = '<span class="badge resumable"><i class="fa-solid fa-play"></i> Davom ettiriladi</span>';
@@ -539,6 +596,14 @@
       clearInterval(timerInterval);
       currentAttempt.status = 'completed';
       currentAttempt.completedAt = Date.now();
+      
+      let correct = 0;
+      SAMPLE_QUESTIONS.forEach(q => {
+        if (currentAttempt.answers[q.id] === q.correct) correct++;
+      });
+      // SAT 400 - 1600 scaled score hisobi
+      currentAttempt.satScore = 400 + Math.round((correct / SAMPLE_QUESTIONS.length) * 1200);
+
       upsertAttempt(currentAttempt);
       bumpStreak();
       viewReport(currentAttempt.id);
@@ -566,9 +631,11 @@
         }
       });
 
+      const satScore = attempt.satScore || (400 + Math.round((correctCount / SAMPLE_QUESTIONS.length) * 1200));
       const pct = Math.round((correctCount / SAMPLE_QUESTIONS.length) * 100);
-      document.getElementById('report-score').textContent = `${correctCount} / ${SAMPLE_QUESTIONS.length}`;
-      document.getElementById('report-sub').textContent = `To'g'ri javoblar ulushi: ${pct}%`;
+
+      document.getElementById('report-sat-score').textContent = satScore;
+      document.getElementById('report-sub').textContent = `${SAMPLE_QUESTIONS.length} tadan ${correctCount} ta to'g'ri (${pct}%)`;
 
       const breakdown = document.getElementById('domain-breakdown');
       breakdown.innerHTML = '';
@@ -578,8 +645,46 @@
         row.innerHTML = `<span style="color:#ffffff;font-weight:600;">${domain}</span><span style="color:#00f2fe;font-weight:700;">${stats.correct} / ${stats.total} (${Math.round((stats.correct/stats.total)*100)}%)</span>`;
         breakdown.appendChild(row);
       });
+
+      // Review Answers render qilish
+      const reviewList = document.getElementById('review-list');
+      reviewList.innerHTML = '';
+      SAMPLE_QUESTIONS.forEach((q, i) => {
+        const uAns = attempt.answers[q.id];
+        const isCorr = uAns === q.correct;
+        const card = document.createElement('div');
+        card.className = 'review-card ' + (isCorr ? 'correct' : 'incorrect');
+        card.innerHTML = `
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-weight:700;color:${isCorr ? '#3ecf8e' : '#ff6b6b'};">Savol ${i+1}: ${isCorr ? 'To\'g\'ri' : 'Noto\'g\'ri'}</span>
+            <span style="font-size:0.8rem;color:#9ca3af;">${q.domain}</span>
+          </div>
+          <div style="font-size:0.95rem;color:#ffffff;margin-bottom:10px;">${q.text}</div>
+          <div style="font-size:0.88rem;color:#d1d5db;">
+            <strong>Sizning javobingiz:</strong> ${uAns !== undefined ? String.fromCharCode(65 + uAns) + ') ' + q.options[uAns] : 'Belgilanmagan'}
+          </div>
+          <div style="font-size:0.88rem;color:#3ecf8e;margin-top:2px;">
+            <strong>To'g'ri javob:</strong> ${String.fromCharCode(65 + q.correct)}) ${q.options[q.correct]}
+          </div>
+          <div class="explanation-box">
+            <strong><i class="fa-solid fa-lightbulb"></i> Tushuntirish:</strong> ${q.explanation}
+          </div>
+        `;
+        reviewList.appendChild(card);
+      });
+
+      // Telegram Share tugmasi
+      document.getElementById('tg-share-btn').onclick = () => {
+        const msg = encodeURIComponent(`Men Tayanch platformasida Digital SAT Mock-Test topshirdim va ${satScore} ball oldim! 🚀`);
+        window.open(`https://t.me/share/url?url=https://javohirqaxramonov36-web.github.io/tayanch-landing-page/sat-mock.html&text=${msg}`, '_blank');
+      };
     }
     window.viewReport = viewReport;
+
+    document.getElementById('toggle-review-btn').addEventListener('click', () => {
+      const rev = document.getElementById('review-section');
+      rev.style.display = rev.style.display === 'none' ? 'block' : 'none';
+    });
 
     document.getElementById('back-home-btn').addEventListener('click', renderHome);
 

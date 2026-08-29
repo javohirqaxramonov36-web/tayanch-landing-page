@@ -2641,7 +2641,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const profileHudBtn = document.getElementById('profileHudBtn');
         const profileStorageStatus = document.getElementById('profileStorageStatus');
         if (!card || !list) return;
-        if (profileStorageStatus) profileStorageStatus.textContent = profileText(TAYANCH_ACCOUNT_SCOPE === 'device' ? 'deviceOnly' : 'accountLinked');
+        if (profileStorageStatus) profileStorageStatus.textContent = profileText(tayanchAuthUser ? 'accountLinked' : 'deviceOnly');
         const completed = ['address', 'education'].filter(profileIsComplete).length;
         if (progressLabel) progressLabel.textContent = `${completed}/2`;
         if (progressFill) progressFill.style.width = `${completed * 50}%`;

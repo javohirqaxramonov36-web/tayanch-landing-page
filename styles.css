@@ -4526,3 +4526,12 @@ input, button, select, textarea {
 .profile-hud-btn { background: rgba(62,207,142,.12); border: 1px solid rgba(62,207,142,.55); color: #3ecf8e; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: .85rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all .3s ease; }
 .profile-hud-btn:hover { background: #3ecf8e; color: #07120e; box-shadow: 0 0 15px rgba(62,207,142,.4); transform: translateY(-2px); }
 @media (max-width: 640px) { .profile-hud-btn { padding: 6px 10px; font-size: .76rem; } }
+
+/* Profile persistence status */
+.profile-storage-status { display: inline-flex; align-items: center; gap: .35rem; margin-top: .55rem; color: var(--text-dim); font-size: .72rem; }
+.profile-storage-status::before { content: '•'; color: var(--primary-cyan); font-size: 1rem; line-height: 0; }
+
+.profile-manual-entry { display: grid; gap: .7rem; }
+.profile-manual-input { width: 100%; padding: .8rem .9rem; color: #fff; border: 1px solid rgba(255,255,255,.14); border-radius: 10px; background: rgba(255,255,255,.05); outline: none; }
+.profile-manual-input:focus { border-color: var(--primary-cyan); box-shadow: 0 0 0 3px rgba(0,242,254,.1); }
+.profile-manual-save { width: 100%; }

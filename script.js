@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.__tayanchSupabaseInitError = error?.message || String(error);
             tayanchSupabase = null;
             tayanchAuthUser = null;
-            setProfileStorageStatus(`Supabase xatosi: ${error?.message || String(error)}`);
+            setProfileStorageStatus(profileText?.('deviceOnly') || 'Supabase vaqtincha mavjud emas — shu qurilmada saqlanmoqda.');
         }
     }
 

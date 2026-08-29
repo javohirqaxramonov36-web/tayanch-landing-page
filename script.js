@@ -141,6 +141,99 @@ document.addEventListener('DOMContentLoaded', () => {
     const TAYANCH_ACCOUNT_SCOPE = telegramAccountId ? `telegram-${telegramAccountId}` : 'device';
     const accountStorageKey = (name) => `tayanch_${name}_${TAYANCH_ACCOUNT_SCOPE}`;
 
+    /* ==========================================
+       1.1 SUPABASE PROFILE CLOUD SYNC
+       ========================================== */
+    // Faqat publishable kalit ishlatiladi. Service-role/maxfiy kalit frontendga kiritilmaydi.
+    const TAYANCH_SUPABASE_URL = 'https://uwgqlnvneqzcgzeroabm.supabase.co';
+    const TAYANCH_SUPABASE_PUBLISHABLE_KEY = 'sb_publishable__Yt-7wbq8c2EXgZkwdeQUg_16vy_cNf';
+    let tayanchSupabase = null;
+    let tayanchAuthUser = null;
+    let tayanchCloudInitPromise = null;
+
+    function setProfileStorageStatus(message) {
+        const status = document.getElementById('profileStorageStatus');
+        if (status) status.textContent = message;
+    }
+
+    async function saveProfileModuleToCloud(module, payload, awardReward) {
+        if (tayanchCloudInitPromise) await tayanchCloudInitPromise;
+        if (!tayanchSupabase || !tayanchAuthUser) return null;
+
+        const { data, error } = await tayanchSupabase.rpc('save_profile_module', {
+            p_module: module,
+            p_address: module === 'address' ? payload : null,
+            p_education_type: module === 'education' ? payload : null,
+            p_award_reward: Boolean(awardReward)
+        });
+        if (error) throw error;
+        const row = data?.profile || data;
+        if (row) applyCloudProfile(row);
+        return row;
+    }
+
+    function applyCloudProfile(row) {
+        if (!row) return;
+        if (row.address) profileState.address = row.address;
+        if (row.education_type) profileState.education = row.education_type;
+        profileState.rewards.address = Boolean(row.address);
+        profileState.rewards.education = Boolean(row.education_type);
+        persistProfileState();
+
+        if (Number.isFinite(Number(row.xp_total))) userXP = Number(row.xp_total);
+        if (Number.isFinite(Number(row.combo))) userStreak = Number(row.combo);
+        if (Array.isArray(row.unlocked_badges)) unlockedBadges = row.unlocked_badges;
+        localStorage.setItem(XP_STORAGE_KEY, String(userXP));
+        localStorage.setItem(STREAK_STORAGE_KEY, String(userStreak));
+        localStorage.setItem(BADGES_STORAGE_KEY, JSON.stringify(unlockedBadges));
+        updateGamifyUI();
+        renderProfileCompletion();
+    }
+
+    async function syncLocalProfileToCloud() {
+        if (!tayanchSupabase || !tayanchAuthUser) return;
+        if (profileState.address) await saveProfileModuleToCloud('address', profileState.address, Boolean(profileState.rewards.address));
+        if (profileState.education) await saveProfileModuleToCloud('education', profileState.education, Boolean(profileState.rewards.education));
+    }
+
+    async function initTayanchCloud() {
+        try {
+            if (!window.supabase?.createClient) {
+                setProfileStorageStatus(profileText?.('deviceOnly') || 'Hozircha shu qurilmada saqlanmoqda.');
+                return;
+            }
+            tayanchSupabase = window.supabase.createClient(TAYANCH_SUPABASE_URL, TAYANCH_SUPABASE_PUBLISHABLE_KEY, {
+                auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false }
+            });
+            let { data: sessionData, error: sessionError } = await tayanchSupabase.auth.getSession();
+            if (sessionError) throw sessionError;
+            let session = sessionData?.session || null;
+            if (!session) {
+                const result = await tayanchSupabase.auth.signInAnonymously();
+                if (result.error) throw result.error;
+                session = result.data?.session || null;
+            }
+            tayanchAuthUser = session?.user || null;
+            if (!tayanchAuthUser) throw new Error('Supabase session yaratilmadi');
+
+            setProfileStorageStatus('Supabase akkauntiga bog‘langan.');
+            const { data: cloudProfile, error: profileError } = await tayanchSupabase
+                .from('profiles')
+                .select('id,address,education_type,xp_total,combo,streak,last_active_date,unlocked_badges')
+                .maybeSingle();
+            if (profileError) throw profileError;
+
+            if (cloudProfile) applyCloudProfile(cloudProfile);
+            else await syncLocalProfileToCloud();
+            renderProfileCompletion();
+        } catch (error) {
+            console.warn('[profile] Supabase sync failed; local fallback active:', error);
+            tayanchSupabase = null;
+            tayanchAuthUser = null;
+            setProfileStorageStatus(profileText?.('deviceOnly') || 'Supabase vaqtincha mavjud emas — shu qurilmada saqlanmoqda.');
+        }
+    }
+
 
     /* ==========================================
        2. MULTI-LANGUAGE TRANSLATION DICTIONARY (UZ / EN)
@@ -2330,8 +2423,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const PROFILE_STORAGE_KEY = accountStorageKey('profile_completion_v1');
     const LEGACY_PROFILE_STORAGE_KEY = 'tayanch_profile_completion_v1';
     const profileCopy = {
-        uz: { address: 'Manzil', education: 'Ta\'lim', addressHint: 'Manzil ma\'lumotlarini kiriting', educationHint: 'Tashkilot turini tanlang', reward: '+20 XP', done: '✓ Bajarildi', edit: 'Tahrirlash', save: 'Saqlash', search: 'Qidirish', selectCountry: 'Mamlakatni tanlang', selectRegion: 'Hududni tanlang', selectDistrict: 'Tuman/Shaharni tanlang', selectMahalla: 'Mahallani tanlang', chooseOrg: 'Tashkilot turi', empty: 'Mos ma\'lumot topilmadi', manualMahallaHint: 'Bu tuman bo‘yicha ochiq katalogda mahalla qatori topilmadi. Mahalla nomini ixtiyoriy kiriting.', manualMahallaPlaceholder: 'Mahalla nomi', confirm: 'Tasdiqlash', saved: 'Ma\'lumot yangilandi. XP avval berilgan.', earned: '✅ +20 XP qo\'lga kiritdingiz!', loading: 'Hududlar yuklanmoqda…', accountLinked: 'Telegram akkauntingiz uchun shu qurilmada saqlanmoqda.', deviceOnly: 'Hozircha shu qurilmada saqlanmoqda.' },
-        en: { address: 'Address', education: 'Education', addressHint: 'Add your address details', educationHint: 'Choose your organization type', reward: '+20 XP', done: '✓ Completed', edit: 'Edit', save: 'Save', search: 'Search', selectCountry: 'Choose a country', selectRegion: 'Choose a region', selectDistrict: 'Choose a district/city', selectMahalla: 'Choose a mahalla', chooseOrg: 'Organization type', empty: 'No matching results', manualMahallaHint: 'No mahalla row was found in the public catalog for this district. Enter the name optionally.', manualMahallaPlaceholder: 'Mahalla name', confirm: 'Confirm', saved: 'Details updated. XP was already awarded.', earned: '✅ You earned +20 XP!', loading: 'Loading regions…', accountLinked: 'Saved on this device under your Telegram account scope.', deviceOnly: 'Saved on this device for now.' }
+        uz: { address: 'Manzil', education: 'Ta\'lim', addressHint: 'Manzil ma\'lumotlarini kiriting', educationHint: 'Tashkilot turini tanlang', reward: '+20 XP', done: '✓ Bajarildi', edit: 'Tahrirlash', save: 'Saqlash', search: 'Qidirish', selectCountry: 'Mamlakatni tanlang', selectRegion: 'Hududni tanlang', selectDistrict: 'Tuman/Shaharni tanlang', selectMahalla: 'Mahallani tanlang', chooseOrg: 'Tashkilot turi', empty: 'Mos ma\'lumot topilmadi', manualMahallaHint: 'Bu tuman bo‘yicha ochiq katalogda mahalla qatori topilmadi. Mahalla nomini ixtiyoriy kiriting.', manualMahallaPlaceholder: 'Mahalla nomi', confirm: 'Tasdiqlash', saved: 'Ma\'lumot yangilandi. XP avval berilgan.', earned: '✅ +20 XP qo\'lga kiritdingiz!', loading: 'Hududlar yuklanmoqda…', accountLinked: 'Supabase akkauntiga bog‘langan.', deviceOnly: 'Supabase vaqtincha mavjud emas — shu qurilmada saqlanmoqda.' },
+        en: { address: 'Address', education: 'Education', addressHint: 'Add your address details', educationHint: 'Choose your organization type', reward: '+20 XP', done: '✓ Completed', edit: 'Edit', save: 'Save', search: 'Search', selectCountry: 'Choose a country', selectRegion: 'Choose a region', selectDistrict: 'Choose a district/city', selectMahalla: 'Choose a mahalla', chooseOrg: 'Organization type', empty: 'No matching results', manualMahallaHint: 'No mahalla row was found in the public catalog for this district. Enter the name optionally.', manualMahallaPlaceholder: 'Mahalla name', confirm: 'Confirm', saved: 'Details updated. XP was already awarded.', earned: '✅ You earned +20 XP!', loading: 'Loading regions…', accountLinked: 'Linked to your Supabase account.', deviceOnly: 'Supabase is temporarily unavailable — saved on this device.' }
     };
     const profileText = key => (profileCopy[activeLanguage === 'en' ? 'en' : 'uz'][key] || key);
     const profileDefault = { address: null, education: null, rewards: { address: false, education: false } };
@@ -2480,24 +2573,62 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast(profileText('earned'), 'success');
     }
 
-    function saveAddressProfile() {
+    async function saveAddressProfile() {
         if (!profileIsDraftAddressComplete()) return;
+        const saveBtn = document.getElementById('addressSaveBtn');
         const wasRewarded = profileState.rewards.address;
-        profileState.address = { ...profileAddressDraft };
-        persistProfileState();
-        if (wasRewarded) showToast(profileText('saved'), 'info'); else awardProfileXP('address');
-        closeProfileModal(document.getElementById('addressModal'));
-        renderProfileCompletion();
+        const nextAddress = { ...profileAddressDraft };
+        if (saveBtn) saveBtn.disabled = true;
+        try {
+            if (tayanchCloudInitPromise) await tayanchCloudInitPromise;
+            if (tayanchSupabase && tayanchAuthUser) {
+                await saveProfileModuleToCloud('address', nextAddress, !wasRewarded);
+                showToast(wasRewarded ? profileText('saved') : profileText('earned'));
+            } else {
+                profileState.address = nextAddress;
+                persistProfileState();
+                if (wasRewarded) showToast(profileText('saved')); else awardProfileXP('address');
+            }
+        } catch (error) {
+            console.warn('[profile] Address cloud save failed; local fallback active:', error);
+            profileState.address = nextAddress;
+            persistProfileState();
+            if (wasRewarded) showToast(profileText('saved')); else awardProfileXP('address');
+            showToast('Bulutga saqlash vaqtincha amalga oshmadi. Ma’lumot qurilmada saqlandi.', 'error');
+        } finally {
+            if (saveBtn) saveBtn.disabled = false;
+            closeProfileModal(document.getElementById('addressModal'));
+            renderProfileCompletion();
+        }
     }
 
-    function saveEducationProfile() {
+    async function saveEducationProfile() {
         if (!profileEducationDraft) return;
+        const saveBtn = document.getElementById('educationSaveBtn');
         const wasRewarded = profileState.rewards.education;
-        profileState.education = profileEducationDraft;
-        persistProfileState();
-        if (wasRewarded) showToast(profileText('saved'), 'info'); else awardProfileXP('education');
-        closeProfileModal(document.getElementById('educationModal'));
-        renderProfileCompletion();
+        const nextEducation = profileEducationDraft;
+        if (saveBtn) saveBtn.disabled = true;
+        try {
+            if (tayanchCloudInitPromise) await tayanchCloudInitPromise;
+            if (tayanchSupabase && tayanchAuthUser) {
+                await saveProfileModuleToCloud('education', nextEducation, !wasRewarded);
+                showToast(wasRewarded ? profileText('saved') : profileText('earned'));
+            } else {
+                profileState.education = nextEducation;
+                persistProfileState();
+                if (wasRewarded) showToast(profileText('saved')); else awardProfileXP('education');
+            }
+        } catch (error) {
+            console.warn('[profile] Education cloud save failed; local fallback active:', error);
+            profileState.education = nextEducation;
+            persistProfileState();
+            if (wasRewarded) showToast(profileText('saved')); else awardProfileXP('education');
+            showToast('Bulutga saqlash vaqtincha amalga oshmadi. Ma’lumot qurilmada saqlandi.', 'error');
+        } finally {
+            if (saveBtn) saveBtn.disabled = false;
+            closeProfileModal(document.getElementById('educationModal'));
+            renderProfileCompletion();
+        }
     }
 
     function renderProfileCompletion() {
@@ -2568,6 +2699,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderProfileCompletion();
     loadProfileRegions();
+    tayanchCloudInitPromise = initTayanchCloud();
 
     // Initialize Gamification Engine with saved level
     const initialSavedLevel = localStorage.getItem('tayanch_selected_cefr_level') || "A1";

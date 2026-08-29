@@ -1261,10 +1261,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const readScopedValue = (scopedKey, legacyKey, fallback) => {
         const scopedValue = localStorage.getItem(scopedKey);
         if (scopedValue !== null) return scopedValue;
-        const legacyValue = localStorage.getItem(legacyKey);
-        if (legacyValue !== null) {
-            localStorage.setItem(scopedKey, legacyValue);
-            return legacyValue;
+        if (TAYANCH_ACCOUNT_SCOPE === 'device') {
+            const legacyValue = localStorage.getItem(legacyKey);
+            if (legacyValue !== null) {
+                localStorage.setItem(scopedKey, legacyValue);
+                return legacyValue;
+            }
         }
         return fallback;
     };
@@ -2333,7 +2335,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     const profileText = key => (profileCopy[activeLanguage === 'en' ? 'en' : 'uz'][key] || key);
     const profileDefault = { address: null, education: null, rewards: { address: false, education: false } };
-    const savedProfile = SafeStorage.get(PROFILE_STORAGE_KEY, SafeStorage.get(LEGACY_PROFILE_STORAGE_KEY, profileDefault)) || profileDefault;
+    const savedProfile = SafeStorage.get(PROFILE_STORAGE_KEY, TAYANCH_ACCOUNT_SCOPE === 'device' ? SafeStorage.get(LEGACY_PROFILE_STORAGE_KEY, profileDefault) : profileDefault) || profileDefault;
     const profileState = {
         address: savedProfile.address || null,
         education: savedProfile.education || null,

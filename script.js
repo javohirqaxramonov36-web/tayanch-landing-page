@@ -198,13 +198,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function initTayanchCloud() {
         try {
-            let createSupabaseClient = window.supabase?.createClient;
-            if (!createSupabaseClient) {
-                const supabaseModule = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
-                createSupabaseClient = supabaseModule.createClient;
+            if (!window.supabase?.createClient) {
+                setProfileStorageStatus(profileText?.('deviceOnly') || 'Hozircha shu qurilmada saqlanmoqda.');
+                return;
             }
-            if (typeof createSupabaseClient !== 'function') throw new Error('Supabase JS client yuklanmadi');
-            tayanchSupabase = createSupabaseClient(TAYANCH_SUPABASE_URL, TAYANCH_SUPABASE_PUBLISHABLE_KEY, {
+            tayanchSupabase = window.supabase.createClient(TAYANCH_SUPABASE_URL, TAYANCH_SUPABASE_PUBLISHABLE_KEY, {
                 auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false }
             });
             let { data: sessionData, error: sessionError } = await tayanchSupabase.auth.getSession();
@@ -230,9 +228,10 @@ document.addEventListener('DOMContentLoaded', () => {
             renderProfileCompletion();
         } catch (error) {
             console.warn('[profile] Supabase sync failed; local fallback active:', error);
+            window.__tayanchSupabaseInitError = error?.message || String(error);
             tayanchSupabase = null;
             tayanchAuthUser = null;
-            setProfileStorageStatus(profileText?.('deviceOnly') || 'Supabase vaqtincha mavjud emas — shu qurilmada saqlanmoqda.');
+            setProfileStorageStatus(`Supabase xatosi: ${error?.message || String(error)}`);
         }
     }
 

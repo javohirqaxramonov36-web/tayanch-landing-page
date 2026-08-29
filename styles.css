@@ -4589,3 +4589,23 @@ input, button, select, textarea {
   .support-amount-option { min-height: 54px; }
   .support-footer .footer-bottom { align-items: flex-start; flex-direction: column; }
 }
+
+/* XP Store / Mukofotlar do'koni */
+.xp-store-page { min-height: 100vh; overflow-x: hidden; }
+.store-balance { display: inline-flex; align-items: center; gap: .35rem; padding: .55rem .8rem; color: var(--primary-cyan); font-size: .85rem; border: 1px solid rgba(0,242,254,.25); border-radius: 999px; background: rgba(0,242,254,.08); }
+.store-balance i { color: #fbbf24; }
+.store-status { min-height: 1.25rem; margin-top: .8rem; color: var(--text-dim); font-size: .78rem; }
+.store-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; margin-top: 2rem; }
+.store-item { display: flex; gap: 1rem; padding: 1.25rem; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; background: rgba(255,255,255,.045); box-shadow: 0 18px 50px rgba(0,0,0,.14); }
+.store-item.owned { border-color: rgba(62,207,142,.45); background: rgba(62,207,142,.06); }
+.store-item-icon { display: grid; flex: 0 0 50px; place-items: center; width: 50px; height: 50px; font-size: 1.55rem; border-radius: 15px; background: linear-gradient(145deg,rgba(0,242,254,.12),rgba(168,85,247,.18)); }
+.store-item-body { display: flex; flex: 1; flex-direction: column; min-width: 0; }
+.store-item h2 { margin: 0; color: #fff; font-size: 1.05rem; }
+.store-item p { margin: .45rem 0 1rem; color: var(--text-muted); font-size: .82rem; line-height: 1.5; }
+.store-item-footer { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-top: auto; }
+.store-price { color: #fbbf24; font-size: .82rem; font-weight: 700; }
+.store-price i { margin-right: .35rem; }
+.store-buy-btn:disabled { opacity: .5; cursor: not-allowed; filter: grayscale(.6); }
+.store-empty, .store-loading { grid-column: 1/-1; padding: 2rem; color: var(--text-muted); text-align: center; border: 1px dashed rgba(255,255,255,.15); border-radius: 15px; }
+@media(max-width:760px){.store-grid{grid-template-columns:1fr}.store-balance{font-size:.75rem;padding:.45rem .6rem}}
+@media(max-width:480px){.store-item{padding:1rem}.store-item-footer{align-items:flex-start;flex-direction:column}.store-buy-btn{width:100%}.support-nav-actions{flex-wrap:wrap}}

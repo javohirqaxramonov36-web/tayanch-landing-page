@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tayanch — Qo‘llab-quvvatlash</title>
+  <meta name="description" content="Tayanch ta’lim platformasini ixtiyoriy ravishda qo‘llab-quvvatlang.">
+  <link rel="canonical" href="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/support.html">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="stylesheet" href="styles.css?v=1788000001">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="liquid-theme support-page">
+  <div class="liquid-blob blob-1"></div><div class="liquid-blob blob-2"></div><div class="bg-grid-pattern"></div>
+  <header class="navbar liquid-navbar support-navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand" aria-label="Tayanch bosh sahifa"><div class="brand-icon liquid-glow-icon"><i class="fa-solid fa-compass-drafting"></i></div><span class="brand-name">TAYANCH<span class="brand-dot">.</span></span></a>
+      <div class="support-nav-actions">
+        <div class="lang-switcher liquid-pill" aria-label="Tilni tanlash"><button class="lang-btn active" id="supportUzBtn">UZ</button><span class="lang-divider">|</span><button class="lang-btn" id="supportEnBtn">EN</button></div>
+        <a class="btn btn-secondary support-back-link" href="index.html"><i class="fa-solid fa-arrow-left"></i> <span data-support-i18n="back">Bosh sahifaga qaytish</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="support-main">
+    <section class="support-hero container">
+      <div class="section-tag"><i class="fa-solid fa-hand-holding-heart"></i> <span data-support-i18n="tag">Ixtiyoriy yordam</span></div>
+      <h1 class="section-title" data-support-i18n="title">Tayanch’ni <span class="gradient-text">qo‘llab-quvvatlang</span></h1>
+      <p class="section-desc" data-support-i18n="desc">Sizning ko‘magingiz yangi kurslar, amaliy video-darslar va bepul ta’lim imkoniyatlarini rivojlantirishga yordam beradi.</p>
+    </section>
+
+    <section class="container support-layout" aria-label="Qo‘llab-quvvatlash formasi">
+      <div class="support-info liquid-glass-card">
+        <div class="support-info-icon liquid-glow-icon"><i class="fa-solid fa-seedling"></i></div>
+        <h2 data-support-i18n="whyTitle">Yordamingiz nimaga xizmat qiladi?</h2>
+        <ul class="support-benefits">
+          <li><i class="fa-solid fa-check"></i><span data-support-i18n="benefit1">Yangi AI, IELTS va Admission darslarini tayyorlashga</span></li>
+          <li><i class="fa-solid fa-check"></i><span data-support-i18n="benefit2">O‘quv materiallarini bepul saqlash va yaxshilashga</span></li>
+          <li><i class="fa-solid fa-check"></i><span data-support-i18n="benefit3">Yoshlar uchun amaliy imkoniyatlarni kengaytirishga</span></li>
+        </ul>
+        <div class="support-note"><i class="fa-solid fa-shield-halved"></i><span data-support-i18n="note">Qo‘llab-quvvatlash to‘liq ixtiyoriy. Hech qanday kurs yoki xizmat bunga bog‘lanmaydi.</span></div>
+      </div>
+
+      <div class="support-form-card liquid-glass-card">
+        <div class="support-form-heading"><div><span class="support-kicker" data-support-i18n="amountKicker">1-qadam</span><h2 data-support-i18n="amountTitle">Miqdorni tanlang</h2></div><i class="fa-solid fa-wallet"></i></div>
+        <div class="support-amount-grid" role="radiogroup" aria-label="Qo‘llab-quvvatlash miqdori">
+          <button type="button" class="support-amount-option" data-amount="20000">20 000 <small>so‘m</small></button>
+          <button type="button" class="support-amount-option" data-amount="50000">50 000 <small>so‘m</small></button>
+          <button type="button" class="support-amount-option" data-amount="100000">100 000 <small>so‘m</small></button>
+        </div>
+        <label class="support-custom-label" for="supportCustomAmount" data-support-i18n="customAmount">Ixtiyoriy miqdor</label>
+        <div class="support-custom-input"><input id="supportCustomAmount" type="number" min="1000" step="1000" inputmode="numeric" placeholder="Masalan: 30 000" aria-label="Ixtiyoriy miqdor"><span>so‘m</span></div>
+
+        <div class="support-form-heading support-method-heading"><div><span class="support-kicker" data-support-i18n="methodKicker">2-qadam</span><h2 data-support-i18n="methodTitle">To‘lov usuli</h2></div><i class="fa-solid fa-credit-card"></i></div>
+        <div class="support-method-grid">
+          <button type="button" class="support-method-option" disabled><strong>Payme</strong><span data-support-i18n="comingSoon">Tez kunda</span></button>
+          <button type="button" class="support-method-option" disabled><strong>Click</strong><span data-support-i18n="comingSoon">Tez kunda</span></button>
+        </div>
+        <div class="support-payment-status"><i class="fa-solid fa-circle-info"></i><span data-support-i18n="paymentNote">Payme yoki Click merchant hisobi ulanmaguncha to‘lovni qabul qilish tugmasi faol emas.</span></div>
+        <button type="button" class="btn btn-primary btn-glow btn-liquid w-full support-submit-btn" id="supportSubmitBtn" disabled><i class="fa-solid fa-heart"></i><span data-support-i18n="submit">Qo‘llab-quvvatlash</span><div class="liquid-wave"></div></button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer support-footer"><div class="container"><div class="footer-bottom"><p>© 2026 Tayanch Educational Platform.</p><a href="index.html" data-support-i18n="back">Bosh sahifaga qaytish</a></div></div></footer>
+  <script src="support.js?v=1788000001" defer></script>
+</body>
+</html>

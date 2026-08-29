@@ -156,6 +156,28 @@ document.addEventListener('DOMContentLoaded', () => {
         if (status) status.textContent = message;
     }
 
+    async function linkTelegramAccountToCloud() {
+        if (!tayanchSupabase || !tayanchAuthUser) return;
+        const initData = window.Telegram?.WebApp?.initData;
+        if (!telegramAccountId || !initData) return;
+
+        const { data, error } = await tayanchSupabase.functions.invoke('link-telegram-account', {
+            body: { init_data: initData }
+        });
+        if (error) throw error;
+        if (data?.error) throw new Error(data.error);
+
+        if (data?.requires_session && data?.token_hash) {
+            const { data: sessionData, error: sessionError } = await tayanchSupabase.auth.verifyOtp({
+                token_hash: data.token_hash,
+                type: 'magiclink'
+            });
+            if (sessionError) throw sessionError;
+            tayanchAuthUser = sessionData?.user || sessionData?.session?.user || null;
+            if (!tayanchAuthUser) throw new Error('Telegram Supabase sessiyasi yaratilmadi');
+        }
+    }
+
     async function saveProfileModuleToCloud(module, payload, awardReward) {
         if (tayanchCloudInitPromise) await tayanchCloudInitPromise;
         if (!tayanchSupabase || !tayanchAuthUser) return null;
@@ -216,7 +238,8 @@ document.addEventListener('DOMContentLoaded', () => {
             tayanchAuthUser = session?.user || null;
             if (!tayanchAuthUser) throw new Error('Supabase session yaratilmadi');
 
-            setProfileStorageStatus('Supabase akkauntiga bog‘langan.');
+            await linkTelegramAccountToCloud();
+            setProfileStorageStatus(telegramAccountId ? 'Telegram akkauntingiz Supabase bilan bog‘langan.' : 'Supabase akkauntiga bog‘langan.');
             const { data: cloudProfile, error: profileError } = await tayanchSupabase
                 .from('profiles')
                 .select('id,address,education_type,xp_total,combo,streak,last_active_date,unlocked_badges')

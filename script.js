@@ -115,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ==========================================
        1. TELEGRAM WEBAPP SDK INTEGRATION
        ========================================== */
+    let telegramAccountId = '';
     if (window.Telegram && window.Telegram.WebApp) {
         const tg = window.Telegram.WebApp;
         tg.ready();
@@ -122,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const user = tg.initDataUnsafe?.user;
         if (user) {
+            telegramAccountId = String(user.id || '');
             const leadNameInput = document.getElementById('leadName');
             const leadTelegramInput = document.getElementById('leadTelegram');
 
@@ -133,6 +135,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
+
+    // Telegram WebApp ichida profil/XP shu akkaunt scope'iga ajratiladi.
+    // Oddiy brauzerda esa ma'lumot qurilmadagi localStorage'da qoladi.
+    const TAYANCH_ACCOUNT_SCOPE = telegramAccountId ? `telegram-${telegramAccountId}` : 'device';
+    const accountStorageKey = (name) => `tayanch_${name}_${TAYANCH_ACCOUNT_SCOPE}`;
 
 
     /* ==========================================
@@ -1247,10 +1254,23 @@ document.addEventListener('DOMContentLoaded', () => {
        17. GAMIFICATION & WEB SPEECH AUDIO ENGINE
        ========================================== */
     
-    // User Gamification State & LocalStorage
-    let userXP = parseInt(localStorage.getItem('tayanch_user_xp') || '250', 10);
-    let userStreak = parseInt(localStorage.getItem('tayanch_user_streak') || '3', 10);
-    let unlockedBadges = JSON.parse(localStorage.getItem('tayanch_unlocked_badges') || '["vocab_champion"]');
+    // User Gamification State & LocalStorage (akkaunt yoki qurilma scope'i bilan)
+    const XP_STORAGE_KEY = accountStorageKey('user_xp');
+    const STREAK_STORAGE_KEY = accountStorageKey('user_streak');
+    const BADGES_STORAGE_KEY = accountStorageKey('unlocked_badges');
+    const readScopedValue = (scopedKey, legacyKey, fallback) => {
+        const scopedValue = localStorage.getItem(scopedKey);
+        if (scopedValue !== null) return scopedValue;
+        const legacyValue = localStorage.getItem(legacyKey);
+        if (legacyValue !== null) {
+            localStorage.setItem(scopedKey, legacyValue);
+            return legacyValue;
+        }
+        return fallback;
+    };
+    let userXP = parseInt(readScopedValue(XP_STORAGE_KEY, 'tayanch_user_xp', '250'), 10);
+    let userStreak = parseInt(readScopedValue(STREAK_STORAGE_KEY, 'tayanch_user_streak', '3'), 10);
+    let unlockedBadges = JSON.parse(readScopedValue(BADGES_STORAGE_KEY, 'tayanch_unlocked_badges', '["vocab_champion"]'));
 
     const badgeDefinitions = [
         { id: 'vocab_champion', name: "🏆 Vocab Champion", desc: "5 ta so'z va flashcardni o'rgandingiz!" },
@@ -1297,7 +1317,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function unlockBadge(badgeId) {
         if (!unlockedBadges.includes(badgeId)) {
             unlockedBadges.push(badgeId);
-            localStorage.setItem('tayanch_unlocked_badges', JSON.stringify(unlockedBadges));
+            localStorage.setItem(BADGES_STORAGE_KEY, JSON.stringify(unlockedBadges));
             const badge = badgeDefinitions.find(b => b.id === badgeId);
             if (badge) {
                 showToast(`🏆 YANGI YUTUQ: ${badge.name}!`);
@@ -1309,8 +1329,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function addXP(points, reason = 'Mashq bajarildi!') {
         userXP += points;
         userStreak += 1;
-        localStorage.setItem('tayanch_user_xp', userXP);
-        localStorage.setItem('tayanch_user_streak', userStreak);
+        localStorage.setItem(XP_STORAGE_KEY, userXP);
+        localStorage.setItem(STREAK_STORAGE_KEY, userStreak);
         updateGamifyUI();
 
         // Web Audio Chime Sound Synthesizer
@@ -1860,7 +1880,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ==========================================================================
        19. ENGLIFY GAMIFICATION ROADMAP ENGINE & MULTI-CEFR LEVEL SWITCHER
        ========================================================================== */
-    const GAMIFY_STATE_KEY = "tayanch_gamify_state_v1";
+    const GAMIFY_STATE_KEY = accountStorageKey("gamify_state_v1");
 
     const MODULES_FALLBACK = [
         {
@@ -1920,7 +1940,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gamifyState.streak = (gamifyState.lastActive === yesterday) ? gamifyState.streak + 1 : 1;
         gamifyState.lastActive = today;
         userStreak = Math.max(userStreak, gamifyState.streak);
-        localStorage.setItem('tayanch_user_streak', userStreak);
+        localStorage.setItem(STREAK_STORAGE_KEY, userStreak);
         saveGamifyState(gamifyState);
     }
 
@@ -2305,14 +2325,15 @@ document.addEventListener('DOMContentLoaded', () => {
        18. PROFILE COMPLETION XP REWARD MODULE
        ========================================== */
     const PROFILE_REWARD_XP = 20;
-    const PROFILE_STORAGE_KEY = 'tayanch_profile_completion_v1';
+    const PROFILE_STORAGE_KEY = accountStorageKey('profile_completion_v1');
+    const LEGACY_PROFILE_STORAGE_KEY = 'tayanch_profile_completion_v1';
     const profileCopy = {
-        uz: { address: 'Manzil', education: 'Ta\'lim', addressHint: 'Manzil ma\'lumotlarini kiriting', educationHint: 'Tashkilot turini tanlang', reward: '+20 XP', done: '✓ Bajarildi', edit: 'Tahrirlash', save: 'Saqlash', search: 'Qidirish', selectCountry: 'Mamlakatni tanlang', selectRegion: 'Hududni tanlang', selectDistrict: 'Tuman/Shaharni tanlang', selectMahalla: 'Mahallani tanlang', chooseOrg: 'Tashkilot turi', empty: 'Mos ma\'lumot topilmadi', saved: 'Ma\'lumot yangilandi. XP avval berilgan.', earned: '✅ +20 XP qo\'lga kiritdingiz!', loading: 'Hududlar yuklanmoqda…' },
-        en: { address: 'Address', education: 'Education', addressHint: 'Add your address details', educationHint: 'Choose your organization type', reward: '+20 XP', done: '✓ Completed', edit: 'Edit', save: 'Save', search: 'Search', selectCountry: 'Choose a country', selectRegion: 'Choose a region', selectDistrict: 'Choose a district/city', selectMahalla: 'Choose a mahalla', chooseOrg: 'Organization type', empty: 'No matching results', saved: 'Details updated. XP was already awarded.', earned: '✅ You earned +20 XP!', loading: 'Loading regions…' }
+        uz: { address: 'Manzil', education: 'Ta\'lim', addressHint: 'Manzil ma\'lumotlarini kiriting', educationHint: 'Tashkilot turini tanlang', reward: '+20 XP', done: '✓ Bajarildi', edit: 'Tahrirlash', save: 'Saqlash', search: 'Qidirish', selectCountry: 'Mamlakatni tanlang', selectRegion: 'Hududni tanlang', selectDistrict: 'Tuman/Shaharni tanlang', selectMahalla: 'Mahallani tanlang', chooseOrg: 'Tashkilot turi', empty: 'Mos ma\'lumot topilmadi', manualMahallaHint: 'Bu tuman bo‘yicha ochiq katalogda mahalla qatori topilmadi. Mahalla nomini ixtiyoriy kiriting.', manualMahallaPlaceholder: 'Mahalla nomi', confirm: 'Tasdiqlash', saved: 'Ma\'lumot yangilandi. XP avval berilgan.', earned: '✅ +20 XP qo\'lga kiritdingiz!', loading: 'Hududlar yuklanmoqda…', accountLinked: 'Telegram akkauntingiz uchun shu qurilmada saqlanmoqda.', deviceOnly: 'Hozircha shu qurilmada saqlanmoqda.' },
+        en: { address: 'Address', education: 'Education', addressHint: 'Add your address details', educationHint: 'Choose your organization type', reward: '+20 XP', done: '✓ Completed', edit: 'Edit', save: 'Save', search: 'Search', selectCountry: 'Choose a country', selectRegion: 'Choose a region', selectDistrict: 'Choose a district/city', selectMahalla: 'Choose a mahalla', chooseOrg: 'Organization type', empty: 'No matching results', manualMahallaHint: 'No mahalla row was found in the public catalog for this district. Enter the name optionally.', manualMahallaPlaceholder: 'Mahalla name', confirm: 'Confirm', saved: 'Details updated. XP was already awarded.', earned: '✅ You earned +20 XP!', loading: 'Loading regions…', accountLinked: 'Saved on this device under your Telegram account scope.', deviceOnly: 'Saved on this device for now.' }
     };
     const profileText = key => (profileCopy[activeLanguage === 'en' ? 'en' : 'uz'][key] || key);
     const profileDefault = { address: null, education: null, rewards: { address: false, education: false } };
-    const savedProfile = SafeStorage.get(PROFILE_STORAGE_KEY, profileDefault) || profileDefault;
+    const savedProfile = SafeStorage.get(PROFILE_STORAGE_KEY, SafeStorage.get(LEGACY_PROFILE_STORAGE_KEY, profileDefault)) || profileDefault;
     const profileState = {
         address: savedProfile.address || null,
         education: savedProfile.education || null,
@@ -2408,6 +2429,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!list) return;
         const query = (input?.value || '').trim().toLocaleLowerCase('uz');
         const options = getAddressOptions(profilePickerLevel).filter(item => item.name.toLocaleLowerCase('uz').includes(query));
+        if (!options.length && profilePickerLevel === 3) {
+            list.innerHTML = `<div class="profile-manual-entry"><div class="profile-picker-empty">${profileText('manualMahallaHint')}</div><input class="profile-manual-input" id="manualMahallaInput" type="text" maxlength=120 placeholder="${profileText('manualMahallaPlaceholder')}" autocomplete="off"><button type="button" class="btn btn-primary btn-sm profile-manual-save" id="manualMahallaSave">${profileText('confirm')}</button></div>`;
+            const manualInput = document.getElementById('manualMahallaInput');
+            const manualSave = document.getElementById('manualMahallaSave');
+            const saveManualMahalla = () => {
+                const value = (manualInput?.value || '').trim();
+                if (!value) return;
+                profileAddressDraft = { ...profileAddressDraft, mahalla: value };
+                document.getElementById('addressPickerView').hidden = true;
+                document.getElementById('addressSummaryView').hidden = false;
+                renderAddressSummary();
+            };
+            manualSave?.addEventListener('click', saveManualMahalla);
+            manualInput?.addEventListener('keydown', event => { if (event.key === 'Enter') saveManualMahalla(); });
+            return;
+        }
         list.innerHTML = options.length ? options.map(item => `<button type="button" class="profile-picker-option" data-profile-option-id="${escapeHtml(item.id)}">${escapeHtml(item.name)}</button>`).join('') : `<div class="profile-picker-empty">${profileText('empty')}</div>`;
         list.querySelectorAll('[data-profile-option-id]').forEach(btn => btn.addEventListener('click', () => chooseAddressOption(btn.dataset.profileOptionId)));
     }
@@ -2469,7 +2506,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const progressLabel = document.getElementById('profileProgressLabel');
         const progressFill = document.getElementById('profileProgressFill');
         const profileHudBtn = document.getElementById('profileHudBtn');
+        const profileStorageStatus = document.getElementById('profileStorageStatus');
         if (!card || !list) return;
+        if (profileStorageStatus) profileStorageStatus.textContent = profileText(TAYANCH_ACCOUNT_SCOPE === 'device' ? 'deviceOnly' : 'accountLinked');
         const completed = ['address', 'education'].filter(profileIsComplete).length;
         if (progressLabel) progressLabel.textContent = `${completed}/2`;
         if (progressFill) progressFill.style.width = `${completed * 50}%`;

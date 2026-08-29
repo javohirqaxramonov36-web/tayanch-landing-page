@@ -156,7 +156,13 @@ document.addEventListener('DOMContentLoaded', () => {
             heroVideoBtn: 'Video Namuna (1 min)',
             coursesStat: 'Intensiv Kurslar',
             practiceStat: 'Amaliy Metodika',
-            supportStat: 'Telegram Qo\'llab-quvvatlash'
+            supportStat: 'Telegram Qo\'llab-quvvatlash',
+            profileSectionTag: 'Profil bonusi',
+            profileCardTitle: 'Profilingizni to\u2018ldiring',
+            profileCardDesc: 'Ma\'lumotlaringizni ixtiyoriy ravishda kiriting va qo\'shimcha XP oling.',
+            profileCompleted: 'bo\'lim to\'ldirilgan',
+            profileAllDone: 'Profil to\'liq to\'ldirildi!',
+            profileAllDoneDesc: 'Yangi yutuq nishoni ochildi. Ma\'lumotlarni istalgan vaqtda tahrirlashingiz mumkin.'
         },
         en: {
             announcementText: 'Awards.gov.uz "Best Startup Project" Candidate. Admissions Open!',
@@ -175,15 +181,24 @@ document.addEventListener('DOMContentLoaded', () => {
             heroVideoBtn: 'Watch Demo (1 min)',
             coursesStat: 'Intensive Courses',
             practiceStat: 'Practical Method',
-            supportStat: '24/7 Telegram Support'
+            supportStat: '24/7 Telegram Support',
+            profileSectionTag: 'Profile bonus',
+            profileCardTitle: 'Complete your profile',
+            profileCardDesc: 'Add your details optionally and earn extra XP.',
+            profileCompleted: 'sections completed',
+            profileAllDone: 'Profile completed!',
+            profileAllDoneDesc: 'A new achievement badge is unlocked. You can edit your details anytime.'
         }
     };
 
     const langUzBtn = document.getElementById('langUzBtn');
     const langEnBtn = document.getElementById('langEnBtn');
+    let activeLanguage = localStorage.getItem('tayanch_language') || 'uz';
 
     function setLanguage(lang) {
         if (!translations[lang]) return;
+        activeLanguage = lang;
+        localStorage.setItem('tayanch_language', lang);
         const dict = translations[lang];
 
         document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -192,6 +207,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.innerHTML = dict[key];
             }
         });
+
+        if (typeof renderProfileCompletion === 'function') renderProfileCompletion();
+        if (typeof refreshProfileModalLanguage === 'function') refreshProfileModalLanguage();
 
         if (langUzBtn && langEnBtn) {
             langUzBtn.classList.toggle('active', lang === 'uz');
@@ -1239,14 +1257,38 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'grammar_master', name: "🎓 Grammar Master", desc: "Grammatika testlarini xatosiz yakunladingiz!" },
         { id: 'prompt_wizard', name: "⚡ Prompt Wizard", desc: "AI Prompt Playground simulyatoridan foydalandingiz!" },
         { id: 'speaking_maestro', name: "🗣️ Speaking Maestro", desc: "Roleplay Chatbot simulyatsiyasida muloqot qildingiz!" },
-        { id: 'essay_master', name: "✍️ Essay Master", desc: "IELTS Insho diagnostikasi vositasini sinab ko'rdingiz!" }
+        { id: 'essay_master', name: "✍️ Essay Master", desc: "IELTS Insho diagnostikasi vositasini sinab ko'rdingiz!" },
+        { id: 'profile_complete', name: "🧭 Profile Navigator", desc: "Profilingizning barcha asosiy bo'limlarini to'ldirdingiz!" }
     ];
+
+    function animateXPValue(target) {
+        const xpEl = document.getElementById('userXPVal');
+        if (!xpEl) return;
+        const start = Number(xpEl.dataset.xp || target);
+        const duration = 500;
+        const startedAt = performance.now();
+        xpEl.classList.remove('xp-counting');
+        void xpEl.offsetWidth;
+        xpEl.classList.add('xp-counting');
+        function tick(now) {
+            const progress = Math.min(1, (now - startedAt) / duration);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const value = Math.round(start + (target - start) * eased);
+            xpEl.textContent = `${value} XP`;
+            if (progress < 1) requestAnimationFrame(tick);
+            else { xpEl.dataset.xp = String(target); xpEl.textContent = `${target} XP`; }
+        }
+        requestAnimationFrame(tick);
+    }
 
     function updateGamifyUI() {
         const xpEl = document.getElementById('userXPVal');
         const streakEl = document.getElementById('userStreakVal');
         const streakHUDEl = document.getElementById('streakValHUD');
-        if (xpEl) xpEl.textContent = `${userXP} XP`;
+        if (xpEl) {
+            if (xpEl.dataset.xp && Number(xpEl.dataset.xp) !== userXP) animateXPValue(userXP);
+            else { xpEl.dataset.xp = String(userXP); xpEl.textContent = `${userXP} XP`; }
+        }
         if (streakEl) streakEl.textContent = `🔥 ${userStreak} Combo`;
         if (streakHUDEl) streakHUDEl.textContent = userStreak;
         renderBadgesModal();
@@ -2258,6 +2300,233 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `).join('');
     }
+
+    /* ==========================================
+       18. PROFILE COMPLETION XP REWARD MODULE
+       ========================================== */
+    const PROFILE_REWARD_XP = 20;
+    const PROFILE_STORAGE_KEY = 'tayanch_profile_completion_v1';
+    const profileCopy = {
+        uz: { address: 'Manzil', education: 'Ta\'lim', addressHint: 'Manzil ma\'lumotlarini kiriting', educationHint: 'Tashkilot turini tanlang', reward: '+20 XP', done: '✓ Bajarildi', edit: 'Tahrirlash', save: 'Saqlash', search: 'Qidirish', selectCountry: 'Mamlakatni tanlang', selectRegion: 'Hududni tanlang', selectDistrict: 'Tuman/Shaharni tanlang', selectMahalla: 'Mahallani tanlang', chooseOrg: 'Tashkilot turi', empty: 'Mos ma\'lumot topilmadi', saved: 'Ma\'lumot yangilandi. XP avval berilgan.', earned: '✅ +20 XP qo\'lga kiritdingiz!', loading: 'Hududlar yuklanmoqda…' },
+        en: { address: 'Address', education: 'Education', addressHint: 'Add your address details', educationHint: 'Choose your organization type', reward: '+20 XP', done: '✓ Completed', edit: 'Edit', save: 'Save', search: 'Search', selectCountry: 'Choose a country', selectRegion: 'Choose a region', selectDistrict: 'Choose a district/city', selectMahalla: 'Choose a mahalla', chooseOrg: 'Organization type', empty: 'No matching results', saved: 'Details updated. XP was already awarded.', earned: '✅ You earned +20 XP!', loading: 'Loading regions…' }
+    };
+    const profileText = key => (profileCopy[activeLanguage === 'en' ? 'en' : 'uz'][key] || key);
+    const profileDefault = { address: null, education: null, rewards: { address: false, education: false } };
+    const savedProfile = SafeStorage.get(PROFILE_STORAGE_KEY, profileDefault) || profileDefault;
+    const profileState = {
+        address: savedProfile.address || null,
+        education: savedProfile.education || null,
+        rewards: { ...(savedProfile.rewards || {}) }
+    };
+    if (profileState.address) profileState.rewards.address = true;
+    if (profileState.education) profileState.rewards.education = true;
+    let profileRegionData = null;
+    let profileAddressDraft = null;
+    let profileEducationDraft = profileState.education || '';
+    let profilePickerLevel = 0;
+    const profileLevels = ['country', 'region', 'district', 'mahalla'];
+    const educationTypes = [
+        { id: 'school', uz: 'Maktab', en: 'School' },
+        { id: 'college', uz: 'Kollej yoki Litsey', en: 'College or Lyceum' },
+        { id: 'university', uz: 'Universitet', en: 'University' },
+        { id: 'not-studying', uz: 'Hozir o\'qimayman', en: 'Not currently studying' }
+    ];
+
+    function persistProfileState() { SafeStorage.set(PROFILE_STORAGE_KEY, profileState); }
+    function profileIsComplete(key) { return key === 'address' ? Boolean(profileState.address && profileState.address.country && profileState.address.region && profileState.address.district && profileState.address.mahalla) : Boolean(profileState.education); }
+    function profileIsAllComplete() { return profileIsComplete('address') && profileIsComplete('education'); }
+
+    function closeProfileModal(modal) {
+        if (!modal) return;
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        const picker = document.getElementById('addressPickerView');
+        const summary = document.getElementById('addressSummaryView');
+        if (picker && summary) { picker.hidden = true; summary.hidden = false; }
+    }
+
+    function openProfileModal(module) {
+        const modal = document.getElementById(module === 'address' ? 'addressModal' : 'educationModal');
+        if (!modal) return;
+        if (module === 'address') {
+            profileAddressDraft = { ...(profileState.address || {}), countryId: profileState.address?.countryId || '', regionId: profileState.address?.regionId || '', districtId: profileState.address?.districtId || '' };
+            renderAddressSummary();
+        } else {
+            profileEducationDraft = profileState.education || '';
+            renderEducationOptions();
+        }
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function getCountry() { return profileRegionData?.countries?.find(c => c.id === profileAddressDraft?.countryId); }
+    function getRegion() { return getCountry()?.regions?.find(r => r.id === profileAddressDraft?.regionId); }
+    function getDistrict() { return getRegion()?.districts?.find(d => d.id === profileAddressDraft?.districtId); }
+    function getAddressOptions(level) {
+        if (level === 0) return (profileRegionData?.countries || []).slice().sort((a, b) => a.id === 'uzbekistan' ? -1 : b.id === 'uzbekistan' ? 1 : a.name.localeCompare(b.name, 'uz'));
+        if (level === 1) return getCountry()?.regions || [];
+        if (level === 2) return getRegion()?.districts || [];
+        if (level === 3) return (getDistrict()?.mahallas || []).map((name, index) => ({ id: `${profileAddressDraft.districtId}-mahalla-${index}`, name }));
+        return [];
+    }
+
+    function renderAddressSummary() {
+        const container = document.getElementById('addressSteps');
+        const saveBtn = document.getElementById('addressSaveBtn');
+        if (!container) return;
+        const rows = [
+            { key: 'country', label: activeLanguage === 'en' ? 'Country' : 'Mamlakat', value: profileAddressDraft?.country || (profileRegionData ? profileText('selectCountry') : profileText('loading')), level: 0, enabled: Boolean(profileRegionData) },
+            { key: 'region', label: activeLanguage === 'en' ? 'Region' : 'Hudud/Viloyat', value: profileAddressDraft?.region || '—', level: 1, enabled: Boolean(profileAddressDraft?.countryId) },
+            { key: 'district', label: activeLanguage === 'en' ? 'District/City' : 'Tuman/Shahar', value: profileAddressDraft?.district || '—', level: 2, enabled: Boolean(profileAddressDraft?.regionId) },
+            { key: 'mahalla', label: 'Mahalla (MFY)', value: profileAddressDraft?.mahalla || '—', level: 3, enabled: Boolean(profileAddressDraft?.districtId) }
+        ];
+        container.innerHTML = rows.map(row => `<button type="button" class="profile-select-row ${row.enabled ? '' : 'disabled'}" data-profile-level="${row.level}" ${row.enabled ? '' : 'disabled'}><span><span class="profile-row-label">${row.label}</span><span class="profile-row-value">${escapeHtml(row.value)}</span></span><i class="fa-solid fa-chevron-right"></i></button>`).join('');
+        container.querySelectorAll('[data-profile-level]').forEach(btn => btn.addEventListener('click', () => { profilePickerLevel = Number(btn.dataset.profileLevel); openAddressPicker(); }));
+        if (saveBtn) saveBtn.disabled = !profileIsDraftAddressComplete();
+    }
+
+    function profileIsDraftAddressComplete() { return Boolean(profileAddressDraft?.countryId && profileAddressDraft?.regionId && profileAddressDraft?.districtId && profileAddressDraft?.mahalla); }
+
+    function openAddressPicker() {
+        const summary = document.getElementById('addressSummaryView');
+        const picker = document.getElementById('addressPickerView');
+        const input = document.getElementById('addressSearchInput');
+        if (!summary || !picker) return;
+        summary.hidden = true; picker.hidden = false;
+        const titles = [profileText('selectCountry'), profileText('selectRegion'), profileText('selectDistrict'), profileText('selectMahalla')];
+        const title = document.getElementById('addressPickerTitle');
+        if (title) title.textContent = titles[profilePickerLevel];
+        if (input) { input.placeholder = profileText('search'); input.value = ''; input.focus(); }
+        renderAddressPicker();
+    }
+
+    function renderAddressPicker() {
+        const list = document.getElementById('addressPickerList');
+        const input = document.getElementById('addressSearchInput');
+        if (!list) return;
+        const query = (input?.value || '').trim().toLocaleLowerCase('uz');
+        const options = getAddressOptions(profilePickerLevel).filter(item => item.name.toLocaleLowerCase('uz').includes(query));
+        list.innerHTML = options.length ? options.map(item => `<button type="button" class="profile-picker-option" data-profile-option-id="${escapeHtml(item.id)}">${escapeHtml(item.name)}</button>`).join('') : `<div class="profile-picker-empty">${profileText('empty')}</div>`;
+        list.querySelectorAll('[data-profile-option-id]').forEach(btn => btn.addEventListener('click', () => chooseAddressOption(btn.dataset.profileOptionId)));
+    }
+
+    function chooseAddressOption(id) {
+        const options = getAddressOptions(profilePickerLevel);
+        const selected = options.find(item => item.id === id);
+        if (!selected) return;
+        if (profilePickerLevel === 0) profileAddressDraft = { countryId: selected.id, country: selected.name };
+        if (profilePickerLevel === 1) profileAddressDraft = { ...profileAddressDraft, regionId: selected.id, region: selected.name, districtId: '', district: '', mahalla: '' };
+        if (profilePickerLevel === 2) profileAddressDraft = { ...profileAddressDraft, districtId: selected.id, district: selected.name, mahalla: '' };
+        if (profilePickerLevel === 3) profileAddressDraft = { ...profileAddressDraft, mahalla: selected.name };
+        if (profilePickerLevel < 3 && getAddressOptions(profilePickerLevel + 1).length) { profilePickerLevel += 1; openAddressPicker(); }
+        else { document.getElementById('addressPickerView').hidden = true; document.getElementById('addressSummaryView').hidden = false; renderAddressSummary(); }
+    }
+
+    function renderEducationOptions() {
+        const container = document.getElementById('educationOptions');
+        const saveBtn = document.getElementById('educationSaveBtn');
+        if (!container) return;
+        container.innerHTML = educationTypes.map(item => `<button type="button" role="radio" aria-checked="${profileEducationDraft === item.id}" class="education-option ${profileEducationDraft === item.id ? 'selected' : ''}" data-education-id="${item.id}"><span>${activeLanguage === 'en' ? item.en : item.uz}</span><i class="fa-solid fa-circle-check option-check"></i></button>`).join('');
+        container.querySelectorAll('[data-education-id]').forEach(btn => btn.addEventListener('click', () => { profileEducationDraft = btn.dataset.educationId; renderEducationOptions(); }));
+        if (saveBtn) saveBtn.disabled = !profileEducationDraft;
+    }
+
+    function awardProfileXP(module) {
+        if (profileState.rewards[module]) { showToast(profileText('saved'), 'info'); return; }
+        profileState.rewards[module] = true;
+        persistProfileState();
+        addXP(PROFILE_REWARD_XP, `Profil ${module === 'address' ? 'manzili' : "ta'limi"} to'ldirildi`);
+        showToast(profileText('earned'), 'success');
+    }
+
+    function saveAddressProfile() {
+        if (!profileIsDraftAddressComplete()) return;
+        const wasRewarded = profileState.rewards.address;
+        profileState.address = { ...profileAddressDraft };
+        persistProfileState();
+        if (wasRewarded) showToast(profileText('saved'), 'info'); else awardProfileXP('address');
+        closeProfileModal(document.getElementById('addressModal'));
+        renderProfileCompletion();
+    }
+
+    function saveEducationProfile() {
+        if (!profileEducationDraft) return;
+        const wasRewarded = profileState.rewards.education;
+        profileState.education = profileEducationDraft;
+        persistProfileState();
+        if (wasRewarded) showToast(profileText('saved'), 'info'); else awardProfileXP('education');
+        closeProfileModal(document.getElementById('educationModal'));
+        renderProfileCompletion();
+    }
+
+    function renderProfileCompletion() {
+        const card = document.getElementById('profileCompletionCard');
+        const section = document.getElementById('profileCompletionSection');
+        const list = document.getElementById('profileModuleList');
+        const completeState = document.getElementById('profileCompleteState');
+        const progressLabel = document.getElementById('profileProgressLabel');
+        const progressFill = document.getElementById('profileProgressFill');
+        const profileHudBtn = document.getElementById('profileHudBtn');
+        if (!card || !list) return;
+        const completed = ['address', 'education'].filter(profileIsComplete).length;
+        if (progressLabel) progressLabel.textContent = `${completed}/2`;
+        if (progressFill) progressFill.style.width = `${completed * 50}%`;
+        list.innerHTML = [
+            { id: 'address', icon: '📍', name: profileText('address'), hint: profileText('addressHint') },
+            { id: 'education', icon: '🎓', name: profileText('education'), hint: profileText('educationHint') }
+        ].map(item => { const done = profileIsComplete(item.id); return `<button type="button" class="profile-module-item ${done ? 'completed' : ''}" data-profile-module="${item.id}"><span class="profile-module-icon">${item.icon}</span><span class="profile-module-copy"><strong>${item.name}</strong><span>${done ? profileText('done') : item.hint}</span></span><span class="profile-module-reward">${done ? profileText('edit') : profileText('reward')}</span></button>`; }).join('');
+        list.querySelectorAll('[data-profile-module]').forEach(btn => btn.addEventListener('click', () => openProfileModal(btn.dataset.profileModule)));
+        const allComplete = completed === 2;
+        if (section) section.hidden = allComplete;
+        if (completeState) completeState.hidden = !allComplete;
+        if (profileHudBtn) profileHudBtn.hidden = !allComplete;
+        if (allComplete) unlockBadge('profile_complete');
+    }
+
+    function refreshProfileModalLanguage() {
+        const addressTitle = document.getElementById('addressModalTitle');
+        const educationTitle = document.getElementById('educationModalTitle');
+        const addressSave = document.querySelector('#addressSaveBtn span');
+        const educationSave = document.querySelector('#educationSaveBtn span');
+        if (addressTitle) addressTitle.textContent = profileText('address');
+        if (educationTitle) educationTitle.textContent = profileText('education');
+        if (addressSave) addressSave.textContent = profileText('save');
+        if (educationSave) educationSave.textContent = profileText('save');
+        renderAddressSummary(); renderEducationOptions();
+    }
+
+    const addressSaveBtn = document.getElementById('addressSaveBtn');
+    const educationSaveBtn = document.getElementById('educationSaveBtn');
+    const addressPickerBackBtn = document.getElementById('addressPickerBackBtn');
+    const addressSearchInput = document.getElementById('addressSearchInput');
+    if (addressSaveBtn) addressSaveBtn.addEventListener('click', saveAddressProfile);
+    if (educationSaveBtn) educationSaveBtn.addEventListener('click', saveEducationProfile);
+    if (addressSearchInput) addressSearchInput.addEventListener('input', renderAddressPicker);
+    if (addressPickerBackBtn) addressPickerBackBtn.addEventListener('click', () => { document.getElementById('addressPickerView').hidden = true; document.getElementById('addressSummaryView').hidden = false; renderAddressSummary(); });
+    document.getElementById('addressModalCloseBtn')?.addEventListener('click', () => closeProfileModal(document.getElementById('addressModal')));
+    document.getElementById('educationModalCloseBtn')?.addEventListener('click', () => closeProfileModal(document.getElementById('educationModal')));
+    document.getElementById('addressModal')?.addEventListener('click', e => { if (e.target.id === 'addressModal') closeProfileModal(e.currentTarget); });
+    document.getElementById('educationModal')?.addEventListener('click', e => { if (e.target.id === 'educationModal') closeProfileModal(e.currentTarget); });
+    document.getElementById('profileHudBtn')?.addEventListener('click', () => openProfileModal('address'));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeProfileModal(document.getElementById('addressModal')); closeProfileModal(document.getElementById('educationModal')); } });
+
+    async function loadProfileRegions() {
+        try {
+            const response = await fetch('./data/profile-regions-uz.json');
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            profileRegionData = await response.json();
+            renderProfileCompletion();
+            if (document.getElementById('addressModal')?.classList.contains('active')) renderAddressSummary();
+        } catch (error) {
+            console.warn('[profile] Hududiy ma\'lumotlarni yuklab bo\'lmadi:', error);
+            showToast('Manzil ma\'lumotlari yuklanmadi. Keyinroq urinib ko\'ring.', 'error');
+        }
+    }
+
+    renderProfileCompletion();
+    loadProfileRegions();
 
     // Initialize Gamification Engine with saved level
     const initialSavedLevel = localStorage.getItem('tayanch_selected_cefr_level') || "A1";

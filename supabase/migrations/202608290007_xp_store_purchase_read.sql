@@ -1,0 +1,1 @@
+grant select on public.xp_store_purchases to authenticated;

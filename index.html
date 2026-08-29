@@ -167,6 +167,9 @@
                 <button class="badges-hud-btn" id="badgesHudBtn">
                     <i class="fa-solid fa-trophy"></i> Yutuqlar
                 </button>
+                <button class="profile-hud-btn" id="profileHudBtn" aria-label="Profilni tahrirlash" hidden>
+                    <i class="fa-solid fa-user-pen"></i> Profil
+                </button>
             </div>
 
             <nav class="nav-links liquid-nav-capsule" id="navLinks">
@@ -312,6 +315,33 @@
                     <!-- Ambient Glow Blobs behind visual frame -->
                     <div class="glow-orb-top"></div>
                     <div class="glow-orb-bottom"></div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Profile Completion / XP Reward Section -->
+        <section class="section profile-completion-section" id="profileCompletionSection" aria-labelledby="profileCompletionTitle">
+            <div class="container">
+                <div class="profile-completion-card liquid-glass-card gsap-reveal" id="profileCompletionCard">
+                    <div class="profile-card-heading">
+                        <div>
+                            <div class="section-tag profile-section-tag"><i class="fa-solid fa-user-pen"></i> <span data-i18n="profileSectionTag">Profil bonusi</span></div>
+                            <h2 class="profile-card-title" id="profileCompletionTitle" data-i18n="profileCardTitle">Profilingizni to‘ldiring</h2>
+                            <p class="profile-card-desc" data-i18n="profileCardDesc">Ma’lumotlaringizni ixtiyoriy ravishda kiriting va qo‘shimcha XP oling.</p>
+                        </div>
+                        <div class="profile-progress-summary">
+                            <strong id="profileProgressLabel">0/2</strong>
+                            <span data-i18n="profileCompleted">bo‘lim to‘ldirilgan</span>
+                        </div>
+                    </div>
+                    <div class="profile-progress-track" aria-hidden="true"><span id="profileProgressFill"></span></div>
+                    <div class="profile-module-list" id="profileModuleList"></div>
+                    <div class="profile-complete-state" id="profileCompleteState" hidden>
+                        <span class="profile-complete-icon">✓</span>
+                        <div><strong data-i18n="profileAllDone">Profil to‘liq to‘ldirildi!</strong><p data-i18n="profileAllDoneDesc">Yangi yutuq nishoni ochildi. Ma’lumotlarni istalgan vaqtda tahrirlashingiz mumkin.</p></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -802,6 +832,40 @@
     </div>
 
 </footer>
+
+
+
+    <!-- Profile Address Modal -->
+    <div class="modal-overlay profile-modal-overlay" id="addressModal" role="dialog" aria-modal="true" aria-labelledby="addressModalTitle" aria-hidden="true">
+        <div class="modal-card profile-modal-card liquid-modal">
+            <button class="modal-close" id="addressModalCloseBtn" aria-label="Yopish"><i class="fa-solid fa-xmark"></i></button>
+            <div class="profile-modal-body">
+                <div class="profile-modal-view" id="addressSummaryView">
+                    <div class="profile-modal-heading"><span class="profile-modal-icon">📍</span><div><h3 id="addressModalTitle">Manzil</h3><p>Ma’lumotlaringizni kiriting va <strong>20 XP</strong> oling.</p></div></div>
+                    <div class="profile-address-steps" id="addressSteps"></div>
+                    <button class="btn btn-primary btn-glow btn-liquid w-full profile-save-btn" id="addressSaveBtn" disabled><span>Saqlash</span><i class="fa-solid fa-check"></i><div class="liquid-wave"></div></button>
+                </div>
+                <div class="profile-modal-view" id="addressPickerView" hidden>
+                    <div class="profile-picker-heading"><button class="profile-back-btn" id="addressPickerBackBtn" aria-label="Orqaga qaytish">&lt;</button><div><span class="profile-modal-kicker">Manzil</span><h3 id="addressPickerTitle">Mamlakatni tanlang</h3></div></div>
+                    <div class="profile-search-field"><i class="fa-solid fa-magnifying-glass"></i><input id="addressSearchInput" type="search" placeholder="Qidirish" autocomplete="off" aria-label="Ro‘yxatdan qidirish"></div>
+                    <div class="profile-picker-list" id="addressPickerList" role="listbox"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Education Modal -->
+    <div class="modal-overlay profile-modal-overlay" id="educationModal" role="dialog" aria-modal="true" aria-labelledby="educationModalTitle" aria-hidden="true">
+        <div class="modal-card profile-modal-card liquid-modal">
+            <button class="modal-close" id="educationModalCloseBtn" aria-label="Yopish"><i class="fa-solid fa-xmark"></i></button>
+            <div class="profile-modal-body">
+                <div class="profile-modal-heading"><span class="profile-modal-icon">🎓</span><div><h3 id="educationModalTitle">Ta’lim</h3><p>Ma’lumotlaringizni kiriting va <strong>20 XP</strong> oling.</p></div></div>
+                <div class="education-field-label">Tashkilot turi</div>
+                <div class="education-options" id="educationOptions" role="radiogroup" aria-label="Tashkilot turi"></div>
+                <button class="btn btn-primary btn-glow btn-liquid w-full profile-save-btn" id="educationSaveBtn" disabled><span>Saqlash</span><i class="fa-solid fa-check"></i><div class="liquid-wave"></div></button>
+            </div>
+        </div>
+    </div>
 
     <!-- Course Details Modal -->
     <div class="modal-overlay" id="courseModal" role="dialog" aria-modal="true" aria-labelledby="modalCourseTitle">

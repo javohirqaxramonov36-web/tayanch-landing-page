@@ -228,6 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderProfileCompletion();
         } catch (error) {
             console.warn('[profile] Supabase sync failed; local fallback active:', error);
+            window.__tayanchSupabaseInitError = error?.message || String(error);
             tayanchSupabase = null;
             tayanchAuthUser = null;
             setProfileStorageStatus(profileText?.('deviceOnly') || 'Supabase vaqtincha mavjud emas — shu qurilmada saqlanmoqda.');

@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "description": "Tayanch profil manzili uchun kengaytiriladigan hududiy ma'lumotlar. Mahalla ro'yxatlari MVP namuna sifatida kiritilgan.",
+  "countries": [
+    {
+      "id": "uzbekistan",
+      "name": "O'zbekiston",
+      "regions": [
+        {"id":"andijon","name":"Andijon viloyati","districts":[{"id":"andijon-shahri","name":"Andijon shahri","mahallas":["Bobur MFY","Yangi hayot MFY"]},{"id":"asaka","name":"Asaka tumani","mahallas":["Do'stlik MFY","Navbahor MFY"]},{"id":"shahrixon","name":"Shahrixon tumani","mahallas":["Istiqlol MFY","Obod MFY"]}]},
+        {"id":"buxoro","name":"Buxoro viloyati","districts":[{"id":"buxoro-shahri","name":"Buxoro shahri","mahallas":["Bahouddin Naqshband MFY","G'ijduvon MFY"]},{"id":"gijduvon","name":"G'ijduvon tumani","mahallas":["Zarafshon MFY","Sohibkor MFY"]},{"id":"kogon","name":"Kogon tumani","mahallas":["Kogon MFY","Yangiobod MFY"]}]},
+        {"id":"jizzax","name":"Jizzax viloyati","districts":[{"id":"jizzax-shahri","name":"Jizzax shahri","mahallas":["O'zbekiston MFY","Istiqlol MFY"]},{"id":"zomin","name":"Zomin tumani","mahallas":["Duoba MFY","Peshag'or MFY"]},{"id":"gallaorol","name":"G'allaorol tumani","mahallas":["Sangzor MFY","Guliston MFY"]}]},
+        {"id":"qashqadaryo","name":"Qashqadaryo viloyati","districts":[{"id":"qarshi-shahri","name":"Qarshi shahri","mahallas":["Nasaf MFY","Mustaqillik MFY"]},{"id":"shahrisabz","name":"Shahrisabz tumani","mahallas":["Kushon MFY","Oqsaroy MFY"]},{"id":"kitob","name":"Kitob tumani","mahallas":["Katta yo'l MFY","Beshquton MFY"]}]},
+        {"id":"navoiy","name":"Navoiy viloyati","districts":[{"id":"navoiy-shahri","name":"Navoiy shahri","mahallas":["Yangi hayot MFY","Tinchlik MFY"]},{"id":"zarafshon","name":"Zarafshon shahri","mahallas":["Marvarid MFY","Do'stlik MFY"]},{"id":"karmana","name":"Karmana tumani","mahallas":["Navoiy MFY","Saxovat MFY"]}]},
+        {"id":"namangan","name":"Namangan viloyati","districts":[{"id":"namangan-shahri","name":"Namangan shahri","mahallas":["Davlatobod MFY","Yangi Namangan MFY"]},{"id":"chortoq","name":"Chortoq tumani","mahallas":["Chortoq MFY","Bog'ishamol MFY"]},{"id":"chust","name":"Chust tumani","mahallas":["Olmos MFY","Guliston MFY"]}]},
+        {"id":"samarqand","name":"Samarqand viloyati","districts":[{"id":"samarqand-shahri","name":"Samarqand shahri","mahallas":["Registon MFY","Bog'ishamol MFY"]},{"id":"urgut","name":"Urgut tumani","mahallas":["Oqtepa MFY","Mergancha MFY"]},{"id":"kattaqorgon","name":"Kattaqo'rg'on tumani","mahallas":["Yangiqo'rg'on MFY","Samarqand MFY"]}]},
+        {"id":"sirdaryo","name":"Sirdaryo viloyati","districts":[{"id":"guliston-shahri","name":"Guliston shahri","mahallas":["Ma'rifat MFY","Navbahor MFY"]},{"id":"yangiyer","name":"Yangiyer shahri","mahallas":["Yangi hayot MFY","Do'stlik MFY"]},{"id":"sayxunobod","name":"Sayxunobod tumani","mahallas":["Sayxun MFY","Obod MFY"]}]},
+        {"id":"surxondaryo","name":"Surxondaryo viloyati","districts":[{"id":"termiz-shahri","name":"Termiz shahri","mahallas":["Surxon MFY","Jayhun MFY"]},{"id":"denov","name":"Denov tumani","mahallas":["Yangiobod MFY","Lochin MFY"]},{"id":"boysun","name":"Boysun tumani","mahallas":["Boysun MFY","Bibishirin MFY"]}]},
+        {"id":"toshkent-viloyati","name":"Toshkent viloyati","districts":[{"id":"chirchiq","name":"Chirchiq shahri","mahallas":["Amir Temur MFY","Kimyogar MFY"]},{"id":"olmaliq","name":"Olmaliq shahri","mahallas":["Metallurg MFY","Zarbdor MFY"]},{"id":"zangiota","name":"Zangiota tumani","mahallas":["Qatortol MFY","Nazarbek MFY"]}]},
+        {"id":"toshkent-shahri","name":"Toshkent shahri","districts":[{"id":"chilonzor","name":"Chilonzor tumani","mahallas":["Bunyodkor MFY","Qatortol MFY"]},{"id":"yunusobod","name":"Yunusobod tumani","mahallas":["Yunusobod MFY","Minor MFY"]},{"id":"mirzo-ulugbek","name":"Mirzo Ulug'bek tumani","mahallas":["Darxon MFY","Oqtepa MFY"]}]},
+        {"id":"fargona","name":"Farg'ona viloyati","districts":[{"id":"fargona-shahri","name":"Farg'ona shahri","mahallas":["Al-Farg'oniy MFY","Istiqlol MFY"]},{"id":"qoqon","name":"Qo'qon shahri","mahallas":["Turon MFY","Muqimiy MFY"]},{"id":"margilon","name":"Marg'ilon shahri","mahallas":["Yangi hayot MFY","Navbahor MFY"]}]},
+        {"id":"xorazm","name":"Xorazm viloyati","districts":[{"id":"urganch-shahri","name":"Urganch shahri","mahallas":["Jaloliddin Manguberdi MFY","Al-Xorazmiy MFY"]},{"id":"xiva","name":"Xiva tumani","mahallas":["Ichan qal'a MFY","Yangi hayot MFY"]},{"id":"hazorasp","name":"Hazorasp tumani","mahallas":["Do'stlik MFY","Gulzor MFY"]}]},
+        {"id":"qoraqalpogiston","name":"Qoraqalpog'iston Respublikasi","districts":[{"id":"nukus-shahri","name":"Nukus shahri","mahallas":["Berdaq MFY","Do'stlik MFY"]},{"id":"qongirot","name":"Qo'ng'irot tumani","mahallas":["Qoraqalpog'iston MFY","Yangi hayot MFY"]},{"id":"xojayli","name":"Xo'jayli tumani","mahallas":["Amudaryo MFY","Navbahor MFY"]}]}
+      ]
+    },
+    {"id":"kazakhstan","name":"Qozog'iston","regions":[]},
+    {"id":"kyrgyzstan","name":"Qirg'iziston","regions":[]},
+    {"id":"tajikistan","name":"Tojikiston","regions":[]}
+  ]
+}

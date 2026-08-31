@@ -128,7 +128,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="styles.css?v=1788172800">
+    <link rel="stylesheet" href="styles.css?v=1788172900">
 
     <!-- GSAP & ScrollTrigger CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
@@ -165,6 +165,14 @@
             </nav>
 
             <div class="nav-actions">
+                <a href="#profileCompletionSection" class="hud-pill xp-badge" id="xpBadgeHUD" aria-label="XP balansi">
+                    <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+                    <span id="userXPVal">0 XP</span>
+                </a>
+                <a href="#profileCompletionSection" class="hud-pill profile-hud-btn" id="profileHudBtn">
+                    <i class="fa-solid fa-user" aria-hidden="true"></i>
+                    <span>Profil</span>
+                </a>
                 <!-- Multi-Language Switcher (UZ / EN) -->
                 <div class="lang-switcher liquid-pill">
                     <button class="lang-btn active" id="langUzBtn">UZ</button>
@@ -191,6 +199,7 @@
             <button class="drawer-close" id="drawerCloseBtn"><i class="fa-solid fa-xmark"></i></button>
 </div>
 <div class="drawer-links">
+            <a href="#profileCompletionSection" class="drawer-link" id="drawerXpLink"><i class="fa-solid fa-bolt"></i> XP va Profil</a>
             <a href="#courses" class="drawer-link" data-i18n="navCourses">Kurslar</a>
             <a href="#trust" class="drawer-link" data-i18n="navProof">Natijalar</a>
             <a href="general-english-beginner.html" class="drawer-link"><i class="fa-solid fa-graduation-cap"></i> English Hub</a>
@@ -718,6 +727,7 @@
                     <div class="footer-col">
                         <h4>Vositalar</h4>
                         <ul>
+                            <li><a href="#profileCompletionSection">XP va Profil</a></li>
                             <li><a href="#placement-quiz">Daraja testi</a></li>
                             <li><a href="#calculator">Grant kalkulyatori</a></li>
                             <li><a href="support.html">Yordam</a></li>

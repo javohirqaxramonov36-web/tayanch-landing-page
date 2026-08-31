@@ -2691,7 +2691,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const allComplete = completed === 2;
         if (section) section.hidden = allComplete;
         if (completeState) completeState.hidden = !allComplete;
-        if (profileHudBtn) profileHudBtn.hidden = !allComplete;
+        if (profileHudBtn) profileHudBtn.hidden = false;
         if (allComplete) unlockBadge('profile_complete');
     }
 
@@ -2719,7 +2719,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('educationModalCloseBtn')?.addEventListener('click', () => closeProfileModal(document.getElementById('educationModal')));
     document.getElementById('addressModal')?.addEventListener('click', e => { if (e.target.id === 'addressModal') closeProfileModal(e.currentTarget); });
     document.getElementById('educationModal')?.addEventListener('click', e => { if (e.target.id === 'educationModal') closeProfileModal(e.currentTarget); });
-    document.getElementById('profileHudBtn')?.addEventListener('click', () => openProfileModal('address'));
+    document.getElementById('profileHudBtn')?.addEventListener('click', (e) => {
+        const section = document.getElementById('profileCompletionSection');
+        if (section) {
+            e.preventDefault();
+            section.hidden = false;
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeProfileModal(document.getElementById('addressModal')); closeProfileModal(document.getElementById('educationModal')); } });
 
     async function loadProfileRegions() {

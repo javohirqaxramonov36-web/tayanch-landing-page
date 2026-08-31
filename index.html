@@ -292,176 +292,6 @@
                 </div>
             </div>
         </section>
-
-
-
-        <!-- Profile Completion / XP Reward Section -->
-        <section class="section profile-completion-section" id="profileCompletionSection" aria-labelledby="profileCompletionTitle">
-            <div class="container">
-                <div class="profile-completion-card liquid-glass-card gsap-reveal" id="profileCompletionCard">
-                    <div class="profile-card-heading">
-                        <div>
-                            <div class="section-tag profile-section-tag"><i class="fa-solid fa-user-pen"></i> <span data-i18n="profileSectionTag">Profil bonusi</span></div>
-                            <h2 class="profile-card-title" id="profileCompletionTitle" data-i18n="profileCardTitle">Profilingizni to‘ldiring</h2>
-                            <p class="profile-card-desc" data-i18n="profileCardDesc">Ma’lumotlaringizni ixtiyoriy ravishda kiriting va qo‘shimcha XP oling.</p>
-                            <span class="profile-storage-status" id="profileStorageStatus" role="status"></span>
-                        </div>
-                        <div class="profile-progress-summary">
-                            <strong id="profileProgressLabel">0/2</strong>
-                            <span data-i18n="profileCompleted">bo‘lim to‘ldirilgan</span>
-                        </div>
-                    </div>
-                    <div class="profile-progress-track" aria-hidden="true"><span id="profileProgressFill"></span></div>
-                    <div class="profile-module-list" id="profileModuleList"></div>
-                    <div class="profile-complete-state" id="profileCompleteState" hidden>
-                        <span class="profile-complete-icon">✓</span>
-                        <div><strong data-i18n="profileAllDone">Profil to‘liq to‘ldirildi!</strong><p data-i18n="profileAllDoneDesc">Yangi yutuq nishoni ochildi. Ma’lumotlarni istalgan vaqtda tahrirlashingiz mumkin.</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Open Education & Source Audit Section -->
-        <section class="section pitch-section" id="startup-pitch">
-            <div class="container">
-                <div class="pitch-card liquid-glass-card gsap-reveal">
-                    <div class="pitch-grid">
-                        <div class="pitch-content">
-                            <span class="cta-tag liquid-pill"><i class="fa-solid fa-shield-halved"></i> Ochiq va Shaffof Ta'lim</span>
-                            <h2 class="pitch-title mt-2">Ochiq Manbalar & <span class="gradient-text">Litsenziyalar Shaffofligi</span></h2>
-                            <p class="pitch-desc">Tayanch — yoshlar uchun sifatli va amaliy ta'lim bilimlari ulashuvchi platformadir. Ba'zi kurs materiallari (masalan General English) ochiq litsenziyali manbalardan tayyorlangan.</p>
-                            
-                            <div class="pitch-metrics-grid mt-4">
-                                <div class="p-metric-item" style="grid-column: span 3;">
-                                    <span class="p-lbl" style="font-size: 0.95rem; color: #ffffff;"><i class="fa-solid fa-circle-check text-success"></i> Ba'zi kurs materiallari ochiq litsenziyali manbalardan tayyorlangan</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pitch-action-col text-center">
-                            <div class="badge-icon-box liquid-glow-avatar">
-                                <i class="fa-solid fa-file-shield"></i>
-                            </div>
-                            <h4 class="mt-3">Ochiq Manbalar Auditi</h4>
-                            <p class="text-muted text-sm mt-1">Ochiq manbalar litsenziya muvofiqligi va audit jurnali.</p>
-                            <a href="general-english-sources-log.txt" target="_blank" rel="noopener noreferrer" class="btn btn-secondary mt-3">
-                                <i class="fa-solid fa-file-shield"></i> Open Source Audit Log
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Interactive AI Placement Quiz Widget Section -->
-        <section class="section quiz-section" id="placement-quiz">
-            <div class="container">
-                <div class="quiz-card liquid-glass-card gsap-reveal">
-                    <div class="section-header text-center">
-                        <div class="section-tag"><i class="fa-solid fa-brain"></i> Express Test</div>
-                        <h2 class="section-title">3-Daqiqalik <span class="gradient-text">AI Daraja Testi</span></h2>
-                        <p class="section-desc">Ingliz tili va AI bilimlaringizni zudlik bilan baholang hamda shaxsiy CEFR darajangizni oling.</p>
-                    </div>
-
-                    <div class="quiz-widget-body text-center" id="quizContainer">
-                        <div class="quiz-step" id="quizStep1">
-                            <h3 class="quiz-q">1. Select the correct sentence structure for academic writing:</h3>
-                            <div class="quiz-options-grid mt-3">
-                                <button class="quiz-opt-btn" data-score="1">A) "The study demonstrates significant results."</button>
-                                <button class="quiz-opt-btn" data-score="0">B) "The study demonstrate very big results."</button>
-                            </div>
-                        </div>
-
-                        <div class="quiz-step" id="quizStep2" style="display:none;">
-                            <h3 class="quiz-q">2. Which AI tool is specialized for Literature Review & Academic Papers?</h3>
-                            <div class="quiz-options-grid mt-3">
-                                <button class="quiz-opt-btn" data-score="1">A) Consensus & Elicit AI</button>
-                                <button class="quiz-opt-btn" data-score="0">B) Simple Calculator</button>
-                            </div>
-                        </div>
-
-                        <div class="quiz-result-box mt-4" id="quizResultBox" style="display:none;">
-                            <div class="res-badge liquid-pill"><i class="fa-solid fa-award"></i> Tizim Diagnostikasi Natijasi</div>
-                            <h3 class="mt-2" id="quizResultLevel">Darajangiz: CEFR B2 (Upper-Intermediate)</h3>
-                            <p class="text-muted mt-1" id="quizResultText">Siz uchun tavsiya etiladigan kurs: IELTS Writing Task 2 va Practical AI.</p>
-                            <button class="btn btn-primary btn-glow btn-liquid mt-3 open-lead-modal-btn" data-course="AI Quiz Result">
-                                <span class="btn-text">Natija Bilan Ariza Topshirish</span>
-                                <div class="liquid-wave"></div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Interactive Grant & Course Eligibility Calculator Section -->
-        <section class="section calc-section" id="calculator">
-            <div class="container">
-                <div class="calc-card liquid-glass-card gsap-reveal">
-                    <div class="section-header text-center">
-                        <div class="section-tag"><i class="fa-solid fa-calculator"></i> Interaktiv Kalkulyator</div>
-                        <h2 class="section-title">Grant va Kurs <span class="gradient-text">Mosligini Hisoblang</span></h2>
-                        <p class="section-desc">Joriy ingliz tili darajangiz va maqsadingizni tanlang, tizim siz uchun mos kurslarni tavsiya qiladi.</p>
-                    </div>
-
-                    <div class="calc-grid">
-                        <div class="calc-inputs-col">
-                            <div class="calc-group">
-                                <label for="calcLevel"><i class="fa-solid fa-signal"></i> Joriy Ingliz tili darajangiz:</label>
-                                <select id="calcLevel" class="form-select">
-                                    <option value="a2">A2 (Elementary)</option>
-                                    <option value="b1">B1 (Intermediate)</option>
-                                    <option value="b2" selected>B2 (Upper-Intermediate)</option>
-                                    <option value="c1">C1 (Advanced)</option>
-                                </select>
-                            </div>
-
-                            <div class="calc-group">
-                                <label for="calcIelts"><i class="fa-solid fa-bullseye"></i> Maqsadingizdagi IELTS Balli:</label>
-                                <select id="calcIelts" class="form-select">
-                                    <option value="6.5">Band 6.5 (Xalqaro universitetlar)</option>
-                                    <option value="7.0" selected>Band 7.0 (Top 100 Grantlar)</option>
-                                    <option value="7.5">Band 7.5+ (Ivy League & Full-Ride)</option>
-                                </select>
-                            </div>
-
-                            <div class="calc-group">
-                                <label for="calcGoal"><i class="fa-solid fa-robot"></i> AI va SAT yo'nalishi bo'yicha maqsad:</label>
-                                <select id="calcGoal" class="form-select">
-                                    <option value="ai">AI vositalari va Unumdorlik</option>
-                                    <option value="sat">SAT Math 750+ va Digitial SAT</option>
-                                    <option value="admission" selected>US & European Top Universities Full-Ride</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="calc-results-col">
-                            <div class="results-box liquid-card">
-                                <h4>Sizga mos tavsiyalar:</h4>
-                                <p class="result-note">Darajangiz va maqsadingizga qarab, quyidagi Tayanch kurslarini ko'rib chiqishingiz mumkin:</p>
-
-                                <div class="recommended-courses-list mt-3">
-                                    <span>Tavsiya etiladigan mos Tayanch kurslari:</span>
-                                    <ul id="resCoursesList">
-                                        <li><i class="fa-solid fa-check"></i> IELTS Writing Task 2 Masterclass (Band 7.5+)</li>
-                                        <li><i class="fa-solid fa-check"></i> US College Application Essay (Personal Statement)</li>
-                                    </ul>
-                                </div>
-
-                                <div style="font-size: 0.72rem; color: var(--text-dim); margin-top: 12px; text-align: center;">
-                                    <i class="fa-solid fa-chart-line"></i> * Indikativ va statistik simulyatsiya (Tayanch o'quvchilari o'rtacha ko'rsatkichlari)
-                                </div>
-
-                                <button class="btn btn-primary btn-glow btn-liquid w-full mt-3 open-lead-modal-btn" id="calcApplyBtn" data-course="Kalkulyator Natijasi bo'yicha">
-                                    <span class="btn-text"><i class="fa-solid fa-paper-plane"></i> Ushbu Natija Bilan Ariza Topshirish</span>
-                                    <div class="liquid-wave"></div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Mission / Nega Tayanch Section -->
         <section class="section mission-section" id="mission">
             <div class="container">
@@ -510,7 +340,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Three honest tracks (not a 31-course catalog) -->
         <section class="section courses-section" id="courses">
             <div class="container">
@@ -586,7 +415,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Proof & Certificates Interactive Slider Section -->
         <section class="section proof-section" id="trust">
             <div class="container">
@@ -647,7 +475,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Testimonial & Trust Signal Section -->
         <section class="section trust-section" id="trust">
             <div class="container">
@@ -694,7 +521,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Call to Action Banner Section -->
         <section class="section cta-section" id="cta">
             <div class="container">
@@ -718,6 +544,139 @@
                                 <span>Telegram Kanalimiz</span>
                             </a>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Interactive AI Placement Quiz Widget Section -->
+        <section class="section quiz-section" id="placement-quiz">
+            <div class="container">
+                <div class="quiz-card liquid-glass-card gsap-reveal">
+                    <div class="section-header text-center">
+                        <div class="section-tag"><i class="fa-solid fa-brain"></i> Express Test</div>
+                        <h2 class="section-title">3-Daqiqalik <span class="gradient-text">AI Daraja Testi</span></h2>
+                        <p class="section-desc">Ingliz tili va AI bilimlaringizni zudlik bilan baholang hamda shaxsiy CEFR darajangizni oling.</p>
+                    </div>
+
+                    <div class="quiz-widget-body text-center" id="quizContainer">
+                        <div class="quiz-step" id="quizStep1">
+                            <h3 class="quiz-q">1. Select the correct sentence structure for academic writing:</h3>
+                            <div class="quiz-options-grid mt-3">
+                                <button class="quiz-opt-btn" data-score="1">A) "The study demonstrates significant results."</button>
+                                <button class="quiz-opt-btn" data-score="0">B) "The study demonstrate very big results."</button>
+                            </div>
+                        </div>
+
+                        <div class="quiz-step" id="quizStep2" style="display:none;">
+                            <h3 class="quiz-q">2. Which AI tool is specialized for Literature Review & Academic Papers?</h3>
+                            <div class="quiz-options-grid mt-3">
+                                <button class="quiz-opt-btn" data-score="1">A) Consensus & Elicit AI</button>
+                                <button class="quiz-opt-btn" data-score="0">B) Simple Calculator</button>
+                            </div>
+                        </div>
+
+                        <div class="quiz-result-box mt-4" id="quizResultBox" style="display:none;">
+                            <div class="res-badge liquid-pill"><i class="fa-solid fa-award"></i> Tizim Diagnostikasi Natijasi</div>
+                            <h3 class="mt-2" id="quizResultLevel">Darajangiz: CEFR B2 (Upper-Intermediate)</h3>
+                            <p class="text-muted mt-1" id="quizResultText">Siz uchun tavsiya etiladigan kurs: IELTS Writing Task 2 va Practical AI.</p>
+                            <button class="btn btn-primary btn-glow btn-liquid mt-3 open-lead-modal-btn" data-course="AI Quiz Result">
+                                <span class="btn-text">Natija Bilan Ariza Topshirish</span>
+                                <div class="liquid-wave"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Interactive Grant & Course Eligibility Calculator Section -->
+        <section class="section calc-section" id="calculator">
+            <div class="container">
+                <div class="calc-card liquid-glass-card gsap-reveal">
+                    <div class="section-header text-center">
+                        <div class="section-tag"><i class="fa-solid fa-calculator"></i> Interaktiv Kalkulyator</div>
+                        <h2 class="section-title">Grant va Kurs <span class="gradient-text">Mosligini Hisoblang</span></h2>
+                        <p class="section-desc">Joriy ingliz tili darajangiz va maqsadingizni tanlang, tizim siz uchun mos kurslarni tavsiya qiladi.</p>
+                    </div>
+
+                    <div class="calc-grid">
+                        <div class="calc-inputs-col">
+                            <div class="calc-group">
+                                <label for="calcLevel"><i class="fa-solid fa-signal"></i> Joriy Ingliz tili darajangiz:</label>
+                                <select id="calcLevel" class="form-select">
+                                    <option value="a2">A2 (Elementary)</option>
+                                    <option value="b1">B1 (Intermediate)</option>
+                                    <option value="b2" selected>B2 (Upper-Intermediate)</option>
+                                    <option value="c1">C1 (Advanced)</option>
+                                </select>
+                            </div>
+
+                            <div class="calc-group">
+                                <label for="calcIelts"><i class="fa-solid fa-bullseye"></i> Maqsadingizdagi IELTS Balli:</label>
+                                <select id="calcIelts" class="form-select">
+                                    <option value="6.5">Band 6.5 (Xalqaro universitetlar)</option>
+                                    <option value="7.0" selected>Band 7.0 (Top 100 Grantlar)</option>
+                                    <option value="7.5">Band 7.5+ (Ivy League & Full-Ride)</option>
+                                </select>
+                            </div>
+
+                            <div class="calc-group">
+                                <label for="calcGoal"><i class="fa-solid fa-robot"></i> AI va SAT yo'nalishi bo'yicha maqsad:</label>
+                                <select id="calcGoal" class="form-select">
+                                    <option value="ai">AI vositalari va Unumdorlik</option>
+                                    <option value="sat">SAT Math 750+ va Digitial SAT</option>
+                                    <option value="admission" selected>US & European Top Universities Full-Ride</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="calc-results-col">
+                            <div class="results-box liquid-card">
+                                <h4>Sizga mos tavsiyalar:</h4>
+                                <p class="result-note">Darajangiz va maqsadingizga qarab, quyidagi Tayanch kurslarini ko'rib chiqishingiz mumkin:</p>
+
+                                <div class="recommended-courses-list mt-3">
+                                    <span>Tavsiya etiladigan mos Tayanch kurslari:</span>
+                                    <ul id="resCoursesList">
+                                        <li><i class="fa-solid fa-check"></i> IELTS Writing Task 2 Masterclass (Band 7.5+)</li>
+                                        <li><i class="fa-solid fa-check"></i> US College Application Essay (Personal Statement)</li>
+                                    </ul>
+                                </div>
+
+                                <div style="font-size: 0.72rem; color: var(--text-dim); margin-top: 12px; text-align: center;">
+                                    <i class="fa-solid fa-chart-line"></i> * Indikativ va statistik simulyatsiya (Tayanch o'quvchilari o'rtacha ko'rsatkichlari)
+                                </div>
+
+                                <button class="btn btn-primary btn-glow btn-liquid w-full mt-3 open-lead-modal-btn" id="calcApplyBtn" data-course="Kalkulyator Natijasi bo'yicha">
+                                    <span class="btn-text"><i class="fa-solid fa-paper-plane"></i> Ushbu Natija Bilan Ariza Topshirish</span>
+                                    <div class="liquid-wave"></div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Profile Completion / XP Reward Section -->
+        <section class="section profile-completion-section" id="profileCompletionSection" aria-labelledby="profileCompletionTitle">
+            <div class="container">
+                <div class="profile-completion-card liquid-glass-card gsap-reveal" id="profileCompletionCard">
+                    <div class="profile-card-heading">
+                        <div>
+                            <div class="section-tag profile-section-tag"><i class="fa-solid fa-user-pen"></i> <span data-i18n="profileSectionTag">Profil bonusi</span></div>
+                            <h2 class="profile-card-title" id="profileCompletionTitle" data-i18n="profileCardTitle">Profilingizni to‘ldiring</h2>
+                            <p class="profile-card-desc" data-i18n="profileCardDesc">Ma’lumotlaringizni ixtiyoriy ravishda kiriting va qo‘shimcha XP oling.</p>
+                            <span class="profile-storage-status" id="profileStorageStatus" role="status"></span>
+                        </div>
+                        <div class="profile-progress-summary">
+                            <strong id="profileProgressLabel">0/2</strong>
+                            <span data-i18n="profileCompleted">bo‘lim to‘ldirilgan</span>
+                        </div>
+                    </div>
+                    <div class="profile-progress-track" aria-hidden="true"><span id="profileProgressFill"></span></div>
+                    <div class="profile-module-list" id="profileModuleList"></div>
+                    <div class="profile-complete-state" id="profileCompleteState" hidden>
+                        <span class="profile-complete-icon">✓</span>
+                        <div><strong data-i18n="profileAllDone">Profil to‘liq to‘ldirildi!</strong><p data-i18n="profileAllDoneDesc">Yangi yutuq nishoni ochildi. Ma’lumotlarni istalgan vaqtda tahrirlashingiz mumkin.</p></div>
                     </div>
                 </div>
             </div>
@@ -749,6 +708,7 @@
                             <li><a href="general-english-beginner.html">General English Hub</a></li>
                             <li><a href="sitemap.html"><i class="fa-solid fa-sitemap"></i> Vizual Sitemap</a></li>
                             <li><a href="robots.html"><i class="fa-solid fa-robot"></i> Robots Policy</a></li>
+                            <li><a href="general-english-sources-log.txt">Ochiq manbalar auditi</a></li>
                             <li><a href="support.html"><i class="fa-solid fa-hand-holding-heart"></i> Qo‘llab-quvvatlash</a></li>
                             <li><a href="xp-store.html"><i class="fa-solid fa-store"></i> XP Do‘koni</a></li>
                             <li><a href="documents.html"><i class="fa-solid fa-folder-open"></i> Mening hujjatlarim</a></li>

@@ -128,7 +128,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="styles.css?v=1788000003">
+    <link rel="stylesheet" href="styles.css?v=1788172800">
 
     <!-- GSAP & ScrollTrigger CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
@@ -158,35 +158,10 @@
                 <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
             </a>
 
-            <!-- Gamification HUD Bar -->
-            <div class="gamify-hud-container">
-                <div class="gamify-stat xp-badge" id="xpBadgeHUD">
-                    <i class="fa-solid fa-bolt"></i> <span id="userXPVal">250 XP</span>
-                </div>
-                <div class="gamify-stat streak-badge" id="streakBadgeHUD">
-                    <span id="userStreakVal">🔥 3 Combo</span>
-                </div>
-                <button class="badges-hud-btn" id="badgesHudBtn">
-                    <i class="fa-solid fa-trophy"></i> Yutuqlar
-                </button>
-                <button class="profile-hud-btn" id="profileHudBtn" aria-label="Profilni tahrirlash" hidden>
-                    <i class="fa-solid fa-user-pen"></i> Profil
-                </button>
-            </div>
-
-            <nav class="nav-links liquid-nav-capsule" id="navLinks">
-                <a href="#hero" class="nav-link active" data-i18n="navHome">Bosh sahifa</a>
-                <a href="sat-dsat.html" class="nav-link"><i class="fa-solid fa-calculator"></i> Digital SAT Hub</a>
-                <a href="general-english-beginner.html" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> English Hub</a>
-                <a href="#calculator" class="nav-link" data-i18n="navCalc">Kalkulyator</a>
-                <a href="#placement-quiz" class="nav-link" data-i18n="navQuiz">AI Test</a>
-                <a href="#mission" class="nav-link" data-i18n="navMission">Nega Tayanch</a>
+            <nav class="nav-links liquid-nav-capsule" id="navLinks" aria-label="Asosiy menyu">
                 <a href="#courses" class="nav-link" data-i18n="navCourses">Kurslar</a>
                 <a href="#trust" class="nav-link" data-i18n="navProof">Natijalar</a>
-            <a href="support.html" class="nav-link"><i class="fa-solid fa-hand-holding-heart"></i> Qo‘llab-quvvatlash</a>
-            <a href="xp-store.html" class="nav-link"><i class="fa-solid fa-store"></i> XP Do‘koni</a>
-            <a href="documents.html" class="nav-link"><i class="fa-solid fa-folder-open"></i> Mening hujjatlarim</a>
-            <a href="services.html" class="nav-link"><i class="fa-solid fa-grid-2"></i> Xizmatlar</a>
+                <a href="https://t.me/tayanch_go" class="nav-link" target="_blank" rel="noopener noreferrer">Telegram</a>
             </nav>
 
             <div class="nav-actions">
@@ -216,23 +191,12 @@
             <button class="drawer-close" id="drawerCloseBtn"><i class="fa-solid fa-xmark"></i></button>
 </div>
 <div class="drawer-links">
-            <a href="#hero" class="drawer-link" data-i18n="navHome">Bosh sahifa</a>
-            <a href="general-english-beginner.html" class="drawer-link"><i class="fa-solid fa-graduation-cap"></i> General English Hub</a>
-            <a href="#calculator" class="drawer-link" data-i18n="navCalc">Grant Kalkulyatori</a>
-            <a href="#placement-quiz" class="drawer-link" data-i18n="navQuiz">AI Daraja Testi</a>
-            <a href="#mission" class="drawer-link" data-i18n="navMission">Nega Tayanch</a>
             <a href="#courses" class="drawer-link" data-i18n="navCourses">Kurslar</a>
-            <a href="#trust" class="drawer-link" data-i18n="navProof">Natijalar & Sertifikatlar</a>
-            <a href="support.html" class="drawer-link"><i class="fa-solid fa-hand-holding-heart"></i> Qo‘llab-quvvatlash</a>
-            <a href="xp-store.html" class="drawer-link"><i class="fa-solid fa-store"></i> XP Do‘koni</a>
-            <a href="documents.html" class="drawer-link"><i class="fa-solid fa-folder-open"></i> Mening hujjatlarim</a>
-            <a href="services.html" class="drawer-link"><i class="fa-solid fa-grid-2"></i> Xizmatlar</a>
+            <a href="#trust" class="drawer-link" data-i18n="navProof">Natijalar</a>
+            <a href="https://t.me/tayanch_go" class="drawer-link" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i> Telegram</a>
             <button class="btn btn-primary w-full mt-4 open-lead-modal-btn" data-course="Mobile Drawer">
                 <i class="fa-solid fa-pen-to-square"></i> <span data-i18n="applyNow">Ariza Qoldirish</span>
             </button>
-            <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-secondary w-full mt-2">
-                <i class="fa-brands fa-telegram"></i> Telegram Kanal
-            </a>
         </div>
     </div>
 
@@ -309,8 +273,8 @@
                                     <i class="fa-solid fa-graduation-cap"></i>
                                 </div>
                                 <div class="badge-text-box">
-                                    <h4>Yangi: Real Bluebook & IELTS Simulator</h4>
-                                    <p><a href='sat-dsat.html' style='color:#00f2fe;text-decoration:underline;'>O'z bilimingizni 100% bepul diagnostika qiling &rarr;</a></p>
+                                    <h4>Bluebook va IELTS simulyatori</h4>
+                                    <p><a href="sat-dsat.html">Bepul diagnostika →</a></p>
                                 </div>
                             </div>
                         </div>

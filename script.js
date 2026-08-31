@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
             heroSubheadline: 'Bugundan yangi ko\'nikma egallang va kelajagingizni zamonaviy texnologiyalar hamda xalqaro ta\'lim imkoniyatlari bilan birga quring.',
             heroCtaMain: 'Veb-saytda Ariza Qoldirish',
             heroVideoBtn: 'Video Namuna (1 min)',
-            coursesStat: 'Intensiv Kurslar',
+            coursesStat: "Yo'nalish",
             practiceStat: 'Amaliy Metodika',
             supportStat: 'Telegram Qo\'llab-quvvatlash',
             profileSectionTag: 'Profil bonusi',
@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
             heroSubheadline: 'Acquire high-value skills today and build your global future with cutting-edge AI technologies and international scholarships.',
             heroCtaMain: 'Apply via Website',
             heroVideoBtn: 'Watch Demo (1 min)',
-            coursesStat: 'Intensive Courses',
+            coursesStat: 'Tracks',
             practiceStat: 'Practical Method',
             supportStat: '24/7 Telegram Support',
             profileSectionTag: 'Profile bonus',
@@ -555,19 +555,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function courseHref(course) {
+        if (course.category === 'ai') return 'ai-hub.html';
+        if (course.category === 'admission') return 'sat-dsat.html';
+        return 'general-english-beginner.html';
+    }
+
+    function courseCtaLabel(course) {
+        if (course.category === 'ai') return "AI hub — tez orada";
+        if (course.category === 'admission') return "SAT Hub'ga kirish";
+        return "English Hub'ga kirish";
+    }
+
     function createCourseCard(course) {
         const card = document.createElement('div');
         card.className = 'course-card liquid-card tilt-card';
         const catClass = course.category === 'ai' ? 'cat-ai' : (course.category === 'ielts' ? 'cat-ielts' : 'cat-admission');
         const catImg = course.category === 'ai' ? 'assets/images/ai_hero.jpg' : (course.category === 'ielts' ? 'assets/images/founder.jpg' : 'assets/images/university_grant.jpg');
+        const href = courseHref(course);
+        const ctaLabel = courseCtaLabel(course);
 
         const priceBadgeHtml = isVIPUser 
             ? `<span class="detail-item" style="color:#00f2fe; font-weight:700;"><i class="fa-solid fa-lock-open"></i> VIP Sinov Ochiq</span>`
             : `<span class="detail-item" style="color:#fbbf24; font-weight:700;"><i class="fa-solid fa-tag"></i> ${course.price}</span>`;
 
         const actionBtnHtml = isVIPUser
-            ? `<a href="general-english-beginner.html" class="btn btn-sm btn-primary btn-liquid w-full">
-                    <i class="fa-solid fa-graduation-cap"></i> <span class="btn-text">Darslik Hub'iga Kirish (VIP)</span>
+            ? `<a href="${href}" class="btn btn-sm btn-primary btn-liquid w-full">
+                    <i class="fa-solid fa-graduation-cap"></i> <span class="btn-text">${ctaLabel}</span>
                     <div class="liquid-wave"></div>
                </a>`
             : `<button class="btn btn-sm btn-primary btn-liquid open-lead-modal-btn" data-course="${course.title}">
@@ -786,8 +800,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="btn-text"><i class="fa-solid fa-pen-to-square"></i> Kursga Ariza Qoldirish</span>
                     <div class="liquid-wave"></div>
                 </button>
-                <a href="general-english-beginner.html" class="btn btn-secondary w-full">
-                    <i class="fa-solid fa-graduation-cap" style="color: var(--primary-cyan);"></i> Interaktiv Darslik Hub (6 Aspects & Practice)
+                <a href="${courseHref(course)}" class="btn btn-secondary w-full">
+                    <i class="fa-solid fa-graduation-cap" style="color: var(--primary-cyan);"></i> ${courseCtaLabel(course)}
                 </a>
                 <button class="btn btn-secondary w-full open-video-modal-btn" data-title="${course.title} - Video Namuna" data-video="VBvxHIkvjeo">
                     <i class="fa-solid fa-circle-play" style="color: var(--primary-cyan);"></i> Video Namuna Darsini Ko'rish

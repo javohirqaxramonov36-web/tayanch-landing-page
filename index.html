@@ -179,9 +179,9 @@
                 <a href="sat-dsat.html" class="nav-link"><i class="fa-solid fa-calculator"></i> Digital SAT Hub</a>
                 <a href="general-english-beginner.html" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> English Hub</a>
                 <a href="#calculator" class="nav-link" data-i18n="navCalc">Kalkulyator</a>
-                <a href="sat-dsat.html" class="nav-link" data-i18n="navQuiz">AI Test</a>
+                <a href="#placement-quiz" class="nav-link" data-i18n="navQuiz">AI Test</a>
                 <a href="#mission" class="nav-link" data-i18n="navMission">Nega Tayanch</a>
-                <a href="#courses" class="nav-link"><span data-i18n="navCourses">Kurslar</span> <span class="badge-count">31</span></a>
+                <a href="#courses" class="nav-link" data-i18n="navCourses">Kurslar</a>
                 <a href="#trust" class="nav-link" data-i18n="navProof">Natijalar</a>
             <a href="support.html" class="nav-link"><i class="fa-solid fa-hand-holding-heart"></i> Qo‘llab-quvvatlash</a>
             <a href="xp-store.html" class="nav-link"><i class="fa-solid fa-store"></i> XP Do‘koni</a>
@@ -219,9 +219,9 @@
             <a href="#hero" class="drawer-link" data-i18n="navHome">Bosh sahifa</a>
             <a href="general-english-beginner.html" class="drawer-link"><i class="fa-solid fa-graduation-cap"></i> General English Hub</a>
             <a href="#calculator" class="drawer-link" data-i18n="navCalc">Grant Kalkulyatori</a>
-            <a href="sat-dsat.html" class="drawer-link" data-i18n="navQuiz">AI Daraja Testi</a>
+            <a href="#placement-quiz" class="drawer-link" data-i18n="navQuiz">AI Daraja Testi</a>
             <a href="#mission" class="drawer-link" data-i18n="navMission">Nega Tayanch</a>
-            <a href="#courses" class="drawer-link" data-i18n="navCourses">Kurslar (31 ta)</a>
+            <a href="#courses" class="drawer-link" data-i18n="navCourses">Kurslar</a>
             <a href="#trust" class="drawer-link" data-i18n="navProof">Natijalar & Sertifikatlar</a>
             <a href="support.html" class="drawer-link"><i class="fa-solid fa-hand-holding-heart"></i> Qo‘llab-quvvatlash</a>
             <a href="xp-store.html" class="drawer-link"><i class="fa-solid fa-store"></i> XP Do‘koni</a>
@@ -269,8 +269,8 @@
 
                     <div class="hero-stats-row hero-fade glass-panel">
                         <div class="stat-item">
-                            <span class="stat-number" data-target="31">31</span>
-                            <span class="stat-label" data-i18n="coursesStat">Intensiv Kurslar</span>
+                            <span class="stat-number" data-target="3">3</span>
+                            <span class="stat-label" data-i18n="coursesStat">Yo'nalish</span>
                         </div>
                         <div class="stat-divider"></div>
                         <div class="stat-item">
@@ -547,98 +547,78 @@
             </div>
         </section>
 
-        <!-- Courses Section (31 Course Cards) -->
+        <!-- Three honest tracks (not a 31-course catalog) -->
         <section class="section courses-section" id="courses">
             <div class="container">
                 <div class="section-header text-center gsap-reveal">
-                    <div class="section-tag">O'quv Dasturlari</div>
-                    <h2 class="section-title">Barcha <span class="gradient-text">31 ta Kurslar</span> katalogi</h2>
-                    <p class="section-desc">O'zingizga mos yo'nalishni tanlang va bilimlaringizni amalda qo'llang.</p>
+                    <div class="section-tag">O'quv dasturlari</div>
+                    <h2 class="section-title">Uchta <span class="gradient-text">yo'nalish</span></h2>
+                    <p class="section-desc">Har bir tugma o'z sahifasiga olib boradi. AI hub hali ochilmagan — shuning uchun u beginner English'ga tushmaydi.</p>
                 </div>
 
-                <!-- Filter Controls & Search -->
-                <div class="catalog-controls gsap-reveal">
-                    <div class="search-box liquid-search">
-                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                        <input type="text" id="courseSearchInput" placeholder="Kurs nomi yoki kalit so'zni kiriting..." aria-label="Kurslarni qidirish">
-                        <button id="clearSearchBtn" class="clear-btn" style="display:none;" aria-label="Tozalash"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-
-                    <div class="filter-tabs" id="filterTabs">
-                        <button class="tab-btn active liquid-tab" data-category="all">
-                            <span>Barchasi</span>
-                            <span class="tab-count" id="countAll">31</span>
-                        </button>
-                        <button class="tab-btn liquid-tab" data-category="ai">
-                            <i class="fa-solid fa-robot"></i>
-                            <span>Sun'iy Intelekt (AI)</span>
-                            <span class="tab-count">10</span>
-                        </button>
-                        <button class="tab-btn liquid-tab" data-category="ielts">
-                            <i class="fa-solid fa-language"></i>
-                            <span>IELTS & Ingliz tili</span>
-                            <span class="tab-count">11</span>
-                        </button>
-                        <button class="tab-btn liquid-tab" data-category="admission">
-                            <i class="fa-solid fa-building-columns"></i>
-                            <span>Admission & SAT</span>
-                            <span class="tab-count">10</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Courses Grid -->
-                <div class="grid grid-3 courses-grid" id="coursesGrid">
-                    <!-- Static Fallback for Search Engine Crawlers & JS Disabled -->
-                    <div class="course-card liquid-card tilt-card">
+                <div class="grid grid-3 courses-grid">
+                    <article class="course-card liquid-card tilt-card">
                         <div class="course-top">
                             <div class="course-thumb-wrapper">
-                                <img loading="lazy" decoding="async" src="assets/images/ai_hero.jpg" alt="Practical AI for Daily Productivity" class="course-thumb-img" width="350" height="140" loading="lazy">
+                                <img loading="lazy" decoding="async" src="assets/images/ai_hero.jpg" alt="Sun'iy intellekt yo'nalishi" class="course-thumb-img" width="350" height="140">
                                 <div class="course-thumb-overlay"></div>
-                                <span class="category-tag cat-ai thumb-tag">Sun'iy Intelekt (AI)</span>
+                                <span class="category-tag cat-ai thumb-tag">Sun'iy intellekt</span>
                             </div>
                             <div class="course-meta">
-                                <span class="course-badge"><i class="fa-solid fa-bolt"></i> Top Trend</span>
+                                <span class="course-badge"><i class="fa-solid fa-clock"></i> Tez orada</span>
                             </div>
-                            <h3 class="course-title">Practical AI for Daily Productivity</h3>
-                            <p class="course-desc">ChatGPT, Claude va Perplexity vositalari orqali kunlik vazifalaringizni 5x tezlashtirish sirlari.</p>
+                            <h3 class="course-title">Amaliy AI</h3>
+                            <p class="course-desc">ChatGPT, tadqiqot va unumdorlik dasturi. Hub hali ochilmagan — English yoki SAT sahifasiga olib borilmaydi.</p>
                         </div>
-                    </div>
-                    <div class="course-card liquid-card tilt-card">
-                        <div class="course-top">
-                            <div class="course-thumb-wrapper">
-                                <img loading="lazy" decoding="async" src="assets/images/founder.jpg" alt="IELTS Writing Task 2 Masterclass" class="course-thumb-img" width="350" height="140" loading="lazy">
-                                <div class="course-thumb-overlay"></div>
-                                <span class="category-tag cat-ielts thumb-tag">IELTS & Ingliz tili</span>
-                            </div>
-                            <div class="course-meta">
-                                <span class="course-badge"><i class="fa-solid fa-pen-nib"></i> Top Natija</span>
-                            </div>
-                            <h3 class="course-title">IELTS Writing Task 2 Masterclass (Band 7.5+)</h3>
-                            <p class="course-desc">Insho turlari, aniq struktura andozalari, akademik lug'at va Band 7.5+ grammatikasi.</p>
+                        <div class="course-actions" style="gap:0.5rem; flex-direction:column;">
+                            <a href="ai-hub.html" class="btn btn-sm btn-primary btn-liquid w-full">
+                                <i class="fa-solid fa-robot"></i> <span class="btn-text">AI hub — tez orada</span>
+                                <div class="liquid-wave"></div>
+                            </a>
                         </div>
-                    </div>
-                    <div class="course-card liquid-card tilt-card">
-                        <div class="course-top">
-                            <div class="course-thumb-wrapper">
-                                <img loading="lazy" decoding="async" src="assets/images/university_grant.jpg" alt="Digital SAT Math Mastery" class="course-thumb-img" width="350" height="140" loading="lazy">
-                                <div class="course-thumb-overlay"></div>
-                                <span class="category-tag cat-admission thumb-tag">Admission & SAT</span>
-                            </div>
-                            <div class="course-meta">
-                                <span class="course-badge"><i class="fa-solid fa-calculator"></i> Top 800</span>
-                            </div>
-                            <h3 class="course-title">Digital SAT Math Mastery (800 Score Strategy)</h3>
-                            <p class="course-desc">Digital SAT Matematika bo'limi formulalari va Desmos kalkulyatoridan samarali foydalanish.</p>
-                        </div>
-                    </div>
-                </div>
+                    </article>
 
-                <div class="no-results" id="noResultsMsg" style="display: none;">
-                    <i class="fa-regular fa-folder-open"></i>
-                    <h3>Kurs topilmadi</h3>
-                    <p>Qidiruv bo'yicha hech qanday mos keluvchi kurs mavjud emas.</p>
-                    <button class="btn btn-secondary mt-3" id="resetFilterBtn">Barcha kurslarni ko'rsatish</button>
+                    <article class="course-card liquid-card tilt-card">
+                        <div class="course-top">
+                            <div class="course-thumb-wrapper">
+                                <img loading="lazy" decoding="async" src="assets/images/founder.jpg" alt="IELTS va ingliz tili yo'nalishi" class="course-thumb-img" width="350" height="140">
+                                <div class="course-thumb-overlay"></div>
+                                <span class="category-tag cat-ielts thumb-tag">IELTS va ingliz tili</span>
+                            </div>
+                            <div class="course-meta">
+                                <span class="course-badge"><i class="fa-solid fa-book-open"></i> Hub ochiq</span>
+                            </div>
+                            <h3 class="course-title">IELTS va General English</h3>
+                            <p class="course-desc">Writing, speaking va General English mashqlari — English Hub sahifasida.</p>
+                        </div>
+                        <div class="course-actions" style="gap:0.5rem; flex-direction:column;">
+                            <a href="general-english-beginner.html" class="btn btn-sm btn-primary btn-liquid w-full">
+                                <i class="fa-solid fa-graduation-cap"></i> <span class="btn-text">English Hub'ga kirish</span>
+                                <div class="liquid-wave"></div>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="course-card liquid-card tilt-card">
+                        <div class="course-top">
+                            <div class="course-thumb-wrapper">
+                                <img loading="lazy" decoding="async" src="assets/images/university_grant.jpg" alt="Digital SAT va admission yo'nalishi" class="course-thumb-img" width="350" height="140">
+                                <div class="course-thumb-overlay"></div>
+                                <span class="category-tag cat-admission thumb-tag">Admission va SAT</span>
+                            </div>
+                            <div class="course-meta">
+                                <span class="course-badge"><i class="fa-solid fa-calculator"></i> Hub ochiq</span>
+                            </div>
+                            <h3 class="course-title">Digital SAT va Admission</h3>
+                            <p class="course-desc">Digital SAT mashqlari va Bluebook uslubidagi simulyator — SAT Hub sahifasida.</p>
+                        </div>
+                        <div class="course-actions" style="gap:0.5rem; flex-direction:column;">
+                            <a href="sat-dsat.html" class="btn btn-sm btn-primary btn-liquid w-full">
+                                <i class="fa-solid fa-calculator"></i> <span class="btn-text">SAT Hub'ga kirish</span>
+                                <div class="liquid-wave"></div>
+                            </a>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -737,8 +717,8 @@
                             
                             <div class="trust-metrics">
                                 <div class="metric">
-                                    <span class="metric-val">31 ta</span>
-                                    <span class="metric-desc">Strukturallashgan amaliy o'quv moduli</span>
+                                    <span class="metric-val">3 ta</span>
+                                    <span class="metric-desc">Haqiqiy yo'nalish: AI, IELTS, SAT</span>
                                 </div>
                                 <div class="metric">
                                     <span class="metric-val">100%</span>
@@ -801,7 +781,7 @@
                         <h4>Navigatsiya & SEO</h4>
                         <ul>
                             <li><a href="#hero">Bosh sahifa</a></li>
-                            <li><a href="courses.html">31 ta Kurslar Portali</a></li>
+                            <li><a href="courses.html">Uchta yo'nalish</a></li>
                             <li><a href="general-english-beginner.html">General English Hub</a></li>
                             <li><a href="sitemap.html"><i class="fa-solid fa-sitemap"></i> Vizual Sitemap</a></li>
                             <li><a href="robots.html"><i class="fa-solid fa-robot"></i> Robots Policy</a></li>
@@ -815,10 +795,9 @@
                     <div class="footer-col">
                         <h4>Yo'nalishlar</h4>
                         <ul>
-                            <li><a href="#courses">Sun'iy Intelekt (AI)</a></li>
-                            <li><a href="#courses">IELTS Intensive</a></li>
-                            <li><a href="#courses">SAT & Math Prep</a></li>
-                            <li><a href="#courses">Chet elda ta'lim (Admission)</a></li>
+                            <li><a href="ai-hub.html">Sun'iy intellekt (AI)</a></li>
+                            <li><a href="general-english-beginner.html">IELTS va ingliz tili</a></li>
+                            <li><a href="sat-dsat.html">SAT va Admission</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">

@@ -4451,3 +4451,170 @@ input, button, select, textarea {
 .cat-admission { background: rgba(236, 72, 153, 0.15); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.3); }
 .cat-design { background: rgba(251, 146, 60, 0.15); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.3); }
 .cat-engineering { background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
+
+/* ==========================================================================
+   3 PILLARS — Yo'nalishlar (Stitch Lumina Glass, B3)
+   Mobile-first: 1 ustun -> 900px+ da 3 teng ustun.
+   Barcha karta teng vaznli — hech biri boshqasidan ustun ko'rinmaydi.
+   ========================================================================== */
+.pillars-section {
+    /* Stitch Lumina Glass tokenlari — seksiya ichida, portativ */
+    --stitch-primary: #7C6FFF;
+    --stitch-bg-deep: #0E0F15;
+    position: relative;
+    padding-top: 3.5rem;
+}
+
+.pillars-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+.pillar-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.85rem 1.6rem;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(124, 111, 255, 0.14);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.45s ease,
+                box-shadow 0.45s ease,
+                background 0.45s ease;
+}
+
+/* "Rim light" — yuqori-chapdan tushayotgan yorug'lik (Liquid Glass) */
+.pillar-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.20) 0%,
+                rgba(255, 255, 255, 0.04) 42%,
+                transparent 72%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.pillar-card:hover,
+.pillar-card:focus-visible {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.055);
+    border-color: rgba(124, 111, 255, 0.4);
+    box-shadow: 0 22px 55px -18px rgba(0, 0, 0, 0.75),
+                0 0 42px -8px rgba(124, 111, 255, 0.32);
+    outline: none;
+}
+
+.pillar-card:focus-visible {
+    border-color: var(--stitch-primary);
+}
+
+.pillar-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.45rem;
+    margin-bottom: 1.4rem;
+    background: rgba(124, 111, 255, 0.12);
+    border: 1px solid rgba(124, 111, 255, 0.26);
+    color: #b4acff;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14),
+                0 0 22px -6px rgba(124, 111, 255, 0.5);
+    transition: background 0.45s ease, color 0.45s ease, transform 0.45s ease;
+}
+
+.pillar-card:hover .pillar-icon {
+    background: rgba(124, 111, 255, 0.2);
+    color: #ffffff;
+    transform: scale(1.04);
+}
+
+.pillar-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.22rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+    margin: 0 0 0.7rem;
+}
+
+.pillar-card p {
+    color: rgba(227, 225, 234, 0.66);
+    font-size: 0.97rem;
+    line-height: 1.65;
+    margin: 0 0 1.6rem;
+    flex: 1;
+}
+
+.pillar-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.68rem 1.2rem;
+    border-radius: 999px;
+    background: rgba(124, 111, 255, 0.14);
+    border: 1px solid rgba(124, 111, 255, 0.3);
+    color: #c9c3ff;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.92rem;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background 0.35s ease, border-color 0.35s ease,
+                color 0.35s ease, gap 0.35s ease;
+}
+
+.pillar-cta i {
+    font-size: 0.82rem;
+    transition: transform 0.35s ease;
+}
+
+.pillar-card:hover .pillar-cta {
+    background: var(--stitch-primary);
+    border-color: var(--stitch-primary);
+    color: var(--stitch-bg-deep);
+    gap: 0.7rem;
+}
+
+.pillar-card:hover .pillar-cta i {
+    transform: translateX(3px);
+}
+
+/* Planshet va desktop: 3 teng ustun */
+@media (min-width: 900px) {
+    .pillars-section { padding-top: 4.5rem; }
+    .pillars-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.75rem;
+        margin-top: 2.5rem;
+    }
+    .pillar-card { padding: 2.25rem 2rem; border-radius: 24px; }
+}
+
+/* Harakatni kamaytirish sozlamasiga hurmat */
+@media (prefers-reduced-motion: reduce) {
+    .pillar-card,
+    .pillar-icon,
+    .pillar-cta,
+    .pillar-cta i {
+        transition: none;
+    }
+    .pillar-card:hover { transform: none; }
+}

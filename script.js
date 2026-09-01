@@ -3046,3 +3046,23 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', startLazyFramesLoad, { once: true, passive: true });
   setTimeout(startLazyFramesLoad, 1500);
 })();
+
+/* ============================================================
+   3 PILLARS — yo'nalish kartasini kurs filtriga bog'lash (B3)
+   Karta bosilganda tegishli .tab-btn ni "click" qilamiz —
+   mavjud filtr mantiqi (currentCategory/renderCourses) o'zgarishsiz ishlaydi.
+   ============================================================ */
+(function initPillarsFilter() {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initPillarsFilter);
+        return;
+    }
+
+    document.querySelectorAll('[data-pillar-filter]').forEach(function (card) {
+        card.addEventListener('click', function () {
+            var category = card.dataset.pillarFilter;
+            var tab = document.querySelector('.tab-btn[data-category="' + category + '"]');
+            if (tab) tab.click();
+        });
+    });
+})();

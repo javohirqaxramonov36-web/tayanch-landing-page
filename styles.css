@@ -2017,6 +2017,12 @@ a {
     flex-wrap: wrap;
 }
 
+/* Hidden by default: only revealed once a visitor has earned real XP (see script.js).
+   Prevents anonymous / first-time visitors from seeing fake gamification progress. */
+.gamify-hud-container.gamify-hidden {
+    display: none !important;
+}
+
 .gamify-stat {
     display: flex;
     align-items: center;

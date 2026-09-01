@@ -76,10 +76,10 @@ Siz bu yerda zamonaviy **Sun'iy Intelekt (AI)**, **IELTS Band 7.5+**, **Digital 
 """
 
 CATALOG_TEXT = """
-📚 *TAYANCH 31 TA KURSLAR KATALOGI VA NARXLARI*
+📚 *TAYANCH 30 TA KURSLAR KATALOGI VA NARXLARI*
 
 🤖 *SUN'IY INTELEKT (AI) KURSLARI:*
-• Practical AI for Daily Productivity — `199,000 UZS`
+• AI Tools for Academic Research & Writing — `299,000 UZS`
 • ChatGPT & Advanced Prompt Engineering — `249,000 UZS`
 • Python + AI Foundations — `349,000 UZS`
 • Midjourney & AI Visual Content — `199,000 UZS`

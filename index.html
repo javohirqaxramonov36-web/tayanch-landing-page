@@ -89,8 +89,8 @@
     {
       "@context": "https://schema.org",
       "@type": "Course",
-      "name": "Practical AI for Daily Productivity",
-      "description": "ChatGPT, Claude va Perplexity vositalari orqali unumdorlikni 5x oshirish kursi.",
+      "name": "ChatGPT & Advanced Prompt Engineering",
+      "description": "Mukammal promptlar yozish, Custom GPTs yaratish va kognitiv topshiriqlarni sun'iy intelektga topshirish kursi.",
       "provider": {
         "@type": "Organization",
         "name": "Tayanch Educational Platform",
@@ -156,8 +156,8 @@
                 <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
             </a>
 
-            <!-- Gamification HUD Bar -->
-            <div class="gamify-hud-container">
+            <!-- Gamification HUD Bar (hidden until real progress is earned) -->
+            <div class="gamify-hud-container gamify-hidden" id="gamifyHUD">
                 <div class="gamify-stat xp-badge" id="xpBadgeHUD">
                     <i class="fa-solid fa-bolt"></i> <span id="userXPVal">250 XP</span>
                 </div>
@@ -174,9 +174,9 @@
                 <a href="sat-mock.html" class="nav-link"><i class="fa-solid fa-calculator"></i> Digital SAT Hub</a>
                 <a href="general-english-beginner.html" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> English Hub</a>
                 <a href="#calculator" class="nav-link" data-i18n="navCalc">Kalkulyator</a>
-                <a href="sat-mock.html" class="nav-link" data-i18n="navQuiz">AI Test</a>
+                <a href="#placement-quiz" class="nav-link" data-i18n="navQuiz">AI Test</a>
                 <a href="#mission" class="nav-link" data-i18n="navMission">Nega Tayanch</a>
-                <a href="#courses" class="nav-link"><span data-i18n="navCourses">Kurslar</span> <span class="badge-count">29</span></a>
+                <a href="#courses" class="nav-link"><span data-i18n="navCourses">Kurslar</span> <span class="badge-count" id="navCoursesCount">30</span></a>
                 <a href="#trust" class="nav-link" data-i18n="navProof">Natijalar</a>
             </nav>
 
@@ -210,9 +210,9 @@
             <a href="#hero" class="drawer-link" data-i18n="navHome">Bosh sahifa</a>
             <a href="general-english-beginner.html" class="drawer-link"><i class="fa-solid fa-graduation-cap"></i> General English Hub</a>
             <a href="#calculator" class="drawer-link" data-i18n="navCalc">Grant Kalkulyatori</a>
-            <a href="sat-mock.html" class="drawer-link" data-i18n="navQuiz">AI Daraja Testi</a>
+            <a href="#placement-quiz" class="drawer-link" data-i18n="navQuiz">AI Daraja Testi</a>
             <a href="#mission" class="drawer-link" data-i18n="navMission">Nega Tayanch</a>
-            <a href="#courses" class="drawer-link" data-i18n="navCourses">Kurslar (29 ta)</a>
+            <a href="#courses" class="drawer-link" data-i18n="navCourses">Kurslar (30 ta)</a>
             <a href="#trust" class="drawer-link" data-i18n="navProof">Natijalar & Sertifikatlar</a>
             <button class="btn btn-primary w-full mt-4 open-lead-modal-btn" data-course="Mobile Drawer">
                 <i class="fa-solid fa-pen-to-square"></i> <span data-i18n="applyNow">Ariza Qoldirish</span>
@@ -542,7 +542,7 @@
                             <i class="fa-solid fa-graduation-cap"></i>
                         </div>
                         <h3>Admission & SAT Prep</h3>
-                        <p>AQSh va Yevropa Top universitetlariga 100% grant yutish uchun Insho, Rezyume va Portfolio tayyorlash.</p>
+                        <p>AQSh va Yevropa universitetlariga grant olish imkoniyatini oshirish uchun Insho, Rezyume va Portfolio tayyorlash.</p>
                         <div class="card-glow"></div>
                     </div>
 
@@ -558,12 +558,12 @@
             </div>
         </section>
 
-        <!-- Courses Section (31 Course Cards) -->
+        <!-- Courses Section -->
         <section class="section courses-section" id="courses">
             <div class="container">
                 <div class="section-header text-center gsap-reveal">
                     <div class="section-tag">O'quv Dasturlari</div>
-                    <h2 class="section-title">Barcha <span class="gradient-text">31 ta Kurslar</span> katalogi</h2>
+                    <h2 class="section-title">Barcha <span class="gradient-text" id="coursesTotalHeading">30 ta Kurslar</span> katalogi</h2>
                     <p class="section-desc">O'zingizga mos yo'nalishni tanlang va bilimlaringizni amalda qo'llang.</p>
                 </div>
 
@@ -578,12 +578,12 @@
                     <div class="filter-tabs" id="filterTabs">
                         <button class="tab-btn active liquid-tab" data-category="all">
                             <span>Barchasi</span>
-                            <span class="tab-count" id="countAll">29</span>
+                            <span class="tab-count" id="countAll">30</span>
                         </button>
                         <button class="tab-btn liquid-tab" data-category="ai">
                             <i class="fa-solid fa-robot"></i>
                             <span>Sun'iy Intelekt (AI)</span>
-                            <span class="tab-count">10</span>
+                            <span class="tab-count">9</span>
                         </button>
                         <button class="tab-btn liquid-tab" data-category="ielts">
                             <i class="fa-solid fa-language"></i>
@@ -604,15 +604,15 @@
                     <div class="course-card liquid-card tilt-card">
                         <div class="course-top">
                             <div class="course-thumb-wrapper">
-                                <img loading="lazy" decoding="async" src="assets/images/ai_hero.jpg" alt="Practical AI for Daily Productivity" class="course-thumb-img" width="350" height="140" loading="lazy">
+                                <img loading="lazy" decoding="async" src="assets/images/ai_hero.jpg" alt="ChatGPT & Advanced Prompt Engineering" class="course-thumb-img" width="350" height="140" loading="lazy">
                                 <div class="course-thumb-overlay"></div>
                                 <span class="category-tag cat-ai thumb-tag">Sun'iy Intelekt (AI)</span>
                             </div>
                             <div class="course-meta">
-                                <span class="course-badge"><i class="fa-solid fa-bolt"></i> Top Trend</span>
+                                <span class="course-badge"><i class="fa-solid fa-code"></i> Intensiv</span>
                             </div>
-                            <h3 class="course-title">Practical AI for Daily Productivity</h3>
-                            <p class="course-desc">ChatGPT, Claude va Perplexity vositalari orqali kunlik vazifalaringizni 5x tezlashtirish sirlari.</p>
+                            <h3 class="course-title">ChatGPT & Advanced Prompt Engineering</h3>
+                            <p class="course-desc">Mukammal promptlar yozish, Custom GPTs yaratish hamda kognitiv topshiriqlarni sun'iy intelektga topshirish.</p>
                         </div>
                     </div>
                     <div class="course-card liquid-card tilt-card">
@@ -659,7 +659,7 @@
             <div class="container">
                 <div class="section-header text-center gsap-reveal">
                     <div class="section-tag">Ishonch va Isbotlar</div>
-                    <h2 class="section-title">Sertifikatlar va <span class="gradient-text">Talabalar Natijalari</span></h2>
+                    <h2 class="section-title">Asoschining <span class="gradient-text">Sertifikati va Natijasi</span></h2>
                     <p class="section-desc">Real natijalarga asoslangan tajriba hamda xalqaro sertifikatlar tasdiqlari.</p>
                 </div>
 
@@ -748,7 +748,7 @@
                             
                             <div class="trust-metrics">
                                 <div class="metric">
-                                    <span class="metric-val">29 ta</span>
+                                    <span class="metric-val">30 ta</span>
                                     <span class="metric-desc">Strukturallashgan amaliy o'quv moduli</span>
                                 </div>
                                 <div class="metric">
@@ -812,7 +812,7 @@
                         <h4>Navigatsiya & SEO</h4>
                         <ul>
                             <li><a href="#hero">Bosh sahifa</a></li>
-                            <li><a href="courses.html">31 ta Kurslar Portali</a></li>
+                            <li><a href="courses.html" id="footerCoursesLink">30 ta Kurslar Portali</a></li>
                             <li><a href="general-english-beginner.html">General English Hub</a></li>
                             <li><a href="sitemap.html"><i class="fa-solid fa-sitemap"></i> Vizual Sitemap</a></li>
                             <li><a href="robots.html"><i class="fa-solid fa-robot"></i> Robots Policy</a></li>
@@ -828,10 +828,9 @@
                         </ul>
                     </div>
                     <div class="footer-col">
-                        <h4>Aka-uka & Jamiyat</h4>
+                        <h4>Bizning Jamiyatimiz</h4>
                         <ul>
                             <li><a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i> Telegram Kanal</a></li>
-                            <li><a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i> Muhokama Guruhi</a></li>
                         </ul>
                     </div>
                 </div>

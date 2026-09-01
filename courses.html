@@ -48,7 +48,7 @@
             </a>
 
             <!-- Gamification HUD Bar -->
-            <div class="gamify-hud-container">
+            <div class="gamify-hud-container gamify-hidden" id="gamifyHUD">
                 <div class="gamify-stat xp-badge" id="xpBadgeHUD">
                     <i class="fa-solid fa-bolt"></i> <span id="userXPVal">250 XP</span>
                 </div>
@@ -62,7 +62,7 @@
 
             <nav class="nav-links liquid-nav-capsule" id="navLinks">
                 <a href="index.html" class="nav-link">Bosh sahifa</a>
-                <a href="courses.html" class="nav-link active">Kurslar Katalogi (31)</a>
+                <a href="courses.html" class="nav-link active">Kurslar Katalogi (30)</a>
                 <a href="sat-dsat.html" class="nav-link"><i class="fa-solid fa-calculator"></i> Digital SAT Hub</a>
                 <a href="general-english-beginner.html" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> English Hub</a>
                 <a href="index.html#trust" class="nav-link">Natijalar</a>
@@ -81,7 +81,7 @@
         <div class="container">
             <div class="section-header text-center">
                 <span class="cta-tag liquid-pill"><i class="fa-solid fa-unlock-keyhole"></i> 100% Bepul Ochiq Platforma</span>
-                <h1 class="hero-title mt-2">Barcha <span class="gradient-text liquid-gradient">29 ta Kurslar</span> Portali</h1>
+                <h1 class="hero-title mt-2">Barcha <span class="gradient-text liquid-gradient" id="coursesPageTotal">30 ta Kurslar</span> Portali</h1>
                 <p class="section-desc">Sun'iy Intelekt (AI), IELTS Band 7.5+ va Digital SAT hamda Admission bo'yicha to'liq amaliy o'quv modullari.</p>
             </div>
 
@@ -96,12 +96,12 @@
                 <div class="filter-tabs" id="filterTabs">
                     <button class="tab-btn active liquid-tab" data-category="all">
                         <span>Barchasi</span>
-                        <span class="tab-count" id="countAll">29</span>
+                        <span class="tab-count" id="countAll">30</span>
                     </button>
                     <button class="tab-btn liquid-tab" data-category="ai">
                         <i class="fa-solid fa-robot"></i>
                         <span>Sun'iy Intelekt (AI)</span>
-                        <span class="tab-count">10</span>
+                        <span class="tab-count">9</span>
                     </button>
                     <button class="tab-btn liquid-tab" data-category="ielts">
                         <i class="fa-solid fa-language"></i>

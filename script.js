@@ -317,14 +317,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       4. 31 COURSES DATA STORE & VIP ACCESS ENGINE
+       4. COURSES DATA STORE & VIP ACCESS ENGINE
        ========================================== */
     let currentUserEmail = localStorage.getItem('tayanch_user_email') || 'student@tayanch.edu.uz';
     let isVIPUser = true; // Platform is 100% open access for all users
 
     const coursesData = [
         // --- AI CATEGORY (10 COURSES) ---
-        { id: 1, title: "Practical AI for Daily Productivity", category: "ai", catName: "Sun'iy Intelekt (AI)", desc: "ChatGPT, Claude va Perplexity vositalari orqali kunlik vazifalaringizni 5x tezlashtirish va unumdorlikni oshirish sirlari.", duration: "3 Hafta", level: "Boshlang'ich", price: "199,000 UZS", icon: "fa-solid fa-bolt", badge: "Top Trend", modules: ["Prompt Engineering asoslari va qoliplari", "ChatGPT bilan hujjatlar va elektron pochtani avtomatlashtirish", "Perplexity AI bilan tezkor akademik va bozor tadqiqotlari", "Kunlik rejalashtirish va sun'iy AI assistent yaratish"] },
         { id: 2, title: "ChatGPT & Advanced Prompt Engineering", category: "ai", catName: "Sun'iy Intelekt (AI)", desc: "Mukammal promptlar yozish, Custom GPTs yaratish hamda kognitiv topshiriqlarni sun'iy intelektga topshirish.", duration: "4 Hafta", level: "O'rta", price: "249,000 UZS", icon: "fa-solid fa-code", badge: "Intensiv", modules: ["Few-Shot va Chain-of-Thought Prompting texnikalari", "Shaxsiy Custom GPT assistentlarini kodsiz yaratish", "Katta hajmdagi matnlar va kitoblarni umumlashtirish", "AI xatolarini (Hallucinations) oldini olish va tekshirish"] },
         { id: 3, title: "Midjourney & AI Visual Content Creation", category: "ai", catName: "Sun'iy Intelekt (AI)", desc: "Professional dizayn, fotorealistik tasvirlar va visual presentation materiallarini AI yordamida yaratish.", duration: "3 Hafta", level: "Boshlang'ich", price: "199,000 UZS", icon: "fa-solid fa-palette", badge: "Kreativ", modules: ["Midjourney v6 parametrlari va stil aralashmalari", "Fotorealistik portretlar va mahsulot dizaynlari", "DALL-E 3 va Canva AI bilan ijtimoiy tarmoq bannerlari", "AI orqali SMM va brending uchun vizual kontent"] },
         { id: 4, title: "AI Tools for Academic Research & Writing", category: "ai", catName: "Sun'iy Intelekt (AI)", desc: "Ilmiy maqolalar, dissertatsiya va insholarni tahlil qilish, iqtiboslar bilan ishlash hamda tadqiqot AI vositalari.", duration: "4 Hafta", level: "Akademik", price: "299,000 UZS", icon: "fa-solid fa-book-open-reader", badge: "Talabalar uchun", modules: ["Consensus va Elicit AI bilan ilmiy maqolalarni izlash", "Litmaps yordamida adabiyotlar sharhini (Literature Review) tuzish", "Grammarly AI va Quillbot orqali akademik ingliz tilini takomillashtirish", "Plagiat va AI detection bilan ishlash strategiyasi"] },
@@ -352,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 22, title: "Digital SAT Math Mastery (800 Score Strategy)", category: "admission", catName: "Admission & SAT", desc: "Digital SAT Matematika bo'limining barcha formulalari, Desmos kalkulyatoridan samarali foydalanish hamda 800 bal algebrasi.", duration: "6 Hafta", level: "Amaliy", price: "399,000 UZS", icon: "fa-solid fa-calculator", badge: "Top 800", modules: ["Algebra va Linear Equations tezkor yechimlari", "Desmos Graphing Calculator sirlari va layfhaklar", "Advanced Math, Geometry va Trigonometry", "Digital SAT modullari simulyatsiyasi va vaqtni tejash"] },
         { id: 23, title: "Digital SAT Reading & Writing", category: "admission", catName: "Admission & SAT", desc: "Digital SAT Reading matnlari tahlili, Vocabulary in Context hamda Grammatika qoidalarining 100% yechimlari.", duration: "6 Hafta", level: "Advanced", price: "399,000 UZS", icon: "fa-solid fa-pen-fancy", badge: "Intensiv", modules: ["Craft and Structure savol turlarini yechish", "Information and Ideas matnli tahlil", "Expression of Ideas va Standart English Conventions", "SAT lug'at bazasi va tezkor matn o'qish"] },
         { id: 24, title: "US College Application Essay (Personal Statement)", category: "admission", catName: "Admission & SAT", desc: "AQSh Top universitetlariga qabul komissiyasini hayratda qoldiruvchi shaxsiy insho (Common App Essay) yozish.", duration: "4 Hafta", level: "Admission", price: "499,000 UZS", icon: "fa-solid fa-feather-pointed", badge: "Insho", modules: ["Shaxsiy voqea (Storytelling) tanlash va reja tuzish", "Common App 7 ta prompti bo mezonlar", "Supplemental Essay (Nega aynan ushbu universitet?) yozish", "Ekspert ko'rigi va insho tahriri"] },
-        { id: 25, title: "Full-Ride Scholarship Application Blueprint", category: "admission", catName: "Admission & SAT", desc: "AQSh, Yevropa va Osiyo universitetlaridan 100% ta'lim va yashash xarajatlarini qoplovchi grantlarni yutish strategiyasi.", duration: "5 Hafta", level: "Grantlar", price: "399,000 UZS", icon: "fa-solid fa-trophy", badge: "100% Grant", modules: ["Need-Based va Merit-Based grantlar farqi", "Stipendiyali dasturlarni qidirish (Need-Blind unilar)", "Moliyaviy hujjatlar va insholarni tayyorlash", "Muvaffaqiyatli grant olgan talabalar tajribasi"] },
+        { id: 25, title: "Full-Ride Scholarship Application Blueprint", category: "admission", catName: "Admission & SAT", desc: "AQSh, Yevropa va Osiyo universitetlaridan to'liq moliyalashtirilgan (fully funded) ta'lim va yashash xarajatlarini qoplovchi grantlarga ariza topshirish strategiyasi.", duration: "5 Hafta", level: "Grantlar", price: "399,000 UZS", icon: "fa-solid fa-trophy", badge: "Grant Strategiyasi", modules: ["Need-Based va Merit-Based grantlar farqi", "Stipendiyali dasturlarni qidirish (Need-Blind unilar)", "Moliyaviy hujjatlar va insholarni tayyorlash", "Muvaffaqiyatli grant olgan talabalar tajribasi"] },
         { id: 26, title: "Common App & Financial Aid (CSS Profile / FAFSA)", category: "admission", catName: "Admission & SAT", desc: "Common Application platformasida profil ochish, barcha bo'limlarni xatosiz to'ldirish va CSS Profile hujjati.", duration: "3 Hafta", level: "Amaliy Hujjat", price: "299,000 UZS", icon: "fa-solid fa-file-invoice-dollar", badge: "Hujjatlar", modules: ["Common App hisobini yaratish va sozlash", "Honors va Extracurricular activities bo'limi to'ldirish", "CSS Profile orqali oilaviy daromad hujjatlarini topshirish", "Universitetlarga portal orqali kod yuborish"] },
         { id: 27, title: "Ivy League & Top 50 Global University Strategy", category: "admission", catName: "Admission & SAT", desc: "Harvard, MIT, Stanford va Yevropa Top 50 oliygohlariga topshiruvchi talabalar uchun maxsus portfolio strategiyasi.", duration: "4 Hafta", level: "Premium", price: "599,000 UZS", icon: "fa-solid fa-crown", badge: "Ivy League", modules: ["Holistic Review (Yaxlit baholash) tizimi talablari", "Noyob Spike Factor (Shaxsiy ustunlik) yaratish", "Early Decision (ED) va Early Action (EA) strategiyalari", "Xalqaro olimpiada va tadqiqot portfoliosi"] },
         { id: 28, title: "Extracurricular Profile Building & Leadership", category: "admission", catName: "Admission & SAT", desc: "Darsdan tashqari faoliyatlar, ijtimoiy loyihalar, startap va ko'ngillilik ishlarini tashkil etish hamda taqdim etish.", duration: "4 Hafta", level: "Liderlik", price: "299,000 UZS", icon: "fa-solid fa-people-roof", badge: "Portfolio", modules: ["Nol kapital bilan nodavlat loyiha (NGO) boshlash", "Liderlik va tashabbuskorlikni hujjatlashtirish", "Tadqiqot maqolalarini chop etish", "Activity List bo'limida harakat fe'llari (Action Verbs)"] },
@@ -376,6 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderCourses() {
         if (!coursesGrid) return;
+        syncCourseCounts();
 
         const filtered = coursesData.filter(course => {
             const matchesCategory = (currentCategory === 'all') || (course.category === currentCategory);
@@ -411,6 +411,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             initTiltPhysics();
         }
+    }
+
+    function syncCourseCounts() {
+        // Single source of truth: every course-count label is derived from coursesData.length
+        // and per-category filters, so the number can never drift from the real catalog again.
+        const total = coursesData.length;
+        const countByCat = (cat) => coursesData.filter(c => c.category === cat).length;
+        const countAI = countByCat('ai');
+        const countIELTS = countByCat('ielts');
+        const countADM = countByCat('admission');
+        const setText = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+        setText('countAll', total);
+        setText('coursesTotalHeading', total + ' ta Kurslar');
+        setText('coursesPageTotal', total + ' ta Kurslar');
+        setText('footerCoursesLink', total + ' ta Kurslar Portali');
+        setText('navCoursesCount', total + ' ta');
+        const aiTab = document.querySelector('#filterTabs .tab-btn[data-category="ai"] .tab-count');
+        const ieltsTab = document.querySelector('#filterTabs .tab-btn[data-category="ielts"] .tab-count');
+        const admTab = document.querySelector('#filterTabs .tab-btn[data-category="admission"] .tab-count');
+        if (aiTab) aiTab.textContent = countAI;
+        if (ieltsTab) ieltsTab.textContent = countIELTS;
+        if (admTab) admTab.textContent = countADM;
     }
 
     function createCourseCard(course) {
@@ -1230,8 +1252,8 @@ document.addEventListener('DOMContentLoaded', () => {
        ========================================== */
     
     // User Gamification State & LocalStorage
-    let userXP = parseInt(localStorage.getItem('tayanch_user_xp') || '250', 10);
-    let userStreak = parseInt(localStorage.getItem('tayanch_user_streak') || '3', 10);
+    let userXP = parseInt(localStorage.getItem('tayanch_user_xp') || '0', 10);
+    let userStreak = parseInt(localStorage.getItem('tayanch_user_streak') || '0', 10);
     let unlockedBadges = JSON.parse(localStorage.getItem('tayanch_unlocked_badges') || '["vocab_champion"]');
 
     const badgeDefinitions = [
@@ -1242,6 +1264,18 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'essay_master', name: "✍️ Essay Master", desc: "IELTS Insho diagnostikasi vositasini sinab ko'rdingiz!" }
     ];
 
+    function syncGamifyVisibility() {
+        const hud = document.querySelector('.gamify-hud-container');
+        if (!hud) return;
+        // Only reveal the gamification HUD once the user has real, earned progress.
+        // Anonymous / first-time visitors must NOT see hardcoded fake XP or Combo.
+        if (userXP > 0) {
+            hud.classList.remove('gamify-hidden');
+        } else {
+            hud.classList.add('gamify-hidden');
+        }
+    }
+
     function updateGamifyUI() {
         const xpEl = document.getElementById('userXPVal');
         const streakEl = document.getElementById('userStreakVal');
@@ -1250,6 +1284,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (streakEl) streakEl.textContent = `🔥 ${userStreak} Combo`;
         if (streakHUDEl) streakHUDEl.textContent = userStreak;
         renderBadgesModal();
+        syncGamifyVisibility();
     }
 
     function unlockBadge(badgeId) {

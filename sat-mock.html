@@ -13,7 +13,60 @@
   <link rel="stylesheet" href="styles.css">
   
   <!-- Telegram WebApp SDK -->
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="https://telegram.org/js/telegram-web-app.js">
+    // =============================================
+    // LEADERBOARD TIZIMI (localStorage asosida)
+    // =============================================
+    const LB_KEY = 'tayanch_leaderboard_v2';
+    function getLBEntries() {
+      try { return JSON.parse(localStorage.getItem(LB_KEY) || '[]'); } catch { return []; }
+    }
+    function saveLBEntry(name, classCode, score, correct, total, domain_scores) {
+      const entries = getLBEntries();
+      const entry = {
+        name: name || 'Nomaqum O'quvchi',
+        classCode: classCode || 'TAYANCH',
+        score: score,
+        correct: correct,
+        total: total,
+        domain_scores: domain_scores,
+        date: new Date().toLocaleDateString('uz-UZ')
+      };
+      entries.push(entry);
+      entries.sort((a, b) => b.score - a.score);
+      const top50 = entries.slice(0, 50);
+      localStorage.setItem(LB_KEY, JSON.stringify(top50));
+      return entries.indexOf(entry) + 1;
+    }
+    function renderLeaderboard() {
+      const entries = getLBEntries();
+      const container = document.getElementById('leaderboard-list');
+      if (!container) return;
+      if (entries.length === 0) {
+        container.innerHTML = '<p style="color:#9ca3af;text-align:center;">Hali natija yo\'q. Test topshiring!</p>';
+        return;
+      }
+      const medals = ['🥇','🥈','🥉'];
+      container.innerHTML = entries.map((e, i) => `
+        <div style="display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.04);margin-bottom:8px;border:1px solid rgba(255,255,255,0.07);">
+          <div style="font-size:1.3rem;min-width:30px;text-align:center;">${medals[i] || '#' + (i+1)}</div>
+          <div style="flex:1;">
+            <div style="font-weight:700;color:#fff;">${escapeHtml(e.name)}</div>
+            <div style="font-size:0.78rem;color:#9ca3af;">${escapeHtml(e.classCode)} · ${e.date}</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:1.1rem;font-weight:800;color:#00f2fe;">${e.score}</div>
+            <div style="font-size:0.75rem;color:#9ca3af;">${e.correct}/${e.total} to'g'ri</div>
+          </div>
+        </div>
+      `).join('');
+    }
+    function openLeaderboard() {
+      renderLeaderboard();
+      document.getElementById('leaderboardModal').style.display = 'flex';
+    }
+
+</script>
 
   <style>
     body {
@@ -466,71 +519,385 @@
 
     // Haqiqiy SAT formatidagi kengaytirilgan savollar banki
     const SAMPLE_QUESTIONS = [
-      {
-        id: 'q1',
-        domain: 'Craft & Structure (Reading)',
-        text: "The author describes urban transportation delays with subtle irony. Which choice best characterizes the tone of the passage?",
-        options: ['Unreservedly optimistic', 'Critical yet satirical', 'Completely indifferent', 'Aggressively hostile'],
-        correct: 1,
-        explanation: "'Critical yet satirical' to'g'ri: Muallif muammoni tanqid qiladi, lekin buni yengil kinoya (irony) orqali ifodalaydi."
-      },
-      {
-        id: 'q2',
-        domain: 'Information & Ideas (Reading)',
-        text: "Based on the economic data provided, which finding, if true, would most directly support the researchers' hypothesis regarding market volatility?",
-        options: ['Consumer spending remained constant across all quarters.', 'Stock fluctuations intensified following unexpected policy changes.', 'Inflation dropped to historical lows in 2022.', 'International trade tariffs were universally repealed.'],
-        correct: 1,
-        explanation: "Kutilmagan siyosiy o'zgarishlar tebranishni (volatility) oshirishi tadqiqotchilar gipotezasini to'g'ridan-to'g'ri tasdiqlaydi."
-      },
-      {
-        id: 'q3',
-        domain: 'Standard English Conventions (Writing)',
-        text: "Choose the correct punctuation: 'The team of researchers _______ conducted extensive field experiments across three continents, published their landmark study yesterday.'",
-        options: ['who', 'which', 'whom', 'whose'],
-        correct: 0,
-        explanation: "'who' shaxslarga (researchers) nisbatan subyekt o'rnida to'g'ri keladi."
-      },
-      {
-        id: 'q4',
-        domain: 'Expression of Ideas (Writing)',
-        text: "Which choice most effectively combines the two sentences at the underlined portion: 'The ancient manuscript was discovered in 1947. It revolutionized scholars\' understanding of early Mediterranean trade.'",
-        options: ['discovered in 1947, revolutionizing', 'discovered in 1947, it revolutionized', 'discovered in 1947; and revolutionized', 'discovered in 1947, having revolutionized'],
-        correct: 0,
-        explanation: "Qisqa va ravon bog'lovchi participial phrase ('discovered in 1947, revolutionizing...') eng samarali uslubdir."
-      },
-      {
-        id: 'q5',
-        domain: 'Algebra (Math)',
-        text: "If 4x - 3(2 - x) = 15, what is the value of x?",
-        options: ['1', '3', '5', '7'],
-        correct: 1,
-        explanation: "4x - 6 + 3x = 15 => 7x = 21 => x = 3."
-      },
-      {
-        id: 'q6',
-        domain: 'Advanced Math (Math)',
-        text: "For the quadratic function f(x) = x² - 8x + 12, what is the sum of the zeros of the function?",
-        options: ['4', '6', '8', '12'],
-        correct: 2,
-        explanation: "Viyet teoremasiga ko'ra nol nuqtalar yig'indisi: -b/a = -(-8)/1 = 8."
-      },
-      {
-        id: 'q7',
-        domain: 'Problem-Solving & Data Analysis (Math)',
-        text: "A sample of 250 students showed that 60% participated in sports and 40% participated in music. If 20% participated in both, how many students participated in neither?",
-        options: ['25', '50', '75', '100'],
-        correct: 1,
-        explanation: "Kamida birida qatnashganlar: 60% + 40% - 20% = 80%. Qatnashmaganlar: 20%. 250 ning 20% = 50 nafar."
-      },
-      {
-        id: 'q8',
-        domain: 'Geometry & Trigonometry (Math)',
-        text: "In a right triangle ABC with right angle at C, if sin(A) = 3/5, what is the value of cos(B)?",
-        options: ['3/5', '4/5', '3/4', '5/3'],
-        correct: 0,
-        explanation: "To'g'ri burchakli uchburchakda o'tkir burchaklar uchun: sin(A) = cos(B) = 3/5."
-      }
-    ];
+  {
+    "id": "rw_cs_1",
+    "domain": "Craft & Structure",
+    "section": "Reading & Writing",
+    "question": "The word 'ambivalent' most nearly means:",
+    "choices": [
+      "A) Strongly opposed",
+      "B) Having mixed feelings",
+      "C) Completely certain",
+      "D) Deeply motivated"
+    ],
+    "answer": "B",
+    "explanation": "'Ambivalent' describes having contradictory emotions or attitudes toward something simultaneously."
+  },
+  {
+    "id": "rw_cs_2",
+    "domain": "Craft & Structure",
+    "section": "Reading & Writing",
+    "question": "Which choice best describes the overall structure of the passage?",
+    "choices": [
+      "A) A problem is introduced and then solved",
+      "B) A theory is proposed and then refuted",
+      "C) A phenomenon is described and then explained",
+      "D) Two opposing views are presented and compared"
+    ],
+    "answer": "C",
+    "explanation": "Passages describing phenomena and then explaining them follow a description-explanation structure."
+  },
+  {
+    "id": "rw_cs_3",
+    "domain": "Craft & Structure",
+    "section": "Reading & Writing",
+    "question": "The author uses the phrase 'paradoxically speaking' primarily to:",
+    "choices": [
+      "A) Introduce a contradiction",
+      "B) Summarize the main argument",
+      "C) Provide historical context",
+      "D) Challenge a common assumption"
+    ],
+    "answer": "A",
+    "explanation": "'Paradoxically' signals that what follows appears contradictory but may be true."
+  },
+  {
+    "id": "rw_cs_4",
+    "domain": "Craft & Structure",
+    "section": "Reading & Writing",
+    "question": "In context, the word 'mitigate' most nearly means:",
+    "choices": [
+      "A) Worsen",
+      "B) Ignore",
+      "C) Lessen",
+      "D) Explain"
+    ],
+    "answer": "C",
+    "explanation": "'Mitigate' means to make less severe, serious, or painful."
+  },
+  {
+    "id": "rw_ii_1",
+    "domain": "Information & Ideas",
+    "section": "Reading & Writing",
+    "question": "Based on the data in the table, which conclusion is best supported?",
+    "choices": [
+      "A) Urban areas have higher biodiversity than rural areas",
+      "B) Temperature inversely correlates with species count",
+      "C) Precipitation has no effect on plant growth",
+      "D) Altitude is the primary factor in species distribution"
+    ],
+    "answer": "B",
+    "explanation": "Data interpretation questions require identifying patterns; here temperature and species count show an inverse relationship."
+  },
+  {
+    "id": "rw_ii_2",
+    "domain": "Information & Ideas",
+    "section": "Reading & Writing",
+    "question": "The researchers concluded that the intervention was effective because:",
+    "choices": [
+      "A) Participants reported higher satisfaction",
+      "B) The control group showed no improvement",
+      "C) Measurable outcomes improved significantly in the test group",
+      "D) The study lasted longer than previous studies"
+    ],
+    "answer": "C",
+    "explanation": "Scientific conclusions require measurable, objective evidence from test groups compared to controls."
+  },
+  {
+    "id": "rw_ii_3",
+    "domain": "Information & Ideas",
+    "section": "Reading & Writing",
+    "question": "Which finding, if true, would most directly support the author's claim?",
+    "choices": [
+      "A) Similar trends were observed in only one other country",
+      "B) The effect persisted across multiple independent studies",
+      "C) Researchers disagree about the methodology",
+      "D) The sample size was smaller than initially reported"
+    ],
+    "answer": "B",
+    "explanation": "Replication across multiple independent studies is the strongest form of scientific support."
+  },
+  {
+    "id": "rw_ii_4",
+    "domain": "Information & Ideas",
+    "section": "Reading & Writing",
+    "question": "The graph shows that between 2010 and 2020, renewable energy production:",
+    "choices": [
+      "A) Remained constant globally",
+      "B) Decreased in developed nations",
+      "C) Increased at an accelerating rate",
+      "D) Was surpassed by fossil fuel production"
+    ],
+    "answer": "C",
+    "explanation": "An accelerating rate means the growth is increasing over time, which data visualization questions often test."
+  },
+  {
+    "id": "rw_sec_1",
+    "domain": "Standard English Conventions",
+    "section": "Reading & Writing",
+    "question": "Choose the correct punctuation: 'The scientist _____ who discovered the compound _____ published her findings in Nature.'",
+    "choices": [
+      "A) — … —",
+      "B) , … ,",
+      "C) ; … ;",
+      "D) ( … )"
+    ],
+    "answer": "B",
+    "explanation": "Nonrestrictive clauses (extra information) should be set off with commas on both sides."
+  },
+  {
+    "id": "rw_sec_2",
+    "domain": "Standard English Conventions",
+    "section": "Reading & Writing",
+    "question": "Which version is grammatically correct?",
+    "choices": [
+      "A) Neither the students nor the teacher were prepared.",
+      "B) Neither the students nor the teacher was prepared.",
+      "C) Neither the students nor the teacher are prepared.",
+      "D) Neither the students nor the teacher have been prepared."
+    ],
+    "answer": "B",
+    "explanation": "With 'neither...nor', the verb agrees with the subject closest to it — 'teacher' (singular), so 'was'."
+  },
+  {
+    "id": "rw_sec_3",
+    "domain": "Standard English Conventions",
+    "section": "Reading & Writing",
+    "question": "Select the version that uses the semicolon correctly:",
+    "choices": [
+      "A) The project was delayed; because of budget cuts.",
+      "B) The project was delayed; however, it was completed on time.",
+      "C) The project; was delayed due to budget cuts.",
+      "D) The project was delayed, however it was completed on time."
+    ],
+    "answer": "B",
+    "explanation": "Semicolons correctly join two independent clauses. 'However' as a conjunctive adverb needs a semicolon before it."
+  },
+  {
+    "id": "rw_sec_4",
+    "domain": "Standard English Conventions",
+    "section": "Reading & Writing",
+    "question": "Which sentence contains a misplaced modifier?",
+    "choices": [
+      "A) Walking through the park, she noticed the flowers blooming.",
+      "B) She noticed the flowers blooming while walking through the park.",
+      "C) Walking through the park, the flowers were noticed by her.",
+      "D) The flowers, blooming in the park, were noticed by her."
+    ],
+    "answer": "C",
+    "explanation": "In C, 'walking through the park' modifies 'the flowers', but flowers can't walk — this is a dangling modifier."
+  },
+  {
+    "id": "math_alg_1",
+    "domain": "Algebra",
+    "section": "Math",
+    "question": "If 3x + 7 = 22, what is the value of 6x?",
+    "choices": [
+      "A) 5",
+      "B) 15",
+      "C) 30",
+      "D) 45"
+    ],
+    "answer": "C",
+    "explanation": "3x + 7 = 22 → 3x = 15 → x = 5 → 6x = 30"
+  },
+  {
+    "id": "math_alg_2",
+    "domain": "Algebra",
+    "section": "Math",
+    "question": "A line passes through (2, 5) and (6, 13). What is its slope?",
+    "choices": [
+      "A) 1",
+      "B) 2",
+      "C) 3",
+      "D) 4"
+    ],
+    "answer": "B",
+    "explanation": "slope = (13-5)/(6-2) = 8/4 = 2"
+  },
+  {
+    "id": "math_alg_3",
+    "domain": "Algebra",
+    "section": "Math",
+    "question": "If f(x) = 2x² - 3x + 1, what is f(3)?",
+    "choices": [
+      "A) 8",
+      "B) 10",
+      "C) 12",
+      "D) 16"
+    ],
+    "answer": "B",
+    "explanation": "f(3) = 2(9) - 3(3) + 1 = 18 - 9 + 1 = 10"
+  },
+  {
+    "id": "math_alg_4",
+    "domain": "Algebra",
+    "section": "Math",
+    "question": "Solve: |2x - 6| = 10",
+    "choices": [
+      "A) x = 8 only",
+      "B) x = -2 only",
+      "C) x = 8 or x = -2",
+      "D) x = 2 or x = -8"
+    ],
+    "answer": "C",
+    "explanation": "2x-6=10 → x=8 OR 2x-6=-10 → x=-2"
+  },
+  {
+    "id": "math_alg_5",
+    "domain": "Algebra",
+    "section": "Math",
+    "question": "Which inequality is represented by the graph showing a shaded region to the left of x = 3?",
+    "choices": [
+      "A) x > 3",
+      "B) x ≥ 3",
+      "C) x < 3",
+      "D) x ≤ 3"
+    ],
+    "answer": "C",
+    "explanation": "Shading to the left of a vertical line represents x < (value at that line)."
+  },
+  {
+    "id": "math_adv_1",
+    "domain": "Advanced Math",
+    "section": "Math",
+    "question": "Which expression is equivalent to (x² - 9) / (x - 3)?",
+    "choices": [
+      "A) x - 3",
+      "B) x + 3",
+      "C) x² - 3",
+      "D) x(x-3)"
+    ],
+    "answer": "B",
+    "explanation": "x² - 9 = (x+3)(x-3). Dividing by (x-3) gives (x+3)."
+  },
+  {
+    "id": "math_adv_2",
+    "domain": "Advanced Math",
+    "section": "Math",
+    "question": "The graph of y = (x-2)² + 3 has its vertex at:",
+    "choices": [
+      "A) (-2, 3)",
+      "B) (2, 3)",
+      "C) (2, -3)",
+      "D) (-2, -3)"
+    ],
+    "answer": "B",
+    "explanation": "In vertex form y = (x-h)² + k, the vertex is at (h, k) = (2, 3)."
+  },
+  {
+    "id": "math_adv_3",
+    "domain": "Advanced Math",
+    "section": "Math",
+    "question": "If x² + bx + 16 = (x + 4)², what is the value of b?",
+    "choices": [
+      "A) 4",
+      "B) 8",
+      "C) 16",
+      "D) 32"
+    ],
+    "answer": "B",
+    "explanation": "(x+4)² = x² + 8x + 16, so b = 8."
+  },
+  {
+    "id": "math_psda_1",
+    "domain": "Problem-Solving & Data Analysis",
+    "section": "Math",
+    "question": "A store marks up items by 40%. If an item costs $50, what is the selling price?",
+    "choices": [
+      "A) $60",
+      "B) $65",
+      "C) $70",
+      "D) $75"
+    ],
+    "answer": "C",
+    "explanation": "50 × 1.40 = $70"
+  },
+  {
+    "id": "math_psda_2",
+    "domain": "Problem-Solving & Data Analysis",
+    "section": "Math",
+    "question": "In a survey of 200 students, 45% prefer online learning. How many students prefer online learning?",
+    "choices": [
+      "A) 45",
+      "B) 80",
+      "C) 90",
+      "D) 100"
+    ],
+    "answer": "C",
+    "explanation": "200 × 0.45 = 90 students"
+  },
+  {
+    "id": "math_psda_3",
+    "domain": "Problem-Solving & Data Analysis",
+    "section": "Math",
+    "question": "The mean of 5 numbers is 12. If four of the numbers are 8, 10, 14, and 16, what is the fifth number?",
+    "choices": [
+      "A) 10",
+      "B) 11",
+      "C) 12",
+      "D) 13"
+    ],
+    "answer": "C",
+    "explanation": "Total = 12×5 = 60. Known sum = 8+10+14+16 = 48. Fifth = 60-48 = 12."
+  },
+  {
+    "id": "math_geo_1",
+    "domain": "Geometry & Trigonometry",
+    "section": "Math",
+    "question": "A right triangle has legs of 6 and 8. What is the hypotenuse?",
+    "choices": [
+      "A) 9",
+      "B) 10",
+      "C) 12",
+      "D) 14"
+    ],
+    "answer": "B",
+    "explanation": "c² = 6² + 8² = 36 + 64 = 100 → c = 10 (Pythagorean triple: 3-4-5 scaled by 2)"
+  },
+  {
+    "id": "math_geo_2",
+    "domain": "Geometry & Trigonometry",
+    "section": "Math",
+    "question": "The area of a circle with radius 5 is closest to:",
+    "choices": [
+      "A) 15.7",
+      "B) 31.4",
+      "C) 78.5",
+      "D) 157"
+    ],
+    "answer": "C",
+    "explanation": "A = πr² = π(25) ≈ 78.54"
+  },
+  {
+    "id": "math_geo_3",
+    "domain": "Geometry & Trigonometry",
+    "section": "Math",
+    "question": "In a right triangle, sin(30°) = 0.5. If the hypotenuse is 20, what is the opposite side?",
+    "choices": [
+      "A) 5",
+      "B) 8",
+      "C) 10",
+      "D) 15"
+    ],
+    "answer": "C",
+    "explanation": "sin(30°) = opposite/hypotenuse → 0.5 = opposite/20 → opposite = 10"
+  },
+  {
+    "id": "math_geo_4",
+    "domain": "Geometry & Trigonometry",
+    "section": "Math",
+    "question": "Two parallel lines are cut by a transversal. If one angle is 65°, what is its alternate interior angle?",
+    "choices": [
+      "A) 25°",
+      "B) 65°",
+      "C) 115°",
+      "D) 180°"
+    ],
+    "answer": "B",
+    "explanation": "Alternate interior angles are equal when lines are parallel."
+  }
+];
 
     const TEST_DURATION_SEC = 35 * 60;
     let currentAttempt = null;
@@ -920,12 +1287,82 @@
       checkUrlReportView();
     });
 
-  </script>
+  
+    // =============================================
+    // LEADERBOARD TIZIMI (localStorage asosida)
+    // =============================================
+    const LB_KEY = 'tayanch_leaderboard_v2';
+    function getLBEntries() {
+      try { return JSON.parse(localStorage.getItem(LB_KEY) || '[]'); } catch { return []; }
+    }
+    function saveLBEntry(name, classCode, score, correct, total, domain_scores) {
+      const entries = getLBEntries();
+      const entry = {
+        name: name || 'Nomaqum O'quvchi',
+        classCode: classCode || 'TAYANCH',
+        score: score,
+        correct: correct,
+        total: total,
+        domain_scores: domain_scores,
+        date: new Date().toLocaleDateString('uz-UZ')
+      };
+      entries.push(entry);
+      entries.sort((a, b) => b.score - a.score);
+      const top50 = entries.slice(0, 50);
+      localStorage.setItem(LB_KEY, JSON.stringify(top50));
+      return entries.indexOf(entry) + 1;
+    }
+    function renderLeaderboard() {
+      const entries = getLBEntries();
+      const container = document.getElementById('leaderboard-list');
+      if (!container) return;
+      if (entries.length === 0) {
+        container.innerHTML = '<p style="color:#9ca3af;text-align:center;">Hali natija yo\'q. Test topshiring!</p>';
+        return;
+      }
+      const medals = ['🥇','🥈','🥉'];
+      container.innerHTML = entries.map((e, i) => `
+        <div style="display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.04);margin-bottom:8px;border:1px solid rgba(255,255,255,0.07);">
+          <div style="font-size:1.3rem;min-width:30px;text-align:center;">${medals[i] || '#' + (i+1)}</div>
+          <div style="flex:1;">
+            <div style="font-weight:700;color:#fff;">${escapeHtml(e.name)}</div>
+            <div style="font-size:0.78rem;color:#9ca3af;">${escapeHtml(e.classCode)} · ${e.date}</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:1.1rem;font-weight:800;color:#00f2fe;">${e.score}</div>
+            <div style="font-size:0.75rem;color:#9ca3af;">${e.correct}/${e.total} to'g'ri</div>
+          </div>
+        </div>
+      `).join('');
+    }
+    function openLeaderboard() {
+      renderLeaderboard();
+      document.getElementById('leaderboardModal').style.display = 'flex';
+    }
+
+</script>
 
     <!-- Legal / Trademark Disclaimer (College Board) -->
     <div class="trademark-disclaimer" style="margin-top: 2rem; padding: 1.25rem; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.78rem; color: #71717a; text-align: center; line-height: 1.5;">
       <p style="margin:0;">* SAT® — College Board’ning roʻyxatdan oʻtgan savdo belgisidir. Tayanch platformasi College Board bilan bevosita bogʻliq emas va uning tomonidan tasdiqlanmagan.</p>
     </div>
+
+
+<!-- Leaderboard Modal -->
+<div class="modal-overlay" id="leaderboardModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;justify-content:center;align-items:center;">
+  <div style="background:#161922;border:1px solid rgba(0,242,254,0.3);border-radius:18px;padding:28px;width:90%;max-width:520px;max-height:80vh;overflow-y:auto;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+      <h2 style="margin:0;font-size:1.2rem;"><i class="fa-solid fa-trophy" style="color:#fbbf24;"></i> Natijalar Reytingi</h2>
+      <button onclick="document.getElementById('leaderboardModal').style.display='none'" style="background:none;border:none;color:#9ca3af;font-size:1.4rem;cursor:pointer;">✕</button>
+    </div>
+    <div id="leaderboard-list">
+      <p style="color:#9ca3af;text-align:center;">Hali natija yo'q. Test topshiring!</p>
+    </div>
+    <div style="margin-top:16px;text-align:center;">
+      <button onclick="document.getElementById('leaderboardModal').style.display='none'" style="background:rgba(0,242,254,0.1);border:1px solid rgba(0,242,254,0.3);color:#00f2fe;padding:10px 24px;border-radius:10px;cursor:pointer;font-weight:700;">Yopish</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

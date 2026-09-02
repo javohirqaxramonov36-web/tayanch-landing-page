@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="uz" data-page-node-id="ZBfncSoFuAIge6ohh0BFZV">
-<!-- deploy: cache-cleanup 2026-09-02 — 2-bosqich: quiz 8 savol + CEFR, kalkulyator birlashtirildi, CSS/JS minify -->
+<!-- deploy: cache-cleanup 2026-09-02 — 3-bosqich: OG image 1200×630, FAQPage schema, PWA ikonkalar, ScrollTrigger.batch, non-blocking font CSS -->
 <head data-page-node-id="My9cC9I4SS8ha0TQjkP8v1">
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" data-page-node-id="E1TsKBz18BcsFzNjrnnvj2">
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" data-page-node-id="d7mHt0vLOEUBZVsFZP61pq">
@@ -65,13 +65,13 @@
     <meta property="og:url" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/" data-page-node-id="OJG0Rv8j6dwKTNnuFQrOD7">
     <meta property="og:title" content="Tayanch — AI, IELTS va Admission'ni bir joyda o'rganing" data-page-node-id="qzpk6rX0QvNH6VCT1jDovM">
     <meta property="og:description" content="Bugundan yangi ko'nikma egallang. Asoschi: IELTS 7.0 va SAT 1420 natijalariga erishgan." data-page-node-id="bdS1kfPIidDpG1S6lBwHQ3">
-    <meta property="og:image" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/assets/images/founder.jpg" data-page-node-id="OL3felOYOfgSAmmMjD2ekI">
+    <meta property="og:image" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/assets/images/og-image.png" data-page-node-id="OL3felOYOfgSAmmMjD2ekI">
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" data-page-node-id="GiPsGSZhJWHxuUTCta1d8J">
     <meta name="twitter:title" content="Tayanch — AI, IELTS va Admission'ni bir joyda o'rganing" data-page-node-id="Y7GD1wwO0rS7rH0Y7YwCIE">
     <meta name="twitter:description" content="Bugundan yangi ko'nikma egallang va kelajagingizni zamonaviy texnologiyalar bilan quring. Asoschi: IELTS 7.0 & SAT 1420." data-page-node-id="u8aMb5cQBR0AQ1YueH1RJb">
-    <meta name="twitter:image" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/assets/images/founder.jpg" data-page-node-id="9j4ZY1o74i0WyDVeemCTRr">
+    <meta name="twitter:image" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/assets/images/og-image.png" data-page-node-id="9j4ZY1o74i0WyDVeemCTRr">
 
     <!-- Structured Data / SEO Schema.org (har biri alohida blok — kengaytmalar xatosini oldini oladi) -->
     <script type="application/ld+json">
@@ -80,7 +80,7 @@
       "@type": "EducationalOrganization",
       "name": "Tayanch",
       "url": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/",
-      "logo": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/assets/images/founder.jpg",
+      "logo": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/assets/images/icon-512.png",
       "description": "AI, IELTS va Admission bo'yicha O'zbekistondagi amaliy ta'lim platformasi.",
       "sameAs": ["https://t.me/tayanch_go"]
     }
@@ -117,16 +117,82 @@
     }
     </script>
 
-    <!-- Fonts -->
+    <!-- BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Tayanch — Bosh sahifa",
+        "item": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/"
+      }]
+    }
+    </script>
+
+    <!-- FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Tayanch platformasi nima?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tayanch — O'zbekistondagi amaliy ta'lim platformasi bo'lib, Sun'iy Intelekt (AI), IELTS tayyorgarligi va xalqaro universitetlarga kirish (Admission) yo'nalishlarini qamrab oladi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kurslar kimlar uchun mo'ljallangan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Boshlang'ich (A1) darajadan toki ilg'or (C1) darajagacha bo'lgan o'quvchilar, shuningdek, grant izlovchi abituriyentlar uchun mo'ljallangan. Har bir modul o'z darajasiga mos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Grant imkoniyatini qanday baholash mumkin?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Saytdagi bepul Grant Kalkulyatori IELTS balli, SAT balli, yo'nalish va yashash mamlakatiga ko'ra taxminiy grant mosligi va miqdorini ko'rsatadi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "IELTS tayyorgarligi qanday tashkil etilgan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A1–C1 modullar, Writing Task 2 masterclass, Reading strategiyalari, Listening mashqlari va bepul 3 daqiqalik CEFR diagnostika testi orqali."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SAT tayyorgarligi bepulmi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ha. SAT Mock sahifasida 32 ta savol bilan to'liq bepul diagnostika, shuningdek, Digital SAT Hub orqali darslar va strategiyalar mavjud."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Fonts (non-render-blocking preload + swap pattern) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" data-page-node-id="Eeb9spJPvJeXRMrC1jVCNK">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin data-page-node-id="52Y7ZVqF4Vp1UqzwRg4MHi">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" data-page-node-id="sFrkxur7S3CD3FI3GW8AHw">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" data-page-node-id="sFrkxur7S3CD3FI3GW8AHw">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" data-page-node-id="sFrkxur7S3CD3FI3GW8AHw">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"></noscript>
 
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" data-page-node-id="H31WlQ92TjkWGvv4KpACZ6">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="styles.css?v=1788356956" data-page-node-id="elIBmPBJjSRu0dOD4KK8Qu">
+    <link rel="stylesheet" href="styles.css?v=1788357964" data-page-node-id="elIBmPBJjSRu0dOD4KK8Qu">
 
     <!-- GSAP & ScrollTrigger CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
@@ -298,6 +364,7 @@
                                 <div class="badge-text-box" data-page-node-id="fHEKYDxCTnjbH9eDhKje8L">
                                     <h4 data-page-node-id="q9KyqmXOUnLNXUS5UtzIoE">Yangi: Real Bluebook & IELTS Simulator</h4>
                                     <p data-page-node-id="v1E3RgxrIsdRpv64KXamoH"><a href='sat-mock.html' style='color:#00f2fe;text-decoration:underline;' data-page-node-id="sAOB1wk35uOsBHQt6XhtCF">O'z bilimingizni 100% bepul diagnostika qiling &rarr;</a></p>
+                                    <p data-page-node-id="dsatLinkP"><a href='sat-dsat.html' style='color:#a78bfa;text-decoration:underline;' data-page-node-id="dsatLinkA">Digital SAT darslarini to'liq ko'rish &rarr;</a></p>
                                 </div>
                             </div>
                         </div>
@@ -1031,6 +1098,6 @@
     </div>
 
     <!-- JS Engine -->
-    <script src="script.js?v=1788356956" defer></script>
+    <script src="script.js?v=1788357964" defer></script>
 </body>
 </html>

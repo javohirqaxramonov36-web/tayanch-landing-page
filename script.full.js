@@ -1261,24 +1261,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            gsap.utils.toArray('.gsap-reveal').forEach(elem => {
-                gsap.fromTo(elem,
+            ScrollTrigger.batch('.gsap-reveal', {
+                start: 'top 90%',
+                once: true,
+                onEnter: batch => gsap.fromTo(batch,
                     { opacity: 0, y: 45, scale: 0.96 },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1,
-                        duration: 0.85,
-                        ease: 'power3.out',
-                        immediateRender: false,
-                        scrollTrigger: {
-                            trigger: elem,
-                            start: 'top 90%',
-                            toggleActions: 'play none none none',
-                            once: true
-                        }
-                    }
-                );
+                    { opacity: 1, y: 0, scale: 1, duration: 0.85, ease: 'power3.out', stagger: 0.06, overwrite: true }
+                )
             });
         }
     } catch (e) {

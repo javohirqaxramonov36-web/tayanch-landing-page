@@ -1954,6 +1954,14 @@ a {
        (was only at <=768px, leaving 769-1024px cramped with no hamburger). */
     .nav-links { display: none; }
     .mobile-menu-toggle { display: flex; align-items: center; justify-content: center; }
+    .nav-actions .lang-toggle,
+    .nav-actions .nav-cta { display: none; }
+}
+@media (max-width: 1280px) {
+    /* Raise navbar collapse breakpoint: 8 nav-links + gap2rem + brand + CTA don't fit
+       comfortably until >= ~1366px viewport. Below that, switch to hamburger drawer. */
+    .nav-links { display: none; }
+    .mobile-menu-toggle { display: flex; align-items: center; justify-content: center; }
 }
 
 @media (max-width: 768px) {

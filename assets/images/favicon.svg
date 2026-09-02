@@ -1,21 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00f2fe" />
-      <stop offset="50%" stop-color="#a855f7" />
-      <stop offset="100%" stop-color="#fbbf24" />
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161C2A"/>
+      <stop offset="100%" stop-color="#080C12"/>
     </linearGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
+    <linearGradient id="metal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E8E0C8"/>
+      <stop offset="35%" stop-color="#A8B4B8"/>
+      <stop offset="65%" stop-color="#7BA0AE"/>
+      <stop offset="100%" stop-color="#3A4E5A"/>
+    </linearGradient>
   </defs>
-  <rect width="512" height="512" rx="128" fill="#0e0f15" />
-  <circle cx="256" cy="256" r="210" fill="none" stroke="url(#grad)" stroke-width="12" opacity="0.3" />
-  <g transform="translate(106, 106) scale(0.6)" filter="url(#glow)">
-    <path fill="url(#grad)" d="M256 0c-141.4 0-256 114.6-256 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm-32 376.5l-64-160 160-64 64 160-160 64zm32-88.5c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/>
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <g fill="url(#metal)">
+    <!-- top bar -->
+    <rect x="92" y="122" width="328" height="78" rx="6"/>
+    <!-- vertical stem -->
+    <rect x="214" y="200" width="84" height="160"/>
+    <!-- base serif -->
+    <rect x="132" y="346" width="248" height="54" rx="6"/>
   </g>
 </svg>

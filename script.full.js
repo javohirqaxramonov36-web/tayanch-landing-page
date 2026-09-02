@@ -1404,7 +1404,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (existing) existing.remove();
         const toast = document.createElement('div');
         toast.className = 'xp-toast';
-        toast.innerHTML = `<i class="fa-solid fa-bolt"></i> ${msg}`;
+        toast.innerHTML = `<i class="fa-solid fa-bolt"></i> ${escapeHtml(msg)}`;
         document.body.appendChild(toast);
         setTimeout(() => toast.remove(), 3000);
     }
@@ -3062,7 +3062,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .concat((data.podcasts || []).map(p => Object.assign({ typeLabel: 'podcast' }, p)));
             applyFilters();
         } catch (err) {
-            grid.innerHTML = `<p class="resource-empty-note">Resurslar yuklanmadi (${err.message}).</p>`;
+            grid.innerHTML = `<p class="resource-empty-note">Resurslar yuklanmadi (${escapeHtml(err.message)}).</p>`;
         }
     }
 

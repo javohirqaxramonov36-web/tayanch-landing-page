@@ -3101,3 +3101,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 })();
+
+/* ============================================================
+   FOOTER YEAR — avtomatik joriy yilni hisoblash
+   hardcoded yilni dynamic qiladi, kelajakda qo'lda tuzatish kerak emas
+   ============================================================ */
+(function initFooterYear() {
+    var yearEl = document.getElementById('footerYear');
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
+})();

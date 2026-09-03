@@ -400,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- ADMISSION CATEGORY (10 COURSES) ---
         { id: 22, title: "Digital SAT Math Mastery (800 Score Strategy)", category: "admission", catName: "Admission & SAT", desc: "Digital SAT Matematika bo'limining barcha formulalari, Desmos kalkulyatoridan samarali foydalanish hamda 800 bal algebrasi.", duration: "6 Hafta", level: "Amaliy", price: "399,000 UZS", icon: "fa-solid fa-calculator", badge: "Top 800", modules: ["Algebra va Linear Equations tezkor yechimlari", "Desmos Graphing Calculator sirlari va layfhaklar", "Advanced Math, Geometry va Trigonometry", "Digital SAT modullari simulyatsiyasi va vaqtni tejash"] },
         { id: 23, title: "Digital SAT Reading & Writing", category: "admission", catName: "Admission & SAT", desc: "Digital SAT Reading matnlari tahlili, Vocabulary in Context hamda Grammatika qoidalarining 100% yechimlari.", duration: "6 Hafta", level: "Advanced", price: "399,000 UZS", icon: "fa-solid fa-pen-fancy", badge: "Intensiv", modules: ["Craft and Structure savol turlarini yechish", "Information and Ideas matnli tahlil", "Expression of Ideas va Standart English Conventions", "SAT lug'at bazasi va tezkor matn o'qish"] },
-        { id: 24, title: "US College Application Essay (Personal Statement)", category: "admission", catName: "Admission & SAT", desc: "AQSh Top universitetlariga qabul komissiyasini hayratda qoldiruvchi shaxsiy insho (Common App Essay) yozish.", duration: "4 Hafta", level: "Admission", price: "499,000 UZS", icon: "fa-solid fa-feather-pointed", badge: "Insho", modules: ["Shaxsiy voqea (Storytelling) tanlash va reja tuzish", "Common App 7 ta prompti bo mezonlar", "Supplemental Essay (Nega aynan ushbu universitet?) yozish", "Ekspert ko'rigi va insho tahriri"] },
+        { id: 24, title: "US College Application Essay (Personal Statement)", category: "admission", catName: "Admission & SAT", desc: "AQSh Top universitetlariga qabul komissiyasini hayratda qoldiruvchi shaxsiy insho (Common App Essay) yozish.", duration: "4 Hafta", level: "Admission", price: "499,000 UZS", icon: "fa-solid fa-feather-pointed", badge: "Insho", hubHref: "personal-statement.html", hubLabel: "Bepul Insho Qoʻllanmasi", modules: ["Shaxsiy voqea (Storytelling) tanlash va reja tuzish", "Common App 7 ta prompti bo mezonlar", "Supplemental Essay (Nega aynan ushbu universitet?) yozish", "Ekspert ko'rigi va insho tahriri"] },
         { id: 25, title: "Full-Ride Scholarship Application Blueprint", category: "admission", catName: "Admission & SAT", desc: "AQSh, Yevropa va Osiyo universitetlaridan to'liq moliyalashtirilgan (fully funded) ta'lim va yashash xarajatlarini qoplovchi grantlarga ariza topshirish strategiyasi.", duration: "5 Hafta", level: "Grantlar", price: "399,000 UZS", icon: "fa-solid fa-trophy", badge: "Grant Strategiyasi", modules: ["Need-Based va Merit-Based grantlar farqi", "Stipendiyali dasturlarni qidirish (Need-Blind unilar)", "Moliyaviy hujjatlar va insholarni tayyorlash", "Muvaffaqiyatli grant olgan talabalar tajribasi"] },
         { id: 26, title: "Common App & Financial Aid (CSS Profile / FAFSA)", category: "admission", catName: "Admission & SAT", desc: "Common Application platformasida profil ochish, barcha bo'limlarni xatosiz to'ldirish va CSS Profile hujjati.", duration: "3 Hafta", level: "Amaliy Hujjat", price: "299,000 UZS", icon: "fa-solid fa-file-invoice-dollar", badge: "Hujjatlar", modules: ["Common App hisobini yaratish va sozlash", "Honors va Extracurricular activities bo'limi to'ldirish", "CSS Profile orqali oilaviy daromad hujjatlarini topshirish", "Universitetlarga portal orqali kod yuborish"] },
         { id: 27, title: "Ivy League & Top 50 Global University Strategy", category: "admission", catName: "Admission & SAT", desc: "Harvard, MIT, Stanford va Yevropa Top 50 oliygohlariga topshiruvchi talabalar uchun maxsus portfolio strategiyasi.", duration: "4 Hafta", level: "Premium", price: "599,000 UZS", icon: "fa-solid fa-crown", badge: "Ivy League", modules: ["Holistic Review (Yaxlit baholash) tizimi talablari", "Noyob Spike Factor (Shaxsiy ustunlik) yaratish", "Early Decision (ED) va Early Action (EA) strategiyalari", "Xalqaro olimpiada va tadqiqot portfoliosi"] },
@@ -505,6 +505,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="liquid-wave"></div>
                </button>`;
 
+        const hubBtnHtml = course.hubHref
+            ? `<a href="${course.hubHref}" class="btn btn-sm btn-secondary w-full">
+                   <i class="fa-solid fa-feather-pointed"></i> <span class="btn-text">${course.hubLabel || 'Qoʻllanma'}</span>
+               </a>`
+            : '';
+
         card.innerHTML = `
             <div class="course-top">
                 <div class="course-thumb-wrapper">
@@ -526,6 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="btn btn-sm btn-secondary w-full view-details-btn liquid-glass-btn" data-id="${course.id}">
                     <i class="fa-solid fa-circle-info"></i> Tafsilotlar
                 </button>
+                ${hubBtnHtml}
                 ${actionBtnHtml}
             </div>
         `;

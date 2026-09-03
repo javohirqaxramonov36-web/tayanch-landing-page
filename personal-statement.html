@@ -665,11 +665,11 @@
         opts.forEach(o=>o.classList.add('disabled'));
         if(opt.dataset.choice===answer){
           opt.classList.add('correct');
-          feedback.textContent='To\'g\'ri. Aynan shu — insho yozishda tayanadigan asosiy g\'oya.';
+          feedback.textContent='Toʻgʻri. Aynan shu — insho yozishda tayanadigan asosiy gʻoya.';
         }else{
           opt.classList.add('incorrect');
           opts.forEach(o=>{ if(o.dataset.choice===answer) o.classList.add('correct'); });
-          feedback.textContent='Boshqa variant to\'g\'riroq edi — yashil bilan belgilangani.';
+          feedback.textContent='Boshqa variant toʻgʻriroq edi — yashil bilan belgilangani.';
         }
         feedback.classList.add('show');
       });

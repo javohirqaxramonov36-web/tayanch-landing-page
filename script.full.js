@@ -345,7 +345,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (resGrantPercent) resGrantPercent.textContent = `${scorePercent}%`;
         if (resGrantAmount) resGrantAmount.textContent = `$${minAmount.toLocaleString()} - $${maxAmount.toLocaleString()}`;
         if (resCoursesList) {
-            resCoursesList.innerHTML = courses.map(c => `<li><i class="fa-solid fa-check"></i> ${c}</li>`).join('');
+            resCoursesList.innerHTML = courses.map(c => {
+                const isPS = /Personal Statement/i.test(c);
+                const psLink = isPS ? ` <a href="admission-essay-personal-statement.html" target="_blank" rel="noopener noreferrer" style="color:#00f2fe;text-decoration:underline;">(Bepul dars sahifasi &rarr;)</a>` : '';
+                return `<li><i class="fa-solid fa-check"></i> ${c}${psLink}</li>`;
+            }).join('');
         }
 
         const calcApplyBtn = document.getElementById('calcApplyBtn');
@@ -400,7 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- ADMISSION CATEGORY (10 COURSES) ---
         { id: 22, title: "Digital SAT Math Mastery (800 Score Strategy)", category: "admission", catName: "Admission & SAT", desc: "Digital SAT Matematika bo'limining barcha formulalari, Desmos kalkulyatoridan samarali foydalanish hamda 800 bal algebrasi.", duration: "6 Hafta", level: "Amaliy", price: "399,000 UZS", icon: "fa-solid fa-calculator", badge: "Top 800", modules: ["Algebra va Linear Equations tezkor yechimlari", "Desmos Graphing Calculator sirlari va layfhaklar", "Advanced Math, Geometry va Trigonometry", "Digital SAT modullari simulyatsiyasi va vaqtni tejash"] },
         { id: 23, title: "Digital SAT Reading & Writing", category: "admission", catName: "Admission & SAT", desc: "Digital SAT Reading matnlari tahlili, Vocabulary in Context hamda Grammatika qoidalarining 100% yechimlari.", duration: "6 Hafta", level: "Advanced", price: "399,000 UZS", icon: "fa-solid fa-pen-fancy", badge: "Intensiv", modules: ["Craft and Structure savol turlarini yechish", "Information and Ideas matnli tahlil", "Expression of Ideas va Standart English Conventions", "SAT lug'at bazasi va tezkor matn o'qish"] },
-        { id: 24, title: "US College Application Essay (Personal Statement)", category: "admission", catName: "Admission & SAT", desc: "AQSh Top universitetlariga qabul komissiyasini hayratda qoldiruvchi shaxsiy insho (Common App Essay) yozish.", duration: "4 Hafta", level: "Admission", price: "499,000 UZS", icon: "fa-solid fa-feather-pointed", badge: "Insho", hubHref: "personal-statement.html", hubLabel: "Bepul Insho Qoʻllanmasi", modules: ["Shaxsiy voqea (Storytelling) tanlash va reja tuzish", "Common App 7 ta prompti bo mezonlar", "Supplemental Essay (Nega aynan ushbu universitet?) yozish", "Ekspert ko'rigi va insho tahriri"] },
+        { id: 24, title: "US College Application Essay (Personal Statement)", category: "admission", catName: "Admission & SAT", desc: "AQSh Top universitetlariga qabul komissiyasini hayratda qoldiruvchi shaxsiy insho (Common App Essay) yozish.", duration: "4 Hafta", level: "Admission", price: "499,000 UZS", icon: "fa-solid fa-feather-pointed", badge: "Insho", hubHref: "admission-essay-personal-statement.html", lessonUrl: "admission-essay-personal-statement.html", hubLabel: "Bepul Insho Qoʻllanmasi", modules: ["Shaxsiy voqea (Storytelling) tanlash va reja tuzish", "Common App 7 ta prompti bo mezonlar", "Supplemental Essay (Nega aynan ushbu universitet?) yozish", "Ekspert ko'rigi va insho tahriri"] },
         { id: 25, title: "Full-Ride Scholarship Application Blueprint", category: "admission", catName: "Admission & SAT", desc: "AQSh, Yevropa va Osiyo universitetlaridan to'liq moliyalashtirilgan (fully funded) ta'lim va yashash xarajatlarini qoplovchi grantlarga ariza topshirish strategiyasi.", duration: "5 Hafta", level: "Grantlar", price: "399,000 UZS", icon: "fa-solid fa-trophy", badge: "Grant Strategiyasi", modules: ["Need-Based va Merit-Based grantlar farqi", "Stipendiyali dasturlarni qidirish (Need-Blind unilar)", "Moliyaviy hujjatlar va insholarni tayyorlash", "Muvaffaqiyatli grant olgan talabalar tajribasi"] },
         { id: 26, title: "Common App & Financial Aid (CSS Profile / FAFSA)", category: "admission", catName: "Admission & SAT", desc: "Common Application platformasida profil ochish, barcha bo'limlarni xatosiz to'ldirish va CSS Profile hujjati.", duration: "3 Hafta", level: "Amaliy Hujjat", price: "299,000 UZS", icon: "fa-solid fa-file-invoice-dollar", badge: "Hujjatlar", modules: ["Common App hisobini yaratish va sozlash", "Honors va Extracurricular activities bo'limi to'ldirish", "CSS Profile orqali oilaviy daromad hujjatlarini topshirish", "Universitetlarga portal orqali kod yuborish"] },
         { id: 27, title: "Ivy League & Top 50 Global University Strategy", category: "admission", catName: "Admission & SAT", desc: "Harvard, MIT, Stanford va Yevropa Top 50 oliygohlariga topshiruvchi talabalar uchun maxsus portfolio strategiyasi.", duration: "4 Hafta", level: "Premium", price: "599,000 UZS", icon: "fa-solid fa-crown", badge: "Ivy League", modules: ["Holistic Review (Yaxlit baholash) tizimi talablari", "Noyob Spike Factor (Shaxsiy ustunlik) yaratish", "Early Decision (ED) va Early Action (EA) strategiyalari", "Xalqaro olimpiada va tadqiqot portfoliosi"] },
@@ -477,6 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setText('coursesPageTotal', total + ' ta Kurslar');
         setText('footerCoursesLink', total + ' ta Kurslar Portali');
         setText('navCoursesCount', total + ' ta');
+        document.title = `Barcha ${total} ta Bepul Kurslar Katalogi — Tayanch`;
         const aiTab = document.querySelector('#filterTabs .tab-btn[data-category="ai"] .tab-count');
         const ieltsTab = document.querySelector('#filterTabs .tab-btn[data-category="ielts"] .tab-count');
         const admTab = document.querySelector('#filterTabs .tab-btn[data-category="admission"] .tab-count');
@@ -674,9 +679,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="btn-text"><i class="fa-solid fa-pen-to-square"></i> Kursga Ariza Qoldirish</span>
                     <div class="liquid-wave"></div>
                 </button>
-                <a href="general-english-beginner.html" class="btn btn-secondary w-full">
-                    <i class="fa-solid fa-graduation-cap" style="color: var(--primary-cyan);"></i> Interaktiv Darslik Hub (6 Aspects & Practice)
-                </a>
+                ${(course.hubHref || course.lessonUrl) ? `<a href="${course.hubHref || course.lessonUrl}" class="btn btn-secondary w-full" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-feather-pointed" style="color: var(--primary-cyan);"></i> To\'liq darsni ochish</a>` : `<a href="general-english-beginner.html" class="btn btn-secondary w-full"><i class="fa-solid fa-graduation-cap" style="color: var(--primary-cyan);"></i> Interaktiv Darslik Hub (6 Aspects &amp; Practice)</a>` }
                 <button class="btn btn-secondary w-full open-video-modal-btn" data-title="${course.title} - Video Namuna" data-video="VBvxHIkvjeo">
                     <i class="fa-solid fa-circle-play" style="color: var(--primary-cyan);"></i> Video Namuna Darsini Ko'rish
                 </button>
@@ -805,6 +808,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const activeModal = document.querySelector('.modal-overlay.active');
             if (activeModal) closeModal(activeModal);
         }
+    });
+
+    // WCAG Focus Trap for active modal (Tab / Shift+Tab cycling)
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab') return;
+        const activeModal = document.querySelector('.modal-overlay.active');
+        if (!activeModal) return;
+        const focusables = activeModal.querySelectorAll('a[href], button:not([disabled]), textarea, input:not([disabled]), select, [tabindex]:not([tabindex="-1"])');
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
 
 
@@ -1527,7 +1543,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => {
                 const simulatedResponse = 
-                    `🤖 [GPT-4o & Claude 3.5 Sonnet Live Engine Output]\n\n` +
+                    `🤖 [Demo namuna javob — haqiqiy AI serverga murojaat qilinmaydi]\n\n` +
                     `✨ PROMPT TAHLILI: Muvaffaqiyatli bajarildi.\n\n` +
                     `📌 TAVSIYA ETILGAN AKADEMIK JAVOB:\n` +
                     `"Furthermore, incorporating artificial intelligence into modern educational frameworks substantially elevates student productivity while enabling real-time formative assessment."\n\n` +

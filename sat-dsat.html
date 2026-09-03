@@ -11,6 +11,17 @@
     <link rel="icon" type="image/png" href="assets/images/favicon.png?v=1788409946">
     <link rel="apple-touch-icon" href="assets/images/founder.jpg">
 
+    <!-- Open Graph & Twitter Cards -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Digital SAT (DSAT) Hub & Real Bluebook Simulator — Tayanch">
+    <meta property="og:description" content="Tayanch Digital SAT (DSAT) tayyorlov portali: Real Bluebook formatidagi adaptiv mock-test simulyatori, 1500+ garantiyali intensiv kurslar, SAT Vocab Spaced Repetition va Ota-onalar paneli.">
+    <meta property="og:url" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/sat-dsat.html">
+    <meta property="og:image" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/assets/images/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Digital SAT (DSAT) Hub & Real Bluebook Simulator — Tayanch">
+    <meta name="twitter:description" content="Tayanch Digital SAT (DSAT) tayyorlov portali: Real Bluebook formatidagi adaptiv mock-test simulyatori, 1500+ garantiyali intensiv kurslar, SAT Vocab Spaced Repetition va Ota-onalar paneli.">
+    <meta name="twitter:image" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/assets/images/og-image.png">
+
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -626,10 +637,10 @@
     </main>
 
     <!-- Parent / Teacher Login Modal -->
-    <div class="sim-modal hidden" id="parentModal">
+    <div class="sim-modal hidden" id="parentModal" role="dialog" aria-modal="true" aria-labelledby="parentModalTitle">
         <div class="modal-content liquid-glass parent-modal-content">
             <div class="modal-header">
-                <h3><i class="fa-solid fa-user-lock"></i> Ota-ona / O'qituvchi Portaliga Kirish</h3>
+                <h3 id="parentModalTitle"><i class="fa-solid fa-user-lock"></i> Ota-ona / O'qituvchi Portaliga Kirish</h3>
                 <button class="close-modal-btn" onclick="closeParentModal()">&times;</button>
             </div>
             <div class="modal-body">
@@ -695,5 +706,23 @@
 
     <!-- JavaScript -->
     <script src="script.js" defer></script>
+<script>
+/* Accessibility: Escape + backdrop close for .sim-modal; keyboard flip for flashcard */
+(function () {
+  function visibleSimModal() { return document.querySelector('.sim-modal:not(.hidden)'); }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { var m = visibleSimModal(); if (m) m.classList.add('hidden'); }
+  });
+  document.addEventListener('click', function (e) {
+    var m = visibleSimModal();
+    if (m && e.target === m) m.classList.add('hidden');
+  });
+  document.addEventListener('keydown', function (e) {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target && e.target.id === 'vocabFlashcard') {
+      e.preventDefault(); e.target.click();
+    }
+  });
+})();
+</script>
 </body>
 </html>

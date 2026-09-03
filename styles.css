@@ -12,4 +12,5 @@
 .drawer-link:hover i{color:var(--primary-cyan)}
 .drawer-link.active{background:linear-gradient(90deg,rgba(0,242,254,.14),rgba(168,85,247,.05));color:var(--text-main)}
 .drawer-link.active::before{content:"";position:absolute;left:0;top:18%;bottom:18%;width:3px;border-radius:3px;background:var(--primary-cyan);box-shadow:0 0 10px rgba(0,242,254,.6)}
-.drawer-link.active i{color:var(--primary-cyan)}
+.drawer-link.active i{color:var(--primary-cyan)
+@media (prefers-reduced-motion: reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}

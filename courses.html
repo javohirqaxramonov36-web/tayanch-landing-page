@@ -1237,7 +1237,7 @@
           <span class="old-price">900 000 so'm</span>
           <span class="curr-price">700 000 <small>so'm/oy</small></span>
         </div>
-        <button type="button" class="btn-enroll-card open-modal-btn" data-course="Frontend Dasturlash (React / JS)">
+        <button type="button" class="btn-enroll-card open-modal-btn" <button type="button" class="btn-syllabus-trigger" data-syllabus="frontend">Dastur (Syllabus) 📋</button> data-course="Frontend Dasturlash (React / JS)">
           Yozilish ➔
         </button>
       </div>
@@ -1564,5 +1564,352 @@ document.addEventListener('DOMContentLoaded', () => {
     <!-- YAGONA MA'LUMOTLAR MANBAI: script.js'dan OLDIN yuklanishi shart -->
     <script src="courses-data.js" defer></script>
     <script src="script.js" defer></script>
+<script>
+
+// ================= KURSLAR REJASI (SYLLABUS) MA'LUMOTLAR BAZASI =================
+const SYLLABUS_DATA = {
+  "frontend": {
+    title: "Frontend Dasturlash (Modern Web)",
+    category: "Dasturlash • 4 oy davomiyligi",
+    subtitle: "Web saytlar va murakkab interaktiv ilovalar yaratish kursi",
+    courseSelectValue: "Frontend Dasturlash (React / JS)",
+    modules: [
+      {
+        badge: "1-Modul (1-oy)",
+        duration: "4 hafta",
+        title: "Web Asoslari & Zamonaviy HTML/CSS",
+        topics: [
+          "HTML5 semantik teglari va to'g'ri veb-sahifa strukturasi",
+          "CSS3: Flexbox, CSS Grid, zamonaviy responsiv dizayn (Mobile First)",
+          "Tailwind CSS bilan tezkor va professional uslublar yaratish",
+          "Git & GitHub vositalari bilan jamoada ishlash va loyihani joylash"
+        ]
+      },
+      {
+        badge: "2-Modul (2-oy)",
+        duration: "4 hafta",
+        title: "JavaScript (Chuqur daraja)",
+        topics: [
+          "JavaScript asoslari, ma'lumotlar tuzilmasi va algoritmlar",
+          "ES6+ yangiliklari: Arrow functions, Destructuring, Modules",
+          "DOM bilan ishlash, hodisalar (Events) va dinamik animatsiyalar",
+          "Asinxron dasturlash: Promises, Async/Await va REST API bilan integratsiya (Fetch/Axios)"
+        ]
+      },
+      {
+        badge: "3-Modul (3-oy)",
+        duration: "4 hafta",
+        title: "React.js & Zamonaviy Web Texnologiyalar",
+        topics: [
+          "React asoslari: Virtual DOM, JSX, Komponentlar arxitekturasi",
+          "React Hooks: useState, useEffect, useRef, useMemo, custom hooks",
+          "React Router v6: Ko'p sahifali ilovalar yaratish",
+          "Global State Management (Redux Toolkit yoki Zustand)"
+        ]
+      },
+      {
+        badge: "4-Modul (4-oy)",
+        duration: "4 hafta",
+        title: "Real Loyiha, Portfolio & Ishga Tayyorgarlik",
+        topics: [
+          "Katta portfolio loyihasi: To'liq funksiyali E-commerce internet do'kon",
+          "Saytni Vercel / Netlify platformalariga yuklash va domen ulash",
+          "Rezyume (CV), LinkedIn va GitHub profillarini xalqaro talablarga moslash",
+          "Texnik suhbat (Interview) savollariga tayyorgarlik va sertifikat topshirish"
+        ]
+      }
+    ]
+  },
+  "backend": {
+    title: "Backend Dasturlash (Python & Django)",
+    category: "Dasturlash • 5 oy davomiyligi",
+    subtitle: "Server arxitekturasi, ma'lumotlar bazasi va yirik tizimlar yaratish",
+    courseSelectValue: "Backend Dasturlash (Python / Django)",
+    modules: [
+      {
+        badge: "1-Modul (1-oy)",
+        duration: "4 hafta",
+        title: "Python Asoslari & OOP",
+        topics: [
+          "Python sintaksisi, o'zgaruvchilar, funksiyalar va modullar",
+          "Obyektga yo'naltirilgan dasturlash (OOP: Inheritance, Encapsulation, Polymorphism)",
+          "Fayllar bilan ishlash, xatolar bilan ishlash (Exceptions)",
+          "Ma'lumotlar tuzilmasi va mantiqiy algoritmlar"
+        ]
+      },
+      {
+        badge: "2-Modul (2-oy)",
+        duration: "4 hafta",
+        title: "Ma'lumotlar Bazasi (PostgreSQL & SQL)",
+        topics: [
+          "Relyatsion ma'lumotlar bazasi tushunchasi va PostgreSQL o'rnatish",
+          "Murakkab SQL so'rovlar: SELECT, JOIN, GROUP BY, subqueries",
+          "Jadvallar orasidagi bog'liqliklar (One-to-One, One-to-Many, Many-to-Many)",
+          "Bazani indekslash va optimizatsiya qilish"
+        ]
+      },
+      {
+        badge: "3-Modul (3-oy)",
+        duration: "4 hafta",
+        title: "Django Framework & REST API",
+        topics: [
+          "Django arxitekturasi, ORM, Migratsiyalar va Admin panel",
+          "Django REST Framework (DRF): Serializers, ViewSets, Routers",
+          "Foydalanuvchilarni autentifikatsiya qilish: JWT (JSON Web Tokens)",
+          "Katta loyihalar uchun modulli arxitektura"
+        ]
+      },
+      {
+        badge: "4-Modul (4-oy)",
+        duration: "4 hafta",
+        title: "Ilg'or Backend Vositalari & Telegram Botlar",
+        topics: [
+          "Aiogram kutubxonasida murakkab to'lov tizimiga ega Telegram botlar",
+          "Docker vositasi yordamida loyihalarni konteynerlash",
+          "Redis va Celery: Asinxron vazifalar va fon xizmatlari",
+          "Postman yordamida API hujjatlarini sinovdan o'tkazish"
+        ]
+      },
+      {
+        badge: "5-Modul (5-oy)",
+        duration: "4 hafta",
+        title: "Deploy, Server Himoyasi & Portfolio",
+        topics: [
+          "Linux (Ubuntu) VPS serverlarni boshqarish",
+          "Nginx va Gunicorn orqali loyihani jonli serverga joylashtirish",
+          "SSL sertifikatlar (HTTPS) va ma'lumotlar xavfsizligi",
+          "Final diplom loyihasi himoyasi va xalqaro sertifikat"
+        ]
+      }
+    ]
+  },
+  "basic": {
+    title: "Kompyuter Savodxonligi & IT Foundation",
+    category: "Savodxonlik • 1.5 oy davomiyligi",
+    subtitle: "Kompyuterni noldan puxta o'rganish va professional ofis vositalari",
+    courseSelectValue: "Kompyuter Savodxonligi & Foundation",
+    modules: [
+      {
+        badge: "1-Modul (2 hafta)",
+        duration: "2 hafta",
+        title: "Tizim Asoslari & Tezkorlik",
+        topics: [
+          "Windows va macOS tizimlarida professional ishlash ko'nikmalari",
+          "Klaviaturada 10 barmoqda ko'rmasdan tez yozish texnikasi",
+          "Fayllar ierarxiyasi, arxivlash va bulutli xotiralar (Google Drive, OneDrive)",
+          "Internet xavfsizligi va shaxsiy ma'lumotlarni himoya qilish"
+        ]
+      },
+      {
+        badge: "2-Modul (2 hafta)",
+        duration: "2 hafta",
+        title: "MS Office & Professional Hujjatlar",
+        topics: [
+          "Microsoft Word: Rasmiy shartnomalar, arizalar va kitoblar formatlash",
+          "Microsoft Excel: Formulalar, avtomatik hisob-kitoblar va jadvallar",
+          "Microsoft PowerPoint: Ta'sirchan va zamonaviy taqdimotlar tayyorlash",
+          "Google Docs, Sheets va Forms bilan onlayn jamoaviy ishlash"
+        ]
+      },
+      {
+        badge: "3-Modul (2 hafta)",
+        duration: "2 hafta",
+        title: "Zamonaviy IT Vositalari & Sun'iy Intellekt",
+        topics: [
+          "Canva platformasida tezkor vizual materiallar va postlar yasash",
+          "Sun'iy intellekt (ChatGPT, Gemini) yordamida ishlarni 5 barobar tezlashtirish",
+          "IT kasblar yo'nalishlari bilan tanishuv va o'z qobiliyatiga mos sohani tanlash",
+          "Yakuniy test va sertifikat topshirish marosimi"
+        ]
+      }
+    ]
+  },
+  "design": {
+    title: "Grafik Dizayn va UI/UX (Figma)",
+    category: "Dizayn • 3 oy davomiyligi",
+    subtitle: "Veb-saytlar va mobil ilovalar uchun jozibador interfeyslar yaratish",
+    courseSelectValue: "Grafik Dizayn va UI/UX",
+    modules: [
+      {
+        badge: "1-Modul (1-oy)",
+        duration: "4 hafta",
+        title: "Grafik Dizayn Asoslari & Adobe Vositalari",
+        topics: [
+          "Dizayn fundamental qoidalari: Tipografika, kompozitsiya, ranglar nazariyasi",
+          "Adobe Photoshop: Rasmlarga ishlov berish, montaj va bannerlar tayyorlash",
+          "Adobe Illustrator: Vektor grafikasi, logotiplar va brending elementlari",
+          "Ijtimoiy tarmoqlar (SMM) uchun vizual kontentlar tayyorlash"
+        ]
+      },
+      {
+        badge: "2-Modul (2-oy)",
+        duration: "4 hafta",
+        title: "Figma & UI/UX Qonuniyatlari",
+        topics: [
+          "Figma muhiti: Frame, Auto-layout, Variants va Components bilan ishlash",
+          "UX tadqiqotlar: User Persona, User Flow va Wireframing",
+          "Design System (Dizayn tizimlari) va UI Kitlar yaratish",
+          "Interaktiv prototiplash va mijozga taqdimot qilish ko'nikmasi"
+        ]
+      },
+      {
+        badge: "3-Modul (3-oy)",
+        duration: "4 hafta",
+        title: "Real Keyslar, Portfolio & Behance",
+        topics: [
+          "To'liq mobil ilova (iOS/Android) interfeys dizayni",
+          "Zamonaviy Landing Page (veb-sayt) dizayni va responsiv moslashuvi",
+          "Behance va Dribbble uchun jozibador Case Study tayyorlash",
+          "Frilans platformalarida (Upwork) birinchi buyurtmalarni olish strategiyasi"
+        ]
+      }
+    ]
+  },
+  "flutter": {
+    title: "Mobil Dasturlash (Flutter & Dart)",
+    category: "Dasturlash • 5 oy davomiyligi",
+    subtitle: "Android va iOS platformalari uchun yagona kod bazasida ilovalar yaratish",
+    courseSelectValue: "Mobil Dasturlash (Flutter)",
+    modules: [
+      {
+        badge: "1-Modul (1-oy)",
+        duration: "4 hafta",
+        title: "Dart Dasturlash Tili",
+        topics: [
+          "Dart tili asoslari, qat'iy turlash tizimi va null safety",
+          "Obyektga yo'naltirilgan dasturlash (OOP tamoyillari Dart'da)",
+          "Kolleksiyalar bilan ishlash (List, Set, Map) va funksional uslub",
+          "Asinxron oqimlar: Futures, Streams va xatolar bilan ishlash"
+        ]
+      },
+      {
+        badge: "2-Modul (2-oy)",
+        duration: "4 hafta",
+        title: "Flutter UI Asoslari",
+        topics: [
+          "Flutter SDK arxitekturasi va Vidjetlar daraxti (Widget Tree)",
+          "Stateless va Stateful vidjetlar, formalar va validatsiya",
+          "Murakkab animatsiyalar, Gesture Detector va sahifalararo marshrutlash",
+          "Har xil ekran o'lchamlari uchun moslashuvchan (Responsive) interfeys"
+        ]
+      },
+      {
+        badge: "3-Modul (3-oy)",
+        duration: "4 hafta",
+        title: "State Management & REST API",
+        topics: [
+          "Davlat boshqaruvi (State Management): BLoC & Cubit arxitekturasi",
+          "Internet orqali ma'lumot almashish: Dio / Http kutubxonalari",
+          "JSON serializatsiya va model yaratish (freezed / json_serializable)",
+          "Foydalanuvchi autentifikatsiyasi va xavfsiz token saqlash"
+        ]
+      },
+      {
+        badge: "4-Modul (4-oy)",
+        duration: "4 hafta",
+        title: "Lokal Baza & Kengaytirilgan Xususiyatlar",
+        topics: [
+          "Oflayn rejim uchun ma'lumotlar bazasi: Hive / SQLite (sqflite)",
+          "Xaritalar (Google Maps / Yandex Maps) integratsiyasi va Geolocation",
+          "Firebase: Push Notifications va Analytics sozlash",
+          "Clean Architecture tamoyillari asosida loyihani toza strukturaga keltirish"
+        ]
+      },
+      {
+        badge: "5-Modul (5-oy)",
+        duration: "4 hafta",
+        title: "Final Ilova & Store'larga Chiqarish",
+        topics: [
+          "To'liq mobil ilova loyihasi (Yetkazib berish yoki FinTech ilovasi)",
+          "Ilovani sinovdan o'tkazish (Unit va Widget testlar)",
+          "Google Play Console va Apple App Store uchun ilovani yig'ish va yuklash",
+          "Final portfolio himoyasi va xalqaro sertifikat"
+        ]
+      }
+    ]
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  const sylModal = document.getElementById('syllabusModal');
+  const closeSylBtn = document.getElementById('closeSyllabusBtn');
+  const closeSylBottomBtn = document.getElementById('closeSyllabusBottomBtn');
+  const sylEnrollBtn = document.getElementById('sylEnrollBtn');
+  const sylTitle = document.getElementById('sylTitle');
+  const sylCategory = document.getElementById('sylCategory');
+  const sylSubtitle = document.getElementById('sylSubtitle');
+  const sylContainer = document.getElementById('sylModulesContainer');
+
+  let currentCourseToEnroll = '';
+
+  function openSyllabus(courseKey) {
+    const data = SYLLABUS_DATA[courseKey];
+    if (!data || !sylModal) return;
+
+    currentCourseToEnroll = data.courseSelectValue;
+    sylTitle.textContent = data.title;
+    sylCategory.textContent = data.category;
+    sylSubtitle.textContent = data.subtitle;
+
+    sylContainer.innerHTML = data.modules.map(m => `
+      <div class="module-item">
+        <div class="module-header">
+          <span class="module-badge">${m.badge}</span>
+          <span class="module-duration">⏳ ${m.duration}</span>
+        </div>
+        <h4>${m.title}</h4>
+        <ul>
+          ${m.topics.map(t => `<li>${t}</li>`).join('')}
+        </ul>
+      </div>
+    `).join('');
+
+    sylModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSyllabus() {
+    if (sylModal) sylModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (closeSylBtn) closeSylBtn.addEventListener('click', closeSyllabus);
+  if (closeSylBottomBtn) closeSylBottomBtn.addEventListener('click', closeSyllabus);
+  if (sylModal) {
+    sylModal.addEventListener('click', (e) => {
+      if (e.target === sylModal) closeSyllabus();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sylModal && sylModal.classList.contains('active')) {
+      closeSyllabus();
+    }
+  });
+
+  // Syllabus ochish tugmalari
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-syllabus]');
+    if (btn) {
+      e.preventDefault();
+      const courseKey = btn.getAttribute('data-syllabus');
+      openSyllabus(courseKey);
+    }
+  });
+
+  // Syllabus oynasidan turib ariza oynasiga o'tish
+  if (sylEnrollBtn) {
+    sylEnrollBtn.addEventListener('click', () => {
+      closeSyllabus();
+      if (typeof window.openCourseModal === 'function') {
+        setTimeout(() => {
+          window.openCourseModal(currentCourseToEnroll);
+        }, 150);
+      }
+    });
+  }
+});
+
+</script>
 </body>
 </html>

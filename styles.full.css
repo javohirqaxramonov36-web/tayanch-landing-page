@@ -4686,3 +4686,385 @@ input, button, select, textarea {
     }
     .pillar-card:hover { transform: none; }
 }
+
+/* ==========================================================================
+   [LESSON PAGES] Dars sahifalari komponentlari — YAGONA MANBA
+   --------------------------------------------------------------------------
+   Qo'llash:  <body class="lesson-page">
+   Ishlatadi: admission-essay-personal-statement.html
+
+   Nima uchun .lesson-page ostiga olingan?
+     styles.css ichida .tab-btn (kurslar filtri), .panel-head (modal boshi),
+     .btn-primary / .btn (asosiy CTA) kabi nomlar BOSHQA ma'noda mavjud.
+     Nomlarni o'zgartirish o'rniga ko'lamlash (scoping) qo'llandi — shu
+     tariqa courses.html va index.html dagi mavjud komponentlar buzilmaydi.
+
+   Ranglar:
+     Faqat shu faylning :root tokenlaridan olinadi. Dars sahifalarida
+     alohida palitra (--ink / --teal / --rose / --bg) endi takrorlanmaydi.
+
+   Muhim:
+     styles.css dagi `*{margin:0;padding:0}` global reseti dars matni
+     (p / ul / ol / li / blockquote) uchun quyida 0-bo'limda qoplanadi.
+   ========================================================================== */
+
+:root{
+  --bg-surface-hi:#262a36;
+  --surface-glass:rgba(20,21,27,.92);
+  --accent-gold-soft:rgba(251,191,36,.14);
+  --accent-gold-border:rgba(251,191,36,.35);
+  --accent-green-soft:rgba(16,185,129,.14);
+  --accent-green-border:rgba(16,185,129,.35);
+  --accent-pink-soft:rgba(236,72,153,.14);
+  --accent-pink-border:rgba(236,72,153,.35);
+}
+
+/* --- 0. BAZA ------------------------------------------------------------- */
+.lesson-page{
+  background:radial-gradient(ellipse at top left, rgba(251,191,36,.05), transparent 55%), var(--bg-dark);
+  color:var(--text-main);
+  font-family:'Inter',sans-serif;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.lesson-page p{margin:0 0 14px}
+.lesson-page ul,
+.lesson-page ol{margin:0 0 14px;padding-left:22px}
+.lesson-page li{margin-bottom:8px}
+.lesson-page blockquote{margin:0 0 16px}
+.lesson-page :is(main,footer) a{text-decoration:underline;text-underline-offset:2px}
+.lesson-page h1,
+.lesson-page h2,
+.lesson-page h3,
+.lesson-page h4{font-family:'Source Serif 4',serif;font-weight:600;margin:0;color:var(--text-main)}
+
+/* --- 1. HEADER ----------------------------------------------------------- */
+.lesson-page header{
+  padding:64px 24px 40px;
+  max-width:920px;
+  margin:0 auto;
+  border-bottom:1px solid var(--border-subtle);
+}
+.lesson-page .kicker{
+  font-family:'Source Serif 4',serif;
+  font-style:italic;
+  color:var(--accent-gold);
+  font-size:17px;
+  margin-bottom:14px;
+}
+.lesson-page header h1{
+  font-size:clamp(32px,5vw,46px);
+  line-height:1.15;
+  letter-spacing:-0.01em;
+  max-width:14ch;
+}
+.lesson-page header p.lead{
+  margin-top:18px;
+  color:var(--text-muted);
+  font-size:17px;
+  max-width:58ch;
+}
+
+/* --- 2. TABS (sahifa ichki navigatsiyasi) -------------------------------- */
+.lesson-page nav.tabs{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:var(--surface-glass);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border-subtle);
+}
+.lesson-page .tabs-inner{
+  max-width:920px;
+  margin:0 auto;
+  display:flex;
+  gap:4px;
+  overflow-x:auto;
+  padding:0 24px;
+  scrollbar-width:none;
+}
+.lesson-page .tabs-inner::-webkit-scrollbar{display:none}
+.lesson-page .tab-btn{
+  flex:0 0 auto;
+  background:none;
+  border:none;
+  color:var(--text-dim);
+  font-family:'Inter',sans-serif;
+  font-size:14.5px;
+  font-weight:500;
+  padding:18px 14px 15px;
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:color .15s ease, border-color .15s ease;
+  white-space:nowrap;
+}
+.lesson-page .tab-btn:hover{color:var(--text-main)}
+.lesson-page .tab-btn.active{color:var(--accent-gold);border-bottom-color:var(--accent-gold)}
+
+/* --- 3. MAIN + PANELS ---------------------------------------------------- */
+.lesson-page main{max-width:920px;margin:0 auto;padding:48px 24px 100px}
+/* styles.css dagi `section{opacity:1!important}` tufayli faqat transform
+   animatsiya qilinadi — opacity !important tomonidan yutilib ketardi. */
+.lesson-page .panel{display:none;animation:lpPanelIn .35s ease}
+.lesson-page .panel.active{display:block}
+@keyframes lpPanelIn{from{transform:translateY(6px)}to{transform:translateY(0)}}
+
+.lesson-page .panel-head{display:block;margin-bottom:36px}
+.lesson-page .panel-head h2{font-size:28px}
+.lesson-page .panel-head .sub{color:var(--text-muted);margin-top:8px;font-size:15.5px;max-width:60ch}
+
+/* --- 4. ACCORDION (grid-template-rows — max-height taxminisiz) ----------- */
+.lesson-page .accordion-item{
+  border:1px solid var(--border-subtle);
+  border-radius:var(--radius-sm);
+  margin-bottom:12px;
+  background:var(--bg-surface-elevated);
+  overflow:hidden;
+}
+.lesson-page .accordion-trigger{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:20px 22px;
+  background:none;
+  border:none;
+  cursor:pointer;
+  text-align:left;
+  color:var(--text-main);
+}
+.lesson-page .accordion-num{
+  font-family:'Source Serif 4',serif;
+  font-style:italic;
+  font-size:15px;
+  color:var(--accent-gold);
+  flex:0 0 auto;
+  min-width:22px;
+}
+.lesson-page .accordion-trigger h3{font-size:18px;font-weight:600;flex:1}
+.lesson-page .accordion-trigger .chev{
+  flex:0 0 auto;
+  color:var(--text-dim);
+  transition:transform .2s ease;
+  font-size:14px;
+}
+.lesson-page .accordion-item.open .accordion-trigger .chev{transform:rotate(180deg);color:var(--accent-gold)}
+.lesson-page .accordion-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.lesson-page .accordion-item.open .accordion-body{grid-template-rows:1fr}
+.lesson-page .accordion-content{
+  overflow:hidden;
+  min-height:0;
+  padding:0 22px 26px 58px;
+  color:var(--text-muted);
+  font-size:15.5px;
+}
+.lesson-page .accordion-content p{margin:0 0 14px}
+.lesson-page .accordion-content ul{margin:0 0 14px;padding-left:20px}
+.lesson-page .accordion-content li{margin-bottom:8px}
+.lesson-page .accordion-content strong{color:var(--text-main);font-weight:600}
+
+/* --- 5. TYPE CARDS (yondashuv turlari) ----------------------------------- */
+.lesson-page .type-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:14px;
+  margin-bottom:8px;
+}
+.lesson-page .type-card{
+  background:var(--bg-surface-elevated);
+  border:1px solid var(--border-subtle);
+  border-radius:var(--radius-sm);
+  padding:22px;
+}
+.lesson-page .type-card h4{font-size:16.5px;margin-bottom:8px;color:var(--accent-gold)}
+.lesson-page .type-card p{color:var(--text-muted);font-size:14.5px;margin:0}
+
+/* --- 6. COMPARE BOX (kuchsiz / kuchli namuna) ---------------------------- */
+.lesson-page .compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 24px}
+@media(max-width:640px){.lesson-page .compare{grid-template-columns:1fr}}
+.lesson-page .compare-box{border-radius:var(--radius-sm);padding:20px;font-size:14.5px;line-height:1.65}
+.lesson-page .compare-box.weak{background:var(--accent-pink-soft);border:1px solid var(--accent-pink-border)}
+.lesson-page .compare-box.strong{background:var(--accent-green-soft);border:1px solid var(--accent-green-border)}
+.lesson-page .compare-label{font-size:12.5px;font-weight:700;letter-spacing:.02em;margin-bottom:10px;display:block}
+.lesson-page .compare-box.weak .compare-label{color:var(--accent-pink)}
+.lesson-page .compare-box.strong .compare-label{color:var(--accent-green)}
+.lesson-page .compare-box p{margin:0;color:var(--text-main)}
+
+/* --- 7. QUIZ (o'z-o'zini tekshirish) ------------------------------------- */
+.lesson-page .quiz{
+  margin-top:24px;
+  background:var(--bg-surface);
+  border:1px dashed var(--border-subtle);
+  border-radius:var(--radius-sm);
+  padding:20px 22px 22px;
+}
+.lesson-page .quiz-label{
+  font-family:'Source Serif 4',serif;
+  font-style:italic;
+  color:var(--accent-gold);
+  font-size:14.5px;
+  margin-bottom:12px;
+  display:block;
+}
+.lesson-page .quiz-q{color:var(--text-main);font-size:15px;margin-bottom:14px;font-weight:500}
+.lesson-page .quiz-opts{display:flex;flex-direction:column;gap:8px}
+.lesson-page .quiz-opt{
+  background:var(--bg-surface-elevated);
+  border:1px solid var(--border-subtle);
+  border-radius:8px;
+  padding:12px 16px;
+  cursor:pointer;
+  font-family:inherit;
+  font-size:14.5px;
+  text-align:left;
+  width:100%;
+  color:var(--text-muted);
+  transition:border-color .15s ease, background .15s ease;
+}
+.lesson-page .quiz-opt:hover{border-color:var(--text-dim)}
+.lesson-page .quiz-opt.correct{background:var(--accent-green-soft);border-color:var(--accent-green);color:var(--text-main)}
+.lesson-page .quiz-opt.incorrect{background:var(--accent-pink-soft);border-color:var(--accent-pink);color:var(--text-main)}
+.lesson-page .quiz-opt.disabled{cursor:default}
+.lesson-page .quiz-feedback{margin-top:12px;font-size:14px;color:var(--text-muted);display:none}
+.lesson-page .quiz-feedback.show{display:block}
+
+/* --- 8. STEP FLOW (struktura ketma-ketligi) ------------------------------ */
+.lesson-page .step-flow{display:flex;flex-direction:column;gap:0;margin-bottom:8px}
+.lesson-page .step-row{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border-subtle)}
+.lesson-page .step-row:last-child{border-bottom:none}
+.lesson-page .step-index{font-family:'Source Serif 4',serif;font-style:italic;color:var(--accent-gold);font-size:20px;flex:0 0 34px}
+.lesson-page .step-body h4{font-size:16.5px;margin-bottom:6px}
+.lesson-page .step-body p{color:var(--text-muted);font-size:14.5px;margin:0;max-width:60ch}
+
+/* --- 9. ERROR LIST (tez uchraydigan xatolar) ----------------------------- */
+.lesson-page .error-item{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--border-subtle)}
+.lesson-page .error-item:last-child{border-bottom:none}
+.lesson-page .error-mark{color:var(--accent-pink);font-size:18px;flex:0 0 auto}
+.lesson-page .error-body h4{font-size:16px;margin-bottom:4px}
+.lesson-page .error-body p{color:var(--text-muted);font-size:14.5px;margin:0}
+
+/* --- 10. ESSAY SAMPLES (real namunalar) --------------------------------- */
+.lesson-page .essay-sample{
+  margin:0 0 18px;
+  padding:20px 24px;
+  background:var(--bg-surface-elevated);
+  border-left:4px solid var(--accent-gold);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  font-family:'Source Serif 4',Georgia,serif;
+  font-size:15.5px;
+  line-height:1.75;
+  color:var(--text-main);
+}
+.lesson-page .essay-sample .essay-label{
+  display:block;
+  font-family:'Inter',sans-serif;
+  font-size:12.5px;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--accent-gold);
+  margin-bottom:12px;
+}
+.lesson-page .essay-note{
+  background:var(--bg-surface-hi);
+  border:1px solid var(--border-subtle);
+  border-radius:var(--radius-sm);
+  padding:16px 20px;
+  margin:0 0 18px;
+  font-size:14.5px;
+  color:var(--text-muted);
+  line-height:1.65;
+}
+.lesson-page .essay-note h4{
+  font-family:'Inter',sans-serif;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.02em;
+  color:var(--accent-green);
+  margin:0 0 8px;
+}
+
+/* --- 11. SITE NAVBAR (sahifa tepasi) ------------------------------------- */
+.lesson-page .site-nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  max-width:920px;
+  margin:0 auto;
+  padding:16px 24px;
+}
+.lesson-page .site-brand{
+  font-family:'Source Serif 4',serif;
+  font-weight:700;
+  font-size:20px;
+  letter-spacing:.04em;
+  color:var(--text-main);
+  text-decoration:none;
+}
+.lesson-page .site-brand:hover{color:var(--accent-gold)}
+.lesson-page .site-back{
+  color:var(--text-muted);
+  font-size:14px;
+  text-decoration:none;
+}
+.lesson-page .site-back:hover{color:var(--accent-gold)}
+
+/* --- 12. FOOTER + CTA ---------------------------------------------------- */
+.lesson-page footer{
+  max-width:920px;
+  margin:0 auto;
+  padding:30px 24px 60px;
+  color:var(--text-dim);
+  font-size:13px;
+  border-top:1px solid var(--border-subtle);
+}
+.lesson-page .cta-wrap{
+  text-align:center;
+  max-width:920px;
+  margin:0 auto;
+  padding:40px 24px 80px;
+}
+/* .btn / .btn-primary / .btn-liquid — styles.css dagi umumiy komponentlar.
+   Bu yerda faqat shu sahifaga xos "pill" shakli qo'shiladi (dublikat emas). */
+.lesson-page .cta-wrap .btn{border-radius:999px;padding:16px 30px;font-size:16px}
+
+/* --- 13. LEAD MODAL (kursga yozilish) ------------------------------------ */
+.lesson-page .ps-modal-overlay{
+  position:fixed; inset:0; z-index:1000;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(8,9,13,0.72); backdrop-filter:blur(4px);
+  padding:1.5rem;
+}
+.lesson-page .ps-modal-overlay[hidden]{display:none}
+.lesson-page .ps-modal-card{
+  position:relative; width:100%; max-width:440px;
+  background:var(--bg-surface-elevated); border:1px solid var(--border-subtle);
+  border-radius:14px; padding:2rem; color:var(--text-main);
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+.lesson-page .ps-modal-close{
+  position:absolute; top:0.6rem; right:0.85rem;
+  background:transparent; border:0; color:var(--text-muted);
+  font-size:1.7rem; line-height:1; cursor:pointer;
+}
+.lesson-page .ps-modal-close:hover{color:var(--text-main)}
+.lesson-page .ps-modal-title{font-size:1.4rem;margin-bottom:0.4rem}
+.lesson-page .ps-modal-course{color:var(--accent-gold);font-weight:600;margin:0 0 1rem;font-size:0.95rem}
+.lesson-page .ps-lead-form{display:flex;flex-direction:column;gap:0.9rem}
+.lesson-page .ps-field{display:flex;flex-direction:column;gap:0.35rem;font-size:0.85rem;color:var(--text-muted)}
+.lesson-page .ps-field input{
+  background:var(--bg-dark); border:1px solid var(--border-subtle); border-radius:9px;
+  padding:0.65rem 0.8rem; color:var(--text-main); font-size:0.95rem; font-family:inherit;
+}
+.lesson-page .ps-field input:focus{outline:2px solid var(--accent-gold);outline-offset:1px}
+.lesson-page .btn-block{width:100%;margin-top:0.3rem;padding:0.7rem;font-size:0.95rem;cursor:pointer}
+.lesson-page .ps-modal-note{margin:1rem 0 0;font-size:0.8rem;color:var(--text-dim);text-align:center}
+.lesson-page .ps-modal-note a{color:var(--accent-gold)}
+.lesson-page .ps-success{margin:0;color:var(--accent-green);font-size:1rem;line-height:1.5}
+
+/* --- 14. FOCUS RING (klaviatura bilan boshqarish) ------------------------ */
+.lesson-page .quiz-opt:focus-visible,
+.lesson-page .tab-btn:focus-visible,
+.lesson-page .accordion-trigger:focus-visible,
+.lesson-page a:focus-visible,
+.lesson-page button:focus-visible{outline:2px solid var(--primary-cyan);outline-offset:2px}

@@ -376,43 +376,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentUserEmail = localStorage.getItem('tayanch_user_email') || 'student@tayanch.edu.uz';
     let isVIPUser = true; // Platform is 100% open access for all users
 
-    const coursesData = [
-        // --- AI CATEGORY (10 COURSES) ---
-        { id: 2, title: "ChatGPT & Advanced Prompt Engineering", category: "ai", catName: "Sun'iy Intelekt (AI)", desc: "Mukammal promptlar yozish, Custom GPTs yaratish hamda kognitiv topshiriqlarni sun'iy intelektga topshirish.", duration: "4 Hafta", level: "O'rta", price: "249,000 UZS", icon: "fa-solid fa-code", badge: "Intensiv", modules: ["Few-Shot va Chain-of-Thought Prompting texnikalari", "Shaxsiy Custom GPT assistentlarini kodsiz yaratish", "Katta hajmdagi matnlar va kitoblarni umumlashtirish", "AI xatolarini (Hallucinations) oldini olish va tekshirish"] },
-        { id: 3, title: "Midjourney & AI Visual Content Creation", category: "ai", catName: "Sun'iy Intelekt (AI)", desc: "Professional dizayn, fotorealistik tasvirlar va visual presentation materiallarini AI yordamida yaratish.", duration: "3 Hafta", level: "Boshlang'ich", price: "199,000 UZS", icon: "fa-solid fa-palette", badge: "Kreativ", modules: ["Midjourney v6 parametrlari va stil aralashmalari", "Fotorealistik portretlar va mahsulot dizaynlari", "DALL-E 3 va Canva AI bilan ijtimoiy tarmoq bannerlari", "AI orqali SMM va brending uchun vizual kontent"] },
-        { id: 4, title: "AI Tools for Academic Research & Writing", category: "ai", catName: "Sun'iy Intelekt (AI)", desc: "Ilmiy maqolalar, dissertatsiya va insholarni tahlil qilish, iqtiboslar bilan ishlash hamda tadqiqot AI vositalari.", duration: "4 Hafta", level: "Akademik", price: "299,000 UZS", icon: "fa-solid fa-book-open-reader", badge: "Talabalar uchun", modules: ["Consensus va Elicit AI bilan ilmiy maqolalarni izlash", "Litmaps yordamida adabiyotlar sharhini (Literature Review) tuzish", "Grammarly AI va Quillbot orqali akademik ingliz tilini takomillashtirish", "Plagiat va AI detection bilan ishlash strategiyasi"] },
-        { id: 5, title: "Python + AI Foundations for Beginners", category: "ai", catName: "Sun'iy Intelekt (AI)", desc: "Dasturlash tajribasisiz Python asoslarini o'rganish va OpenAI API orqali birinchi AI loyihangizni yoqish.", duration: "6 Hafta", level: "Boshlang'ich", price: "349,000 UZS", icon: "fa-brands fa-python", badge: "Praktikum", modules: ["Python sintaksisi va ma'lumotlar tuzilmasi", "OpenAI API kalitini ulash va sorov yuborish", "Streamlit yordamida AI Web App interfeysi yaratish", "Shaxsiy AI chatbot loyihasini joylashtirish (Deploy)"] },
-        { id: 6, title: "Automation with Claude & Make/Zapier", category: "ai", catName: "Sun'iy Intelekt (AI)", desc: "Biznes va ish jarayonlarini kod yozmasdan avtomatlashtirish: Telegram botlar, CRM va elektron pochta integratsiyasi.", duration: "4 Hafta", level: "O'rta", price: "299,000 UZS", icon: "fa-solid fa-gears", badge: "Biznes AI", modules: ["Make.com va Zapier platformasi asoslari", "Telegram botga Claude API ulash", "Google Sheets va AI ma'lumotlar oqimini zanjirlash", "Avtomatik mijozlar xabarnomasi tizimini yoqish"] },
-        { id: 7, title: "AI-Powered Data Analysis & Excel", category: "ai", catName: "Sun'iy Intelekt (AI)", desc: "Katta ma'lumotlar bazasini AI va Code Interpreter orqali daqiqalar ichida tahlil qilish hamda grafiklar tuzish.", duration: "3 Hafta", level: "Amaliy", price: "249,000 UZS", icon: "fa-solid fa-chart-pie", badge: "Analitika", modules: ["ChatGPT Advanced Data Analysis (Code Interpreter)", "Excel va Google Sheets formulalarini AI yordamida avtomatik tuzish", "Moliyaviy va sotuv statistikalarini vizuallashtirish", "Trendlarni bashorat qilish va hisobotlar tayyorlash"] },
-        { id: 8, title: "Content Creation with AI (Copywriting & Video)", category: "ai", catName: "Sun'iy Intelekt (AI)", desc: "Kopirayting, AI diktorlar (HeyGen, ElevenLabs) va qisqa videolar (Shorts/Reels) yaratish bosqichlari.", duration: "3 Hafta", level: "Boshlang'ich", price: "199,000 UZS", icon: "fa-solid fa-video", badge: "SMM & Media", modules: ["Kopirayting ssenariylari va ilgak matnlar yaratish", "ElevenLabs orqali tabiiy ovozli AI audiolarni shakllantirish", "HeyGen va CapCut AI bilan professional video montaj", "YouTube va Instagram uchun kontent konveyerini yoqish"] },
-        { id: 9, title: "Generative AI for Students & Scholars", category: "ai", catName: "Sun'iy Intelekt (AI)", desc: "Imtihonlarga tayyorgarlik, konspektlar tuzish va murakkab mavzularni tushuntiruvchi AI repetitor vositalari.", duration: "3 Hafta", level: "Boshlang'ich", price: "199,000 UZS", icon: "fa-solid fa-graduation-cap", badge: "Ta'lim", modules: ["PDF va ma'ruzalardan avtomatik Flashcard va testlar yasash", "Feynman metodologiyasini ChatGPT orqali qo'llash", "Xorijiy tillarni AI so'zlashuvchi bilan o'rganish", "Vaqtni samarali boshqarish va taqvim AI tizimi"] },
-        { id: 10, title: "AI Coding Assistant (Cursor & Copilot)", category: "ai", catName: "Sun'iy Intelekt (AI)", desc: "Cursor IDE, GitHub Copilot va AI yordamida 10x tezroq kod yozish hamda veb-sayt va ilovalar yaratish.", duration: "4 Hafta", level: "Amaliy", price: "299,000 UZS", icon: "fa-solid fa-laptop-code", badge: "Dasturchilar", modules: ["Cursor IDE o'rnatish va sozlash", "Koddagi buglarni AI bilan sekundlarda topish", "Refactoring va koding arxitekturasini yaxshilash", "Full-stack kichik ilovalarni AI bilan noldan qurish"] },
-
-        // --- IELTS CATEGORY (11 COURSES) ---
-        { id: 11, title: "IELTS Writing Task 2 Masterclass (Band 7.5+)", category: "ielts", catName: "IELTS & Ingliz tili", desc: "Insho turlari, aniq struktura andozalari, akademik lug'at hamda Band 7.5+ uchun grammatik murakkablik.", duration: "4 Hafta", level: "Intermediate+", price: "349,000 UZS", icon: "fa-solid fa-pen-nib", badge: "Top Natija", modules: ["Opinion, Discussion, Advantage/Disadvantage insholar qolipi", "Paragraf mantiqiy bog'lanishi (Coherence & Cohesion)", "Band 7+ Akademik Collocation va sinonimlar", "Real insho namunalarini tahlil qilish va baholash"] },
-        { id: 12, title: "IELTS Speaking Confidence & Accent Booster", category: "ielts", catName: "IELTS & Ingliz tili", desc: "Part 1, 2, 3 uchun ravon gapirish texnikasi, hayajonni yengish va imtihon oluvchini jalb qilish strategiyasi.", duration: "3 Hafta", level: "Barcha Darajalar", price: "249,000 UZS", icon: "fa-solid fa-comments", badge: "Amaliy So'zlashuv", modules: ["Part 2 Cue Card bo'yicha 1 minutda struktura tuzish", "Part 3 abstrakt savollarga chuqur javob berish", "Fluency va Hesitation o'rtasidagi muvozanat", "Mock speaking simulyatsiyasi va fikr-mulohazalar"] },
-        { id: 13, title: "IELTS Reading Speed & Keyword Tracking Tech", category: "ielts", catName: "IELTS & Ingliz tili", desc: "Passage 1, 2, 3 ni 60 daqiqada tugatish, True/False/Not Given va Headings savollarini xatosiz yechish sirlari.", duration: "3 Hafta", level: "Intermediate+", price: "249,000 UZS", icon: "fa-solid fa-eye", badge: "Tezkor Usul", modules: ["Skimming va Scanning texnikasini avtomatga chiqarish", "Paraphrase kalit so'zlarni tezkor payqash", "Matching Headings va Summary Completion xatosiz strategiyasi", "Vaqtni to'g'ri taqsimlash metodikasi"] },
-        { id: 14, title: "IELTS Listening Full Prep & Accent Mastery", category: "ielts", catName: "IELTS & Ingliz tili", desc: "Britaniya, Avstraliya va Amerika aksentlarini tushunish, diqqatni jamlash va tuzoqli savollarni yengish.", duration: "3 Hafta", level: "Barcha Darajalar", price: "249,000 UZS", icon: "fa-solid fa-headphones", badge: "Intensiv", modules: ["Part 3 & 4 ko'p tanlovli (Multiple Choice) savollar", "Distractors va chalg'ituvchi iboralarni aniqlash", "Map & Diagram labeling topshiriqlari", "Audiolarni 1.25x tezlikda mashq qilish usuli"] },
-        { id: 15, title: "IELTS Intensive 30-Day Sprint (Bootcamp)", category: "ielts", catName: "IELTS & Ingliz tili", desc: "Imtihonga 1 oy qolganda barcha 4 ta seksiyani mukammallashtiruvchi kunlik intensiv tayyorgarlik kursi.", duration: "4 Hafta", level: "B2 / C1", price: "499,000 UZS", icon: "fa-solid fa-fire", badge: "Bootcamp", modules: ["Kunlik 4 soatlik amaliy mashg'ulotlar rejasi", "Writing Task 1 Chart, Map va Process tasvirlash", "Full Mock Test topshirish va natijalar diagnostikasi", "Imtihon kuni psixologik tayyorgarlik"] },
-        { id: 16, title: "General English B1 to B2 Accelerator", category: "ielts", catName: "IELTS & Ingliz tili", desc: "Grammatika bo'shliqlarini yopish, so'z boyligini 2000+ ga oshirish va erkin muloqot bosqichiga o'tish.", duration: "6 Hafta", level: "Intermediate", price: "299,000 UZS", icon: "fa-solid fa-arrow-up-right-dots", badge: "Asosiy", modules: ["Complex Sentences va Conditionals grammatikasi", "Kunlik so'zlashuv iboralari va idiomalari", "Tinglab tushunish va matnlarni qayta so'zlab berish", "Interaktiv debatlar va guruh muloqotlari"] },
-        { id: 17, title: "Upper-Intermediate to Advanced C1 Grammar", category: "ielts", catName: "IELTS & Ingliz tili", desc: "Inversion, Subjunctive mood, Participle clauses va oliy darajadagi sintaksis tuzilmalarini o'zlashtirish.", duration: "5 Hafta", level: "Advanced C1", price: "299,000 UZS", icon: "fa-solid fa-spell-check", badge: "Grammatika", modules: ["C1 darajadagi Grammatical Range & Accuracy", "Akademik va rasmiy insholarda sintaksis", "Common Error Elimination (keng tarqalgan xatolar)", "Style va Tone muvozanatini saqlash"] },
-        { id: 18, title: "Academic Vocabulary & Collocations for IELTS", category: "ielts", catName: "IELTS & Ingliz tili", desc: "IELTS mavzulari bo'yicha (Atrof-muhit, Texnologiya, Ta'lim, Jamiyat) top 1000 ta akademik so'zlar jamlanmasi.", duration: "3 Hafta", level: "Intermediate+", price: "199,000 UZS", icon: "fa-solid fa-book-bookmark", badge: "Lug'at", modules: ["Topic-based Collocations va Phrasal Verbs", "Spelling xatolarini nolgacha kamaytirish", "Synonym Mapping texnikasi", "Anki flashcards yordamida uzoq muddatli xotira"] },
-        { id: 19, title: "IELTS Mock Test Analysis & Individual Feedback", category: "ielts", catName: "IELTS & Ingliz tili", desc: "Haqiqiy imtihon muhiti, individual test tahlili hamda har bir talabaga shaxsiy rivojlanish xaritasi.", duration: "2 Hafta", level: "Barcha Darajalar", price: "399,000 UZS", icon: "fa-solid fa-clipboard-check", badge: "Tahlil", modules: ["2 ta to'liq IELTS Mock Test topshirish", "Writing insholaringizga battafsil ekspert sharhi", "Speaking audio yozuvlarini tahlil qilish", "Kuchsiz nuqtalarni bartaraf etish rejasi"] },
-        { id: 20, title: "English Pronunciation & Native Accent Training", category: "ielts", catName: "IELTS & Ingliz tili", desc: "IPA fonetika belgilari, Intonatsiya, Connected Speech va talaffuzdagi o'zbekcha aksentni yoqotish mashqlari.", duration: "3 Hafta", level: "Barcha Darajalar", price: "199,000 UZS", icon: "fa-solid fa-microphone-lines", badge: "Talaffuz", modules: ["Vowel va Consonant tovushlarining to'g'ri artikulatsiyasi", "Connected Speech (Linking, Intonation, Stress)", "Shadowing texnikasi orqali diksiya o'stirish", "Ovozsiz va jarangli tovushlar ustida ishlash"] },
-        { id: 21, title: "Professional Business English & Pitching", category: "ielts", catName: "IELTS & Ingliz tili", desc: "Xalqaro kompaniyalar uchun rezyume yozish, intervyulardan o'tish hamda prezentatsiyalar o'tkazish ingliz tili.", duration: "4 Hafta", level: "Intermediate+", price: "299,000 UZS", icon: "fa-solid fa-briefcase", badge: "Kariyerist", modules: ["Professional Email va taklifnomalar yozish", "Job Interview savollariga STAR usulida javob", "Biznes taqdimotlar (Pitching) o'tkazish", "Muzokaralar olib borish madaniyati"] },
-
-        // --- ADMISSION CATEGORY (10 COURSES) ---
-        { id: 22, title: "Digital SAT Math Mastery (800 Score Strategy)", category: "admission", catName: "Admission & SAT", desc: "Digital SAT Matematika bo'limining barcha formulalari, Desmos kalkulyatoridan samarali foydalanish hamda 800 bal algebrasi.", duration: "6 Hafta", level: "Amaliy", price: "399,000 UZS", icon: "fa-solid fa-calculator", badge: "Top 800", modules: ["Algebra va Linear Equations tezkor yechimlari", "Desmos Graphing Calculator sirlari va layfhaklar", "Advanced Math, Geometry va Trigonometry", "Digital SAT modullari simulyatsiyasi va vaqtni tejash"] },
-        { id: 23, title: "Digital SAT Reading & Writing", category: "admission", catName: "Admission & SAT", desc: "Digital SAT Reading matnlari tahlili, Vocabulary in Context hamda Grammatika qoidalarining 100% yechimlari.", duration: "6 Hafta", level: "Advanced", price: "399,000 UZS", icon: "fa-solid fa-pen-fancy", badge: "Intensiv", modules: ["Craft and Structure savol turlarini yechish", "Information and Ideas matnli tahlil", "Expression of Ideas va Standart English Conventions", "SAT lug'at bazasi va tezkor matn o'qish"] },
-        { id: 24, title: "US College Application Essay (Personal Statement)", category: "admission", catName: "Admission & SAT", desc: "AQSh Top universitetlariga qabul komissiyasini hayratda qoldiruvchi shaxsiy insho (Common App Essay) yozish.", duration: "4 Hafta", level: "Admission", price: "499,000 UZS", icon: "fa-solid fa-feather-pointed", badge: "Insho", hubHref: "admission-essay-personal-statement.html", lessonUrl: "admission-essay-personal-statement.html", hubLabel: "Bepul Insho Qoʻllanmasi", modules: ["Shaxsiy voqea (Storytelling) tanlash va reja tuzish", "Common App 7 ta prompti bo mezonlar", "Supplemental Essay (Nega aynan ushbu universitet?) yozish", "Ekspert ko'rigi va insho tahriri"] },
-        { id: 25, title: "Full-Ride Scholarship Application Blueprint", category: "admission", catName: "Admission & SAT", desc: "AQSh, Yevropa va Osiyo universitetlaridan to'liq moliyalashtirilgan (fully funded) ta'lim va yashash xarajatlarini qoplovchi grantlarga ariza topshirish strategiyasi.", duration: "5 Hafta", level: "Grantlar", price: "399,000 UZS", icon: "fa-solid fa-trophy", badge: "Grant Strategiyasi", modules: ["Need-Based va Merit-Based grantlar farqi", "Stipendiyali dasturlarni qidirish (Need-Blind unilar)", "Moliyaviy hujjatlar va insholarni tayyorlash", "Muvaffaqiyatli grant olgan talabalar tajribasi"] },
-        { id: 26, title: "Common App & Financial Aid (CSS Profile / FAFSA)", category: "admission", catName: "Admission & SAT", desc: "Common Application platformasida profil ochish, barcha bo'limlarni xatosiz to'ldirish va CSS Profile hujjati.", duration: "3 Hafta", level: "Amaliy Hujjat", price: "299,000 UZS", icon: "fa-solid fa-file-invoice-dollar", badge: "Hujjatlar", modules: ["Common App hisobini yaratish va sozlash", "Honors va Extracurricular activities bo'limi to'ldirish", "CSS Profile orqali oilaviy daromad hujjatlarini topshirish", "Universitetlarga portal orqali kod yuborish"] },
-        { id: 27, title: "Ivy League & Top 50 Global University Strategy", category: "admission", catName: "Admission & SAT", desc: "Harvard, MIT, Stanford va Yevropa Top 50 oliygohlariga topshiruvchi talabalar uchun maxsus portfolio strategiyasi.", duration: "4 Hafta", level: "Premium", price: "599,000 UZS", icon: "fa-solid fa-crown", badge: "Ivy League", modules: ["Holistic Review (Yaxlit baholash) tizimi talablari", "Noyob Spike Factor (Shaxsiy ustunlik) yaratish", "Early Decision (ED) va Early Action (EA) strategiyalari", "Xalqaro olimpiada va tadqiqot portfoliosi"] },
-        { id: 28, title: "Extracurricular Profile Building & Leadership", category: "admission", catName: "Admission & SAT", desc: "Darsdan tashqari faoliyatlar, ijtimoiy loyihalar, startap va ko'ngillilik ishlarini tashkil etish hamda taqdim etish.", duration: "4 Hafta", level: "Liderlik", price: "299,000 UZS", icon: "fa-solid fa-people-roof", badge: "Portfolio", modules: ["Nol kapital bilan nodavlat loyiha (NGO) boshlash", "Liderlik va tashabbuskorlikni hujjatlashtirish", "Tadqiqot maqolalarini chop etish", "Activity List bo'limida harakat fe'llari (Action Verbs)"] },
-        { id: 29, title: "Recommendation Letters & Academic CV Building", category: "admission", catName: "Admission & SAT", desc: "O'qituvchilardan kuchli tavsiyanomalar olish hamda xalqaro standartdagi Akademik Rezyume (CV) shakllantirish.", duration: "2 Hafta", level: "Boshlang'ich", price: "199,000 UZS", icon: "fa-solid fa-address-card", badge: "CV & Letter", modules: ["O'qituvchilarga tavsiyanoma so'rovi xatini yozish", "Recommendation Letter andozalari va sirlari", "Harvard formatidagi 1 sahifalik Resume/CV tuzish", "LinkedIn profilini akademik sozlash"] },
-        { id: 30, title: "European & Asian Fully Funded Scholarships", category: "admission", catName: "Admission & SAT", desc: "Turkiye Burslari, MEXT (Yaponiya), GKS (Koreya), Stipendium Hungaricum va Italy Grants ga ariza topshirish.", duration: "4 Hafta", level: "Xalqaro Grant", price: "349,000 UZS", icon: "fa-solid fa-earth-americas", badge: "Davlat Grantlari", modules: ["Turkiye Burslari muloqot va insho tayyorlovi", "GKS va MEXT elchixona yo'li bo'yicha bosqichlar", "Stipendium Hungaricum ariza portali", "Yevropa universitetlarida bepul ta'lim imkoniyatlari"] },
-        { id: 31, title: "Mock Admission Interview & Case Study Practice", category: "admission", catName: "Admission & SAT", desc: "Universitet bitiruvchilari hamda qabul komissiyasi bilan yuzma-yuz intervyu simulyatsiyasi va tayyorgarligi.", duration: "2 Hafta", level: "Amaliy Intervyu", price: "299,000 UZS", icon: "fa-solid fa-user-tie", badge: "Intervyu", modules: ["Ko'p beriladigan 20 ta admission savollari", "Shaxsiy qadriyatlar va motivatsiyani ko'rsatish", "Intervyuerga to'g'ri savollar berish madaniyati", "Jonli Zoom intervyu simulyatsiyasi"] }
-    ];
+    /* Kurslar katalogi endi YAGONA manbadan — courses-data.js — olinadi.
+       Bu yerda massiv nusxasi qolmagan, shuning uchun son hech qachon
+       ikki xil bo'lib qolmaydi (index '31' / filter '29' / courses '30'
+       muammosi shu bilan butunlay bartaraf etiladi). */
+    const coursesData = (window.TayanchCourses && window.TayanchCourses.data) || [];
 
     /* ==========================================
        5. UI RENDER ENGINE FOR COURSES
@@ -467,27 +435,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    /* YAGONA MANBA: barcha kurs soni hisoblagichlari courses-data.js ichidagi
+       window.TayanchCourses.sync() orqali yangilanadi. Bu yerda hech qanday
+       raqam qayta hisoblanmaydi — aks holda ikki manba paydo bo'lib, ular
+       mos kelmay qolishi mumkin (avvalgi '31' / '29' / '30' xatosi aynan
+       shundan kelib chiqqan edi). */
     function syncCourseCounts() {
-        // Single source of truth: every course-count label is derived from coursesData.length
-        // and per-category filters, so the number can never drift from the real catalog again.
-        const total = coursesData.length;
-        const countByCat = (cat) => coursesData.filter(c => c.category === cat).length;
-        const countAI = countByCat('ai');
-        const countIELTS = countByCat('ielts');
-        const countADM = countByCat('admission');
-        const setText = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
-        setText('countAll', total);
-        setText('coursesTotalHeading', total + ' ta Kurslar');
-        setText('coursesPageTotal', total + ' ta Kurslar');
-        setText('footerCoursesLink', total + ' ta Kurslar Portali');
-        setText('navCoursesCount', total + ' ta');
-        document.title = `Barcha ${total} ta Bepul Kurslar Katalogi — Tayanch`;
-        const aiTab = document.querySelector('#filterTabs .tab-btn[data-category="ai"] .tab-count');
-        const ieltsTab = document.querySelector('#filterTabs .tab-btn[data-category="ielts"] .tab-count');
-        const admTab = document.querySelector('#filterTabs .tab-btn[data-category="admission"] .tab-count');
-        if (aiTab) aiTab.textContent = countAI;
-        if (ieltsTab) ieltsTab.textContent = countIELTS;
-        if (admTab) admTab.textContent = countADM;
+        if (window.TayanchCourses && typeof window.TayanchCourses.sync === 'function') {
+            window.TayanchCourses.sync();
+        }
     }
 
     function createCourseCard(course) {
@@ -1115,35 +1071,73 @@ document.addEventListener('DOMContentLoaded', () => {
     const frameCountLabel = document.getElementById('frameCountLabel');
     const frameStepLabel = document.getElementById('frameStepLabel');
 
+    /* PERFORMANCE (2026-09-03, E12): avvalgi talqin har bir scroll tick'ida
+       to'liq qayta chizardi — 42 tugun, O(n^2)=861 juftlik, har bir aylanaga
+       shadowBlur=14 (juda qimmat) va har kadrda yangi radial gradient.
+       4x throttlangan mobil CPU'da bu ~18.5 s asosiy oqim vaqtini yegan
+       (Lighthouse TBT 18648 ms, perf 33). Endi:
+         - chizish requestAnimationFrame bilan birlashtiriladi
+         - shadowBlur o'rniga arzon ikki qatlamli "glow" aylana
+         - tugunlar soni ekran kengligiga moslashadi (mobil: 18-24)
+         - qirralar faqat keyingi 4 ta qo'shniga chiziladi (O(n*k))
+         - gradient faqat resize'da hisoblanadi
+         - IntersectionObserver: hero ko'rinmasa umuman chizilmaydi
+         - prefers-reduced-motion: bitta statik kadr, scroll bog'lovisiz   */
     if (canvas) {
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d', { alpha: false });
         const TOTAL_FRAMES = 60;
+        const NEIGHBOURS = 4;
+        const reduceMotion = !!(window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
         let currentFrameIndex = 0;
         let timeOffset = 0;
+        let heroVisible = true;
+        let rafPending = false;
+        let bgGradient = null;
+        let nodeCount = 42;
+        let dpr = Math.min(window.devicePixelRatio || 1, 2);
+        let pendingFrame = 0;
+        let resizeTimer = null;
+
+        function computeNodeCount(width) {
+            if (width < 420) return 18;
+            if (width < 768) return 24;
+            if (width < 1200) return 32;
+            return 42;
+        }
+
+        function buildGradient(width, height) {
+            const cx = width / 2;
+            const cy = height / 2;
+            const g = ctx.createRadialGradient(cx, cy, 10, cx, cy, width * 0.65);
+            g.addColorStop(0, 'rgba(0, 242, 254, 0.14)');
+            g.addColorStop(0.5, 'rgba(168, 85, 247, 0.08)');
+            g.addColorStop(1, 'rgba(5, 6, 9, 1)');
+            bgGradient = g;
+        }
 
         function resizeCanvas() {
             const rect = canvas.parentElement.getBoundingClientRect();
-            canvas.width = rect.width * (window.devicePixelRatio || 1);
-            canvas.height = rect.height * (window.devicePixelRatio || 1);
-            drawFrame(currentFrameIndex);
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            canvas.width = Math.max(1, Math.round(rect.width * dpr));
+            canvas.height = Math.max(1, Math.round(rect.height * dpr));
+            nodeCount = computeNodeCount(rect.width);
+            buildGradient(canvas.width, canvas.height);
+            drawNow(currentFrameIndex);
         }
 
-        window.addEventListener('resize', resizeCanvas);
-
-        function drawFrame(frameIdx) {
+        function drawNow(frameIdx) {
+            if (!heroVisible) return;
             const width = canvas.width;
             const height = canvas.height;
+            if (!width || !height || !bgGradient) return;
+
             const cx = width / 2;
             const cy = height / 2;
             const progress = frameIdx / (TOTAL_FRAMES - 1);
 
-            ctx.clearRect(0, 0, width, height);
-
-            const bgGrad = ctx.createRadialGradient(cx, cy, 10, cx, cy, width * 0.65);
-            bgGrad.addColorStop(0, 'rgba(0, 242, 254, 0.14)');
-            bgGrad.addColorStop(0.5, 'rgba(168, 85, 247, 0.08)');
-            bgGrad.addColorStop(1, 'rgba(5, 6, 9, 1)');
-            ctx.fillStyle = bgGrad;
+            ctx.fillStyle = bgGradient;
             ctx.fillRect(0, 0, width, height);
 
             timeOffset += 0.025;
@@ -1157,7 +1151,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const ringR = baseRadius * (1.3 + Math.sin(timeOffset + progress * Math.PI) * 0.08);
             ctx.ellipse(0, 0, ringR, ringR * 0.45, progress * Math.PI, 0, Math.PI * 2);
             ctx.strokeStyle = 'rgba(0, 242, 254, 0.5)';
-            ctx.lineWidth = 2 * (window.devicePixelRatio || 1);
+            ctx.lineWidth = 2 * dpr;
             ctx.setLineDash([10, 6]);
             ctx.stroke();
             ctx.restore();
@@ -1169,17 +1163,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const ringR2 = baseRadius * (1.15 + Math.cos(timeOffset * 0.8) * 0.06);
             ctx.ellipse(0, 0, ringR2 * 1.1, ringR2 * 0.65, -progress * Math.PI, 0, Math.PI * 2);
             ctx.strokeStyle = 'rgba(168, 85, 247, 0.5)';
-            ctx.lineWidth = 2 * (window.devicePixelRatio || 1);
+            ctx.lineWidth = 2 * dpr;
             ctx.stroke();
             ctx.restore();
 
-            const nodeCount = 42;
-            const nodes = [];
-
+            const nodes = new Array(nodeCount);
             for (let i = 0; i < nodeCount; i++) {
                 const phi = Math.acos(-1 + (2 * i) / nodeCount);
                 const theta = Math.sqrt(nodeCount * Math.PI) * phi + rotationAngle;
-
                 const liquidWave = Math.sin(4 * phi + 3 * theta + timeOffset) * 14;
                 const rDynamic = baseRadius + liquidWave;
 
@@ -1188,77 +1179,114 @@ document.addEventListener('DOMContentLoaded', () => {
                 const z3d = rDynamic * Math.cos(phi);
 
                 const scale = 300 / (300 + z3d);
-                const x2d = cx + x3d * scale;
-                const y2d = cy + y3d * scale;
-
-                nodes.push({ x: x2d, y: y2d, z: z3d, scale });
+                nodes[i] = { x: cx + x3d * scale, y: cy + y3d * scale, z: z3d, scale: scale };
             }
 
-            ctx.lineWidth = 1 * (window.devicePixelRatio || 1);
-            for (let i = 0; i < nodes.length; i++) {
-                for (let j = i + 1; j < nodes.length; j++) {
-                    const dist = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
-                    if (dist < baseRadius * 0.85) {
-                        const alpha = (1 - dist / (baseRadius * 0.85)) * 0.4;
-                        ctx.strokeStyle = `rgba(0, 242, 254, ${alpha})`;
-                        ctx.beginPath();
-                        ctx.moveTo(nodes[i].x, nodes[i].y);
-                        ctx.lineTo(nodes[j].x, nodes[j].y);
-                        ctx.stroke();
+            /* Faqat yaqin qo'shnilarni bog'lash — O(n*k), avvalgi O(n^2) o'rniga.
+               Barcha qirralar bitta path'ga yig'iladi: 861 ta alohida
+               stroke() o'rniga bitta stroke(). */
+            const linkRadius = baseRadius * 0.85;
+            ctx.lineWidth = 1 * dpr;
+            ctx.beginPath();
+            for (let i = 0; i < nodeCount; i++) {
+                const a = nodes[i];
+                const maxJ = Math.min(nodeCount, i + 1 + NEIGHBOURS);
+                for (let j = i + 1; j < maxJ; j++) {
+                    const b = nodes[j];
+                    const dx = a.x - b.x;
+                    const dy = a.y - b.y;
+                    if (dx * dx + dy * dy < linkRadius * linkRadius) {
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(b.x, b.y);
                     }
                 }
             }
+            ctx.strokeStyle = 'rgba(0, 242, 254, 0.22)';
+            ctx.stroke();
 
+            /* shadowBlur ishlatilmaydi — o'rniga ikki qatlamli aylana bilan
+               ancha arzon "glow" effekti. */
             nodes.sort((a, b) => a.z - b.z);
-            nodes.forEach(node => {
+            for (let i = 0; i < nodeCount; i++) {
+                const node = nodes[i];
                 const nodeRadius = Math.max(2.4, 5.5 * node.scale);
-                const alpha = (node.z + baseRadius) / (baseRadius * 2);
+                const alpha = 0.45 + ((node.z + baseRadius) / (baseRadius * 2)) * 0.55;
+                const rgb = node.z > 0 ? '0, 242, 254' : '168, 85, 247';
+
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, nodeRadius * 1.9, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${rgb}, ${alpha * 0.16})`;
+                ctx.fill();
 
                 ctx.beginPath();
                 ctx.arc(node.x, node.y, nodeRadius, 0, Math.PI * 2);
-                ctx.fillStyle = node.z > 0 ? `rgba(0, 242, 254, ${0.45 + alpha * 0.55})` : `rgba(168, 85, 247, ${0.35 + alpha * 0.55})`;
-                ctx.shadowColor = 'rgba(0, 242, 254, 0.85)';
-                ctx.shadowBlur = 14;
+                ctx.fillStyle = `rgba(${rgb}, ${alpha})`;
                 ctx.fill();
-                ctx.shadowBlur = 0;
-            });
+            }
 
             ctx.fillStyle = '#ffffff';
-            ctx.font = `800 ${17 * (window.devicePixelRatio || 1)}px 'Outfit', sans-serif`;
+            ctx.font = `800 ${17 * dpr}px 'Outfit', sans-serif`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText('TAYANCH', cx, cy);
 
             if (indicatorBar) indicatorBar.style.width = `${((frameIdx + 1) / TOTAL_FRAMES) * 100}%`;
-            if (frameCountLabel) frameCountLabel.innerText = `Frame ${frameIdx + 1} / ${TOTAL_FRAMES}`;
-            
+            if (frameCountLabel) frameCountLabel.textContent = `Frame ${frameIdx + 1} / ${TOTAL_FRAMES}`;
+
             if (frameStepLabel) {
-                if (progress < 0.33) {
-                    frameStepLabel.innerText = 'STAGE 1: AI LIQUID PRODUCTIVITY';
-                } else if (progress < 0.66) {
-                    frameStepLabel.innerText = 'STAGE 2: IELTS BAND 7.0+ FLUID MASTERY';
-                } else {
-                    frameStepLabel.innerText = 'STAGE 3: TOP UNIVERSITY ADMISSION';
-                }
+                if (progress < 0.33) frameStepLabel.textContent = 'STAGE 1: AI LIQUID PRODUCTIVITY';
+                else if (progress < 0.66) frameStepLabel.textContent = 'STAGE 2: IELTS BAND 7.0+ FLUID MASTERY';
+                else frameStepLabel.textContent = 'STAGE 3: TOP UNIVERSITY ADMISSION';
             }
+        }
+
+        /* Bir nechta scroll hodisasini bitta kadrga birlashtirish (E12) */
+        function drawFrame(frameIdx) {
+            pendingFrame = frameIdx;
+            if (rafPending) return;
+            rafPending = true;
+            requestAnimationFrame(() => {
+                rafPending = false;
+                drawNow(pendingFrame);
+            });
         }
 
         resizeCanvas();
 
-        if (window.gsap && window.ScrollTrigger) {
-            gsap.registerPlugin(ScrollTrigger);
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(resizeCanvas, 150);
+        });
 
+        /* Hero ekrandan chiqqanda umuman chizmasin */
+        const heroSection = document.getElementById('hero') || canvas.closest('section');
+        if (heroSection && 'IntersectionObserver' in window) {
+            new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    heroVisible = entry.isIntersecting;
+                    if (heroVisible) drawFrame(currentFrameIndex);
+                });
+            }, { rootMargin: '120px' }).observe(heroSection);
+        }
+
+        document.addEventListener('visibilitychange', () => {
+            heroVisible = !document.hidden;
+        });
+
+        /* prefers-reduced-motion bo'lsa faqat bitta statik kadr chiziladi */
+        if (window.gsap && window.ScrollTrigger && !reduceMotion) {
+            gsap.registerPlugin(ScrollTrigger);
             const frameObj = { frame: 0 };
             gsap.to(frameObj, {
                 frame: TOTAL_FRAMES - 1,
-                snap: "frame",
-                ease: "none",
+                snap: 'frame',
+                ease: 'none',
                 scrollTrigger: {
-                    trigger: "#hero",
-                    start: "top top",
-                    end: "bottom top",
+                    trigger: '#hero',
+                    start: 'top top',
+                    end: 'bottom top',
                     scrub: 0.5,
-                    onUpdate: (self) => {
+                    onUpdate: () => {
                         currentFrameIndex = Math.round(frameObj.frame);
                         drawFrame(currentFrameIndex);
                     }

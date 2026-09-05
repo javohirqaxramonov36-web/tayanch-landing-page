@@ -22,6 +22,55 @@
     <meta name="twitter:description" content="Tayanch Digital SAT (DSAT) tayyorlov portali: Real Bluebook formatidagi adaptiv mock-test simulyatori, 1500+ garantiyali intensiv kurslar, SAT Vocab Spaced Repetition va Ota-onalar paneli.">
     <meta name="twitter:image" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/assets/images/og-image.png">
 
+    <!-- Schema.org: Digital SAT kurslari (Google indekslashi uchun statik JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Course",
+          "@id": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/sat-dsat.html#course-22",
+          "name": "Digital SAT Math Mastery (800 Score Strategy)",
+          "description": "Digital SAT Matematika bo'limining barcha formulalari, Desmos kalkulyatoridan samarali foydalanish hamda 800 bal algebrasi.",
+          "provider": {
+            "@type": "Organization",
+            "name": "Tayanch Educational Platform",
+            "sameAs": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/"
+          },
+          "educationalLevel": "Amaliy",
+          "inLanguage": "uz",
+          "isAccessibleForFree": true,
+          "url": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/sat-dsat.html",
+          "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "online",
+            "courseWorkload": "6 Hafta"
+          }
+        },
+        {
+          "@type": "Course",
+          "@id": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/sat-dsat.html#course-23",
+          "name": "Digital SAT Reading & Writing",
+          "description": "Digital SAT Reading matnlari tahlili, Vocabulary in Context hamda Grammatika qoidalarining 100% yechimlari.",
+          "provider": {
+            "@type": "Organization",
+            "name": "Tayanch Educational Platform",
+            "sameAs": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/"
+          },
+          "educationalLevel": "Advanced",
+          "inLanguage": "uz",
+          "isAccessibleForFree": true,
+          "url": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/sat-dsat.html",
+          "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "online",
+            "courseWorkload": "6 Hafta"
+          }
+        }
+      ]
+    }
+    </script>
+
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -324,11 +373,11 @@
                 </div>
 
                 <!-- Question Grid Navigator Modal -->
-                <div class="sim-modal hidden" id="qGridModal">
+                <div class="sim-modal hidden" id="qGridModal" role="dialog" aria-modal="true" aria-labelledby="qGridModalTitle">
                     <div class="modal-content liquid-glass">
                         <div class="modal-header">
-                            <h3><i class="fa-solid fa-list-check"></i> Savollar Navigatsiyasi</h3>
-                            <button class="close-modal-btn" onclick="toggleQuestionGridModal()">&times;</button>
+                            <h3 id="qGridModalTitle"><i class="fa-solid fa-list-check"></i> Savollar Navigatsiyasi</h3>
+                            <button class="close-modal-btn" onclick="toggleQuestionGridModal()" aria-label="Savollar navigatsiyasini yopish">&times;</button>
                         </div>
                         <div class="modal-body">
                             <p>Siz o'tkazib yuborgan yoki ko'rib chiqish uchun belgilagan (marked) savollarga tezda o'tishingiz mumkin:</p>
@@ -340,11 +389,11 @@
                 </div>
 
                 <!-- Math Formulas Modal -->
-                <div class="sim-modal hidden" id="formulaModal">
+                <div class="sim-modal hidden" id="formulaModal" role="dialog" aria-modal="true" aria-labelledby="formulaModalTitle">
                     <div class="modal-content liquid-glass formula-modal-content">
                         <div class="modal-header">
-                            <h3><i class="fa-solid fa-square-root-variable"></i> SAT Math Reference Sheet</h3>
-                            <button class="close-modal-btn" onclick="toggleSimFormulas()">&times;</button>
+                            <h3 id="formulaModalTitle"><i class="fa-solid fa-square-root-variable"></i> SAT Math Reference Sheet</h3>
+                            <button class="close-modal-btn" onclick="toggleSimFormulas()" aria-label="Formulalar oynasini yopish">&times;</button>
                         </div>
                         <div class="modal-body text-center">
                             <div class="formula-grid">
@@ -378,11 +427,11 @@
                 </div>
 
                 <!-- Desmos Scientific/Graphing Calculator Modal -->
-                <div class="sim-modal hidden" id="calcModal">
+                <div class="sim-modal hidden" id="calcModal" role="dialog" aria-modal="true" aria-labelledby="calcModalTitle">
                     <div class="modal-content liquid-glass calc-modal-content">
                         <div class="modal-header">
-                            <h3><i class="fa-solid fa-calculator"></i> Built-in Scientific Calculator</h3>
-                            <button class="close-modal-btn" onclick="toggleSimCalculator()">&times;</button>
+                            <h3 id="calcModalTitle"><i class="fa-solid fa-calculator"></i> Built-in Scientific Calculator</h3>
+                            <button class="close-modal-btn" onclick="toggleSimCalculator()" aria-label="Kalkulyatorni yopish">&times;</button>
                         </div>
                         <div class="modal-body">
                             <div class="calc-display-screen" id="calcDisplay">0</div>
@@ -678,7 +727,7 @@
                 <h4>Tezkor Havolalar</h4>
                 <ul class="footer-links">
                     <li><a href="index.html">Bosh Sahifa</a></li>
-                    <li><a href="courses.html">30 ta Kurslar Katalogi</a></li>
+                    <li><a href="courses.html"><span data-course-count-label="all">30 ta Kurslar</span> Katalogi</a></li>
                     <li><a href="general-english-beginner.html">General English Hub</a></li>
                     <li><a href="sat-dsat.html">Digital SAT Hub</a></li>
                 </ul>
@@ -695,8 +744,8 @@
 
             <div class="footer-col">
                 <h4>Bog'lanish</h4>
-                <p><i class="fa-solid fa-paper-plane"></i> Telegram: <a href="https://t.me/javohir_qaxramonov" target="_blank">@javohir_qaxramonov</a></p>
-                <p><i class="fa-solid fa-globe"></i> GitHub: <a href="https://github.com/javohirqaxramonov36-web" target="_blank">javohirqaxramonov36-web</a></p>
+                <p><i class="fa-solid fa-paper-plane"></i> Telegram: <a href="https://t.me/javohir_qaxramonov" target="_blank" rel="noopener noreferrer">@javohir_qaxramonov</a></p>
+                <p><i class="fa-solid fa-globe"></i> GitHub: <a href="https://github.com/javohirqaxramonov36-web" target="_blank" rel="noopener noreferrer">javohirqaxramonov36-web</a></p>
             </div>
         </div>
         <div class="footer-bottom text-center">
@@ -705,6 +754,8 @@
     </footer>
 
     <!-- JavaScript -->
+    <!-- YAGONA MA'LUMOTLAR MANBAI (kurslar soni): script.js'dan OLDIN -->
+    <script src="courses-data.js" defer></script>
     <script src="script.js" defer></script>
 <script>
 /* Accessibility: Escape + backdrop close for .sim-modal; keyboard flip for flashcard */

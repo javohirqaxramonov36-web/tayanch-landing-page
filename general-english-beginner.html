@@ -20,6 +20,35 @@
     <meta name="twitter:description" content="CEFR va CEFR-J standartlari asosida 6 ta aspekt interaktiv o'quv moduli.">
     <meta name="twitter:image" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/assets/images/flashcard_hello.jpg">
 
+    <!-- Schema.org: General English kursi (Google indekslashi uchun statik JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Course",
+          "@id": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/general-english-beginner.html#course-16",
+          "name": "General English B1 to B2 Accelerator",
+          "description": "Grammatika bo'shliqlarini yopish, so'z boyligini 2000+ ga oshirish va erkin muloqot bosqichiga o'tish (A1–C1).",
+          "provider": {
+            "@type": "Organization",
+            "name": "Tayanch Educational Platform",
+            "sameAs": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/"
+          },
+          "educationalLevel": "B1 - C1",
+          "inLanguage": "uz",
+          "isAccessibleForFree": true,
+          "url": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/general-english-beginner.html",
+          "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "online",
+            "courseWorkload": "6 Hafta"
+          }
+        }
+      ]
+    }
+    </script>
+
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -362,7 +391,7 @@
                 <div class="flashcard liquid-card" id="flashcard">
                     <span class="category-tag cat-ai" id="cardLevel">CEFR-J A1.1</span>
                     <div class="card-img-wrapper">
-                        <picture><source srcset="assets/images/flashcard_hello.webp" type="image/webp"><img loading="lazy" decoding="async" id="cardImg" class="card-img" src="assets/images/flashcard_hello.jpg" alt="Hello Flashcard Illustration"></picture>
+                        <picture><source srcset="assets/images/flashcard_hello.webp" type="image/webp"><img loading="lazy" decoding="async" id="cardImg" class="card-img" width="1024" height="1024" src="assets/images/flashcard_hello.jpg" alt="Hello Flashcard Illustration"></picture>
                     </div>
                     <div class="card-word-row" style="display:flex; align-items:center; justify-content:center; gap:8px;">
                         <div class="card-word" id="cardWord">Hello</div>
@@ -681,12 +710,12 @@
     </main>
 
     <!-- Badges Modal Drawer -->
-    <div class="modal-overlay" id="badgesModal">
+    <div class="modal-overlay" id="badgesModal" role="dialog" aria-modal="true" aria-labelledby="badgesModalTitle">
         <div class="modal-card liquid-card" style="max-width: 600px;">
-            <button class="modal-close-btn" id="badgesModalCloseBtn">&times;</button>
+            <button class="modal-close-btn" id="badgesModalCloseBtn" aria-label="Yutuqlar oynasini yopish">&times;</button>
             <div class="text-center">
                 <span class="category-tag cat-ai">Gamification Unlocks</span>
-                <h2 style="color:#fff; margin-top:0.5rem;"><i class="fa-solid fa-trophy" style="color:#fbbf24;"></i> Erishilgan Yutuq Nishonlari</h2>
+                <h2 id="badgesModalTitle" style="color:#fff; margin-top:0.5rem;"><i class="fa-solid fa-trophy" style="color:#fbbf24;"></i> Erishilgan Yutuq Nishonlari</h2>
                 <p class="text-muted text-sm">Darslik va portal topshiriqlarini bajarib, barcha nishonlarni oching!</p>
             </div>
             <div class="badges-modal-grid" id="badgesGridContent">
@@ -696,11 +725,11 @@
     </div>
 
     <!-- Gamification Interactive Exercise Panel Modal -->
-    <div class="exercise-modal-overlay" id="exercisePanelModal">
+    <div class="exercise-modal-overlay" id="exercisePanelModal" role="dialog" aria-modal="true" aria-labelledby="exercisePanelTitle">
         <div class="exercise-panel-box">
             <div class="panel-head">
                 <h3 id="exercisePanelTitle">Modul Topshiriqlar</h3>
-                <button class="panel-close-btn" id="exercisePanelCloseBtn">&times;</button>
+                <button class="panel-close-btn" id="exercisePanelCloseBtn" aria-label="Mashq panelini yopish">&times;</button>
             </div>
             <div class="exercise-progress-track">
                 <div class="exercise-progress-fill" id="exerciseProgressFill"></div>
@@ -710,7 +739,7 @@
     </div>
 
     <!-- CEFR Level Transition Confirmation Lock Modal -->
-    <div class="cefr-lock-modal-overlay" id="cefrLockModal">
+    <div class="cefr-lock-modal-overlay" id="cefrLockModal" role="dialog" aria-modal="true" aria-labelledby="cefrLockTargetTitle" aria-describedby="cefrLockTargetDesc">
         <div class="cefr-lock-modal-box">
             <div class="cefr-lock-icon">
                 <i class="fa-solid fa-lock"></i>
@@ -725,11 +754,11 @@
     </div>
 
     <!-- ⌘K Quick Dictionary Modal (Command Palette) -->
-    <div class="dict-modal-overlay" id="dictModal">
+    <div class="dict-modal-overlay" id="dictModal" role="dialog" aria-modal="true" aria-labelledby="dictModalTitle">
         <div class="dict-modal-box">
             <div class="dict-modal-head">
-                <h3><i class="fa-solid fa-book-bookmark" style="color:var(--accent-purple);"></i> Shaxsiy ⌘K Lug'at Hub</h3>
-                <button class="panel-close-btn" id="dictCloseBtn">&times;</button>
+                <h3 id="dictModalTitle"><i class="fa-solid fa-book-bookmark" style="color:var(--accent-purple);"></i> Shaxsiy ⌘K Lug'at Hub</h3>
+                <button class="panel-close-btn" id="dictCloseBtn" aria-label="Lug'at oynasini yopish">&times;</button>
             </div>
             <div class="dict-search-wrapper">
                 <i class="fa-solid fa-magnifying-glass dict-search-icon"></i>

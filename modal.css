@@ -97,3 +97,55 @@
 @keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 html { scroll-behavior: smooth; }
+
+
+/* ================= TEZLIK VA RENDERING OPTIMIZATSIYASI ================= */
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* GPU apparat tezlatgichi (Silliq animatsiyalar uchun) */
+.course-card, .modal-card, .syllabus-card {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* Mobil teginish kechikishini (300ms delay) yo'qotish */
+button, a, input, select {
+  touch-action: manipulation;
+}
+
+/* Yuqoriga qaytish tugmasi stillari */
+#backToTopBtn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #4f46e5;
+  color: #ffffff;
+  border: none;
+  font-size: 20px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
+  z-index: 999;
+  transition: transform 0.2s, background 0.2s;
+}
+#backToTopBtn:hover {
+  background: #4338ca;
+  transform: translateY(-3px);
+}
+

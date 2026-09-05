@@ -2,6 +2,15 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
+  <!-- Tezlik Optimizatsiyasi: DNS Prefetch & Preconnect -->
+  <link rel="preconnect" href="https://api.telegram.org" crossorigin>
+  <link rel="dns-prefetch" href="https://api.telegram.org">
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link rel="dns-prefetch" href="https://images.unsplash.com">
+
+  <!-- Zamonaviy Inline SVG Favicon (404 xatosini to'xtatadi) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barcha IT Kurslar Katalogi — Tayanch Ta'lim</title>
     
@@ -1450,6 +1459,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  
+  // Qidiruvda tasodifiy Enter bosilganda sahifa yangilanib ketishini to'xtatish
+  if (searchInput) {
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') e.preventDefault();
+    });
+  }
+
   if (searchInput) {
     searchInput.addEventListener('input', applyFilter);
   }
@@ -1911,5 +1928,25 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
+
+<!-- Silliq Yuqoriga Qaytish Tugmasi -->
+<button type="button" id="backToTopBtn" aria-label="Yuqoriga qaytish">↑</button>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const topBtn = document.getElementById('backToTopBtn');
+  if (!topBtn) return;
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 350) {
+      topBtn.style.display = 'flex';
+    } else {
+      topBtn.style.display = 'none';
+    }
+  }, { passive: true });
+  topBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+</script>
+
 </body>
 </html>

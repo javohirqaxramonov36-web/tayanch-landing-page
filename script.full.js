@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 text = 'IELTS Academic Writing C1 va Advanced AI Research kurslari tavsiya etiladi.';
             } else if (quizScore >= Math.ceil(total * 0.6)) {
                 level = 'CEFR B2 (Upper-Intermediate)';
-                text = 'IELTS Writing Task 2 (Band 7.5+) va Practical AI kurslari eng mos.';
+                text = 'IELTS Writing Task 2 (Band 7.0+) va Practical AI kurslari eng mos.';
             } else if (quizScore >= Math.ceil(total * 0.35)) {
                 level = 'CEFR B1 (Intermediate)';
                 text = 'General English B1→B2 Accelerator va AI Foundations kurslari mos.';
@@ -308,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
             courses.push("General English B1 to B2 Accelerator");
         } else if (level === 'b2') {
             scorePercent += 30;
-            courses.push("IELTS Writing Task 2 Masterclass (Band 7.5+)");
+            courses.push("IELTS Writing Task 2 Masterclass");
         } else if (level === 'c1') {
             scorePercent += 40;
             courses.push("Upper-Intermediate to Advanced C1 Grammar");
@@ -453,12 +453,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const catImg = course.category === 'ai' ? 'assets/images/ai_hero.jpg' : (course.category === 'ielts' ? 'assets/images/founder.jpg' : 'assets/images/university_grant.jpg');
 
         const priceBadgeHtml = isVIPUser 
-            ? `<span class="detail-item" style="color:#00f2fe; font-weight:700;"><i class="fa-solid fa-lock-open"></i> VIP Sinov Ochiq</span>`
+            ? `<span class="detail-item" style="color:#00f2fe; font-weight:700;"><i class="fa-solid fa-lock-open"></i> Ochiq Sinov</span>`
             : `<span class="detail-item" style="color:#fbbf24; font-weight:700;"><i class="fa-solid fa-tag"></i> ${course.price}</span>`;
 
         const actionBtnHtml = isVIPUser
             ? `<a href="general-english-beginner.html" class="btn btn-sm btn-primary btn-liquid w-full">
-                    <i class="fa-solid fa-graduation-cap"></i> <span class="btn-text">Darslik Hub'iga Kirish (VIP)</span>
+                    <i class="fa-solid fa-graduation-cap"></i> <span class="btn-text">Bepul Darslik Hub'iga Kirish</span>
                     <div class="liquid-wave"></div>
                </a>`
             : `<button class="btn btn-sm btn-primary btn-liquid open-lead-modal-btn" data-course="${course.title}">

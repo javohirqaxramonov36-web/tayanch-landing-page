@@ -2,6 +2,8 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
+    <!-- Yagona sozlamalar manbai — BARCHA script'lardan oldin -->
+    <script src="site-config.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visual Sitemap — Tayanch Platformasi Sahifalar Xaritasi</title>
     <meta name="description" content="Tayanch ta'lim platformasining to'liq sahifalar va kurslar visual xaritasi.">
@@ -49,7 +51,7 @@
 
             <nav class="nav-links liquid-nav-capsule">
                 <a href="index.html" class="nav-link">Bosh sahifa</a>
-                <a href="courses.html" class="nav-link">Kurslar Katalogi (30)</a>
+                <a href="courses.html" class="nav-link">Kurslar Katalogi (<span data-course-count="all">30</span>)</a>
                 <a href="general-english-beginner.html" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> English Hub</a>
                 <a href="sitemap.html" class="nav-link active">Sitemap (Xarita)</a>
             </nav>
@@ -84,7 +86,7 @@
                     </a>
                 </div>
 
-                <!-- Card 2: 30 Kurslar Katalogi -->
+                <!-- Card 2: Kurslar Katalogi (son site-config.js dan keladi) -->
                 <div class="liquid-card tilt-card" style="padding: 2rem;">
                     <div class="card-icon icon-purple liquid-glow-icon mb-3">
                         <i class="fa-solid fa-book-open"></i>

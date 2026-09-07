@@ -9,7 +9,13 @@
    qolmaydi.
 
    Ishlatish:
+     <script src="site-config.js"></script>          (ENG BIRINCHI — kurs soni shu yerda)
      <script src="courses-data.js" defer></script>   (script.js dan OLDIN)
+
+   Bog'liqlik: umumiy kurs soni (counts.all) site-config.js dagi
+   SITE_CONFIG.totalCourseCount dan olinadi — u yerda bir marta
+   o'zgartirilsa, barcha sahifalar avtomatik yangilanadi.
+   site-config.js ulanmagan bo'lsa, COURSES.length ishlatiladi (fallback).
 
    API:
      window.TayanchCourses.data    -> kurslar massivi
@@ -63,8 +69,19 @@
         return COURSES.filter(function (c) { return c.category === cat; }).length;
     }
 
+    /* Umumiy kurs soni — yagona manba: site-config.js.
+       Fayl ulanmagan bo'lsagina COURSES.length bilan hisoblanadi. */
+    function totalFromConfig() {
+        var cfg = global.SITE_CONFIG;
+        if (cfg && typeof cfg.getCourseCount === 'function') {
+            var n = cfg.getCourseCount();
+            if (n > 0) return n;
+        }
+        return COURSES.length;
+    }
+
     var COUNTS = {
-        all: COURSES.length,
+        all: totalFromConfig(),
         ai: countBy('ai'),
         ielts: countBy('ielts'),
         admission: countBy('admission')

@@ -41,7 +41,8 @@
 
     var SITE_CONFIG = {
         /* --- Tasdiqlangan yagona kurs soni (faqat shu yerda o'zgartiriladi) --- */
-        totalCourseCount: 30,
+        /* Prompt 1/2/4: +5 yangi kurs (2 Matematika, 2 Fizika, 1 Startup) -> 30 + 5 = 35 */
+        totalCourseCount: 35,
 
         /* --- Google Analytics 4 Measurement ID (masalan: "G-XXXXXXXXXX") --- */
         ga4MeasurementId: GA4_PLACEHOLDER,

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maktab darslari — Tayanch</title>
-  <meta name="description" content="Maktab o'quvchilari uchun matematika, ingliz tili va fanlardan qo'shimcha darslar va tayyorgarlik.">
+  <meta name="description" content="Maktab o'quvchilari uchun matematika, fizika va ingliz tili bo'yicha shaxsiy va kichik guruhli darslar, interaktiv fizika simulyatsiyalari bilan.">
   <link rel="icon" type="image/png" href="assets/images/favicon.png?v=1788409946">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +12,50 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css?v=1788363528">
   <link rel="stylesheet" href="sidebar.css">
+  <style>
+    .fan-filter{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:28px 0 36px}
+    .fan-btn{padding:12px 22px;border-radius:999px;border:1px solid var(--border-subtle,rgba(255,255,255,.12));background:var(--bg-card,rgba(18,22,34,.6));color:var(--text-main,#f3f4f6);font-weight:600;cursor:pointer;transition:.25s;font-family:inherit;font-size:.95rem}
+    .fan-btn:hover{border-color:var(--border-bright,rgba(0,242,254,.35))}
+    .fan-btn.active{background:linear-gradient(135deg,var(--accent-purple,#a855f7),var(--primary-cyan,#00f2fe));color:#0a0b10;border-color:transparent}
+    .fan-panel{display:none;animation:fanFade .4s ease}
+    .fan-panel.active{display:block}
+    @keyframes fanFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+    .topic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:6px}
+    .topic-card{background:var(--bg-card,rgba(18,22,34,.6));border:1px solid var(--border-subtle,rgba(255,255,255,.08));border-radius:16px;padding:22px;transition:.25s}
+    .topic-card:hover{transform:translateY(-4px);border-color:var(--border-glow,rgba(168,85,247,.5))}
+    .topic-ico{font-size:1.7rem;margin-bottom:10px;display:inline-block}
+    .topic-card h3{font-size:1.1rem;margin-bottom:4px}
+    .topic-grade{display:inline-block;font-size:.72rem;font-weight:600;color:#0a0b10;background:linear-gradient(135deg,var(--accent-gold,#fbbf24),var(--primary-cyan,#00f2fe));padding:2px 10px;border-radius:999px;margin-bottom:8px}
+    .topic-card p{color:var(--text-muted,#a1a1aa);font-size:.9rem;margin-bottom:10px}
+    .topic-card ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .topic-card li{font-size:.86rem;color:var(--text-muted,#a1a1aa);padding-left:18px;position:relative}
+    .topic-card li::before{content:"\25B9";position:absolute;left:0;color:var(--primary-cyan,#00f2fe)}
+
+    .sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:30px}
+    .sim-card{background:var(--bg-surface-elevated,#161a29);border:1px solid var(--border-subtle,rgba(255,255,255,.1));border-radius:18px;padding:22px}
+    .sim-card h3{font-size:1.05rem;margin-bottom:4px}
+    .sim-sub{color:var(--text-muted,#a1a1aa);font-size:.85rem;margin-bottom:14px}
+    .sim-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+    .sim-controls label{font-size:.85rem;color:var(--text-muted,#a1a1aa)}
+    .sim-controls input,.sim-controls select{padding:8px 10px;border-radius:10px;border:1px solid var(--border-subtle,rgba(255,255,255,.15));background:var(--bg-dark,#0a0b10);color:var(--text-main,#f3f4f6);font-family:inherit;width:96px}
+    .sim-btn{padding:8px 16px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--accent-purple,#a855f7),var(--primary-cyan,#00f2fe));color:#0a0b10;font-weight:600;cursor:pointer;font-family:inherit}
+    .sim-btn.ghost{background:transparent;border:1px solid var(--border-subtle,rgba(255,255,255,.2));color:var(--text-main,#f3f4f6)}
+    .sim-result{margin-top:12px;padding:12px 14px;border-radius:12px;background:rgba(0,242,254,.08);border:1px solid rgba(0,242,254,.25);font-size:.9rem;color:var(--text-main,#f3f4f6);min-height:20px}
+    .sim-result b{color:var(--primary-cyan,#00f2fe)}
+
+    .ff-stage{position:relative;height:220px;border-radius:12px;background:linear-gradient(180deg,#0d1220,#10182b);border:1px solid var(--border-subtle,rgba(255,255,255,.1));overflow:hidden;margin-bottom:8px}
+    .ff-ball{position:absolute;left:50%;top:8px;width:22px;height:22px;margin-left:-11px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,var(--accent-purple,#a855f7));box-shadow:0 0 16px rgba(168,85,247,.6)}
+    .ff-ground{position:absolute;left:0;right:0;bottom:0;height:6px;background:linear-gradient(90deg,var(--primary-cyan,#00f2fe),var(--accent-purple,#a855f7))}
+    .ff-label{position:absolute;right:8px;top:6px;font-size:.72rem;color:var(--text-muted,#a1a1aa)}
+
+    .pend-stage{position:relative;height:200px;display:flex;justify-content:center}
+    .pend-pivot{position:absolute;top:6px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:var(--text-main,#f3f4f6);z-index:2}
+    .pend-swing{position:absolute;top:11px;left:50%;transform-origin:top center;animation:pendSwing 2s ease-in-out infinite}
+    .pend-string{width:2px;height:120px;background:var(--text-muted,#a1a1aa);margin:0 auto}
+    .pend-bob{width:26px;height:26px;margin:-2px auto 0;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,var(--accent-gold,#fbbf24));box-shadow:0 0 16px rgba(251,191,36,.6)}
+    @keyframes pendSwing{0%{transform:rotate(-30deg)}50%{transform:rotate(30deg)}100%{transform:rotate(-30deg)}}
+  </style>
   <script src="site-config.js"></script>
   <script src="ga4.js" defer></script>
 </head>
@@ -66,7 +110,7 @@
     <div class="hub-hero-inner">
       <div class="section-tag">Maktab darslari</div>
       <h1>Maktabdagi <span class="gradient-text">eng yaxshi natija</span></h1>
-      <p class="lead">Matematika, ingliz tili va asosiy fanlardan shaxsiy va kichik guruhli darslar — darajangizga mos.</p>
+      <p class="lead">Matematika, fizika va ingliz tili bo'yicha shaxsiy va kichik guruhli darslar — darajangizga mos. Fizikani esa interaktiv simulyatsiyalarda ko'ring.</p>
       <div class="hub-cta-row">
         <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-glow"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Ariza Qoldirish</a>
         <a href="ielts.html" class="btn btn-secondary"><i class="fa-solid fa-language" aria-hidden="true"></i> Ingliz tili</a>
@@ -81,25 +125,211 @@
       <div class="section-tag">Fanlar</div>
       <h2 class="section-title">Qaysi fanlardan <span class="gradient-text">dars olamiz</span></h2>
     </div>
-    <div class="link-cards">
-      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="link-card">
-        <span class="lc-ico"><i class="fa-solid fa-calculator"></i></span>
-        <h3>Matematika</h3>
-        <p>Maktab dasturi, olimpiada tayyorgarligi va SAT Math asoslari.</p>
-        <span class="arrow">Batafsil <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
-      </a>
-      <a href="ielts.html" class="link-card">
-        <span class="lc-ico"><i class="fa-solid fa-language"></i></span>
-        <h3>Ingliz tili</h3>
-        <p>General English (A1–C1) va IELTS ga tayyorgarlik.</p>
-        <span class="arrow">Ko'rish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
-      </a>
-      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="link-card">
-        <span class="lc-ico"><i class="fa-solid fa-flask"></i></span>
-        <h3>Fizika / Kimyo</h3>
-        <p>Murakkab mavzularni sodda tushuntirish va amaliy masalalar.</p>
-        <span class="arrow">Batafsil <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
-      </a>
+
+    <div class="fan-filter" role="tablist">
+      <button class="fan-btn active" data-fan="math" role="tab">📐 Matematika</button>
+      <button class="fan-btn" data-fan="physics" role="tab">🔬 Fizika</button>
+      <button class="fan-btn" data-fan="english" role="tab">🔤 Ingliz tili</button>
+    </div>
+
+    <!-- ============ MATH PANEL ============ -->
+    <div class="fan-panel active" data-fan-panel="math">
+      <div class="topic-grid">
+        <div class="topic-card">
+          <span class="topic-ico">🔢</span>
+          <span class="topic-grade">7–9 sinf</span>
+          <h3>Algebra asoslari</h3>
+          <p>Tenglamalar va tengsizliklar, kasrlar, foizlar va proporsiyalarni mustahkam o'zlashtirish.</p>
+          <ul>
+            <li>Chiziqli va kvadrat tenglamalar</li>
+            <li>Kasrlar va foizlar</li>
+            <li>Darajalar va ildizlar</li>
+          </ul>
+        </div>
+        <div class="topic-card">
+          <span class="topic-ico">📐</span>
+          <span class="topic-grade">7–9 sinf</span>
+          <h3>Geometriya</h3>
+          <p>Shakllar, yuzalar, hajmlar va Pifagor teoremasi — vizual tushuntirish bilan.</p>
+          <ul>
+            <li>Uchburchak va to'rtburchaklar</li>
+            <li>Aylana va doira</li>
+            <li>Hajm va sirt yuzasi</li>
+          </ul>
+        </div>
+        <div class="topic-card">
+          <span class="topic-ico">📈</span>
+          <span class="topic-grade">10–11 sinf</span>
+          <h3>Funksiyalar va grafiklar</h3>
+          <p>Chiziqli, kvadratik va darajali funksiyalar, ularning grafiklari va xossalari.</p>
+          <ul>
+            <li>Funksiya tushunchasi</li>
+            <li>Grafikni chizish</li>
+            <li>O'sish va kamayish</li>
+          </ul>
+        </div>
+        <div class="topic-card">
+          <span class="topic-ico">🔺</span>
+          <span class="topic-grade">10–11 sinf</span>
+          <h3>Trigonometriya</h3>
+          <p>Sin, cos, tg va asosiy formulalar — fizika va oliygohga tayyorgarlik uchun.</p>
+          <ul>
+            <li>Asosiy trigonometrik formulalar</li>
+            <li>Burchaklarni o'tkazish</li>
+            <li>Tenglamalarni yechish</li>
+          </ul>
+        </div>
+        <div class="topic-card">
+          <span class="topic-ico">🏆</span>
+          <span class="topic-grade">Olimpiada</span>
+          <h3>Olimpiada tayyorgarlik</h3>
+          <p>Mantiqiy va kombinatorika masalalari, murakkab fikrlashni rivojlantirish.</p>
+          <ul>
+            <li>Mantiqiy masalalar</li>
+            <li>Kombinatorika</li>
+            <li>Tezlik va strategiya</li>
+          </ul>
+        </div>
+        <div class="topic-card">
+          <span class="topic-ico">🎯</span>
+          <span class="topic-grade">SAT Math</span>
+          <h3>SAT Math 800</h3>
+          <p>Desmos kalkulyatori sirlari va 800 ball strategiyasiga tayyorgarlik.</p>
+          <ul>
+            <li>Algebra va Heart of Algebra</li>
+            <li>Desmos dan foydalanish</li>
+            <li>Vaqtni boshqarish</li>
+          </ul>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:28px">
+        <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-glow"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Matematika darsiga yozilish</a>
+      </div>
+    </div>
+
+    <!-- ============ PHYSICS PANEL ============ -->
+    <div class="fan-panel" data-fan-panel="physics">
+      <div class="topic-grid">
+        <div class="topic-card">
+          <span class="topic-ico">⚙️</span>
+          <h3>Mexanika</h3>
+          <p>Kuch, harakat va energiya saqlanishi — asosiy qonunlar sodda tushuntirish bilan.</p>
+          <ul>
+            <li>Nyuton qonunlari</li>
+            <li>Harakat tenglamalari</li>
+            <li>Energiya va impuls</li>
+          </ul>
+        </div>
+        <div class="topic-card">
+          <span class="topic-ico">🔌</span>
+          <h3>Elektr</h3>
+          <p>Elektr zanjirlari, Om qonuni va quvvat — amaliy tajribalar bilan.</p>
+          <ul>
+            <li>Zanjir turlari</li>
+            <li>Om qonuni (V = I·R)</li>
+            <li>Quvvat va ish</li>
+          </ul>
+        </div>
+        <div class="topic-card">
+          <span class="topic-ico">🔭</span>
+          <h3>Optika</h3>
+          <p>Linza, yorug'lik nuri va ranglar haqida tushuncha.</p>
+          <ul>
+            <li>Yorug'lik nuri</li>
+            <li>Linzalar</li>
+            <li>Kuzatish va tajriba</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-header text-center" style="margin-top:38px">
+        <div class="section-tag">Interaktiv</div>
+        <h2 class="section-title">Fizika <span class="gradient-text">simulyatsiyalari</span></h2>
+        <p class="lead">Quyidagi kalkulyatorlar va animatsiyalar orqali fizika qonunlarini o'zingiz sinab ko'ring.</p>
+      </div>
+
+      <div class="sim-grid">
+        <!-- 1. Erkin tushish -->
+        <div class="sim-card">
+          <h3>① Erkin tushish</h3>
+          <p class="sim-sub">h balandlikdan erkin tushayotgan jismning vaqti: t = √(2h / g)</p>
+          <div class="ff-stage" id="ffStage">
+            <div class="ff-ball" id="ffBall"></div>
+            <div class="ff-ground"></div>
+            <span class="ff-label" id="ffLabel">h = 20 m</span>
+          </div>
+          <div class="sim-controls">
+            <label for="ffHeight">Balandlik h (m):</label>
+            <input type="number" id="ffHeight" value="20" min="1" max="100" step="1">
+            <button class="sim-btn" id="ffDrop">Tushirish ▼</button>
+          </div>
+          <div class="sim-result" id="ffResult">Jism <b>20 m</b> dan <b>2.02 s</b> da tushadi (g = 9.81 m/s²).</div>
+        </div>
+
+        <!-- 2. Mayatnik -->
+        <div class="sim-card">
+          <h3>② Matematik mayatnik</h3>
+          <p class="sim-sub">Tebranish davri: T = 2π√(L / g)</p>
+          <div class="pend-stage">
+            <div class="pend-pivot"></div>
+            <div class="pend-swing" id="pendSwing">
+              <div class="pend-string"></div>
+              <div class="pend-bob"></div>
+            </div>
+          </div>
+          <div class="sim-controls">
+            <label for="pendLen">Uzunlik L (m):</label>
+            <input type="number" id="pendLen" value="1" min="0.1" max="5" step="0.1">
+            <button class="sim-btn" id="pendAnim">Aylantirish 🔄</button>
+          </div>
+          <div class="sim-result" id="pendResult">L = <b>1.0 m</b> uchun davr T ≈ <b>2.01 s</b>.</div>
+        </div>
+
+        <!-- 3. Om qonuni -->
+        <div class="sim-card">
+          <h3>③ Om qonuni kalkulyatori</h3>
+          <p class="sim-sub">V = I · R — ikkita qiymat kiriting, uchinchisi hisoblanadi.</p>
+          <div class="sim-controls">
+            <label for="ohmV">Kuchlanish V (V):</label>
+            <input type="number" id="ohmV" placeholder="V" step="0.1">
+          </div>
+          <div class="sim-controls">
+            <label for="ohmI">Tok I (A):</label>
+            <input type="number" id="ohmI" placeholder="A" step="0.01">
+          </div>
+          <div class="sim-controls">
+            <label for="ohmR">Qarshilik R (Ω):</label>
+            <input type="number" id="ohmR" placeholder="Ω" step="0.1">
+          </div>
+          <div class="sim-controls">
+            <button class="sim-btn" id="ohmCalc">Hisobla</button>
+            <button class="sim-btn ghost" id="ohmClear">Tozalash</button>
+          </div>
+          <div class="sim-result" id="ohmResult">Ikkita qiymat kiriting (masalan V va I), uchinchisi avtomatik topiladi.</div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:28px">
+        <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-glow"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Fizika darsiga yozilish</a>
+      </div>
+    </div>
+
+    <!-- ============ ENGLISH PANEL ============ -->
+    <div class="fan-panel" data-fan-panel="english">
+      <div class="link-cards">
+        <a href="ielts.html" class="link-card">
+          <span class="lc-ico"><i class="fa-solid fa-language"></i></span>
+          <h3>Ingliz tili</h3>
+          <p>General English (A1–C1) va IELTS ga tayyorgarlik — gapirish, grammatika va lug'at.</p>
+          <span class="arrow">Ko'rish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+        <a href="general-english-beginner.html" class="link-card">
+          <span class="lc-ico"><i class="fa-solid fa-feather"></i></span>
+          <h3>General English (Bepul Hub)</h3>
+          <p>Bepul darslik va amaliyot modullari bilan ingliz tilini noldan o'rganing.</p>
+          <span class="arrow">Hub'ga kirish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -155,6 +385,107 @@
     </div>
   </div>
 </footer>
+    <!-- Fan-filter va simulyatsiya mantiqi -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var G = 9.81;
+
+      /* ---------- Fan-filtr (Matematika / Fizika / Ingliz tili) ---------- */
+      var fanBtns = document.querySelectorAll('.fan-btn');
+      var panels = document.querySelectorAll('.fan-panel');
+      fanBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          fanBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          var f = btn.getAttribute('data-fan');
+          panels.forEach(function (p) {
+            p.classList.toggle('active', p.getAttribute('data-fan-panel') === f);
+          });
+        });
+      });
+
+      /* ---------- 1) Erkin tushish ---------- */
+      var ffHeight = document.getElementById('ffHeight');
+      var ffBall = document.getElementById('ffBall');
+      var ffStage = document.getElementById('ffStage');
+      var ffLabel = document.getElementById('ffLabel');
+      var ffResult = document.getElementById('ffResult');
+      function updateFreeFallStatic() {
+        var h = parseFloat(ffHeight.value) || 0;
+        var t = Math.sqrt((2 * h) / G);
+        ffLabel.textContent = 'h = ' + h + ' m';
+        ffResult.innerHTML = 'Jism <b>' + h + ' m</b> dan <b>' + t.toFixed(2) + ' s</b> da tushadi (g = 9.81 m/s²).';
+      }
+      function dropBall() {
+        var h = parseFloat(ffHeight.value) || 0;
+        var t = Math.sqrt((2 * h) / G);
+        var bottom = ffStage.clientHeight - 22 - 6;
+        ffBall.style.transition = 'none';
+        ffBall.style.top = '8px';
+        void ffBall.offsetWidth; /* reflow */
+        ffBall.style.transition = 'top ' + t.toFixed(2) + 's linear';
+        ffBall.style.top = bottom + 'px';
+      }
+      document.getElementById('ffDrop').addEventListener('click', dropBall);
+      ffHeight.addEventListener('input', updateFreeFallStatic);
+      updateFreeFallStatic();
+
+      /* ---------- 2) Mayatnik ---------- */
+      var pendLen = document.getElementById('pendLen');
+      var pendSwing = document.getElementById('pendSwing');
+      var pendResult = document.getElementById('pendResult');
+      function updatePendulum() {
+        var L = parseFloat(pendLen.value) || 0;
+        var T = 2 * Math.PI * Math.sqrt(L / G);
+        pendSwing.style.animationDuration = T.toFixed(2) + 's';
+        pendResult.innerHTML = 'L = <b>' + L.toFixed(1) + ' m</b> uchun davr T ≈ <b>' + T.toFixed(2) + ' s</b>.';
+      }
+      document.getElementById('pendAnim').addEventListener('click', updatePendulum);
+      pendLen.addEventListener('input', updatePendulum);
+      updatePendulum();
+
+      /* ---------- 3) Om qonuni kalkulyatori ---------- */
+      var ohmV = document.getElementById('ohmV');
+      var ohmI = document.getElementById('ohmI');
+      var ohmR = document.getElementById('ohmR');
+      var ohmResult = document.getElementById('ohmResult');
+      function computeOhm() {
+        var v = parseFloat(ohmV.value);
+        var i = parseFloat(ohmI.value);
+        var r = parseFloat(ohmR.value);
+        var hasV = !isNaN(v), hasI = !isNaN(i), hasR = !isNaN(r);
+        var filled = (hasV ? 1 : 0) + (hasI ? 1 : 0) + (hasR ? 1 : 0);
+        if (filled < 2) {
+          ohmResult.textContent = 'Ikkita qiymat kiriting (masalan V va I), uchinchisi avtomatik topiladi.';
+          return;
+        }
+        if (!hasV) {
+          var nv = i * r;
+          ohmV.value = nv.toFixed(2);
+          ohmResult.innerHTML = 'V = I·R = ' + i + ' × ' + r + ' = <b>' + nv.toFixed(2) + ' V</b>';
+        } else if (!hasI) {
+          var ni = v / r;
+          ohmI.value = ni.toFixed(3);
+          ohmResult.innerHTML = 'I = V/R = ' + v + ' / ' + r + ' = <b>' + ni.toFixed(3) + ' A</b>';
+        } else {
+          var nr = v / i;
+          ohmR.value = nr.toFixed(2);
+          ohmResult.innerHTML = 'R = V/I = ' + v + ' / ' + i + ' = <b>' + nr.toFixed(2) + ' Ω</b>';
+        }
+      }
+      document.getElementById('ohmCalc').addEventListener('click', computeOhm);
+      [ohmV, ohmI, ohmR].forEach(function (el) {
+        el.addEventListener('input', function () {
+          var f = (!isNaN(parseFloat(ohmV.value)) ? 1 : 0) + (!isNaN(parseFloat(ohmI.value)) ? 1 : 0) + (!isNaN(parseFloat(ohmR.value)) ? 1 : 0);
+          if (f >= 2) computeOhm();
+        });
+      });
+      document.getElementById('ohmClear').addEventListener('click', function () {
+        ohmV.value = ''; ohmI.value = ''; ohmR.value = '';
+        ohmResult.textContent = 'Ikkita qiymat kiriting (masalan V va I), uchinchisi avtomatik topiladi.';
+      });
+    });
+    </script>
     <!-- JS Engine -->
     <script src="courses-data.js" defer></script>
     <script src="script.js?v=1788363528" defer></script>

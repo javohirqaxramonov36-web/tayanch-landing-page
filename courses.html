@@ -1112,6 +1112,15 @@
     <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="sidebar.css">
+  <style>
+    .course-cat-tag{display:inline-block;padding:4px 12px;border-radius:999px;font-size:.78rem;font-weight:600;color:#0a0b10;letter-spacing:.2px}
+    .tag-dev{background:linear-gradient(135deg,#00f2fe,#4facfe)}
+    .tag-design{background:linear-gradient(135deg,#ec4899,#a855f7)}
+    .tag-basic{background:linear-gradient(135deg,#10b981,#34d399)}
+    .tag-math{background:linear-gradient(135deg,#a855f7,#7c3aed)}
+    .tag-physics{background:linear-gradient(135deg,#fbbf24,#f59e0b)}
+    .tag-startup{background:linear-gradient(135deg,#4facfe,#00f2fe)}
+  </style>
     
     <!-- GSAP CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
@@ -1211,10 +1220,13 @@
 
   <div class="courses-controls">
     <div class="filter-tabs">
-      <button class="filter-btn active" data-category="all">Barchasi (5)</button>
+      <button class="filter-btn active" data-category="all">Barchasi (10)</button>
       <button class="filter-btn" data-category="dev">Dasturlash (3)</button>
       <button class="filter-btn" data-category="design">Dizayn (1)</button>
       <button class="filter-btn" data-category="basic">Savodxonlik (1)</button>
+      <button class="filter-btn" data-category="math">Matematika (2)</button>
+      <button class="filter-btn" data-category="physics">Fizika (2)</button>
+      <button class="filter-btn" data-category="startup">Startup (1)</button>
     </div>
     <div class="search-wrapper">
       <span class="search-icon">🔍</span>
@@ -1419,6 +1431,201 @@
           <span class="curr-price">850 000 <small>so'm/oy</small></span>
         </div>
         <button type="button" class="btn-enroll-card open-modal-btn" data-course="Mobil Dasturlash (Flutter)">
+          Yozilish ➔
+        </button>
+      </div>
+    </article>
+
+    <!-- 6. Maktab Matematikasi (Algebra & Geometriya) -->
+    <article class="course-card" data-category="math" data-keywords="matematika algebra geometriya funksiya sinf maktab tenglama">
+      <div class="card-header-bar">
+        <span class="course-cat-tag tag-math">Matematika</span>
+        <span class="discount-badge">-20% Chegirma</span>
+      </div>
+      <div class="card-body">
+        <h3 class="course-title">Maktab Matematikasi (Algebra & Geometriya)</h3>
+        <p class="course-desc">7–11 sinf o'quvchilari uchun algebra, geometriya va sonlar nazariyasi asoslari — darajaga mos holda.</p>
+        <div class="course-meta-list">
+          <span class="meta-pill">⏱ 4 hafta</span>
+          <span class="meta-pill">📊 7–11 sinf</span>
+          <span class="meta-pill">🏛 Guruh va Individual</span>
+        </div>
+        <div class="tech-stack">
+          <span class="tech-tag">Algebra</span>
+          <span class="tech-tag">Geometriya</span>
+          <span class="tech-tag">Funksiyalar</span>
+          <span class="tech-tag">Sonlar nazariyasi</span>
+        </div>
+        <div class="mentor-box">
+          <div class="mentor-avatar">DK</div>
+          <div class="mentor-info">
+            <h4>Dilshod Karimov</h4>
+            <p>Math Metodist (6+ yil tajriba)</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="price-block">
+          <span class="old-price">250 000 so'm</span>
+          <span class="curr-price">199 000 <small>so'm/oy</small></span>
+        </div>
+        <button type="button" class="btn-enroll-card open-modal-btn" data-course="Maktab Matematikasi (Algebra & Geometriya)">
+          Yozilish ➔
+        </button>
+      </div>
+    </article>
+
+    <!-- 7. Olimpiada va SAT Math Tayyorgarligi -->
+    <article class="course-card" data-category="math" data-keywords="olimpiada sat math mantiq trigonometriya test 800 ball">
+      <div class="card-header-bar">
+        <span class="course-cat-tag tag-math">Matematika</span>
+        <span class="discount-badge">-15% Chegirma</span>
+      </div>
+      <div class="card-body">
+        <h3 class="course-title">Olimpiada va SAT Math Tayyorgarligi</h3>
+        <p class="course-desc">Murakkab masalalar, mantiqiy fikrlash va SAT Math 800 ball strategiyasiga chuqur tayyorgarlik.</p>
+        <div class="course-meta-list">
+          <span class="meta-pill">⏱ 6 hafta</span>
+          <span class="meta-pill">📊 Advanced</span>
+          <span class="meta-pill">🏛 Oflayn & Onlayn</span>
+        </div>
+        <div class="tech-stack">
+          <span class="tech-tag">SAT Math</span>
+          <span class="tech-tag">Kombinatorika</span>
+          <span class="tech-tag">Trigonometriya</span>
+          <span class="tech-tag">Desmos</span>
+        </div>
+        <div class="mentor-box">
+          <div class="mentor-avatar">DK</div>
+          <div class="mentor-info">
+            <h4>Dilshod Karimov</h4>
+            <p>SAT Math Coach (800/800)</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="price-block">
+          <span class="old-price">420 000 so'm</span>
+          <span class="curr-price">349 000 <small>so'm/oy</small></span>
+        </div>
+        <button type="button" class="btn-enroll-card open-modal-btn" data-course="Olimpiada va SAT Math Tayyorgarligi">
+          Yozilish ➔
+        </button>
+      </div>
+    </article>
+
+    <!-- 8. Maktab Fizikasi (Mexanika & Elektr) -->
+    <article class="course-card" data-category="physics" data-keywords="fizika mexanika elektr om qonuni optika kuch harakat energiya">
+      <div class="card-header-bar">
+        <span class="course-cat-tag tag-physics">Fizika</span>
+        <span class="discount-badge">-20% Chegirma</span>
+      </div>
+      <div class="card-body">
+        <h3 class="course-title">Maktab Fizikasi (Mexanika & Elektr)</h3>
+        <p class="course-desc">Kinetika, dinamika, energiya va elektr zanjirlari — murakkab mavzularni sodda tushuntirish bilan.</p>
+        <div class="course-meta-list">
+          <span class="meta-pill">⏱ 4 hafta</span>
+          <span class="meta-pill">📊 7–11 sinf</span>
+          <span class="meta-pill">🏛 Guruh va Individual</span>
+        </div>
+        <div class="tech-stack">
+          <span class="tech-tag">Mexanika</span>
+          <span class="tech-tag">Elektr zanjir</span>
+          <span class="tech-tag">Om qonuni</span>
+          <span class="tech-tag">Optika</span>
+        </div>
+        <div class="mentor-box">
+          <div class="mentor-avatar">NA</div>
+          <div class="mentor-info">
+            <h4>Nodira Azizova</h4>
+            <p>Fizika O'qituvchisi (5+ yil tajriba)</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="price-block">
+          <span class="old-price">250 000 so'm</span>
+          <span class="curr-price">199 000 <small>so'm/oy</small></span>
+        </div>
+        <button type="button" class="btn-enroll-card open-modal-btn" data-course="Maktab Fizikasi (Mexanika & Elektr)">
+          Yozilish ➔
+        </button>
+      </div>
+    </article>
+
+    <!-- 9. Fizika Olimpiada Tayyorgarligi -->
+    <article class="course-card" data-category="physics" data-keywords="fizika olimpiada termodinamika elektromagnit zamonaviy masala">
+      <div class="card-header-bar">
+        <span class="course-cat-tag tag-physics">Fizika</span>
+        <span class="discount-badge">-15% Chegirma</span>
+      </div>
+      <div class="card-body">
+        <h3 class="course-title">Fizika Olimpiada Tayyorgarligi</h3>
+        <p class="course-desc">Respublika va xalqaro olimpiadalari uchun chuqur fizika va qiyin amaliy masalalar yechish.</p>
+        <div class="course-meta-list">
+          <span class="meta-pill">⏱ 6 hafta</span>
+          <span class="meta-pill">📊 Advanced</span>
+          <span class="meta-pill">🏛 Oflayn & Onlayn</span>
+        </div>
+        <div class="tech-stack">
+          <span class="tech-tag">Klassik mexanika</span>
+          <span class="tech-tag">Termodinamika</span>
+          <span class="tech-tag">Elektromagnit maydon</span>
+          <span class="tech-tag">Zamonaviy fizika</span>
+        </div>
+        <div class="mentor-box">
+          <div class="mentor-avatar">NA</div>
+          <div class="mentor-info">
+            <h4>Nodira Azizova</h4>
+            <p>Olimpiada Murabbiyi</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="price-block">
+          <span class="old-price">420 000 so'm</span>
+          <span class="curr-price">349 000 <small>so'm/oy</small></span>
+        </div>
+        <button type="button" class="btn-enroll-card open-modal-btn" data-course="Fizika Olimpiada Tayyorgarligi">
+          Yozilish ➔
+        </button>
+      </div>
+    </article>
+
+    <!-- 10. Startup boshlash (AI bilan) -->
+    <article class="course-card" data-category="startup" data-keywords="startup biznes mvp g'oya ai prototip bozor grant">
+      <div class="card-header-bar">
+        <span class="course-cat-tag tag-startup">Startup</span>
+        <span class="discount-badge">-25% Chegirma</span>
+      </div>
+      <div class="card-body">
+        <h3 class="course-title">Startup boshlash (AI bilan)</h3>
+        <p class="course-desc">AI vositalari yordamida g'oya validatsiyasi, MVP yaratish va O'zbekiston bozorida biznes ishga tushirish.</p>
+        <div class="course-meta-list">
+          <span class="meta-pill">⏱ 5 hafta</span>
+          <span class="meta-pill">📊 Boshlang'ich</span>
+          <span class="meta-pill">🏛 Onlayn</span>
+        </div>
+        <div class="tech-stack">
+          <span class="tech-tag">G'oya validatsiyasi</span>
+          <span class="tech-tag">MVP yaratish</span>
+          <span class="tech-tag">No-code / AI</span>
+          <span class="tech-tag">Pitch Deck</span>
+        </div>
+        <div class="mentor-box">
+          <div class="mentor-avatar">JR</div>
+          <div class="mentor-info">
+            <h4>Jahongir Rahimov</h4>
+            <p>Serial Founder & Startup Mentor</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="price-block">
+          <span class="old-price">400 000 so'm</span>
+          <span class="curr-price">299 000 <small>so'm/oy</small></span>
+        </div>
+        <button type="button" class="btn-enroll-card open-modal-btn" data-course="Startup boshlash (AI bilan)">
           Yozilish ➔
         </button>
       </div>

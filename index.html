@@ -223,6 +223,7 @@
   <meta name="twitter:description" content="Tayanch ta'lim markazida noldan boshlab talabgir dasturchi yoki dizayner bo'ling. Frontend, Backend, Flutter, UI/UX va IT Foundation kurslari.">
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1200&auto=format&fit=crop&q=80">
 
+    <link rel="stylesheet" href="sidebar.css">
 </head>
 <body class="liquid-theme" data-page-node-id="jkiwnalLPNREEjcaRhC57w">
 
@@ -239,136 +240,54 @@
     <canvas id="fluidRippleCanvas" data-page-node-id="E2KjNIO5n2fPOahqhQejB1"></canvas>
 
     <!-- Header / Navbar -->
-    <header class="navbar liquid-navbar" id="navbar" data-page-node-id="nukWPByaIjNTbvPXi1DSvH">
-        <div class="nav-container" data-page-node-id="LE4JBpQwcXGVOqBHBHnYzC">
-            <a href="#hero" class="nav-brand" data-page-node-id="GJgP09kkFP7a1Zab8hbKSM">
-                <div class="brand-icon liquid-glow-icon" data-page-node-id="D5fwRAWB0ChfCLMi0jzPiT">
-                    <img src="assets/images/logo-header.png?v=1788409946" alt="" aria-hidden="true" class="brand-monogram" width="128" height="128" loading="eager" fetchpriority="high" decoding="async" data-page-node-id="AF3bUK432RUAoBulCuyuj0">
-                </div>
-                <span class="brand-name" data-page-node-id="FaW69e6OcCPFCtuPAnTvR2">TAYANCH<span class="brand-dot" data-page-node-id="0MCJdiqlXdLLX6cc74wSGx">.</span></span>
-            </a>
+    
 
-            <!-- Gamification HUD Bar (hidden until real progress is earned) -->
-            <div class="gamify-hud-container gamify-hidden" id="gamifyHUD" data-page-node-id="8Dw3fkNolh9hpKrltdK8zF">
-                <div class="gamify-stat xp-badge" id="xpBadgeHUD" data-page-node-id="fHNqMXErpnAwVSYHc83x4i">
-                    <i class="fa-solid fa-bolt" data-page-node-id="bsU4ak0A18C1wVbr8d5d73"></i> <span id="userXPVal" data-page-node-id="BX4GqwkpAqzryPmQ5ZiOK4">0 XP</span>
-                </div>
-                <div class="gamify-stat streak-badge" id="streakBadgeHUD" data-page-node-id="l7XizFYkGqgYoLysaKvs1g">
-                    <span id="userStreakVal" data-page-node-id="elsiOucnQxjYwZ8xSWFYDn">🔥 0 Combo</span>
-                </div>
-                <button class="badges-hud-btn" id="badgesHudBtn" data-page-node-id="ZSQwr5bXuHarlgp8BTE4JV">
-                    <i class="fa-solid fa-trophy" data-page-node-id="yzhiB2OmHxntBJyXPJRc6U"></i> Yutuqlar
-                </button>
-            </div>
-
-            <nav class="nav-links liquid-nav-capsule" id="navLinks" data-page-node-id="wrhutPBk4TrZxV3ukT3IUW">
-                <a href="#hero" class="nav-link active" data-i18n="navHome" data-page-node-id="gZmDnp8XT36oovBWTNvMy5">Bosh sahifa</a>
-                <a href="sat-dsat.html" class="nav-link" data-page-node-id="1MBOV6xAdFZbsB2eJVRpju"><i class="fa-solid fa-calculator" data-page-node-id="sMUbyu9oZIYIRPBgUi2O1X"></i> Digital SAT Hub</a>
-                <a href="general-english-beginner.html" class="nav-link" data-page-node-id="7Nm5Oz4BilHbBXk8ElEc5B"><i class="fa-solid fa-graduation-cap" data-page-node-id="cASCrZcfRN4oDPbHqk5mla"></i> English Hub</a>
-                <a href="#calculator" class="nav-link" data-i18n="navCalc" data-page-node-id="eChp7HvHxqRNKAdzogqvtJ">Kalkulyator</a>
-                <a href="#placement-quiz" class="nav-link" data-i18n="navQuiz" data-page-node-id="QIizu4K1UtCZlBumYITcvt">AI Test</a>
-                <a href="#mission" class="nav-link" data-i18n="navMission" data-page-node-id="oEAjJkaaAoGQd4uBNB0rre">Nega Tayanch</a>
-                <a href="courses.html" class="nav-link" data-page-node-id="iXCqCEMdWClR26VfOQbnBf"><span data-i18n="navCourses" data-page-node-id="TIQkddEtFYOIC9OuZkWJd4">Kurslar</span> <span class="badge-count" id="navCoursesCount" data-course-count="all" data-page-node-id="QI3ZMhU3yywPEYq8mXSTGk">30</span></a>
-                <a href="admission-essay-personal-statement.html" class="nav-link"><i class="fa-solid fa-feather-pointed"></i> Personal Statement</a>
-                <a href="#trust" class="nav-link" data-i18n="navProof" data-page-node-id="46WI7ERjjnSJINfxyeR17p">Natijalar</a>
-            </nav>
-
-            <div class="nav-actions" data-page-node-id="Y1ymNfAAQkeISKWkWp1jlo">
-                <!-- Multi-Language Switcher (UZ / EN) -->
-                <div class="lang-switcher liquid-pill" data-page-node-id="xOMDgDn2pEjFkBP83C6OfI">
-                    <button class="lang-btn active" id="langUzBtn" data-page-node-id="vx1PmZI2AG3MCghczw5CTV">UZ</button>
-                    <span class="lang-divider" data-page-node-id="jeDvHG4ZvCEKs1i25csOie">|</span>
-                    <button class="lang-btn" id="langEnBtn" data-page-node-id="Ucz0Tk5MzFTE5hAw2nhRDV">EN</button>
-                </div>
-
-                <button class="btn btn-primary btn-glow btn-liquid open-lead-modal-btn" data-course="Bosh Sahifa Hero" data-page-node-id="LpNnuurUgg4UZ40ApWAmam">
-                    <span class="btn-text" data-i18n="navApply" data-page-node-id="f4SPfYZeUGfbffnGODyQlx">Kursga a'zo bo'lish</span>
-                    <i class="fa-paper-plane fa-solid" data-page-node-id="zKYKm5iPId0tij8T1fFaiZ"></i>
-                    <div class="liquid-wave" data-page-node-id="Yl2LvVE6Jc270YRASbBFEw"></div>
-                </button>
-                <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Menu ochish" data-page-node-id="xvTQbplauBa2NhgnCRyCcf">
-                    <i class="fa-solid fa-bars-staggered" data-page-node-id="a42hOCPfbNl42zaeSKvTxq"></i>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Mobile Navigation Drawer -->
-    <div class="mobile-drawer" id="mobileDrawer" data-page-node-id="fJ1kj4pRdFTZ38KT6raLGI">
-        <div class="drawer-header" data-page-node-id="jKHPHQ6PB6yexVGBxXZ9ow">
-            <span class="brand-name" data-page-node-id="Ne9A0Vn6YbYuniDjrRxWYl">TAYANCH<span class="brand-dot" data-page-node-id="CBqvc6HvDlGC24AwpXPFVs">.</span></span>
-            <button class="drawer-close" id="drawerCloseBtn" data-page-node-id="XAHSJEXzdRXIXIlPwwHF3S"><i class="fa-solid fa-xmark" data-page-node-id="SyhDDPSDtC3BxGB00bCn5B"></i></button>
-</div>
-<div class="drawer-links" data-page-node-id="GCeNTFG6UeLiIAwU2rEj8K">
-            <!-- ASOSIY -->
-            <div class="drawer-group">
-                <div class="drawer-group-title">Asosiy</div>
-                <a href="#hero" class="drawer-link" data-i18n="navHome" data-page-node-id="EH07EPcFMghc1XrnfPyR1h">
-                    <i class="drawer-ico fa-solid fa-house"></i>
-                    <span class="drawer-label" data-i18n="navHome">Bosh sahifa</span>
-                </a>
-                <a href="#mission" class="drawer-link" data-i18n="navMission" data-page-node-id="nYIaW7ahn9qutZbsjgpsJk">
-                    <i class="drawer-ico fa-solid fa-star"></i>
-                    <span class="drawer-label" data-i18n="navMission">Nega Tayanch</span>
-                </a>
-            </div>
-
-            <!-- KURSLAR VA YO'NALISHLAR -->
-            <div class="drawer-group">
-                <div class="drawer-group-title">Kurslar va Yo&#39;nalishlar</div>
-                <a href="courses.html" class="drawer-link" data-i18n="navCourses" data-page-node-id="kyMDGPFiZxDu4YiQlILO5I">
-                    <i class="drawer-ico fa-solid fa-book"></i>
-                    <span class="drawer-label"><span data-i18n="navCourses">Kurslar</span> <span class="badge-count" data-course-count="all">30</span></span>
-                </a>
-                <a href="sat-dsat.html" class="drawer-link drawer-link--external">
-                    <i class="drawer-ico fa-solid fa-chart-line"></i>
-                    <span class="drawer-label">Digital SAT Hub</span>
-                    <span class="drawer-ext" aria-hidden="true">&#8599;</span>
-                </a>
-                <a href="general-english-beginner.html" class="drawer-link drawer-link--external" data-page-node-id="JkC7XsPpgp02FcVOHE8XjF">
-                    <i class="drawer-ico fa-solid fa-graduation-cap" data-page-node-id="XNruCq0K4MIqCfEN6IP76n"></i>
-                    <span class="drawer-label">General English Hub</span>
-                    <span class="drawer-ext" aria-hidden="true">&#8599;</span>
-                </a>
-                <a href="admission-essay-personal-statement.html" class="drawer-link drawer-link--external">
-                    <i class="drawer-ico fa-solid fa-feather-pointed"></i>
-                    <span class="drawer-label">Personal Statement (Insho)</span>
-                    <span class="drawer-ext" aria-hidden="true">&#8599;</span>
-                </a>
-            </div>
-
-            <!-- VOSITALAR -->
-            <div class="drawer-group">
-                <div class="drawer-group-title">Vositalar</div>
-                <a href="#calculator" class="drawer-link" data-i18n="navCalc" data-page-node-id="DtoWG5k1BJZZR8IXDGdCO2">
-                    <i class="drawer-ico fa-solid fa-calculator"></i>
-                    <span class="drawer-label" data-i18n="navCalc">Grant Kalkulyatori</span>
-                </a>
-                <a href="#placement-quiz" class="drawer-link" data-i18n="navQuiz" data-page-node-id="lvCvqY5kZgycKdis3UjsgZ">
-                    <i class="drawer-ico fa-solid fa-brain"></i>
-                    <span class="drawer-label" data-i18n="navQuiz">AI Daraja Testi</span>
-                </a>
-            </div>
-
-            <!-- ISHONCH -->
-            <div class="drawer-group">
-                <div class="drawer-group-title">Ishonch</div>
-                <a href="#trust" class="drawer-link" data-i18n="navProof" data-page-node-id="ks1IOJNzX6rjJ7eystzVDN">
-                    <i class="drawer-ico fa-solid fa-medal"></i>
-                    <span class="drawer-label" data-i18n="navProof">Natijalar &amp; Sertifikatlar</span>
-                </a>
-            </div>
-
-            <button class="btn btn-primary w-full mt-4 open-lead-modal-btn" data-course="Mobile Drawer" data-page-node-id="xmLOjowZCS4O6ocK7JsvGU">
-                <i class="fa-solid fa-pen-to-square" data-page-node-id="vHOI00h9hPpECQ93En0bdU"></i> <span data-i18n="applyNow" data-page-node-id="DiAZa3NnraPtuwOmuDnUDq">Ariza Qoldirish</span>
-            </button>
-            <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-secondary w-full mt-2" data-page-node-id="qUarnXxuLaVJhFzYjDlrF0">
-                <i class="fa-brands fa-telegram" data-page-node-id="4JlHCwPKUbP4hN4S18ec2q"></i> Telegram Kanal
-            </a>
-        </div>
+    
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Menyu ochish" aria-expanded="false" aria-controls="globalSidebar">
+  <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+</button>
+<aside class="global-sidebar" id="globalSidebar" aria-label="Asosiy navigatsiya">
+  <div class="sidebar-inner">
+    <a href="index.html" class="sidebar-brand">
+      <img src="assets/images/logo-header.png" alt="" aria-hidden="true" width="34" height="34">
+      <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
+    </a>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Asosiy</div>
+      <a href="index.html" class="sidebar-link" data-nav="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Bosh sahifa</span></a>
+      <a href="index.html#mission" class="sidebar-link" data-nav="mission"><i class="fa-solid fa-star" aria-hidden="true"></i><span>Nega Tayanch</span></a>
+      <a href="courses.html" class="sidebar-link" data-nav="courses.html"><i class="fa-solid fa-book" aria-hidden="true"></i><span>Kurslar <span class="badge-count" data-course-count="all">30</span></span></a>
     </div>
-
-    <main data-page-node-id="9tOuf34cBqp0FfJiu454o5">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Yo'nalishlar</div>
+      <a href="ielts.html" class="sidebar-link" data-nav="ielts.html"><i class="fa-solid fa-language" aria-hidden="true"></i><span>IELTS &amp; Ingliz tili</span></a>
+      <a href="sat.html" class="sidebar-link" data-nav="sat.html"><i class="fa-solid fa-chart-line" aria-hidden="true"></i><span>SAT &amp; Math</span></a>
+      <a href="admission.html" class="sidebar-link" data-nav="admission.html"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span>Admission</span></a>
+      <a href="services.html" class="sidebar-link" data-nav="services.html"><i class="fa-solid fa-briefcase" aria-hidden="true"></i><span>Xizmatlar</span></a>
+      <a href="ai-courses.html" class="sidebar-link" data-nav="ai-courses.html"><i class="fa-solid fa-robot" aria-hidden="true"></i><span>AI Kurslar</span></a>
+      <a href="school-lessons.html" class="sidebar-link" data-nav="school-lessons.html"><i class="fa-solid fa-school" aria-hidden="true"></i><span>Maktab darslari</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Vositalar</div>
+      <a href="sat-dsat.html" class="sidebar-link" data-nav="sat-dsat.html"><i class="fa-solid fa-square-root-variable" aria-hidden="true"></i><span>Digital SAT Hub</span></a>
+      <a href="sat-mock.html" class="sidebar-link" data-nav="sat-mock.html"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i><span>SAT Mock Test</span></a>
+      <a href="general-english-beginner.html" class="sidebar-link" data-nav="general-english-beginner.html"><i class="fa-solid fa-feather" aria-hidden="true"></i><span>General English</span></a>
+      <a href="admission-essay-personal-statement.html" class="sidebar-link" data-nav="admission-essay-personal-statement.html"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i><span>Personal Statement</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Ishonch</div>
+      <a href="index.html#trust" class="sidebar-link" data-nav="trust"><i class="fa-solid fa-medal" aria-hidden="true"></i><span>Natijalar</span></a>
+      <a href="sitemap.html" class="sidebar-link" data-nav="sitemap.html"><i class="fa-solid fa-sitemap" aria-hidden="true"></i><span>Vizual Sitemap</span></a>
+      <a href="robots.html" class="sidebar-link" data-nav="robots.html"><i class="fa-solid fa-robot" aria-hidden="true"></i><span>Robots</span></a>
+    </div>
+    <div class="sidebar-cta">
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Telegram'da Ariza</a>
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-telegram" aria-hidden="true"></i> Kanal</a>
+    </div>
+  </div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<main data-page-node-id="9tOuf34cBqp0FfJiu454o5">
         <!-- Hero Section (Stitch Liquid Obsidian Glass Integration) -->
         <section class="hero-section liquid-obsidian-hero" id="hero" data-page-node-id="ovcDkWI9DRQf9WLDa1lqxW">
             <div class="container hero-container" data-page-node-id="lQ4z1Bb3CIG6jYM7INgniC">
@@ -466,268 +385,50 @@
              3 PILLARS — Yo'nalishlar (Stitch Lumina Glass, B3)
              Hero'dan keyin. Kurs katalogini kategoriya bo'yicha filtrlaydi.
              ============================================================ -->
-        <section class="section pillars-section" id="pillars" aria-labelledby="pillarsTitle" data-page-node-id="1E1dDvmN1geUT8jA5yduXw">
-            <div class="container" data-page-node-id="mKVJJadvFOxTEU63aBL1Xg">
-                <div class="section-header text-center gsap-reveal" data-page-node-id="rGTQ8coi4uTQmBz6b0sf8N">
-                    <div class="section-tag" data-page-node-id="qSoRZINt4RrijrGtperjsk">Yo'nalishlar</div>
-                    <h2 class="section-title" id="pillarsTitle" data-page-node-id="FxB66QJm8nKeKatF6A1lR2">Uchta yo'nalish — <span class="gradient-text" data-page-node-id="NZQgKJXV1WupDQnKbGJ9bY">bittasi sizniki</span></h2>
-                    <p class="section-desc" data-page-node-id="OGByErwBPxIaTI3Afj6aSV">Qaysi yo'nalish sizga mosligini tanlang va shu zahoti tegishli kurslarni ko'ring.</p>
-                </div>
-
-                <div class="pillars-grid" data-page-node-id="kJCdrIPgU6ZrdyQO2HTqWC">
-                    <a href="courses.html" class="pillar-card gsap-reveal" data-pillar-filter="ai" data-page-node-id="sAdZfxoPiORl4NEr2BSIhO">
-                        <span class="pillar-icon" aria-hidden="true" data-page-node-id="4aYCu078IhP7zIbGzIqiAL">
-                            <i class="fa-solid fa-brain" data-page-node-id="geGCviJeU8SInhDfEX90b5"></i>
-                        </span>
-                        <h3 data-page-node-id="9CWlUPGnYVTMBewswgyVuZ">Sun'iy Intelekt (AI)</h3>
-                        <p data-page-node-id="4neoPCOZnuSeVqHPNXkjMK">ChatGPT, Claude va boshqa AI vositalaridan foydalanishni o'rganing</p>
-                        <span class="pillar-cta" data-page-node-id="zRjCAJXvb40N58xtEmCTu7">
-                            AI kurslarini ko'rish
-                            <i class="fa-solid fa-arrow-right" aria-hidden="true" data-page-node-id="FfaZ5IbIqnJCP96ipXqo9N"></i>
-                        </span>
-                    </a>
-
-                    <a href="courses.html" class="pillar-card gsap-reveal" data-pillar-filter="ielts" data-page-node-id="Vimoh3E5c12RWVeDnWogus">
-                        <span class="pillar-icon" aria-hidden="true" data-page-node-id="qqa8eHpsDRrc0nlKp97uCT">
-                            <i class="fa-solid fa-language" data-page-node-id="SQa2T7dAOyp6x9V6XIjWlO"></i>
-                        </span>
-                        <h3 data-page-node-id="7moXP8ZzqDRnkCaPWdD8RP">IELTS &amp; Ingliz tili</h3>
-                        <p data-page-node-id="liiGQbdHK6BXrQGHBcAlfw">IELTS Band 7.0+ uchun aniq strategiya va amaliyot</p>
-                        <span class="pillar-cta" data-page-node-id="tUvPfhNVuKVwZgaa6ie9Qh">
-                            IELTS kurslarini ko'rish
-                            <i class="fa-solid fa-arrow-right" aria-hidden="true" data-page-node-id="rI2R5gM7X1GHzugPXFDPu7"></i>
-                        </span>
-                    </a>
-
-                    <a href="courses.html" class="pillar-card gsap-reveal" data-pillar-filter="admission" data-page-node-id="epzICpKSVj3wDEue2LZoLV">
-                        <span class="pillar-icon" aria-hidden="true" data-page-node-id="TAcOBfQeRPtFOssaCvXVyb">
-                            <i class="fa-solid fa-graduation-cap" data-page-node-id="cZbV44tKGoWhjAFZ31WrLa"></i>
-                        </span>
-                        <h3 data-page-node-id="z9jBP0KBiefykr8ACkxFVm">Admission &amp; SAT</h3>
-                        <p data-page-node-id="lWYLG41JQ2mDlun0moanB6">Xalqaro universitetlarga grant bilan kirish</p>
-                        <span class="pillar-cta" data-page-node-id="xTwGM24owu5L0bE1WR2FmR">
-                            Admission kurslarini ko'rish
-                            <i class="fa-solid fa-arrow-right" aria-hidden="true" data-page-node-id="lld3EB2ZEQ3x1EBO6s5tG5"></i>
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </section>
+        <section class="section pillars-section" id="directions" aria-labelledby="directionsTitle">
+  <div class="container">
+    <div class="section-header text-center gsap-reveal">
+      <div class="section-tag">Yo'nalish tanlang</div>
+      <h2 class="section-title" id="directionsTitle">Qaysi yo'nalish <span class="gradient-text">senga mos?</span></h2>
+      <p class="section-desc">O'z maqsadingni tanla — tegishli kurslar, vositalar va qo'llanmalar bir joyda.</p>
+    </div>
+    <div class="pillars-grid directions-grid">
+      <a href="ielts.html" class="pillar-card gsap-reveal direction-card">
+        <span class="pillar-icon" aria-hidden="true"><i class="fa-solid fa-language"></i></span>
+        <h3>IELTS &amp; Ingliz tili</h3>
+        <p>Band 7.0+ uchun strategiya, General English va bepul AI Daraja Testi.</p>
+        <span class="pillar-cta">IELTS yo'nalishiga o'tish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="sat.html" class="pillar-card gsap-reveal direction-card">
+        <span class="pillar-icon" aria-hidden="true"><i class="fa-solid fa-chart-line"></i></span>
+        <h3>SAT &amp; Math Prep</h3>
+        <p>Digital SAT Hub, SAT Mock testi va Desmos kalkulyator sirlari.</p>
+        <span class="pillar-cta">SAT yo'nalishiga o'tish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="admission.html" class="pillar-card gsap-reveal direction-card">
+        <span class="pillar-icon" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></span>
+        <h3>Admission &amp; Grant</h3>
+        <p>Personal Statement, Grant Kalkulyatori va top universitetlarga kirish.</p>
+        <span class="pillar-cta">Admission yo'nalishiga o'tish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="services.html" class="pillar-card gsap-reveal direction-card">
+        <span class="pillar-icon" aria-hidden="true"><i class="fa-solid fa-briefcase"></i></span>
+        <h3>Xizmatlar</h3>
+        <p>Second Brain va shaxsiy sayt yasab berish xizmatlari.</p>
+        <span class="pillar-cta">Xizmatlarni ko'rish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+    </div>
+  </div>
+</section>
 
         <!-- Open Education & Source Audit Section -->
-        <section class="section pitch-section" id="startup-pitch" data-page-node-id="4PVP52EX1C5AKp1uHb66Aj">
-            <div class="container" data-page-node-id="Ky18EqE0w3O5APAKjyL007">
-                <div class="pitch-card liquid-glass-card gsap-reveal" data-page-node-id="i4b76AHYzkSjQKVOy7A9X7">
-                    <div class="pitch-grid" data-page-node-id="KTD0VetWGVdKQwbvAkYOPx">
-                        <div class="pitch-content" data-page-node-id="b7YNUeKsTl8Uk6HLSZWKZy">
-                            <span class="cta-tag liquid-pill" data-page-node-id="ZIlyKypSE5HjQANWsDqmSX"><i class="fa-solid fa-shield-halved" data-page-node-id="zeYBzD38qgc8pJKQGwC5rf"></i> Ochiq va Shaffof Ta'lim</span>
-                            <h2 class="pitch-title mt-2" data-page-node-id="kgaQjTy0Yw2XRDJHlqUC8r">Ochiq Manbalar & <span class="gradient-text" data-page-node-id="YVfce7ZX44xwHmY9CJGJ8m">Litsenziyalar Shaffofligi</span></h2>
-                            <p class="pitch-desc" data-page-node-id="SOzM8AJUgJkB6BdALoJKpN">Tayanch — yoshlar uchun sifatli va amaliy ta'lim bilimlari ulashuvchi platformadir. Ba'zi kurs materiallari (masalan General English) ochiq litsenziyali manbalardan tayyorlangan.</p>
-                            
-                            <div class="pitch-metrics-grid mt-4" data-page-node-id="7xWUDoqxZCxKDFrqniPu2m">
-                                <div class="p-metric-item" style="grid-column: span 3;" data-page-node-id="dLyTrKlfEHdVsJJpxBfoXo">
-                                    <span class="p-lbl" style="font-size: 0.95rem; color: #ffffff;" data-page-node-id="FljUa7k0jgVjPcnR1rOVF7"><i class="fa-solid fa-circle-check text-success" data-page-node-id="SrPpabIPABTEmhqOIxsYta"></i> Ba'zi kurs materiallari ochiq litsenziyali manbalardan tayyorlangan</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pitch-action-col text-center" data-page-node-id="UPcdlATIQM2VswHTpbDZnM">
-                            <div class="badge-icon-box liquid-glow-avatar" data-page-node-id="rEj6TKEGZSXOGiSHiMFqBO">
-                                <i class="fa-solid fa-file-shield" data-page-node-id="HLfFSqeb6SUGqAaXSwujtF"></i>
-                            </div>
-                            <h4 class="mt-3" data-page-node-id="cpucejf8gZwpajGClZkMoV">Ochiq Manbalar Auditi</h4>
-                            <p class="text-muted text-sm mt-1" data-page-node-id="tkaZwkbU8aiZrVfgzIA0MY">Ochiq manbalar litsenziya muvofiqligi va audit jurnali.</p>
-                            <a href="general-english-sources-log.txt" target="_blank" rel="noopener noreferrer" class="btn btn-secondary mt-3" data-page-node-id="unNfqbdxxZYntYDidtGxhP">
-                                <i class="fa-solid fa-file-shield" data-page-node-id="VBaMaY73N93kIMb5bdZshl"></i> Open Source Audit Log
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
 
         <!-- Interactive AI Placement Quiz Widget Section -->
-        <section class="section quiz-section" id="placement-quiz" data-page-node-id="jwxjkEbbvWuQiHrVQ5T1E3">
-            <div class="container" data-page-node-id="ueotWf5QCav3to1w1ZTVji">
-                <div class="quiz-card liquid-glass-card gsap-reveal" data-page-node-id="5KgXMMcZJqQk8kbSo8Mg9g">
-                    <div class="section-header text-center" data-page-node-id="SVUkuUpEt4XodJX3l3MY9m">
-                        <div class="section-tag" data-page-node-id="7pEF1st05XSFtYJLjOJ17g"><i class="fa-solid fa-brain" data-page-node-id="3I7Y6JfW0GiP4I6hxJXvrQ"></i> Express Test</div>
-                        <h2 class="section-title" data-page-node-id="Vskxmy1RQIvYxlIZhS3Smc">3-Daqiqalik <span class="gradient-text" data-page-node-id="75gGmmynFkV2C9KRyWCHsw">AI Daraja Testi</span></h2>
-                        <p class="section-desc" data-page-node-id="GjekpDfyqn7ctki5TiQrmJ">Ingliz tili va AI bilimlaringizni zudlik bilan baholang hamda shaxsiy CEFR darajangizni oling.</p>
-                    </div>
-
-                    <div class="quiz-widget-body text-center" id="quizContainer">
-                        <div class="quiz-progress-wrap" id="quizProgressWrap">
-                            <div class="quiz-progress-track"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
-                            <span class="quiz-progress-label" id="quizProgressLabel">Savol 1 / 8</span>
-                        </div>
-
-                        <div class="quiz-step" id="quizStep1" data-step="1">
-                            <h3 class="quiz-q">1. Select the correct sentence structure for academic writing:</h3>
-                            <div class="quiz-options-grid mt-3">
-                                <button class="quiz-opt-btn" data-score="1">A) "The study demonstrates significant results."</button>
-                                <button class="quiz-opt-btn" data-score="0">B) "The study demonstrate very big results."</button>
-                            </div>
-                        </div>
-
-                        <div class="quiz-step" id="quizStep2" style="display:none;" data-step="2">
-                            <h3 class="quiz-q">2. Which AI tool is specialized for Literature Review &amp; Academic Papers?</h3>
-                            <div class="quiz-options-grid mt-3">
-                                <button class="quiz-opt-btn" data-score="1">A) Consensus &amp; Elicit AI</button>
-                                <button class="quiz-opt-btn" data-score="0">B) Simple Calculator</button>
-                            </div>
-                        </div>
-
-                        <div class="quiz-step" id="quizStep3" style="display:none;" data-step="3">
-                            <h3 class="quiz-q">3. Choose the correct Third Conditional form:</h3>
-                            <div class="quiz-options-grid mt-3">
-                                <button class="quiz-opt-btn" data-score="0">A) If she studies harder, she will pass the exam.</button>
-                                <button class="quiz-opt-btn" data-score="1">B) If she had studied harder, she would have passed the exam.</button>
-                                <button class="quiz-opt-btn" data-score="0">C) If she studied harder, she would pass the exam.</button>
-                            </div>
-                        </div>
-
-                        <div class="quiz-step" id="quizStep4" style="display:none;" data-step="4">
-                            <h3 class="quiz-q">4. Which word best replaces "significant" in academic writing?</h3>
-                            <div class="quiz-options-grid mt-3">
-                                <button class="quiz-opt-btn" data-score="0">A) a lot of</button>
-                                <button class="quiz-opt-btn" data-score="0">B) very big</button>
-                                <button class="quiz-opt-btn" data-score="1">C) substantial</button>
-                            </div>
-                        </div>
-
-                        <div class="quiz-step" id="quizStep5" style="display:none;" data-step="5">
-                            <h3 class="quiz-q">5. In AI, what is a "hallucination"?</h3>
-                            <div class="quiz-options-grid mt-3">
-                                <button class="quiz-opt-btn" data-score="0">A) When the AI refuses to answer a question.</button>
-                                <button class="quiz-opt-btn" data-score="1">B) When the AI generates confident but factually incorrect information.</button>
-                                <button class="quiz-opt-btn" data-score="0">C) When the AI processes images instead of text.</button>
-                            </div>
-                        </div>
-
-                        <div class="quiz-step" id="quizStep6" style="display:none;" data-step="6">
-                            <h3 class="quiz-q">6. Convert to reported speech: "I have completed the assignment," she said.</h3>
-                            <div class="quiz-options-grid mt-3">
-                                <button class="quiz-opt-btn" data-score="0">A) She said she has completed the assignment.</button>
-                                <button class="quiz-opt-btn" data-score="1">B) She said she had completed the assignment.</button>
-                                <button class="quiz-opt-btn" data-score="0">C) She said she completed the assignment.</button>
-                            </div>
-                        </div>
-
-                        <div class="quiz-step" id="quizStep7" style="display:none;" data-step="7">
-                            <h3 class="quiz-q">7. Which transition best shows contrast in an IELTS Task 2 essay?</h3>
-                            <div class="quiz-options-grid mt-3">
-                                <button class="quiz-opt-btn" data-score="0">A) Furthermore</button>
-                                <button class="quiz-opt-btn" data-score="1">B) Nevertheless</button>
-                                <button class="quiz-opt-btn" data-score="0">C) Consequently</button>
-                            </div>
-                        </div>
-
-                        <div class="quiz-step" id="quizStep8" style="display:none;" data-step="8">
-                            <h3 class="quiz-q">8. The committee's findings were _______ by independent researchers.</h3>
-                            <div class="quiz-options-grid mt-3">
-                                <button class="quiz-opt-btn" data-score="1">A) corroborated</button>
-                                <button class="quiz-opt-btn" data-score="0">B) made</button>
-                                <button class="quiz-opt-btn" data-score="0">C) done</button>
-                            </div>
-                        </div>
-
-                        <div class="quiz-result-box mt-4" id="quizResultBox" style="display:none;">
-                            <div class="res-badge liquid-pill"><i class="fa-solid fa-award"></i> Tizim Diagnostikasi Natijasi</div>
-                            <h3 class="mt-2" id="quizResultLevel">Darajangiz: CEFR B2 (Upper-Intermediate)</h3>
-                            <p class="quiz-score-note" id="quizScoreNote">8 tadan 0 ta to'g'ri javob</p>
-                            <p class="text-muted mt-1" id="quizResultText">Siz uchun tavsiya etiladigan kurs: IELTS Writing Task 2 va Practical AI.</p>
-                            <button class="btn btn-secondary mt-3" id="quizRetryBtn">
-                                <i class="fa-solid fa-rotate-right"></i> Testni qayta topshirish
-                            </button>
-                            <button class="btn btn-primary btn-glow btn-liquid mt-3 open-lead-modal-btn" data-course="AI Quiz Result">
-                                <span class="btn-text">Natija Bilan Ariza Topshirish</span>
-                                <div class="liquid-wave"></div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
 
         <!-- Interactive Grant & Course Eligibility Calculator Section -->
-        <section class="section calc-section" id="calculator" data-page-node-id="RCMq60RWGU3zQB0vrLv6lk">
-            <div class="container" data-page-node-id="qG4U1U3EBiNWdNUGmF2eQP">
-                <div class="calc-card liquid-glass-card gsap-reveal" data-page-node-id="k92vBBBjOgY3Rgp0sWbdvb">
-                    <div class="section-header text-center" data-page-node-id="uijU3mG1twgcPrJXpGwZxR">
-                        <div class="section-tag" data-page-node-id="NFj2kK4HVehV47jUcT1GE5"><i class="fa-solid fa-calculator" data-page-node-id="VCzCo65Ps1dvQ55BFGUKi4"></i> Interaktiv Kalkulyator</div>
-                        <h2 class="section-title" data-page-node-id="os34tHAzFf01IYnpN7sbdi">Grant va Kurs <span class="gradient-text" data-page-node-id="xboCi4aznhBzTrHceqc25K">Mosligini Hisoblang</span></h2>
-                        <p class="section-desc" data-page-node-id="4AaouMkDEXcTxkUFB8k8iE">Joriy ingliz tili darajangiz va maqsadingizni tanlang, tizim siz uchun mos kurslarni tavsiya qiladi.</p>
-                    </div>
-
-                    <div class="calc-grid" data-page-node-id="IQeDoigvGKikvBEDRUwFaH">
-                        <div class="calc-inputs-col" data-page-node-id="1lfbudTrwEuYhGBTJiBURy">
-                            <div class="calc-group" data-page-node-id="1MOpyXPwsWicAXUHIQ5BeV">
-                                <label for="calcLevel" data-page-node-id="uHUF1vWIGX77k53pfk37Bb"><i class="fa-solid fa-signal" data-page-node-id="sMrWholjTUUugALL4tsTO1"></i> Joriy Ingliz tili darajangiz:</label>
-                                <select id="calcLevel" class="form-select" data-page-node-id="3LP9ObrW6X8Ybo9f3gq6kz">
-                                    <option value="a2" data-page-node-id="FZjxxMVhWq0MoL2hpvAQ86">A2 (Elementary)</option>
-                                    <option value="b1" data-page-node-id="xc4Szob8L3DCjFneDkxGrH">B1 (Intermediate)</option>
-                                    <option value="b2" selected data-page-node-id="1hOLHXxCxVAMRr2DdkVsEm">B2 (Upper-Intermediate)</option>
-                                    <option value="c1" data-page-node-id="Z6WcIE7BPSFNW3qQsrk1Cg">C1 (Advanced)</option>
-                                </select>
-                            </div>
-
-                            <div class="calc-group" data-page-node-id="larwT0BjWADsoWanZF8Qew">
-                                <label for="calcIelts" data-page-node-id="Ts1fwR3MqLuiG6RB6bKnJJ"><i class="fa-solid fa-bullseye" data-page-node-id="VCvZTNP3qI6rU9Gv1Ocyzt"></i> Maqsadingizdagi IELTS Balli:</label>
-                                <select id="calcIelts" class="form-select" data-page-node-id="DMf2CJLHQxPSc2AGnGHA7O">
-                                    <option value="6.5" data-page-node-id="eeEY703QSw4GaBF1Qo4pLE">Band 6.5 (Xalqaro universitetlar)</option>
-                                    <option value="7.0" selected data-page-node-id="BWrh6LEeGN2sd0FFYneoNN">Band 7.0 (Top 100 Grantlar)</option>
-                                    <option value="7.5" data-page-node-id="GIA3DPuE6rnMoDIcZynL7j">Band 7.5+ (Ivy League & Full-Ride)</option>
-                                </select>
-                            </div>
-
-                            <div class="calc-group" data-page-node-id="fuxnSRlKJJuRsukZcOoEaq">
-                                <label for="calcGoal" data-page-node-id="YoOwx92IdrDWCrIcuOcCEm"><i class="fa-solid fa-robot" data-page-node-id="PjTAEXdBDP4DAgcHrFPxBF"></i> AI va SAT yo'nalishi bo'yicha maqsad:</label>
-                                <select id="calcGoal" class="form-select" data-page-node-id="s2Z4HldEDgjZhf6hPEMVT5">
-                                    <option value="ai" data-page-node-id="2jPFQHZ8gNeiosH9lxbsmn">AI vositalari va Unumdorlik</option>
-                                    <option value="sat" data-page-node-id="4fZm2eslO3Fp7SdBCercrl">SAT Math 750+ va Digitial SAT</option>
-                                    <option value="admission" selected data-page-node-id="fFad2xPN63een2Hbyvd1qE">US & European Top Universities Full-Ride</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="calc-results-col" data-page-node-id="2RwgorOnSmpVqJR6thRMSA">
-                            <div class="results-box liquid-card" data-page-node-id="WZZXnaehhd4bZVua3AmDvZ">
-                                <h4 data-page-node-id="i9a68Ges1NtH5OcDrCmmx1">Sizga mos tavsiyalar:</h4>
-                                <p class="result-note" data-page-node-id="PjNr7twBigX9bURLSXPTy5">Darajangiz va maqsadingizga qarab, quyidagi Tayanch kurslarini ko'rib chiqishingiz mumkin:</p>
-
-                                <div class="recommended-courses-list mt-3" data-page-node-id="bhoDfp3IHTuxrM6KFdUMtk">
-                                    <span data-page-node-id="59Hh6lQ9drWmIio6uPHYLB">Tavsiya etiladigan mos Tayanch kurslari:</span>
-                                    <ul id="resCoursesList" data-page-node-id="pkzKwN1BPE6dvfJKq7iLyc">
-                                        <li data-page-node-id="bDZLOgsn1B9sA75nrpL03K"><i class="fa-solid fa-check" data-page-node-id="vvROhRMUexAQ0ZjGgFpEgd"></i> IELTS Writing Task 2 Masterclass</li>
-                                        <li data-page-node-id="B6pt6BCS3e4bol3LZYRkPk"><i class="fa-solid fa-check" data-page-node-id="c7VjQU5ocfEHyn99Ma0KOS"></i> <a href="admission-essay-personal-statement.html">US College Application Essay (Personal Statement)</a></li>
-                                    </ul>
-                                </div>
-
-                                <div style="font-size: 0.72rem; color: var(--text-dim); margin-top: 12px; text-align: center;" data-page-node-id="ZjigWcNmAwCzCRcSyCiaLD">
-                                    <i class="fa-solid fa-chart-line" data-page-node-id="yXSItZibDOeF6DWqdFBMKD"></i> * Bu — ochiq manbalardagi AQSh universitetlari moliyaviy yordam (financial aid) diapazonlari asosidagi taxminiy simulyatsiya. Haqiqiy Tayanch o'quvchilari statistikasiga asoslanmagan va moliyaviy kafolat emas.
-                                </div>
-
-                                <div class="grant-eligibility-meter mt-4">
-                                    <div class="grant-meter-head">
-                                        <span><i class="fa-solid fa-trophy"></i> Taxminiy Grant Mosligi (simulyatsiya)</span>
-                                        <span class="grant-percent" id="resGrantPercent">—</span>
-                                    </div>
-                                    <div class="grant-meter-track">
-                                        <div class="grant-meter-fill" id="resGrantProgress" style="width:0%;"></div>
-                                    </div>
-                                    <div class="grant-amount" id="resGrantAmount">—</div>
-                                </div>
-
-                                <button class="btn btn-primary btn-glow btn-liquid w-full mt-3 open-lead-modal-btn" id="calcApplyBtn" data-course="Kalkulyator Natijasi bo'yicha" data-page-node-id="KoddqAnyp1AE90o9pr1Wwz">
-                                    <span class="btn-text" data-page-node-id="UY9Uy4XpSRIsGmmcUVRCrB"><i class="fa-solid fa-paper-plane" data-page-node-id="vj4iGFkdZui6pnP0nwbN86"></i> Ushbu Natija Bilan Ariza Topshirish</span>
-                                    <div class="liquid-wave" data-page-node-id="8lnexmiDMNObnKAlIxjw8N"></div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
 
         <!-- Mission / Nega Tayanch Section -->
         <section class="section mission-section" id="mission" data-page-node-id="4CREuv9wj4eKt0lZkPL1eB">
@@ -779,100 +480,7 @@
         </section>
 
         <!-- Courses Section -->
-        <section class="section courses-section" id="courses" data-page-node-id="97sJNINjXZ1ecUmzVli4sd">
-            <div class="container" data-page-node-id="AEQZplFOpLxS4aqBFHWkIU">
-                <div class="section-header text-center gsap-reveal" data-page-node-id="6CDSVHzGIAJlTmgX2aDdr9">
-                    <div class="section-tag" data-page-node-id="lGZxbAFrlh2NYD1fgkN4vv">O'quv Dasturlari</div>
-                    <h2 class="section-title" data-page-node-id="aELWTzRLS0iTQYVWP1BcA6">Barcha <span class="gradient-text" id="coursesTotalHeading" data-course-count-label="all" data-page-node-id="xMtf8uR5X5AKm48q8yCnV7">30 ta Kurslar</span> katalogi</h2>
-                    <p class="section-desc" data-page-node-id="moKasgKLqYut0ddDgawqrg">O'zingizga mos yo'nalishni tanlang va bilimlaringizni amalda qo'llang.</p>
-                </div>
-
-                <!-- Filter Controls & Search -->
-                <div class="catalog-controls gsap-reveal" data-page-node-id="SvTs9oWkTzalSzJ1IPNC5A">
-                    <div class="search-box liquid-search" data-page-node-id="lfOYEzGS49VB0L6nQrUxkQ">
-                        <i class="fa-solid fa-magnifying-glass search-icon" data-page-node-id="C3HaArYArJXRceU47bna7v"></i>
-                        <input type="text" id="courseSearchInput" placeholder="Kurs nomi yoki kalit so'zni kiriting..." aria-label="Kurslarni qidirish" data-page-node-id="3kX1q3oTmZAaDVXGUMT8br">
-                        <button id="clearSearchBtn" class="clear-btn" style="display:none;" aria-label="Tozalash" data-page-node-id="Kc8k6DdFweRpRViHXt2Ttb"><i class="fa-solid fa-xmark" data-page-node-id="qVqYvbUj0hvqARDvV1bdL1"></i></button>
-                    </div>
-
-                    <div class="filter-tabs" id="filterTabs" data-page-node-id="TWot2fV5YzvADJwdSZbbDX">
-                        <button class="tab-btn active liquid-tab" data-category="all" data-page-node-id="fVxGOPOvVt2j8NtP8I8Axj">
-                            <span data-page-node-id="YHBDugA2fLowM7NFva1dLz">Barchasi</span>
-                            <span class="tab-count" id="countAll" data-course-count="all" data-page-node-id="JdZurRLNZmIeJkvVAMzJg1">30</span>
-                        </button>
-                        <button class="tab-btn liquid-tab" data-category="ai" data-page-node-id="1MPy5QFjmKMKswQdcBd2ct">
-                            <i class="fa-solid fa-robot" data-page-node-id="vsh3EYmaWiW0Kr0hga04Nx"></i>
-                            <span data-page-node-id="ohRM9wV3KN10GOg0ZMVD6w">Sun'iy Intelekt (AI)</span>
-                            <span class="tab-count" data-page-node-id="yFIDj1jFR7B2eUFQoIgbpa">9</span>
-                        </button>
-                        <button class="tab-btn liquid-tab" data-category="ielts" data-page-node-id="QtmCkVGxQGNBnf8OeUOvus">
-                            <i class="fa-solid fa-language" data-page-node-id="F9u38qZESl2ByT68ptEvVo"></i>
-                            <span data-page-node-id="gAqKwKgOMmh90dtLoH9KtL">IELTS & Ingliz tili</span>
-                            <span class="tab-count" data-page-node-id="JheIlsJQ7YdmvAMTDRX5e4">11</span>
-                        </button>
-                        <button class="tab-btn liquid-tab" data-category="admission" data-page-node-id="P5RcHNHtJuUDfs8fCj1a4h">
-                            <i class="fa-solid fa-building-columns" data-page-node-id="mDiPgnPX9p2yiWidYgVwHx"></i>
-                            <span data-page-node-id="PTnxDYpUx57hSpyCy3FFr7">Admission & SAT</span>
-                            <span class="tab-count" data-page-node-id="TAiwANs1okhUJECaCDlqaD">10</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Courses Grid -->
-                <div class="grid grid-3 courses-grid" id="coursesGrid" data-page-node-id="OOkqN3e3BlvcCz9iq5clsC">
-                    <!-- Static Fallback for Search Engine Crawlers & JS Disabled -->
-                    <div class="course-card liquid-card tilt-card" data-page-node-id="pCRkBkz47z85U0hd0xJG7Z">
-                        <div class="course-top" data-page-node-id="NUD6AtQpDrc2NkGbNHSYyb">
-                            <div class="course-thumb-wrapper" data-page-node-id="4Cv92ZcQTheijdugMbFBSm">
-                                <picture><source srcset="assets/images/ai_hero.webp" type="image/webp"><img loading="lazy" decoding="async" src="assets/images/ai_hero.jpg" alt="ChatGPT & Advanced Prompt Engineering" class="course-thumb-img" width="350" height="140" data-page-node-id="ebmmFqvOE8PuVkEAXKS0Oi"></picture>
-                                <div class="course-thumb-overlay" data-page-node-id="GmYeOqw0WFU0e0eRlTtRlt"></div>
-                                <span class="category-tag cat-ai thumb-tag" data-page-node-id="teH8QHuO4Z9DXu6XxtyrpH">Sun'iy Intelekt (AI)</span>
-                            </div>
-                            <div class="course-meta" data-page-node-id="nnCDKrDofftvMXcLCUaNLN">
-                                <span class="course-badge" data-page-node-id="n4cCAdndHmkvh0dCaxpBKQ"><i class="fa-solid fa-code" data-page-node-id="nsz9bhuAyD1hBHZWXwZqMA"></i> Intensiv</span>
-                            </div>
-                            <h3 class="course-title" data-page-node-id="zgeUFO4GJHZA7dTgHU262J">ChatGPT & Advanced Prompt Engineering</h3>
-                            <p class="course-desc" data-page-node-id="oXy2Fm6SOQh1HDU02tBMwF">Mukammal promptlar yozish, Custom GPTs yaratish hamda kognitiv topshiriqlarni sun'iy intelektga topshirish.</p>
-                        </div>
-                    </div>
-                    <div class="course-card liquid-card tilt-card" data-page-node-id="T6YiXXYW78JD3a1FL1DTCA">
-                        <div class="course-top" data-page-node-id="TOSnae85ew8tGnrEMnD8r1">
-                            <div class="course-thumb-wrapper" data-page-node-id="g0SCk1jEuaH00AutUJNbqV">
-                                <picture><source srcset="assets/images/founder.webp" type="image/webp"><img loading="lazy" decoding="async" src="assets/images/founder.jpg" alt="IELTS Writing Task 2 Masterclass" class="course-thumb-img" width="350" height="140" data-page-node-id="NqRuaX7FC2pNoBWuNRMJyN"></picture>
-                                <div class="course-thumb-overlay" data-page-node-id="saNEWQF9wde2G9INXlAY5P"></div>
-                                <span class="category-tag cat-ielts thumb-tag" data-page-node-id="6H20VkPvCMYcQz780sfaBd">IELTS & Ingliz tili</span>
-                            </div>
-                            <div class="course-meta" data-page-node-id="iZLVAD9BAvaxEZpfFsMGCq">
-                                <span class="course-badge" data-page-node-id="W6IZARF3Omoy6MXozUo9u1"><i class="fa-solid fa-pen-nib" data-page-node-id="URc2zxYFm9TAfRN8cFi2Wm"></i> Top Natija</span>
-                            </div>
-                            <h3 class="course-title" data-page-node-id="VCwS7C7dFbJcsDpAf9n926">IELTS Writing Task 2 Masterclass</h3>
-                            <p class="course-desc" data-page-node-id="s7xBQ9kSvkWENg4FvhXPhU">Insho turlari, aniq struktura andozalari, akademik lug'at va Band 7.0+ maqsad qilganlar uchun grammatikasi.</p>
-                        </div>
-                    </div>
-                    <div class="course-card liquid-card tilt-card" data-page-node-id="84N8rPtQ4N53UHWNmJWcQl">
-                        <div class="course-top" data-page-node-id="GJ1xb3wGV8MGnEP4dXGvD9">
-                            <div class="course-thumb-wrapper" data-page-node-id="WV05oNkqhevnluxTbna1qa">
-                                <picture><source srcset="assets/images/university_grant.webp" type="image/webp"><img loading="lazy" decoding="async" src="assets/images/university_grant.jpg" alt="Digital SAT Math Mastery" class="course-thumb-img" width="350" height="140" data-page-node-id="T5rQQMpHCC7Bch5JWmk27Y"></picture>
-                                <div class="course-thumb-overlay" data-page-node-id="u9jWBO5wEQwRgyF6WofLSc"></div>
-                                <span class="category-tag cat-admission thumb-tag" data-page-node-id="oK70hCxtzoWBqsnMmK3B4R">Admission & SAT</span>
-                            </div>
-                            <div class="course-meta" data-page-node-id="rZ1DdL5gIv2HyEutdi3Jmg">
-                                <span class="course-badge" data-page-node-id="Tlh8F7RpkXiKO6G7TDMEzF"><i class="fa-solid fa-calculator" data-page-node-id="IwANZuT6e5dNJG040LKDMo"></i> Top 800</span>
-                            </div>
-                            <h3 class="course-title" data-page-node-id="LPXDCoXPFO0LbIETfpd8NT">Digital SAT Math Mastery (800 Score Strategy)</h3>
-                            <p class="course-desc" data-page-node-id="pYaxhrbrnl9QyRFyPqW8Q2">Digital SAT Matematika bo'limi formulalari va Desmos kalkulyatoridan samarali foydalanish.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="no-results" id="noResultsMsg" style="display: none;" data-page-node-id="en3QX59zYWQl1M05kc6aIC">
-                    <i class="fa-regular fa-folder-open" data-page-node-id="pvCfsux1EByobpvRprrrJu"></i>
-                    <h3 data-page-node-id="Ms0EJK4FsI2zIGEKBgeGKS">Kurs topilmadi</h3>
-                    <p data-page-node-id="XvzCVvjApUAF6VI8U7mLjs">Qidiruv bo'yicha hech qanday mos keluvchi kurs mavjud emas.</p>
-                    <button class="btn btn-secondary mt-3" id="resetFilterBtn" data-page-node-id="VdpYAbhznZgKRtwdsu8JJQ">Barcha kurslarni ko'rsatish</button>
-                </div>
-            </div>
-        </section>
+        
 
         <!-- Proof & Certificates Interactive Slider Section -->
         <section class="section proof-section" id="trust" data-page-node-id="gysyPCktKZWKp6dbc18VDu">
@@ -1244,5 +852,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+    <script src="nav.js" defer></script>
 </body>
 </html>

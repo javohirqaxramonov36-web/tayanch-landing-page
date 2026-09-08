@@ -22,34 +22,57 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sidebar.css">
 </head>
 <body class="liquid-theme">
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Menyu ochish" aria-expanded="false" aria-controls="globalSidebar">
+  <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+</button>
+<aside class="global-sidebar" id="globalSidebar" aria-label="Asosiy navigatsiya">
+  <div class="sidebar-inner">
+    <a href="index.html" class="sidebar-brand">
+      <img src="assets/images/logo-header.png" alt="" aria-hidden="true" width="34" height="34">
+      <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
+    </a>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Asosiy</div>
+      <a href="index.html" class="sidebar-link" data-nav="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Bosh sahifa</span></a>
+      <a href="index.html#mission" class="sidebar-link" data-nav="mission"><i class="fa-solid fa-star" aria-hidden="true"></i><span>Nega Tayanch</span></a>
+      <a href="courses.html" class="sidebar-link" data-nav="courses.html"><i class="fa-solid fa-book" aria-hidden="true"></i><span>Kurslar <span class="badge-count" data-course-count="all">30</span></span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Yo'nalishlar</div>
+      <a href="ielts.html" class="sidebar-link" data-nav="ielts.html"><i class="fa-solid fa-language" aria-hidden="true"></i><span>IELTS &amp; Ingliz tili</span></a>
+      <a href="sat.html" class="sidebar-link" data-nav="sat.html"><i class="fa-solid fa-chart-line" aria-hidden="true"></i><span>SAT &amp; Math</span></a>
+      <a href="admission.html" class="sidebar-link" data-nav="admission.html"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span>Admission</span></a>
+      <a href="services.html" class="sidebar-link" data-nav="services.html"><i class="fa-solid fa-briefcase" aria-hidden="true"></i><span>Xizmatlar</span></a>
+      <a href="ai-courses.html" class="sidebar-link" data-nav="ai-courses.html"><i class="fa-solid fa-robot" aria-hidden="true"></i><span>AI Kurslar</span></a>
+      <a href="school-lessons.html" class="sidebar-link" data-nav="school-lessons.html"><i class="fa-solid fa-school" aria-hidden="true"></i><span>Maktab darslari</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Vositalar</div>
+      <a href="sat-dsat.html" class="sidebar-link" data-nav="sat-dsat.html"><i class="fa-solid fa-square-root-variable" aria-hidden="true"></i><span>Digital SAT Hub</span></a>
+      <a href="sat-mock.html" class="sidebar-link" data-nav="sat-mock.html"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i><span>SAT Mock Test</span></a>
+      <a href="general-english-beginner.html" class="sidebar-link" data-nav="general-english-beginner.html"><i class="fa-solid fa-feather" aria-hidden="true"></i><span>General English</span></a>
+      <a href="admission-essay-personal-statement.html" class="sidebar-link" data-nav="admission-essay-personal-statement.html"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i><span>Personal Statement</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Ishonch</div>
+      <a href="index.html#trust" class="sidebar-link" data-nav="trust"><i class="fa-solid fa-medal" aria-hidden="true"></i><span>Natijalar</span></a>
+      <a href="sitemap.html" class="sidebar-link" data-nav="sitemap.html"><i class="fa-solid fa-sitemap" aria-hidden="true"></i><span>Vizual Sitemap</span></a>
+      <a href="robots.html" class="sidebar-link" data-nav="robots.html"><i class="fa-solid fa-robot" aria-hidden="true"></i><span>Robots</span></a>
+    </div>
+    <div class="sidebar-cta">
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Telegram'da Ariza</a>
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-telegram" aria-hidden="true"></i> Kanal</a>
+    </div>
+  </div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
 
     <!-- Header / Navbar -->
-    <header class="navbar liquid-navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-brand">
-                <div class="brand-icon liquid-glow-icon">
-                    <i class="fa-solid fa-compass-drafting"></i>
-                </div>
-                <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
-            </a>
-
-            <nav class="nav-links liquid-nav-capsule">
-                <a href="index.html" class="nav-link">Bosh sahifa</a>
-                <a href="courses.html" class="nav-link">Kurslar Katalogi (<span data-course-count="all">30</span>)</a>
-                <a href="general-english-beginner.html" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> English Hub</a>
-                <a href="sitemap.html" class="nav-link">Sitemap</a>
-            </nav>
-
-            <div class="nav-actions">
-                <a href="index.html" class="btn btn-primary btn-glow btn-liquid">
-                    <span class="btn-text">Bosh Sahifaga Qaytish</span>
-                    <i class="fa-solid fa-house"></i>
-                </a>
-            </div>
-        </div>
-    </header>
+    
 
     <main style="padding-top: 130px; padding-bottom: 80px;">
         <div class="container" style="max-width: 800px;">
@@ -91,5 +114,6 @@
             <p>&copy; 2026 Tayanch Educational Platform. Barcha huquqlar himoyalangan.</p>
         </div>
     </footer>
+    <script src="nav.js" defer></script>
 </body>
 </html>

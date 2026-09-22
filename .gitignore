@@ -1,2 +1,6 @@
 # Lighthouse audit cache (large JSON reports)
 .lighthouse/
+
+# macOS
+.DS_Store
+**/.DS_Store

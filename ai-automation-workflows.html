@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+    <script src="site-config.js"></script>
+    <script src="ga4.js" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automation with Claude &amp; Make/Zapier — Amaliy bepul dars — Tayanch</title>
+<meta name="description" content="Make.com, Zapier va Claude API bilan biznes jarayonlarini avtomatlashtirish: Telegram botlar, Google Sheets, email va mijoz xabarnomalari. Bepul amaliy dars.">
+<meta name="author" content="Tayanch">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="ai-automation-workflows.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Automation with Claude &amp; Make/Zapier — Tayanch">
+<meta property="og:description" content="Make.com, Zapier va Claude API bilan biznes jarayonlarini avtomatlashtirish: Telegram botlar, Google Sheets, email va mijoz xabarnomalari. Bepul amaliy dars.">
+<meta property="og:url" content="ai-automation-workflows.html">
+<meta property="og:image" content="assets/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Automation with Claude &amp; Make/Zapier — Tayanch">
+<meta name="twitter:description" content="Make.com, Zapier va Claude API bilan biznes jarayonlarini avtomatlashtirish: Telegram botlar, Google Sheets, email va mijoz xabarnomalari. Bepul amaliy dars.">
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sidebar.css">
+</head>
+<body class="lesson-page">
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Menyu ochish" aria-expanded="false" aria-controls="globalSidebar">
+  <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+</button>
+<aside class="global-sidebar" id="globalSidebar" aria-label="Asosiy navigatsiya">
+  <div class="sidebar-inner">
+    <a href="index.html" class="sidebar-brand">
+      <img src="assets/images/logo-header.png" alt="" aria-hidden="true" width="34" height="34">
+      <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
+    </a>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Asosiy</div>
+      <a href="index.html" class="sidebar-link" data-nav="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Bosh sahifa</span></a>
+      <a href="index.html#mission" class="sidebar-link" data-nav="mission"><i class="fa-solid fa-star" aria-hidden="true"></i><span>Nega Tayanch</span></a>
+      <a href="courses.html" class="sidebar-link" data-nav="courses.html"><i class="fa-solid fa-book" aria-hidden="true"></i><span>Kurslar <span class="badge-count" data-course-count="all">35</span></span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Yo'nalishlar</div>
+      <a href="ielts.html" class="sidebar-link" data-nav="ielts.html"><i class="fa-solid fa-language" aria-hidden="true"></i><span>IELTS &amp; Ingliz tili</span></a>
+      <a href="sat.html" class="sidebar-link" data-nav="sat.html"><i class="fa-solid fa-chart-line" aria-hidden="true"></i><span>SAT &amp; Math</span></a>
+      <a href="admission.html" class="sidebar-link" data-nav="admission.html"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span>Admission</span></a>
+      <a href="services.html" class="sidebar-link" data-nav="services.html"><i class="fa-solid fa-briefcase" aria-hidden="true"></i><span>Xizmatlar</span></a>
+      <a href="ai-courses.html" class="sidebar-link" data-nav="ai-courses.html"><i class="fa-solid fa-robot" aria-hidden="true"></i><span>AI Kurslar</span></a>
+      <a href="school-lessons.html" class="sidebar-link" data-nav="school-lessons.html"><i class="fa-solid fa-school" aria-hidden="true"></i><span>Maktab darslari</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Vositalar</div>
+      <a href="sat-dsat.html" class="sidebar-link" data-nav="sat-dsat.html"><i class="fa-solid fa-square-root-variable" aria-hidden="true"></i><span>Digital SAT Hub</span></a>
+      <a href="sat-mock.html" class="sidebar-link" data-nav="sat-mock.html"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i><span>SAT Mock Test</span></a>
+      <a href="general-english-beginner.html" class="sidebar-link" data-nav="general-english-beginner.html"><i class="fa-solid fa-feather" aria-hidden="true"></i><span>General English</span></a>
+      <a href="admission-essay-personal-statement.html" class="sidebar-link" data-nav="admission-essay-personal-statement.html"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i><span>Personal Statement</span></a>
+      <a href="ai-practical-productivity.html" class="sidebar-link" data-nav="ai-practical-productivity.html"><i class="fa-solid fa-bolt" aria-hidden="true"></i><span>AI Amaliy Dars</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Ishonch</div>
+      <a href="index.html#trust" class="sidebar-link" data-nav="trust"><i class="fa-solid fa-medal" aria-hidden="true"></i><span>Natijalar</span></a>
+      <a href="sitemap.html" class="sidebar-link" data-nav="sitemap.html"><i class="fa-solid fa-sitemap" aria-hidden="true"></i><span>Vizual Sitemap</span></a>
+      <a href="robots.html" class="sidebar-link" data-nav="robots.html"><i class="fa-solid fa-robot" aria-hidden="true"></i><span>Robots</span></a>
+    </div>
+    <div class="sidebar-cta">
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Telegram'da Ariza</a>
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-telegram" aria-hidden="true"></i> Kanal</a>
+    </div>
+  </div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+
+<nav class="site-nav">
+  <a class="site-brand" href="index.html">TAYANCH.</a>
+  <a class="site-back" href="ai-courses.html">AI Kurslarga qaytish</a>
+</nav>
+
+<header>
+  <div class="kicker">AI Kurslari — Amaliy bepul dars</div>
+  <h1>Ish jarayonlarini AI bilan avtomatlashtirish</h1>
+  <p class="lead">Kod yozmasdan Make/Zapier va Claude API yordamida takrorlanuvchi ishlarni avtomatlashtirishni o'rganasiz.</p>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-inner" id="tabsInner" role="tablist" aria-label="Dars bo'limlari">
+    <button class="tab-btn active" role="tab" id="tab-t1" aria-selected="true" aria-controls="t1" data-tab="t1">Nega muhim</button>
+    <button class="tab-btn" role="tab" id="tab-t2" aria-selected="false" aria-controls="t2" data-tab="t2">Platformalar</button>
+    <button class="tab-btn" role="tab" id="tab-t3" aria-selected="false" aria-controls="t3" data-tab="t3">Amaliy loyihalar</button>
+    <button class="tab-btn" role="tab" id="tab-t4" aria-selected="false" aria-controls="t4" data-tab="t4">Solishtiruv</button>
+    <button class="tab-btn" role="tab" id="tab-t5" aria-selected="false" aria-controls="t5" data-tab="t5">Xatolar</button>
+    <button class="tab-btn" role="tab" id="tab-t6" aria-selected="false" aria-controls="t6" data-tab="t6">Kuchsiz vs Kuchli</button>
+  </div>
+</nav>
+
+<main>
+
+  <section class="panel active" role="tabpanel" aria-labelledby="tab-t1" id="t1">
+    <div class="panel-head">
+      <h2>Nega avtomatlashtirish muhim</h2>
+      <p class="sub">Takrorlanuvchi ishlarni AI va avtomatlashtirishga topshiring.</p>
+    </div>
+
+    <div class="accordion" id="acc41">
+      <div class="accordion-item open">
+        <button class="accordion-trigger" aria-expanded="true" aria-controls="acc-body-41-1">
+          <span class="accordion-num">01</span>
+          <h3>Vaqtni tejaydi</h3>
+          <span class="chev">▾</span>
+        </button>
+        <div class="accordion-body" id="acc-body-41-1">
+          <div class="accordion-content"><p>Xatlarni ko'chirish, jadvalga yozish, mijozga javob yuborish kabi ishlar soatlab vaqt oladi. Avtomatlashtirish ularni bir marta sozlab, doimiy ishlatish imkonini beradi.</p></div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-body-41-2">
+          <span class="accordion-num">02</span>
+          <h3>Xatoni kamaytiradi</h3>
+          <span class="chev">▾</span>
+        </button>
+        <div class="accordion-body" id="acc-body-41-2">
+          <div class="accordion-content"><p>Qo'lda ko'chirishda xato bo'ladi. Avtomatik oqim bir xil qoida bo'yicha ishlaydi.</p></div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-body-41-3">
+          <span class="accordion-num">03</span>
+          <h3>Kimga kerak</h3>
+          <span class="chev">▾</span>
+        </button>
+        <div class="accordion-body" id="acc-body-41-3">
+          <div class="accordion-content"><p>Kichik biznes, marketolog, freelancer va operatsion ishlar bilan shug'ullanuvchi har qanday jamoa uchun.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz" data-answer="b">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">Avtomatlashtirishning asosiy foydasi nima?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">Kompyuterni tezlashtiradi</button>
+        <button type="button" class="quiz-opt" data-choice="b">Takrorlanuvchi ishlarni vaqt va xatosiz bajaradi</button>
+        <button type="button" class="quiz-opt" data-choice="c">Internetni tezlashtiradi</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <section class="panel" role="tabpanel" aria-labelledby="tab-t2" id="t2">
+    <div class="panel-head">
+      <h2>Make va Zapier asoslari</h2>
+      <p class="sub">Trigger → Action tamoyili asosida ishlaydi.</p>
+    </div>
+
+    <div class="type-grid">
+      <div class="type-card">
+        <h4>Trigger (boshlanish)</h4>
+        <p>Oqimni ishga tushiruvchi hodisa: yangi email, yangi jadval qatori, Telegram xabari.</p>
+      </div>
+      <div class="type-card">
+        <h4>Action (harakat)</h4>
+        <p>Bajariladigan ish: jadvalga yozish, xabar yuborish, AI dan javob olish.</p>
+      </div>
+      <div class="type-card">
+        <h4>Router / Filter</h4>
+        <p>Shartli yo'naltirish: har xil holatda har xil harakat.</p>
+      </div>
+      <div class="type-card">
+        <h4>Integratsiyalar</h4>
+        <p>Google Sheets, Gmail, Telegram, CRM va yuzlab boshqa xizmatlar bilan ulanish.</p>
+      </div>
+    </div>
+
+    <div class="quiz" data-answer="a">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">Avtomatlashtirish oqimining boshlanish nuqtasi nima deb ataladi?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">Trigger</button>
+        <button type="button" class="quiz-opt" data-choice="b">Action</button>
+        <button type="button" class="quiz-opt" data-choice="c">Router</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <section class="panel" role="tabpanel" aria-labelledby="tab-t3" id="t3">
+    <div class="panel-head">
+      <h2>Amaliy avtomatlashtirish</h2>
+      <p class="sub">Uchta real misol.</p>
+    </div>
+
+    <div class="step-flow">
+      <div class="step-row">
+        <div class="step-index">1</div>
+        <div class="step-body">
+          <h4>Telegram bot + Claude</h4>
+          <p>Foydalanuvchi xabar yozadi → Claude API javob beradi → bot javobni qaytaradi.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-index">2</div>
+        <div class="step-body">
+          <h4>Sheets + AI oqimi</h4>
+          <p>Yangi forma javobi jadvalga tushadi → AI uni tasniflaydi → teg qo'yiladi.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-index">3</div>
+        <div class="step-body">
+          <h4>Mijoz xabarnomasi</h4>
+          <p>Buyurtma holati o'zgarganda mijozga avtomatik xabar yuboriladi.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz" data-answer="b">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">Telegram bot + Claude oqimida "action" nima?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">Foydalanuvchi xabar yozishi</button>
+        <button type="button" class="quiz-opt" data-choice="b">Claude API dan javob olish va uni qaytarish</button>
+        <button type="button" class="quiz-opt" data-choice="c">Bot yaratish</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <section class="panel" role="tabpanel" aria-labelledby="tab-t4" id="t4">
+    <div class="panel-head">
+      <h2>Make vs Zapier</h2>
+      <p class="sub">Ikkalasini tanlash mezonlari.</p>
+    </div>
+
+    <div class="type-grid">
+      <div class="type-card">
+        <h4>Make.com</h4>
+        <p>Vizual, murakkab oqimlar uchun qulay; ko'p qadamli stsenariylarda tejamkor.</p>
+      </div>
+      <div class="type-card">
+        <h4>Zapier</h4>
+        <p>Sodda, integratsiyalari juda ko'p; tez boshlash uchun qulay.</p>
+      </div>
+      <div class="type-card">
+        <h4>n8n (self-hosted)</h4>
+        <p>Texnik jamoalar uchun; to'liq nazorat, lekin sozlash talab qiladi.</p>
+      </div>
+    </div>
+
+    <div class="quiz" data-answer="a">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">Murakkab, ko'p qadamli oqimlar uchun qaysi platforma qulay?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">Make.com</button>
+        <button type="button" class="quiz-opt" data-choice="b">Faqat Zapier</button>
+        <button type="button" class="quiz-opt" data-choice="c">Hech biri</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <section class="panel" role="tabpanel" aria-labelledby="tab-t5" id="t5">
+    <div class="panel-head">
+      <h2>Tez-tez uchraydigan xatolar</h2>
+      <p class="sub">Avtomatlashtirishda ehtiyot bo'ling.</p>
+    </div>
+
+    <div class="error-list">
+      <div class="error-item">
+        <div class="error-mark">—</div>
+        <div class="error-body">
+          <h4>Kalitlarni ochiq saqlash</h4>
+          <p>API kalitlarni oqim ichida ochiq qoldirmang — maxfiy maydonlardan foydalaning.</p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-mark">—</div>
+        <div class="error-body">
+          <h4>Cheksiz sikl</h4>
+          <p>Oqim o'zini qayta ishga tushirsa, cheksiz xabar yoki xarajat kelib chiqadi. Shartlar qo'ying.</p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-mark">—</div>
+        <div class="error-body">
+          <h4>Sinovsiz ishga tushirish</h4>
+          <p>Avval test ma'lumotida sinang, keyin real oqimga o'tkazing.</p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-mark">—</div>
+        <div class="error-body">
+          <h4>Xatolarni kuzatmaslik</h4>
+          <p>Oqim ishlamay qolsa, xato haqida ogohlantirish sozlang.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz" data-answer="b">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">Oqimni real ishga tushirishdan oldin nima qilish kerak?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">Darhol yoqish</button>
+        <button type="button" class="quiz-opt" data-choice="b">Test ma'lumotida sinash</button>
+        <button type="button" class="quiz-opt" data-choice="c">Barcha shartlarni olib tashlash</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <section class="panel" role="tabpanel" aria-labelledby="tab-t6" id="t6">
+    <div class="panel-head">
+      <h2>Kuchsiz va kuchli yondashuv</h2>
+      <p class="sub">Rejalashtirilgan oqim ishonchli ishlaydi.</p>
+    </div>
+
+    <h4 style="font-size:15.5px;color:var(--text-main);margin-bottom:10px;">Oqimni sozlash</h4>
+    <div class="compare">
+      <div class="compare-box weak">
+        <span class="compare-label">KUCHSIZ</span>
+        <p>Hamma ishni bitta ulkan oqimga tiqaman.</p>
+      </div>
+      <div class="compare-box strong">
+        <span class="compare-label">KUCHLIROQ</span>
+        <p>Oqimni kichik qadamlarga bo'laman, har birini alohida sinayman, xato ogohlantirishini qo'shaman.</p>
+      </div>
+    </div>
+
+    <div class="quiz" data-answer="b">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">Ishonchli avtomatlashtirishning belgisi nima?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">Bitta ulkan oqim</button>
+        <button type="button" class="quiz-opt" data-choice="b">Kichik sinovdan o'tgan qadamlar va xato ogohlantirishlari</button>
+        <button type="button" class="quiz-opt" data-choice="c">Sinovsiz yoqish</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>Original o'quv materiali — AI Kurslari (amaliy bepul dars). Ushbu sahifa AI tomonidan tayyorlangan; sohaviy tekshiruvdan o'tishi kerak.</footer>
+
+<div class="cta-wrap">
+  <h2 style="font-family:'Source Serif 4',serif;font-size:24px;margin-bottom:6px;">Darsni tugatdingizmi?</h2>
+  <p style="color:var(--text-muted);max-width:52ch;margin:0 auto 22px;">To'liq kurs dasturini ko'ring yoki ariza qoldirib, mentor bilan boshlang.</p>
+  <button type="button" class="btn btn-secondary btn-liquid" data-course="Automation with Claude &amp; Make/Zapier" id="openCourseAiBtn">To'liq darsni ochish — AI Automation</button>
+  <button class="btn btn-primary btn-liquid open-lead-modal-btn" data-course="Automation with Claude &amp; Make/Zapier" style="margin-left:10px;">Arizani qoldirish — AI kurslari</button>
+  <p style="margin-top:18px;"><a href="ai-practical-productivity.html" class="site-back">Prompt Engineering asoslari (bepul dars) →</a></p>
+</div>
+
+<div class="ps-modal-overlay" id="courseModalAi" role="dialog" aria-modal="true" aria-labelledby="courseModalTitleAi" hidden>
+  <div class="ps-modal-card" role="document">
+    <button class="ps-modal-close" id="courseModalCloseAi" aria-label="Yopish">&times;</button>
+    <h2 id="courseModalTitleAi" class="ps-modal-title">Automation with Claude &amp; Make/Zapier</h2>
+    <p class="ps-modal-course" id="courseModalCourseAi"></p>
+    <div class="ps-course-detail">
+      <p>Biznes va ish jarayonlarini kod yozmasdan avtomatlashtirish: Telegram botlar, CRM va elektron pochta integratsiyasi.</p>
+      <p style="color:var(--text-muted);font-size:14px;margin:14px 0 6px;"><strong>Dastur modullari:</strong></p>
+      <ul style="color:var(--text-muted);font-size:14px;padding-left:20px;margin:0;">
+        <li>Make.com va Zapier platformasi asoslari</li>
+        <li>Telegram botga Claude API ulash</li>
+        <li>Google Sheets va AI ma'lumotlar oqimini zanjirlash</li>
+        <li>Avtomatik mijozlar xabarnomasi tizimini yoqish</li>
+      </ul>
+      <p style="color:var(--text-muted);font-size:13px;margin-top:14px;">Davomiyligi: 4 Hafta · Daraja: O'rta · Narx: 299,000 UZS</p>
+    </div>
+    <div class="ps-modal-actions" style="display:flex;gap:10px;margin-top:18px;">
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-block">Telegram'da yozilish</a>
+    </div>
+    <p class="ps-modal-note">Yoki asosiy "Arizani qoldirish" tugmasi orqali ariza qoldiring.</p>
+  </div>
+</div>
+
+<script>
+  // Tabs
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.panel');
+  tabBtns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      tabBtns.forEach(b=>b.classList.remove('active'));
+      panels.forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      var target = btn.dataset.tab || btn.getAttribute('aria-controls');
+      var panel = target && document.getElementById(target);
+      if (panel) panel.classList.add('active');
+      tabBtns.forEach(b => b.setAttribute('aria-selected', b === btn ? 'true' : 'false'));
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+
+  // Accordions
+  document.querySelectorAll('.accordion-item').forEach(item=>{
+    const trigger = item.querySelector('.accordion-trigger');
+    trigger.addEventListener('click',()=>{
+      const isOpen = item.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+
+  // Quizzes
+  document.querySelectorAll('.quiz').forEach(quiz=>{
+    const answer = quiz.dataset.answer;
+    const opts = quiz.querySelectorAll('.quiz-opt');
+    const feedback = quiz.querySelector('.quiz-feedback');
+    opts.forEach(opt=>{
+      opt.addEventListener('click',()=>{
+        if(opt.classList.contains('disabled')) return;
+        opts.forEach(o=>o.classList.add('disabled'));
+        if(opt.dataset.choice===answer){
+          opt.classList.add('correct');
+          feedback.textContent='Toʻgʻri. Aynan shu — asosiy gʻoya.';
+        }else{
+          opt.classList.add('incorrect');
+          opts.forEach(o=>{ if(o.dataset.choice===answer) o.classList.add('correct'); });
+          feedback.textContent='Boshqa variant toʻgʻriroq edi — yashil bilan belgilangani.';
+        }
+        feedback.classList.add('show');
+      });
+    });
+  });
+
+  // Bespoke course modal ("To'liq darsni ochish")
+  (function () {
+    var openBtn = document.getElementById('openCourseAiBtn');
+    var modal = document.getElementById('courseModalAi');
+    if (!modal || !openBtn) return;
+    var closeBtn = document.getElementById('courseModalCloseAi');
+    var courseEl = document.getElementById('courseModalCourseAi');
+    var lastFocused = null;
+    function open(course) {
+      lastFocused = document.activeElement;
+      if (courseEl && course) courseEl.textContent = course;
+      modal.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+      var f = modal.querySelector('input,button,select,textarea,[tabindex]');
+      if (f) f.focus();
+    }
+    function close() {
+      modal.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+    openBtn.addEventListener('click', function () {
+      open(openBtn.getAttribute('data-course'));
+    });
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hasAttribute('hidden')) close();
+    });
+  })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Automation with Claude & Make/Zapier",
+  "description": "Biznes va ish jarayonlarini kod yozmasdan avtomatlashtirish: Telegram botlar, CRM va elektron pochta integratsiyasi.",
+  "provider": { "@type": "Organization", "name": "Tayanch" },
+  "inLanguage": ["en", "uz"],
+  "url": "ai-automation-workflows.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Automation with Claude & Make/Zapier",
+  "about": "No-code business process automation with Make/Zapier and Claude API",
+  "educationalLevel": "O'rta",
+  "provider": {
+    "@type": "Organization",
+    "name": "Tayanch"
+  },
+  "inLanguage": ["en", "uz"],
+  "url": "ai-automation-workflows.html"
+}
+</script>
+
+    <script src="courses-data.js" defer></script>
+    <script src="lead-form.js" defer></script>
+    <script src="nav.js" defer></script>
+</body>
+</html>

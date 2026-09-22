@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+    <script src="site-config.js"></script>
+    <script src="ga4.js" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAT Strategiyasi — nazariy va amaliy yo'l-yo'rig'</title>
+<meta name="description" content="Digital SAT strategiyasi: imtihon tuzilishi, Reading &amp; Writing va Math yondashuvlari, Desmos kalkulyator, vaqt boshqaruvi va xatolarga yo'l qo'ymaslik. Tayanch.">
+<meta name="author" content="Tayanch">
+<link rel="canonical" href="sat-strategy.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SAT Strategiyasi — Tayanch">
+<meta property="og:description" content="Digital SAT uchun nazariy va strategik tayyorgarlik: tuzilma, R&amp;W, Math (Desmos), vaqt va xatolar.">
+<meta property="og:url" content="sat-strategy.html">
+<meta property="og:image" content="assets/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SAT Strategiyasi — Tayanch">
+<meta name="twitter:description" content="Digital SAT uchun nazariy va strategik tayyorgarlik yo'l-yo'rig'i.">
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sidebar.css">
+  <style>
+    .ai-gen-notice{max-width:980px;margin:18px auto 0;background:linear-gradient(135deg,rgba(255,193,7,.12),rgba(0,242,254,.10));border:1px solid rgba(255,193,7,.4);border-radius:14px;padding:14px 18px;display:flex;gap:12px;align-items:flex-start;font-size:.92rem;color:var(--text-main);}
+    .ai-gen-notice i{color:#ffc107;font-size:1.15rem;margin-top:2px;}
+    .ai-gen-notice strong{color:#ffd54f;}
+    .todo-callout{background:rgba(255,107,107,.10);border:1px dashed rgba(255,107,107,.5);border-radius:12px;padding:12px 16px;margin:16px 0;font-size:.9rem;color:var(--text-muted);}
+    .todo-callout b{color:#ff8a8a;}
+    .panel-head .sub{color:var(--text-muted);}
+    .cta-wrap a.btn{display:inline-flex;align-items:center;gap:.5rem;}
+    @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
+  </style>
+</head>
+<body class="lesson-page">
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Menyu ochish" aria-expanded="false" aria-controls="globalSidebar">
+  <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+</button>
+<aside class="global-sidebar" id="globalSidebar" aria-label="Asosiy navigatsiya">
+  <div class="sidebar-inner">
+    <a href="index.html" class="sidebar-brand">
+      <img src="assets/images/logo-header.png" alt="" aria-hidden="true" width="34" height="34">
+      <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
+    </a>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Asosiy</div>
+      <a href="index.html" class="sidebar-link" data-nav="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Bosh sahifa</span></a>
+      <a href="index.html#mission" class="sidebar-link" data-nav="mission"><i class="fa-solid fa-star" aria-hidden="true"></i><span>Nega Tayanch</span></a>
+      <a href="courses.html" class="sidebar-link" data-nav="courses.html"><i class="fa-solid fa-book" aria-hidden="true"></i><span>Kurslar <span class="badge-count" data-course-count="all">35</span></span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Yo'nalishlar</div>
+      <a href="ielts.html" class="sidebar-link" data-nav="ielts.html"><i class="fa-solid fa-language" aria-hidden="true"></i><span>IELTS &amp; Ingliz tili</span></a>
+      <a href="sat.html" class="sidebar-link" data-nav="sat.html"><i class="fa-solid fa-chart-line" aria-hidden="true"></i><span>SAT &amp; Math</span></a>
+      <a href="admission.html" class="sidebar-link" data-nav="admission.html"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span>Admission</span></a>
+      <a href="services.html" class="sidebar-link" data-nav="services.html"><i class="fa-solid fa-briefcase" aria-hidden="true"></i><span>Xizmatlar</span></a>
+      <a href="ai-courses.html" class="sidebar-link" data-nav="ai-courses.html"><i class="fa-solid fa-robot" aria-hidden="true"></i><span>AI Kurslar</span></a>
+      <a href="school-lessons.html" class="sidebar-link" data-nav="school-lessons.html"><i class="fa-solid fa-school" aria-hidden="true"></i><span>Maktab darslari</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Vositalar</div>
+      <a href="sat-dsat.html" class="sidebar-link" data-nav="sat-dsat.html"><i class="fa-solid fa-square-root-variable" aria-hidden="true"></i><span>Digital SAT Hub</span></a>
+      <a href="sat-mock.html" class="sidebar-link" data-nav="sat-mock.html"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i><span>SAT Mock Test</span></a>
+      <a href="sat-strategy.html" class="sidebar-link" data-nav="sat-strategy.html"><i class="fa-solid fa-chess-knight" aria-hidden="true"></i><span>SAT Strategiyasi</span></a>
+      <a href="general-english-beginner.html" class="sidebar-link" data-nav="general-english-beginner.html"><i class="fa-solid fa-feather" aria-hidden="true"></i><span>General English</span></a>
+      <a href="admission-essay-personal-statement.html" class="sidebar-link" data-nav="admission-essay-personal-statement.html"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i><span>Personal Statement</span></a>
+      <a href="ielts-writing-task2.html" class="sidebar-link" data-nav="ielts-writing-task2.html"><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i><span>Writing Task 2</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Ishonch</div>
+      <a href="index.html#trust" class="sidebar-link" data-nav="trust"><i class="fa-solid fa-medal" aria-hidden="true"></i><span>Natijalar</span></a>
+      <a href="sitemap.html" class="sidebar-link" data-nav="sitemap.html"><i class="fa-solid fa-sitemap" aria-hidden="true"></i><span>Vizual Sitemap</span></a>
+      <a href="robots.html" class="sidebar-link" data-nav="robots.html"><i class="fa-solid fa-robot" aria-hidden="true"></i><span>Robots</span></a>
+    </div>
+    <div class="sidebar-cta">
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Telegram'da Ariza</a>
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-telegram" aria-hidden="true"></i> Kanal</a>
+    </div>
+  </div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<nav class="site-nav">
+  <a class="site-brand" href="index.html">TAYANCH.</a>
+  <a class="site-back" href="sat.html">SAT &amp; Math markaziy sahifasiga qaytish</a>
+</nav>
+
+<header>
+  <div class="kicker">SAT Strategiyasi — Nazariy dars</div>
+  <h1>Digital SAT: strategik tayyorgarlik yo'l-yo'rig'i</h1>
+  <p class="lead">Bu sahifa simulyatordan farqli ravishda <strong>nazariy va strategik</strong> yo'naltirish beradi: qanday o'qish, qanday hisoblash, vaqtni qanday taqsimlash va qaysi xatolarga yo'l qo'ymaslik kerak. Amaliy mashq uchun pastdagi havola orqali Digital SAT Hub'ga o'ting.</p>
+</header>
+
+<div class="ai-gen-notice" role="note">
+  <i class="fa-solid fa-robot" aria-hidden="true"></i>
+  <div><strong>AI tomonidan yaratilgan material.</strong> Bu sahifa umumiy Digital SAT metodologiyasi asosida Tayanch AI tomonidan tayyorlangan va <strong>sohaviy (SAT murabbiyi) tekshiruvidan o'tishi kerak</strong>. Aniq savol namunalari va ball hisoblash jadvallari <span style="color:#ff8a8a;">TODO</span> belgisi bilan ko'rsatilgan joylarda qo'shilishi lozim.</div>
+</div>
+
+<nav class="tabs">
+  <div class="tabs-inner" id="tabsInner" role="tablist">
+    <button class="tab-btn active" role="tab" id="tab-t1" aria-selected="true" data-tab="t1">Tuzilma</button>
+    <button class="tab-btn" role="tab" id="tab-t2" aria-selected="false" data-tab="t2">Reading &amp; Writing</button>
+    <button class="tab-btn" role="tab" id="tab-t3" aria-selected="false" data-tab="t3">Math &amp; Desmos</button>
+    <button class="tab-btn" role="tab" id="tab-t4" aria-selected="false" data-tab="t4">Vaqt &amp; Pacing</button>
+    <button class="tab-btn" role="tab" id="tab-t5" aria-selected="false" data-tab="t5">Ball &amp; Retake</button>
+    <button class="tab-btn" role="tab" id="tab-t6" aria-selected="false" data-tab="t6">Xatolar</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- PANEL 1 -->
+  <section class="panel active" role="tabpanel" aria-labelledby="tab-t1" id="t1">
+    <div class="panel-head">
+      <h2>Digital SAT tuzilmasi</h2>
+      <p class="sub">Ikki asosiy qism (Reading &amp; Writing, Math), har biri ikkita moduldan iborat. Adaptiv tizim: 1-moduldagi natijangiz 2-modul qiyinligini belgilaydi.</p>
+    </div>
+    <div class="accordion" id="acc1">
+      <div class="accordion-item open">
+        <button class="accordion-trigger" aria-expanded="true" aria-controls="acc-body-1">
+          <span class="accordion-num">01</span><h3>Reading &amp; Writing (RW)</h3><span class="chev">▾</span>
+        </button>
+        <div class="accordion-body" id="acc-body-1"><div class="accordion-content"><p>2 modul × 25 daqiqa × 27 savol (jami ~64 daqiqa, 54 savol). Qisqa matnlar (25–150 so'z), har biriga 1 savol. grammar, vocab va tahlil aralash.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-body-2">
+          <span class="accordion-num">02</span><h3>Math</h3><span class="chev">▾</span>
+        </button>
+        <div class="accordion-body" id="acc-body-2"><div class="accordion-content"><p>2 modul × 35 daqiqa × 22 savol (jami ~70 daqiqa, 44 savol). Algebra, Advanced Math, Geometry, Data. Desmos kalkulyator ruxsat etilgan.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-body-3">
+          <span class="accordion-num">03</span><h3>Adaptiv modullar</h3><span class="chev">▾</span>
+        </button>
+        <div class="accordion-body" id="acc-body-3"><div class="accordion-content"><p>1-modul o'rtacha qiyinlikda. Yaxshi topshirsangiz, 2-modul qiyinroq bo'ladi (yuqori ball imkoniyati). Yomon topshirsangiz — osonroq, lekin yuqori ball chegarasi pasayadi.</p></div></div>
+      </div>
+    </div>
+    <div class="quiz" data-answer="a">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">Digital SAT nechta asosiy qismdan iborat?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">2 (Reading &amp; Writing va Math)</button>
+        <button type="button" class="quiz-opt" data-choice="b">3 (Reading, Writing, Math)</button>
+        <button type="button" class="quiz-opt" data-choice="c">1 (umumiy)</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <!-- PANEL 2 -->
+  <section class="panel" role="tabpanel" aria-labelledby="tab-t2" id="t2">
+    <div class="panel-head">
+      <h2>Reading &amp; Writing strategiyasi</h2>
+      <p class="sub">Qisqa matnlar — tez o'qish va kalit so'zga e'tibor muhim.</p>
+    </div>
+    <div class="type-grid">
+      <div class="type-card"><h4>Savoldan boshlang</h4><p>Matndan oldin savolni o'qing. Nimani izlayotganingiz aniq bo'lsin.</p></div>
+      <div class="type-card"><h4>Kalit so'zlarni moslang</h4><p>Vocabulary savollarida kontekstga qarab ma'no (noto'g'ri sinonim emas) tanlang.</p></div>
+      <div class="type-card"><h4>Grammar qoidalarini mustahkamling</h4><p>Subject-verb agreement, parallel structure, punctuation — tez-tez uchraydi.</p></div>
+    </div>
+    <div class="todo-callout"><b>TODO:</b> RW bo'yicha 15 ta real savol (grammar + vocab + tahlil) va ularning yechimlari qo'shilishi kerak.</div>
+    <div class="quiz" data-answer="b">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">RW qisqa matnida eng samarali yondashuv qaysi?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">Matnni satrma-satr chuqur o'qish</button>
+        <button type="button" class="quiz-opt" data-choice="b">Avval savolni o'qib, kalit so'zga e'tibor qaratish</button>
+        <button type="button" class="quiz-opt" data-choice="c">Javoblarni taxmin qilish</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <!-- PANEL 3 -->
+  <section class="panel" role="tabpanel" aria-labelledby="tab-t3" id="t3">
+    <div class="panel-head">
+      <h2>Math strategiyasi va Desmos</h2>
+      <p class="sub">Desmos — eng kuchli qurol. Uni faqat tekshirish uchun emas, yechim topish uchun ham ishlating.</p>
+    </div>
+    <div class="accordion" id="acc3">
+      <div class="accordion-item open">
+        <button class="accordion-trigger" aria-expanded="true" aria-controls="acc-body-4">
+          <span class="accordion-num">01</span><h3>Desmos bilan tekshirish</h3><span class="chev">▾</span>
+        </button>
+        <div class="accordion-body" id="acc-body-4"><div class="accordion-content"><p>Tenglamani kiriting, kesishish nuqtasini ko'ring. Ko'p algebra savollarini grafik orqali 5 soniyada yechish mumkin.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-body-5">
+          <span class="accordion-num">02</span><h3>Plug-in usuli</h3><span class="chev">▾</span>
+        </button>
+        <div class="accordion-body" id="acc-body-5"><div class="accordion-content"><p>Javob variantlarini (A/B/C/D) tenglamaga qo'yib ko'rish — ba'zida Algebra'dan tezroq.</p></div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-body-6">
+          <span class="accordion-num">03</span><h3>Asosiy formulalarni yodingizda saqlang</h3><span class="chev">▾</span>
+        </button>
+        <div class="accordion-body" id="acc-body-6"><div class="accordion-content"><p>Desmos hamma narsani qilmaydi (masalan, murakkab word problem). Quadratic formula, exponent qoidalari yodda bo'lishi kerak.</p></div></div>
+      </div>
+    </div>
+    <div class="quiz" data-answer="a">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">Desmos asosan nimaga yordam beradi?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">Tenglamalarni grafik orqali tekshirish va yechish</button>
+        <button type="button" class="quiz-opt" data-choice="b">Ingliz tili grammatikasini tekshirish</button>
+        <button type="button" class="quiz-opt" data-choice="c">Vaqtni o'lchash</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <!-- PANEL 4 -->
+  <section class="panel" role="tabpanel" aria-labelledby="tab-t4" id="t4">
+    <div class="panel-head">
+      <h2>Vaqt boshqaruvi (pacing)</h2>
+      <p class="sub">Har bir savolga o'rtacha vaqt: RW ~70 soniya, Math ~95 soniya.</p>
+    </div>
+    <div class="step-flow">
+      <div class="step-row"><div class="step-index">1</div><div class="step-body"><h4>Osonni birinchi qiling</h4><p>Qiyin savolga 30 soniyadan ko'p sarflamang — "flag" qilib o'ting, oxirida qayting.</p></div></div>
+      <div class="step-row"><div class="step-index">2</div><div class="step-body"><h4>Modul oxirida tekshiring</h4><p>Vaqt qolganda javoblaringizni ko'rib chiqing (tasodifiy xatolarni ushlash).</p></div></div>
+      <div class="step-row"><div class="step-index">3</div><div class="step-body"><h4>Simulyatsiya sharoiti</h4><p>Mashqlarni tanaffussiz, kompyuterda bajaring — charchoqni oldindan biling.</p></div></div>
+    </div>
+    <div class="quiz" data-answer="b">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">Qiyin savolga qancha vaqt sarflash tavsiya etilmaydi?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">10 soniya</button>
+        <button type="button" class="quiz-opt" data-choice="b">30 soniyadan ko'p</button>
+        <button type="button" class="quiz-opt" data-choice="c">60 soniya</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <!-- PANEL 5 -->
+  <section class="panel" role="tabpanel" aria-labelledby="tab-t5" id="t5">
+    <div class="panel-head">
+      <h2>Ball maqsadi va qayta topshirish</h2>
+      <p class="sub">Maqsad universitet talabiga qarab farq qiladi. Reja tuzing.</p>
+    </div>
+    <div class="error-list">
+      <div class="error-item"><div class="error-mark">—</div><div class="error-body"><h4>Superscore</h4><p>Ko'p universitet eng yaxshi qism ballaringizni birlashtiradi (superscore). Shuning uchun bir qismni yaxshilashga urinish foydali.</p></div></div>
+      <div class="error-item"><div class="error-mark">—</div><div class="error-body"><h4>Qayta topshirish rejasi</h4><p>2–3 marta topshirish normal. Har safar zaif joyga e'tibor bering.</p></div></div>
+    </div>
+    <div class="todo-callout"><b>TODO:</b> Universitetlar bo'yicha o'rtacha qabul ballari jadvali (Harvard, MIT, Turkish universitetlari va hokazo) qo'shilishi kerak.</div>
+    <div class="quiz" data-answer="a">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">"Superscore" nima anglatadi?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">Turli imtihonlardagi eng yaxshi qism ballarining birlashuvi</button>
+        <button type="button" class="quiz-opt" data-choice="b">Eng yuqori umumiy ball</button>
+        <button type="button" class="quiz-opt" data-choice="c">Eng past natija</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <!-- PANEL 6 -->
+  <section class="panel" role="tabpanel" aria-labelledby="tab-t6" id="t6">
+    <div class="panel-head">
+      <h2>Eng ko'p uchraydigan xatolar</h2>
+      <p class="sub">Strategik xatolar ballni sezilarli pasaytiradi.</p>
+    </div>
+    <div class="error-list">
+      <div class="error-item"><div class="error-mark">—</div><div class="error-body"><h4>Birinchi modulda ehtiyotkor bo'lmaslik</h4><p>Adaptiv tizimda 1-modul asos — shoshilmasdan bajaring, bu 2-modul qiyinligini belgilaydi.</p></div></div>
+      <div class="error-item"><div class="error-mark">—</div><div class="error-body"><h4>Desmos ga haddan tashqari tayanish</h4><p>Word problem'larda grafik yordam bermaydi — asosiy algebra bilimining o'zi kerak.</p></div></div>
+      <div class="error-item"><div class="error-mark">—</div><div class="error-body"><h4>Vaqtni noto'g'ri taqsimlash</h4><p>Bir qiyin savolga 3 daqiqa sarflash — keyingi oson savollarni yo'qotish.</p></div></div>
+    </div>
+    <div class="quiz" data-answer="a">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">Adaptiv SAT da nima uchun 1-modulga ehtiyotkorlik bilan yondashish kerak?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">U 2-modulning qiyinligini va ball chegarasini belgilaydi</button>
+        <button type="button" class="quiz-opt" data-choice="b">1-modul faqat issiqlik o'lchashi uchun</button>
+        <button type="button" class="quiz-opt" data-choice="c">Farqi yo'q</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>Original o'quv materiali — SAT Strategiyasi kursi.</footer>
+
+<div class="cta-wrap">
+  <a class="btn btn-primary btn-liquid" href="sat-dsat.html#simulator" rel="noopener noreferrer"><i class="fa-solid fa-square-root-variable" aria-hidden="true"></i> Amaliy mashq: Digital SAT Simulyatori</a>
+</div>
+
+<div class="ps-modal-overlay" id="leadModalPs" role="dialog" aria-modal="true" aria-labelledby="leadModalTitlePs" hidden>
+  <div class="ps-modal-card" role="document">
+    <button class="ps-modal-close" id="leadModalClosePs" aria-label="Yopish">&times;</button>
+    <h2 id="leadModalTitlePs" class="ps-modal-title">Kursga ariza qoldirish</h2>
+    <p class="ps-modal-course" id="leadModalCoursePs"></p>
+    <form id="leadFormPs" class="ps-lead-form">
+      <label class="ps-field">Ismingiz<input type="text" id="leadNamePs" required placeholder="Masalan: Jasur Rahimov"></label>
+      <label class="ps-field">Telefon raqamingiz<input type="tel" id="leadPhonePs" required placeholder="+998 90 123 45 67"></label>
+      <button type="submit" class="btn btn-primary btn-liquid btn-block">Yuborish</button>
+    </form>
+    <p class="ps-modal-note">Yoki to'g'ridan-to'g'ri Telegram: <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer">@tayanch_go</a></p>
+  </div>
+</div>
+
+<script>
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.panel');
+  tabBtns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      tabBtns.forEach(b=>b.classList.remove('active'));
+      panels.forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+  document.querySelectorAll('.accordion-item').forEach(item=>{
+    const trigger = item.querySelector('.accordion-trigger');
+    trigger.addEventListener('click',()=>{
+      const isOpen = item.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+  document.querySelectorAll('.quiz').forEach(quiz=>{
+    const answer = quiz.dataset.answer;
+    const opts = quiz.querySelectorAll('.quiz-opt');
+    const feedback = quiz.querySelector('.quiz-feedback');
+    opts.forEach(opt=>{
+      opt.addEventListener('click',()=>{
+        if(opt.classList.contains('disabled')) return;
+        opts.forEach(o=>o.classList.add('disabled'));
+        if(opt.dataset.choice===answer){
+          opt.classList.add('correct');
+          feedback.textContent='To\'g\'ri. Aynan shu — SAT strategiyasining asosiy qoidasi.';
+        }else{
+          opt.classList.add('incorrect');
+          opts.forEach(o=>{ if(o.dataset.choice===answer) o.classList.add('correct'); });
+          feedback.textContent='Boshqa variant to\'g\'riroq edi — yashil bilan belgilangani.';
+        }
+        feedback.classList.add('show');
+      });
+    });
+  });
+  (function () {
+    var btns = document.querySelectorAll('.open-lead-modal-btn');
+    var modal = document.getElementById('leadModalPs');
+    if (!modal) return;
+    var closeBtn = document.getElementById('leadModalClosePs');
+    var titleEl = document.getElementById('leadModalCoursePs');
+    var form = document.getElementById('leadFormPs');
+    var lastFocused = null;
+    function open(course){ lastFocused=document.activeElement; if(titleEl&&course)titleEl.textContent=course; modal.removeAttribute('hidden'); document.body.style.overflow='hidden'; var f=modal.querySelector('input,button,select,textarea,[tabindex]'); if(f)f.focus(); }
+    function close(){ modal.setAttribute('hidden',''); document.body.style.overflow=''; if(lastFocused&&lastFocused.focus)lastFocused.focus(); }
+    btns.forEach(function(b){ b.addEventListener('click',function(){ open(b.getAttribute('data-course')); }); });
+    if(closeBtn)closeBtn.addEventListener('click',close);
+    modal.addEventListener('click',function(e){ if(e.target===modal)close(); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!modal.hasAttribute('hidden'))close(); });
+    if(form)form.addEventListener('submit',function(e){ e.preventDefault(); form.innerHTML='<p class="ps-success" role="status">✅ Arizangiz qabul qilindi! Tez orada Telegram orqali bog\'lanamiz. <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer">@tayanch_go</a></p>'; });
+  })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Digital SAT Strategy (Nazariy va Amaliy)",
+  "description": "Digital SAT strategik tayyorgarlik: tuzilma, Reading & Writing, Math (Desmos), vaqt boshqaruvi va xatolarga yo'l qo'ymaslik.",
+  "provider": { "@type": "Organization", "name": "Tayanch" },
+  "inLanguage": ["en", "uz"],
+  "url": "sat-strategy.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "SAT Strategiyasi — Nazariy dars",
+  "about": "Digital SAT test-taking strategy",
+  "educationalLevel": "High school",
+  "provider": { "@type": "Organization", "name": "Tayanch" },
+  "inLanguage": ["en", "uz"],
+  "url": "sat-strategy.html"
+}
+</script>
+
+    <script src="nav.js" defer></script>
+</body>
+</html>

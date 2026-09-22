@@ -29,7 +29,7 @@
       <div class="sidebar-group-title">Asosiy</div>
       <a href="index.html" class="sidebar-link" data-nav="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Bosh sahifa</span></a>
       <a href="index.html#mission" class="sidebar-link" data-nav="mission"><i class="fa-solid fa-star" aria-hidden="true"></i><span>Nega Tayanch</span></a>
-      <a href="courses.html" class="sidebar-link" data-nav="courses.html"><i class="fa-solid fa-book" aria-hidden="true"></i><span>Kurslar <span class="badge-count" data-course-count="all">30</span></span></a>
+      <a href="courses.html" class="sidebar-link" data-nav="courses.html"><i class="fa-solid fa-book" aria-hidden="true"></i><span>Kurslar <span class="badge-count" data-course-count="all">35</span></span></a>
     </div>
     <div class="sidebar-group">
       <div class="sidebar-group-title">Yo'nalishlar</div>
@@ -46,6 +46,10 @@
       <a href="sat-mock.html" class="sidebar-link" data-nav="sat-mock.html"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i><span>SAT Mock Test</span></a>
       <a href="general-english-beginner.html" class="sidebar-link" data-nav="general-english-beginner.html"><i class="fa-solid fa-feather" aria-hidden="true"></i><span>General English</span></a>
       <a href="admission-essay-personal-statement.html" class="sidebar-link" data-nav="admission-essay-personal-statement.html"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i><span>Personal Statement</span></a>
+      <a href="ielts-writing-task2.html" class="sidebar-link" data-nav="ielts-writing-task2.html"><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i><span>Writing Task 2</span></a>
+      <a href="ielts-listening.html" class="sidebar-link" data-nav="ielts-listening.html"><i class="fa-solid fa-headphones" aria-hidden="true"></i><span>Listening</span></a>
+      <a href="ielts-reading.html" class="sidebar-link" data-nav="ielts-reading.html"><i class="fa-solid fa-eye" aria-hidden="true"></i><span>Reading</span></a>
+      <a href="ielts-speaking.html" class="sidebar-link" data-nav="ielts-speaking.html"><i class="fa-solid fa-comments" aria-hidden="true"></i><span>Speaking</span></a>
     </div>
     <div class="sidebar-group">
       <div class="sidebar-group-title">Ishonch</div>
@@ -99,6 +103,41 @@
         <h3>Barcha IELTS kurslari</h3>
         <p>Katalogdagi barcha bepul IELTS va ingliz tili kurslarini ko'ring.</p>
         <span class="arrow">Kurslarga o'tish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header text-center">
+      <div class="section-tag">4 ta skill darslari</div>
+      <h2 class="section-title">IELTS <span class="gradient-text">har bir skill</span> uchun</h2>
+    </div>
+    <div class="link-cards">
+      <a href="ielts-writing-task2.html" class="link-card">
+        <span class="lc-ico"><i class="fa-solid fa-pen-ruler"></i></span>
+        <h3>Writing Task 2</h3>
+        <p>Band 7.0+ uchun mezonlar, insho turlari, struktura andozalari va Band 6 vs 8 farqi.</p>
+        <span class="arrow">Darsga o'tish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="ielts-listening.html" class="link-card">
+        <span class="lc-ico"><i class="fa-solid fa-headphones"></i></span>
+        <h3>Listening</h3>
+        <p>4 qism formati, aksentlar, distractor'larni aniqlash va amaliy texnikalar.</p>
+        <span class="arrow">Darsga o'tish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="ielts-reading.html" class="link-card">
+        <span class="lc-ico"><i class="fa-solid fa-eye"></i></span>
+        <h3>Reading</h3>
+        <p>Skimming/scanning, True/False/Not Given, Matching Headings va vaqt strategiyasi.</p>
+        <span class="arrow">Darsga o'tish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="ielts-speaking.html" class="link-card">
+        <span class="lc-ico"><i class="fa-solid fa-comments"></i></span>
+        <h3>Speaking</h3>
+        <p>Part 1/2/3 texnikalari, Cue Card, fluency va pronunciation strategiyalari.</p>
+        <span class="arrow">Darsga o'tish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
       </a>
     </div>
   </div>
@@ -258,6 +297,23 @@
     </div>
   </div>
 </footer>
+    <script>
+    (function(){
+      var el = document.getElementById('quizResultText');
+      if(!el) return;
+      function linkify(){
+        var txt = el.textContent || '';
+        if(/IELTS Writing Task 2/.test(txt) && !el.querySelector('a')){
+          el.innerHTML = txt.replace(/(IELTS Writing Task 2(?: \(Band 7\.5\+\))?)/g,
+            '<a href="ielts-writing-task2.html" rel="noopener noreferrer" style="color:#00f2fe;text-decoration:underline;">$1</a>');
+        }
+      }
+      if('MutationObserver' in window){
+        new MutationObserver(linkify).observe(el, {childList:true, characterData:true, subtree:true});
+      }
+      linkify();
+    })();
+    </script>
     <!-- JS Engine -->
     <script src="courses-data.js" defer></script>
     <script src="script.js?v=1788363528" defer></script>

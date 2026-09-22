@@ -396,7 +396,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSearchQuery = '';
 
     function renderCourses() {
-        if (!coursesGrid) return;
+        /* Himoya: dinamik katalog UI'si (filterTabs / noResultsMsg) mavjud bo'lmagan
+           sahifalarda (masalan courses.html — u o'z statik kartalari va o'z
+           inline filtr skriptidan foydalanadi) bu funksiya grid'ni BO'SHATMASLIGI
+           kerak. Ilgari faqat !coursesGrid tekshirilardi, natijada noResultsMsg
+           null bo'lib TypeError tashlardi va statik kartalar o'chib qolardi. */
+        if (!coursesGrid || !noResultsMsg) return;
         syncCourseCounts();
 
         const filtered = coursesData.filter(course => {

@@ -1,0 +1,286 @@
+/* ============================================================
+   lead-form.css — TAYANCH qayta ishlatiladigan 2-qadamli
+   ariza formasi komponenti (PROMPT 9)
+   ------------------------------------------------------------
+   - Barcha hub sahifalarda bitta komponent sifatida ishlatiladi.
+   - O'z-o'zidan yetarli (self-contained): boshqa CSS ga bog'liq emas.
+   - Mobil sticky CTA faqat <=768px da ko'rinadi (desktop o'zgarmaydi).
+   ============================================================ */
+
+/* ---------- Modal overlay ---------- */
+.lf-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 11, 18, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100000;           /* sidebar (1040) va boshqa modalardan yuqorida */
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.lf-overlay.lf-active { display: flex; animation: lfFade 0.25s ease; }
+@keyframes lfFade { from { opacity: 0; } to { opacity: 1; } }
+
+.lf-modal {
+  background: #ffffff;
+  width: 100%;
+  max-width: 480px;
+  border-radius: 22px;
+  padding: 26px 22px 24px;
+  position: relative;
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.45);
+  box-sizing: border-box;
+  color: #0f172a;
+  max-height: 92vh;
+  overflow-y: auto;
+  animation: lfPop 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes lfPop { from { transform: translateY(16px) scale(0.98); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.lf-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 26px;
+  line-height: 1;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+.lf-close:hover { color: #0f172a; background: #f1f5f9; }
+
+.lf-badge {
+  display: inline-block;
+  background: #e0e7ff;
+  color: #4338ca;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+.lf-modal h3 { font-size: 21px; font-weight: 800; color: #0f172a; margin: 0 0 6px; font-family: 'Outfit', sans-serif; }
+.lf-modal .lf-sub { font-size: 13.5px; color: #64748b; margin: 0 0 16px; line-height: 1.45; }
+
+/* ---------- Stepper / progress ---------- */
+.lf-stepper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+.lf-step-dot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+.lf-step-dot .lf-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  background: #e2e8f0;
+  color: #64748b;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+.lf-step-dot .lf-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+.lf-step-dot.lf-on .lf-num { background: #4f46e5; color: #fff; }
+.lf-step-dot.lf-on .lf-label { color: #4f46e5; }
+.lf-step-dot.lf-done .lf-num { background: #10b981; color: #fff; }
+.lf-step-bar {
+  height: 3px;
+  flex: 0 0 18px;
+  background: #e2e8f0;
+  border-radius: 3px;
+}
+.lf-step-bar.lf-on { background: #4f46e5; }
+
+/* ---------- Step panels ---------- */
+.lf-panel { display: none; }
+.lf-panel.lf-show { display: block; animation: lfFade 0.2s ease; }
+
+/* ---------- Direction buttons (step 1) ---------- */
+.lf-dir-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.lf-dir-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  text-align: left;
+  padding: 12px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 14px;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  font-family: inherit;
+}
+.lf-dir-btn:hover { border-color: #818cf8; background: #eef2ff; }
+.lf-dir-btn.lf-selected {
+  border-color: #4f46e5;
+  background: #eef2ff;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+.lf-dir-ico {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #fff;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #4f46e5, #a855f7);
+}
+.lf-dir-txt h4 { margin: 0 0 2px; font-size: 14px; font-weight: 700; color: #0f172a; }
+.lf-dir-txt p { margin: 0; font-size: 11.5px; color: #64748b; line-height: 1.35; }
+
+/* ---------- Fields (step 2) ---------- */
+.lf-field { margin-bottom: 13px; text-align: left; }
+.lf-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 5px;
+}
+.lf-field .lf-req { color: #ef4444; }
+.lf-field input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 14.5px;
+  color: #0f172a;
+  background: #f8fafc;
+  box-sizing: border-box;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+.lf-field input:focus {
+  border-color: #4f46e5;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+.lf-field .lf-err {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+  display: none;
+  font-weight: 500;
+}
+.lf-field .lf-hint { font-size: 11.5px; color: #94a3b8; margin-top: 4px; }
+.lf-chosen {
+  font-size: 12.5px;
+  color: #4f46e5;
+  background: #eef2ff;
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin-bottom: 14px;
+  display: inline-block;
+  font-weight: 600;
+}
+
+/* ---------- Actions ---------- */
+.lf-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+.lf-btn {
+  flex: 1;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s, opacity 0.2s;
+}
+.lf-btn-primary { background: #4f46e5; color: #fff; }
+.lf-btn-primary:hover { background: #4338ca; }
+.lf-btn-primary:disabled { background: #c7cbf5; cursor: not-allowed; }
+.lf-btn-ghost { background: #f1f5f9; color: #475569; flex: 0 0 auto; padding: 12px 18px; }
+.lf-btn-ghost:hover { background: #e2e8f0; }
+
+/* ---------- Success ---------- */
+.lf-success { text-align: center; padding: 14px 4px; }
+.lf-success .lf-check {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #dcfce7; color: #15803d;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; margin: 0 auto 12px;
+}
+.lf-success h3 { margin: 0 0 6px; }
+.lf-success p { font-size: 13.5px; color: #64748b; margin: 0 0 14px; }
+.lf-success a.lf-tg {
+  display: inline-block;
+  background: #0088cc; color: #fff;
+  padding: 10px 18px; border-radius: 10px;
+  text-decoration: none; font-weight: 700; font-size: 14px;
+}
+.lf-success a.lf-tg:hover { background: #0077b5; }
+
+/* ---------- Mobile sticky CTA (only <=768px) ---------- */
+.lf-sticky-cta {
+  display: none;
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 900;                 /* sidebar overlay (1040) ostida */
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid #e2e8f0;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12);
+  padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+  align-items: center;
+  gap: 12px;
+}
+.lf-sticky-cta .lf-sticky-txt { flex: 1; min-width: 0; }
+.lf-sticky-cta .lf-sticky-txt strong { display: block; font-size: 13.5px; color: #0f172a; font-weight: 700; }
+.lf-sticky-cta .lf-sticky-txt span { font-size: 11.5px; color: #64748b; }
+.lf-sticky-cta .lf-sticky-btn {
+  flex: 0 0 auto;
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+}
+.lf-sticky-cta .lf-sticky-btn:hover { background: #4338ca; }
+
+@media (max-width: 768px) {
+  .lf-sticky-cta { display: flex; }
+  body.lf-has-sticky { padding-bottom: 78px; }
+  .lf-dir-grid { grid-template-columns: 1fr; }
+}

@@ -12,7 +12,7 @@
 .drawer-link:hover i{color:var(--primary-cyan)}
 .drawer-link.active{background:linear-gradient(90deg,rgba(0,242,254,.14),rgba(168,85,247,.05));color:var(--text-main)}
 .drawer-link.active::before{content:"";position:absolute;left:0;top:18%;bottom:18%;width:3px;border-radius:3px;background:var(--primary-cyan);box-shadow:0 0 10px rgba(0,242,254,.6)}
-.drawer-link.active i{color:var(--primary-cyan)
+.drawer-link.active i{color:var(--primary-cyan)}
 @media (prefers-reduced-motion: reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
 :root{--bg-surface-hi:#262a36;--surface-glass:rgba(20,21,27,.92);--accent-gold-soft:rgba(251,191,36,.14);--accent-gold-border:rgba(251,191,36,.35);--accent-green-soft:rgba(16,185,129,.14);--accent-green-border:rgba(16,185,129,.35);--accent-pink-soft:rgba(236,72,153,.14);--accent-pink-border:rgba(236,72,153,.35)}
 .lesson-page{background:radial-gradient(ellipse at top left,rgba(251,191,36,.05),transparent 55%),var(--bg-dark);color:var(--text-main);font-family:Inter,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}

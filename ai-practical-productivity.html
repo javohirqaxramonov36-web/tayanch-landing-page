@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+    <!-- Yagona sozlamalar manbai — BARCHA script'lardan oldin -->
+    <script src="site-config.js"></script>
+    <script src="ga4.js" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amaliy AI: Kundalik ishda Sun'iy Intellekt — Tayanch</title>
+<meta name="description" content="ChatGPT, Claude va Perplexity bilan ishlashning amaliy usullari, kundalik vazifalar uchun tayyor promptlar va eng ko'p qilinadigan xatolar. Bepul amaliy AI darsi: Prompt Engineering asoslari.">
+<meta name="author" content="Tayanch">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="ai-practical-productivity.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Amaliy AI: Kundalik ishda Sun'iy Intellekt — Tayanch">
+<meta property="og:description" content="Prompt Engineering asoslari, kundalik tayyor promptlar va ChatGPT / Claude / Perplexity solishtirmasi bilan bepul amaliy dars.">
+<meta property="og:url" content="ai-practical-productivity.html">
+<meta property="og:image" content="assets/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Amaliy AI: Kundalik ishda Sun'iy Intellekt — Tayanch">
+<meta name="twitter:description" content="Prompt Engineering asoslari, kundalik tayyor promptlar va ChatGPT / Claude / Perplexity solishtirmasi bilan bepul amaliy dars.">
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sidebar.css">
+</head>
+<body class="lesson-page">
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Menyu ochish" aria-expanded="false" aria-controls="globalSidebar">
+  <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+</button>
+<aside class="global-sidebar" id="globalSidebar" aria-label="Asosiy navigatsiya">
+  <div class="sidebar-inner">
+    <a href="index.html" class="sidebar-brand">
+      <img src="assets/images/logo-header.png" alt="" aria-hidden="true" width="34" height="34">
+      <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
+    </a>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Asosiy</div>
+      <a href="index.html" class="sidebar-link" data-nav="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Bosh sahifa</span></a>
+      <a href="index.html#mission" class="sidebar-link" data-nav="mission"><i class="fa-solid fa-star" aria-hidden="true"></i><span>Nega Tayanch</span></a>
+      <a href="courses.html" class="sidebar-link" data-nav="courses.html"><i class="fa-solid fa-book" aria-hidden="true"></i><span>Kurslar <span class="badge-count" data-course-count="all">35</span></span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Yo'nalishlar</div>
+      <a href="ielts.html" class="sidebar-link" data-nav="ielts.html"><i class="fa-solid fa-language" aria-hidden="true"></i><span>IELTS &amp; Ingliz tili</span></a>
+      <a href="sat.html" class="sidebar-link" data-nav="sat.html"><i class="fa-solid fa-chart-line" aria-hidden="true"></i><span>SAT &amp; Math</span></a>
+      <a href="admission.html" class="sidebar-link" data-nav="admission.html"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span>Admission</span></a>
+      <a href="services.html" class="sidebar-link" data-nav="services.html"><i class="fa-solid fa-briefcase" aria-hidden="true"></i><span>Xizmatlar</span></a>
+      <a href="ai-courses.html" class="sidebar-link" data-nav="ai-courses.html"><i class="fa-solid fa-robot" aria-hidden="true"></i><span>AI Kurslar</span></a>
+      <a href="school-lessons.html" class="sidebar-link" data-nav="school-lessons.html"><i class="fa-solid fa-school" aria-hidden="true"></i><span>Maktab darslari</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Vositalar</div>
+      <a href="sat-dsat.html" class="sidebar-link" data-nav="sat-dsat.html"><i class="fa-solid fa-square-root-variable" aria-hidden="true"></i><span>Digital SAT Hub</span></a>
+      <a href="sat-mock.html" class="sidebar-link" data-nav="sat-mock.html"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i><span>SAT Mock Test</span></a>
+      <a href="general-english-beginner.html" class="sidebar-link" data-nav="general-english-beginner.html"><i class="fa-solid fa-feather" aria-hidden="true"></i><span>General English</span></a>
+      <a href="admission-essay-personal-statement.html" class="sidebar-link" data-nav="admission-essay-personal-statement.html"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i><span>Personal Statement</span></a>
+      <a href="ai-practical-productivity.html" class="sidebar-link" data-nav="ai-practical-productivity.html"><i class="fa-solid fa-bolt" aria-hidden="true"></i><span>AI Amaliy Dars</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Ishonch</div>
+      <a href="index.html#trust" class="sidebar-link" data-nav="trust"><i class="fa-solid fa-medal" aria-hidden="true"></i><span>Natijalar</span></a>
+      <a href="sitemap.html" class="sidebar-link" data-nav="sitemap.html"><i class="fa-solid fa-sitemap" aria-hidden="true"></i><span>Vizual Sitemap</span></a>
+      <a href="robots.html" class="sidebar-link" data-nav="robots.html"><i class="fa-solid fa-robot" aria-hidden="true"></i><span>Robots</span></a>
+    </div>
+    <div class="sidebar-cta">
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Telegram'da Ariza</a>
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-telegram" aria-hidden="true"></i> Kanal</a>
+    </div>
+  </div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+
+<nav class="site-nav">
+  <a class="site-brand" href="index.html">TAYANCH.</a>
+  <a class="site-back" href="ai-courses.html">AI Kurslarga qaytish</a>
+</nav>
+
+<header>
+  <div class="kicker">AI Kurslari — Amaliy bepul dars</div>
+  <h1>Sun'iy intellektni kundalik ishda qanday ishlatish kerak</h1>
+  <p class="lead">Prompt Engineering — bu AI bilan oddiy "chat" o'rniga haqiqiy yordamchi sizga aylantirish san'ati. Bu bepul darsda ChatGPT, Claude va Perplexity bilan ishlash usullarini, kundalik vazifalar uchun tayyor promptlarni va eng ko'p qilinadigan xatolarni o'rganasiz.</p>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-inner" id="tabsInner" role="tablist" aria-label="Dars bo'limlari">
+    <button class="tab-btn active" role="tab" id="tab-t1" aria-selected="true" aria-controls="t1" data-tab="t1">Nega muhim</button>
+    <button class="tab-btn" role="tab" id="tab-t2" aria-selected="false" aria-controls="t2" data-tab="t2">Asosiy texnikalar</button>
+    <button class="tab-btn" role="tab" id="tab-t3" aria-selected="false" aria-controls="t3" data-tab="t3">Kundalik promptlar</button>
+    <button class="tab-btn" role="tab" id="tab-t4" aria-selected="false" aria-controls="t4" data-tab="t4">ChatGPT vs Claude vs Perplexity</button>
+    <button class="tab-btn" role="tab" id="tab-t5" aria-selected="false" aria-controls="t5" data-tab="t5">Xatolar</button>
+    <button class="tab-btn" role="tab" id="tab-t6" aria-selected="false" aria-controls="t6" data-tab="t6">Kuchsiz vs Kuchli</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ PANEL 1 ============ -->
+  <section class="panel active" role="tabpanel" aria-labelledby="tab-t1" id="t1">
+    <div class="panel-head">
+      <h2>Nega prompt yozish san'ati muhim</h2>
+      <p class="sub">Zamonaviy AI modellari juda kuchli, lekin ular siz bergan ko'rsatmagacha foydali. Yaxshi prompt — bu fikrlash aniqligining aksidir.</p>
+    </div>
+
+    <div class="accordion" id="acc1">
+      <div class="accordion-item open">
+        <button class="accordion-trigger" aria-expanded="true" aria-controls="acc-body-1">
+          <span class="accordion-num">01</span>
+          <h3>Nima uchun kerak</h3>
+          <span class="chev">▾</span>
+        </button>
+        <div class="accordion-body" id="acc-body-1">
+          <div class="accordion-content">
+            <p>AI modeli "telefon" emas, balki "tarjimon" kabi ishlaydi: siz qanchalik aniq tushuntirsangiz, natija shunchalik mos keladi. Yaxshi prompt vaqtni tejaydi va qayta ishlashni kamaytiradi — bir so'rov bilan tayyor natija olasiz.</p>
+            <p>Kundalikda odamlar AI'dan "salom, qandaysiz" deb suhbat qilib, uning asl kuchidan foydalanmaydilar. Prompt muhandisligi — bu shu kuchni ongli ravishda yo'naltirish.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-body-2">
+          <span class="accordion-num">02</span>
+          <h3>Farq nima qiladi</h3>
+          <span class="chev">▾</span>
+        </button>
+        <div class="accordion-body" id="acc-body-2">
+          <div class="accordion-content">
+            <p>Bir xil maqsad uchun ikkita turli prompt bo'lishi mumkin: bitta umumiy ("menga email yozing"), ikkinchisi aniq (kimga, qanday tonda, qanday tuzilishda). Ikkinchisi 5 daqiqa emas, 30 soniyada ishga yaroqli bo'ladi.</p>
+            <p>Yaxshi prompt — bu siz o'zingiz yozgan qoida. Uni bir marta tuzib, keyin qayta-qayta ishlatsangiz, har safar bir xil sifatli natija olasiz.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-body-3">
+          <span class="accordion-num">03</span>
+          <h3>Kimga kerak</h3>
+          <span class="chev">▾</span>
+        </button>
+        <div class="accordion-body" id="acc-body-3">
+          <div class="accordion-content">
+            <p>Prompt muhandisligi alohida kasb emas — har bir kishining asbobi:</p>
+            <ul>
+              <li><strong>Talaba</strong> — konspekt, tarjima, mavzu tushuntirish;</li>
+              <li><strong>Ishchi</strong> — xat, hisobot, taqdimot tayyorlash;</li>
+              <li><strong>Tadbirkor</strong> — g'oya, kontent, mijoz xabarnomalari;</li>
+              <li><strong>O'qituvchi</strong> — dars rejasi, test, misollar.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz" data-answer="b">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">Prompt Engineering asosan nima?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">Faqat dasturchilar uchun kod yozish tili</button>
+        <button type="button" class="quiz-opt" data-choice="b">AI'dan aniq, foydali natija olish uchun ko'rsatmalarni tuzish san'ati</button>
+        <button type="button" class="quiz-opt" data-choice="c">Yangi dasturlash tilini o'rganish</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <!-- ============ PANEL 2 ============ -->
+  <section class="panel" role="tabpanel" aria-labelledby="tab-t2" id="t2">
+    <div class="panel-head">
+      <h2>6 ta asosiy texnika</h2>
+      <p class="sub">Bularni aralashtirib, har bir vazifaga mos kombinatsiyani tanlang. Eng kuchli prompt — bir nechtasining birikmasi.</p>
+    </div>
+
+    <div class="type-grid">
+      <div class="type-card">
+        <h4>1. Rol berish (Persona)</h4>
+        <p>"Sen tajribali marketing mutaxassisi bo'lib ishla" kabi nuqtai nazar bering. Model javob uslubini shu rolga moslashtiradi.</p>
+      </div>
+      <div class="type-card">
+        <h4>2. Kontekst va maqsad</h4>
+        <p>Kim uchun, nima uchun va qanday natija kerakligini ayting. Model sizning vaziyattingizni bilmaydi — zamin bering.</p>
+      </div>
+      <div class="type-card">
+        <h4>3. Aniq vazifa + format</h4>
+        <p>"3 bandda, har biri 2 jumla, ro'yxat shaklida" kabi chegaralar qo'ying. Shakl aniq bo'lsa, qayta ishlash shart bo'lmaydi.</p>
+      </div>
+      <div class="type-card">
+        <h4>4. Namuna orqali (Few-shot)</h4>
+        <p>Bitta yaxshi namuna ko'rsating — model shu uslubda davom ettiradi. Ayniqsa tarjima va tasnifda samarali.</p>
+      </div>
+      <div class="type-card">
+        <h4>5. Bosqichma-bosqich fikrlash</h4>
+        <p>"Avval reja tuz, keyin yechim ber" deyish (Chain-of-Thought) murakkab masalalarda aniqlikni sezilarli oshiradi.</p>
+      </div>
+      <div class="type-card">
+        <h4>6. Cheklov va ogohlantirish</h4>
+        <p>"Ilmga asoslanmagan taxmin qilma", "qisqacha yozing", "o'z fikringni qo'shma" kabi chegaralar noto'g'ri yo'nalishni oldini oladi.</p>
+      </div>
+    </div>
+
+    <div class="quiz" data-answer="b">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">Murakkab masalani yechishda qaysi texnika eng foydali bo'ladi?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">Faqat "tezkor yech" deb yozish</button>
+        <button type="button" class="quiz-opt" data-choice="b">Bosqichma-bosqich fikrlash (Chain-of-Thought) — reja, so'ng yechim</button>
+        <button type="button" class="quiz-opt" data-choice="c">Umumiy "yordam ber" deb yozish</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <!-- ============ PANEL 3 ============ -->
+  <section class="panel" role="tabpanel" aria-labelledby="tab-t3" id="t3">
+    <div class="panel-head">
+      <h2>Kundalik vazifalar uchun tayyor shablonlar</h2>
+      <p class="sub">Quyidagilarni to'g'ridan-to'g'ri nusxalab, [qavs] ichidagi o'rniga o'z ma'lumotingizni qo'ying. <!-- TODO: har bir shablon yoniga "Nusxalash" tugmasi qo'shish mumkin (clipboard API). --></p>
+    </div>
+
+    <div class="type-grid">
+      <div class="type-card">
+        <h4>Email javobi</h4>
+        <p>"Sen professional assistent bo'lib ishla. Quyidagi xabarga qisqa, muloyim va rasmiy javob yozing: [xabar]. Faqat javob matni, 3–4 jumla."</p>
+      </div>
+      <div class="type-card">
+        <h4>Matn xulosalash</h4>
+        <p>"Quyidagi matnni 5 ta gap bilan o'zbek tilida xulosa qil. Asosiy fikrlar saqlansin, yangi ma'lumot qo'shilmasin: [matn]."</p>
+      </div>
+      <div class="type-card">
+        <h4>Tarjima</h4>
+        <p>"Quyidagi parchani ingliz tiliga tarjima qil. Rasmiy ish xati uslubida, so'zma-so'z emas, ma'no saqlab: [parcha]."</p>
+      </div>
+      <div class="type-card">
+        <h4>Reja tuzish</h4>
+        <p>"Men [maqsad] ni 2 haftada bajarmoqchiman. Har kuni uchun aniq, bajariladigan 3 ta vazifa rejasi tuzib bering."</p>
+      </div>
+      <div class="type-card">
+        <h4>Mavzuni o'rganish</h4>
+        <p>"Men [mavzu] ni yangi o'rganyapman. 7 yoshli bolaga tushuntirgandek, 4 ta sodda qadam va 2 ta misol bering."</p>
+      </div>
+    </div>
+
+    <div class="quiz" data-answer="b">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">Email uchun prompt tuzayotganda nima eng muhim?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">Qancha vaqt sarflaganingizni yozish</button>
+        <button type="button" class="quiz-opt" data-choice="b">Kimga va qanday tonda javob kerakligini aniq ko'rsatish</button>
+        <button type="button" class="quiz-opt" data-choice="c">O'zingizning shaxsiy fikringizni qo'shish</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <!-- ============ PANEL 4 ============ -->
+  <section class="panel" role="tabpanel" aria-labelledby="tab-t4" id="t4">
+    <div class="panel-head">
+      <h2>ChatGPT vs Claude vs Perplexity</h2>
+      <p class="sub">Uchala vosita ham kuchli, lekin ularning kuchi turli joyda. To'g'ri vositani tanlash — vaqtni ikki barobar tejaydi.</p>
+    </div>
+
+    <div class="type-grid">
+      <div class="type-card">
+        <h4>ChatGPT</h4>
+        <p>Eng keng qo'llaniladigan. Katta ekotizim, Custom GPTs, rasmlar va kod yaratish. Kundalik umumiy vazifalar va ishni boshlash uchun qulay.</p>
+      </div>
+      <div class="type-card">
+        <h4>Claude</h4>
+        <p>Uzun matnlar, kod loyihalari va ehtiyotkor, tartibli javoblar uchun qulay. Katta hujjatlarni tahlil qilishda ustun keladi.</p>
+      </div>
+      <div class="type-card">
+        <h4>Perplexity</h4>
+        <p>Veb-qidiruv + manbalar. Faktga asoslangan, tekshirilgan javob va havola kerak bo'lganda; eng so'nggi yangilik yoki tadqiqot uchun mos.</p>
+      </div>
+    </div>
+
+    <div class="quiz" data-answer="a">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">Eng so'nggi tadqiqot yoki yangilik haqida faktlar va manbalar bilan javob olsangiz kerak bo'lsa, qaysi vosita mosroq?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">Perplexity — veb-qidiruv va manbalar bilan</button>
+        <button type="button" class="quiz-opt" data-choice="b">ChatGPT — umumiy suhbat uchun</button>
+        <button type="button" class="quiz-opt" data-choice="c">Claude — faqat kod uchun</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <!-- ============ PANEL 5 ============ -->
+  <section class="panel" role="tabpanel" aria-labelledby="tab-t5" id="t5">
+    <div class="panel-head">
+      <h2>Tez-tez uchraydigan xatolar</h2>
+      <p class="sub">Bu xatolarning aksariyati "yomon" promptdan emas, balki shoshilgandan yuzaga keladi. Har birini tuzatish — natijani birdaniga yaxshilaydi.</p>
+    </div>
+
+    <div class="error-list">
+      <div class="error-item">
+        <div class="error-mark">—</div>
+        <div class="error-body">
+          <h4>Juda umumiy so'rov</h4>
+          <p>"Menga yordam ber" yoki "mavzu haqida ayting" kabi. Aniq bo'ling: nima, kim uchun, qanday natija.</p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-mark">—</div>
+        <div class="error-body">
+          <h4>Kontekstsiz</h4>
+          <p>Model sizning vaziyattingiz, darajangiz va maqsadingizni bilmaydi. Zamin (kontekst) bering — aks holda umumiy javob olasiz.</p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-mark">—</div>
+        <div class="error-body">
+          <h4>Bir vaqtning o'zida juda ko'p</h4>
+          <p>5 ta turli vazifani bitta promptga tiqish — barchasi yarmi-chorak bo'lib chiqadi. Vazifalarni ajrating, ketma-ket bajaring.</p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-mark">—</div>
+        <div class="error-body">
+          <h4>Tekshirmaslik</h4>
+          <p>AI ba'zida xato "hallucinate" qiladi — noto'g'ri raqam, nom yoki havola. Ayniqsa faktlar, sanalar va manbalarni alohida tekshiring.</p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-mark">—</div>
+        <div class="error-body">
+          <h4>Til va format ko'rsatmaslik</h4>
+          <p>"O'zbekcha, 3 band, ro'yxat shaklida, rasmiy tonda" deying. Ko'rsatma aniq bo'lsa, qayta so'rash shart bo'lmaydi.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz" data-answer="b">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">AI javobidagi raqam yoki nom noto'g'ri bo'lishi mumkinligini unutmaslik uchun nima qilish kerak?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">Hammasiga ishonib, tekshirmaslik</button>
+        <button type="button" class="quiz-opt" data-choice="b">Asosiy faktlarni (raqam, nom, havola) alohida tekshirish</button>
+        <button type="button" class="quiz-opt" data-choice="c">Promptni shunchaki uzunroq yozish</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+  <!-- ============ PANEL 6 ============ -->
+  <section class="panel" role="tabpanel" aria-labelledby="tab-t6" id="t6">
+    <div class="panel-head">
+      <h2>Kuchsiz va kuchli prompt solishtiruvi</h2>
+      <p class="sub">Bir xil vazifa, ikki xil yozilish. Farqni his qiling — kuchli prompt aniq rol, kontekst, format va chegaraga ega.</p>
+    </div>
+
+    <h4 style="font-size:15.5px;color:var(--text-main);margin-bottom:10px;">Email yozish</h4>
+    <div class="compare">
+      <div class="compare-box weak">
+        <span class="compare-label">KUCHSIZ</span>
+        <p>Menga xatolik haqida email yozing.</p>
+      </div>
+      <div class="compare-box strong">
+        <span class="compare-label">KUCHLIROQ</span>
+        <p>Sen professional HR bo'lib ishla. Xodimga kechikkan loyiha haqida muloyim, lekin aniq xabar yozing: 3 jumla, oxiri taklif bilan tugasin (keyingi safar qachon topshiradi).</p>
+      </div>
+    </div>
+
+    <h4 style="font-size:15.5px;color:var(--text-main);margin-bottom:10px;">Matn xulosalash</h4>
+    <div class="compare">
+      <div class="compare-box weak">
+        <span class="compare-label">KUCHSIZ</span>
+        <p>Bu matnni qisqartir.</p>
+      </div>
+      <div class="compare-box strong">
+        <span class="compare-label">KUCHLIROQ</span>
+        <p>Quyidagi matnni 5 ta gap bilan o'zbekcha xulosa qil: asosiy fikrlar saqlansin, yangi ma'lumot qo'shilmasin. [matn].</p>
+      </div>
+    </div>
+
+    <h4 style="font-size:15.5px;color:var(--text-main);margin-bottom:10px;">Kod yordami</h4>
+    <div class="compare">
+      <div class="compare-box weak">
+        <span class="compare-label">KUCHSIZ</span>
+        <p>Python da kod yozing.</p>
+      </div>
+      <div class="compare-box strong">
+        <span class="compare-label">KUCHLIROQ</span>
+        <p>Python da CSV faylni o'qib, har bir ustun bo'yicha o'rtacha hisoblaydigan funksiya yozing. Fayl yo'li parametr bo'lsin, natijani dict qaytarsin, izoh bilan tushuntiring.</p>
+      </div>
+    </div>
+
+    <div class="quiz" data-answer="b">
+      <span class="quiz-label">O'zingizni tekshiring</span>
+      <div class="quiz-q">Kuchli promptlarni nima ajratib turadi?</div>
+      <div class="quiz-opts">
+        <button type="button" class="quiz-opt" data-choice="a">Shunchaki uzunroq bo'lishi</button>
+        <button type="button" class="quiz-opt" data-choice="b">Aniq rol, kontekst, format va chegaralarga ega bo'lishi</button>
+        <button type="button" class="quiz-opt" data-choice="c">Ko'proq emoji ishlatishi</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>Original o'quv materiali — AI Kurslari (amaliy bepul dars).</footer>
+
+<div class="cta-wrap">
+  <h2 style="font-family:'Source Serif 4',serif;font-size:24px;margin-bottom:6px;">Darsni tugatdingizmi?</h2>
+  <p style="color:var(--text-muted);max-width:52ch;margin:0 auto 22px;">To'liq kurs dasturini ko'ring yoki ariza qoldirib, mentor bilan boshlang.</p>
+  <button type="button" class="btn btn-secondary btn-liquid" data-course="ChatGPT &amp; Advanced Prompt Engineering" id="openCourseAiBtn">To'liq darsni ochish — ChatGPT &amp; Prompt Engineering</button>
+  <button class="btn btn-primary btn-liquid open-lead-modal-btn" data-course="ChatGPT &amp; Advanced Prompt Engineering" style="margin-left:10px;">Arizani qoldirish — AI kurslari</button>
+  <!-- TODO: courses.html ichida "Live AI Prompt Playground" (4 shablon) hozircha YO'Q. Yaratilgach shu yerga to'g'ri anchor (masalan #prompt-playground) qo'yish kerak. Hozircha katalog sahifasiga yo'naltirilgan. -->
+  <p style="margin-top:18px;"><a href="courses.html" class="site-back">Prompt Playground'da sinab ko'ring →</a></p>
+</div>
+
+<!-- ===== Bespoke "To'liq darsni ochish" course modal (self-contained, global .ps-modal-* styles) ===== -->
+<div class="ps-modal-overlay" id="courseModalAi" role="dialog" aria-modal="true" aria-labelledby="courseModalTitleAi" hidden>
+  <div class="ps-modal-card" role="document">
+    <button class="ps-modal-close" id="courseModalCloseAi" aria-label="Yopish">&times;</button>
+    <h2 id="courseModalTitleAi" class="ps-modal-title">ChatGPT &amp; Advanced Prompt Engineering</h2>
+    <p class="ps-modal-course" id="courseModalCourseAi"></p>
+    <div class="ps-course-detail">
+      <p>Mukammal promptlar yozish, Custom GPTs yaratish hamda kognitiv topshiriqlarni sun'iy intelektga topshirish — 4 haftalik amaliy kurs.</p>
+      <p style="color:var(--text-muted);font-size:14px;margin:14px 0 6px;"><strong>Dastur modullari:</strong></p>
+      <ul style="color:var(--text-muted);font-size:14px;padding-left:20px;margin:0;">
+        <li>Few-Shot va Chain-of-Thought Prompting texnikalari</li>
+        <li>Shaxsiy Custom GPT assistentlarini kodsiz yaratish</li>
+        <li>Katta hajmdagi matnlar va kitoblarni umumlashtirish</li>
+        <li>AI xatolarini (Hallucinations) oldini olish va tekshirish</li>
+      </ul>
+      <p style="color:var(--text-muted);font-size:13px;margin-top:14px;">Davomiyligi: 4 Hafta · Daraja: O'rta · Narx: 249,000 UZS</p>
+    </div>
+    <div class="ps-modal-actions" style="display:flex;gap:10px;margin-top:18px;">
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-block">Telegram'da yozilish</a>
+    </div>
+    <p class="ps-modal-note">Yoki asosiy "Arizani qoldirish" tugmasi orqali ariza qoldiring.</p>
+  </div>
+</div>
+
+<script>
+  // Tabs
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.panel');
+  tabBtns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      tabBtns.forEach(b=>b.classList.remove('active'));
+      panels.forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      var target = btn.dataset.tab || btn.getAttribute('aria-controls');
+      var panel = target && document.getElementById(target);
+      if (panel) panel.classList.add('active');
+      tabBtns.forEach(b => b.setAttribute('aria-selected', b === btn ? 'true' : 'false'));
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+
+  // Accordions
+  document.querySelectorAll('.accordion-item').forEach(item=>{
+    const trigger = item.querySelector('.accordion-trigger');
+    trigger.addEventListener('click',()=>{
+      const isOpen = item.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+
+  // Quizzes
+  document.querySelectorAll('.quiz').forEach(quiz=>{
+    const answer = quiz.dataset.answer;
+    const opts = quiz.querySelectorAll('.quiz-opt');
+    const feedback = quiz.querySelector('.quiz-feedback');
+    opts.forEach(opt=>{
+      opt.addEventListener('click',()=>{
+        if(opt.classList.contains('disabled')) return;
+        opts.forEach(o=>o.classList.add('disabled'));
+        if(opt.dataset.choice===answer){
+          opt.classList.add('correct');
+          feedback.textContent='Toʻgʻri. Aynan shu — kuchli promptning asosiy gʻoyasi.';
+        }else{
+          opt.classList.add('incorrect');
+          opts.forEach(o=>{ if(o.dataset.choice===answer) o.classList.add('correct'); });
+          feedback.textContent='Boshqa variant toʻgʻriroq edi — yashil bilan belgilangani.';
+        }
+        feedback.classList.add('show');
+      });
+    });
+  });
+
+  // Bespoke course modal ("To'liq darsni ochish")
+  (function () {
+    var openBtn = document.getElementById('openCourseAiBtn');
+    var modal = document.getElementById('courseModalAi');
+    if (!modal || !openBtn) return;
+    var closeBtn = document.getElementById('courseModalCloseAi');
+    var courseEl = document.getElementById('courseModalCourseAi');
+    var lastFocused = null;
+    function open(course) {
+      lastFocused = document.activeElement;
+      if (courseEl && course) courseEl.textContent = course;
+      modal.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+      var f = modal.querySelector('input,button,select,textarea,[tabindex]');
+      if (f) f.focus();
+    }
+    function close() {
+      modal.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+    openBtn.addEventListener('click', function () {
+      open(openBtn.getAttribute('data-course'));
+    });
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hasAttribute('hidden')) close();
+    });
+  })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Practical AI for Daily Productivity (ChatGPT & Prompt Engineering)",
+  "description": "ChatGPT, Claude va Perplexity bilan ishlash usullari, kundalik tayyor promptlar va Prompt Engineering asoslari bo'yicha bepul amaliy dars.",
+  "provider": { "@type": "Organization", "name": "Tayanch" },
+  "inLanguage": ["en", "uz"],
+  "url": "ai-practical-productivity.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Practical AI for Daily Productivity (ChatGPT & Prompt Engineering)",
+  "about": "Practical use of AI tools and prompt engineering for daily tasks",
+  "educationalLevel": "Beginner to Intermediate",
+  "provider": {
+    "@type": "Organization",
+    "name": "Tayanch"
+  },
+  "inLanguage": ["en", "uz"],
+  "url": "ai-practical-productivity.html"
+}
+</script>
+
+    <script src="courses-data.js" defer></script>
+    <script src="lead-form.js" defer></script>
+    <script src="nav.js" defer></script>
+</body>
+</html>

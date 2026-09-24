@@ -73,6 +73,12 @@
 
     <main style="padding-top: 130px; padding-bottom: 80px;">
         <div class="container">
+                        <!-- P13-B5: Breadcrumb -->
+            <nav class="breadcrumb" aria-label="Sahifa yo'li">
+                <a href="index.html"><i class="fa-solid fa-house"></i> Bosh sahifa</a>
+                <span class="breadcrumb-sep">/</span>
+                <span class="breadcrumb-current">Kurslar</span>
+            </nav>
             <div class="section-header text-center">
                 <span class="cta-tag liquid-pill"><i class="fa-solid fa-route"></i> Uchta yo'nalish</span>
                 <h1 class="hero-title mt-2">AI, IELTS va <span class="gradient-text liquid-gradient">SAT</span></h1>
@@ -113,7 +119,16 @@
             </div>
 
             <!-- Three honest tracks (JS catalog renderer skipped: no #coursesGrid) -->
-            <div class="grid grid-3 courses-grid mt-4">
+                            <!-- P13-B3: Kurs qidiruv -->
+                <div class="course-search-wrapper">
+                    <div class="search-input-wrap">
+                        <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+                        <input type="search" class="course-search-input" id="courseSearchInput"
+                            placeholder="Kurs qidirish... (IELTS, SAT, AI)"
+                            aria-label="Kurslarni qidirish">
+                    </div>
+                </div>
+                <div class="grid grid-3 courses-grid mt-4">
                 <article class="course-card liquid-card">
                     <div class="course-top">
                         <div class="course-thumb-wrapper">
@@ -268,5 +283,10 @@
 
     <!-- JS Engine -->
     <script src="script.js" defer></script>
+    <script>
+    /* P13-B3+B4: Search + Badge colors */
+    (function(){var inp=document.getElementById('courseSearchInput');if(inp){inp.addEventListener('input',function(){var v=this.value.toLowerCase().trim();document.querySelectorAll('.course-card').forEach(function(c){c.style.display=(v===''||(c.innerText||'').toLowerCase().includes(v))?'':'none'})})}
+    document.querySelectorAll('.course-badge').forEach(function(b){var t=(b.innerText||'').trim();if(/Top/i.test(t))b.classList.add('badge-top');else if(/Yangi|New/i.test(t))b.classList.add('badge-new')})})();
+    </script>
 </body>
 </html>

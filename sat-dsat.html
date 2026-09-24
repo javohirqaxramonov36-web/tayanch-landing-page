@@ -2,14 +2,77 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
+    <!-- Yagona sozlamalar manbai — BARCHA script'lardan oldin -->
+    <script src="site-config.js"></script>
+    <script src="ga4.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital SAT (DSAT) Hub & Real Bluebook Simulator — Tayanch</title>
     <meta name="description" content="Digital SAT tayyorgarlik: 320 ta mashq, 5 ta combo, Bluebook simulator, 500+ vocabulary builder, ota-ona/o'qituvchi paneli.">
     
     <!-- Canonical & Favicon -->
     <link rel="canonical" href="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/sat-dsat.html">
-    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png?v=1788409946">
     <link rel="apple-touch-icon" href="assets/images/founder.jpg">
+
+    <!-- Open Graph & Twitter Cards -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Digital SAT (DSAT) Hub & Real Bluebook Simulator — Tayanch">
+    <meta property="og:description" content="Tayanch Digital SAT (DSAT) tayyorlov portali: Real Bluebook formatidagi adaptiv mock-test simulyatori, 1500+ garantiyali intensiv kurslar, SAT Vocab Spaced Repetition va Ota-onalar paneli.">
+    <meta property="og:url" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/sat-dsat.html">
+    <meta property="og:image" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/assets/images/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Digital SAT (DSAT) Hub & Real Bluebook Simulator — Tayanch">
+    <meta name="twitter:description" content="Tayanch Digital SAT (DSAT) tayyorlov portali: Real Bluebook formatidagi adaptiv mock-test simulyatori, 1500+ garantiyali intensiv kurslar, SAT Vocab Spaced Repetition va Ota-onalar paneli.">
+    <meta name="twitter:image" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/assets/images/og-image.png">
+
+    <!-- Schema.org: Digital SAT kurslari (Google indekslashi uchun statik JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Course",
+          "@id": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/sat-dsat.html#course-22",
+          "name": "Digital SAT Math Mastery (800 Score Strategy)",
+          "description": "Digital SAT Matematika bo'limining barcha formulalari, Desmos kalkulyatoridan samarali foydalanish hamda 800 bal algebrasi.",
+          "provider": {
+            "@type": "Organization",
+            "name": "Tayanch Educational Platform",
+            "sameAs": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/"
+          },
+          "educationalLevel": "Amaliy",
+          "inLanguage": "uz",
+          "isAccessibleForFree": true,
+          "url": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/sat-dsat.html",
+          "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "online",
+            "courseWorkload": "6 Hafta"
+          }
+        },
+        {
+          "@type": "Course",
+          "@id": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/sat-dsat.html#course-23",
+          "name": "Digital SAT Reading & Writing",
+          "description": "Digital SAT Reading matnlari tahlili, Vocabulary in Context hamda Grammatika qoidalarining 100% yechimlari.",
+          "provider": {
+            "@type": "Organization",
+            "name": "Tayanch Educational Platform",
+            "sameAs": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/"
+          },
+          "educationalLevel": "Advanced",
+          "inLanguage": "uz",
+          "isAccessibleForFree": true,
+          "url": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/sat-dsat.html",
+          "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "online",
+            "courseWorkload": "6 Hafta"
+          }
+        }
+      ]
+    }
+    </script>
 
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,6 +82,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sidebar.css">
     
     <!-- MathJax for rendering math formulas -->
     <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
@@ -37,6 +101,51 @@
 <meta name="twitter:image" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/assets/images/founder.jpg">
 </head>
 <body class="liquid-theme">
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Menyu ochish" aria-expanded="false" aria-controls="globalSidebar">
+  <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+</button>
+<aside class="global-sidebar" id="globalSidebar" aria-label="Asosiy navigatsiya">
+  <div class="sidebar-inner">
+    <a href="index.html" class="sidebar-brand">
+      <img src="assets/images/logo-header.png" alt="" aria-hidden="true" width="34" height="34">
+      <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
+    </a>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Asosiy</div>
+      <a href="index.html" class="sidebar-link" data-nav="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Bosh sahifa</span></a>
+      <a href="index.html#mission" class="sidebar-link" data-nav="mission"><i class="fa-solid fa-star" aria-hidden="true"></i><span>Nega Tayanch</span></a>
+      <a href="courses.html" class="sidebar-link" data-nav="courses.html"><i class="fa-solid fa-book" aria-hidden="true"></i><span>Kurslar <span class="badge-count" data-course-count="all">30</span></span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Yo'nalishlar</div>
+      <a href="ielts.html" class="sidebar-link" data-nav="ielts.html"><i class="fa-solid fa-language" aria-hidden="true"></i><span>IELTS &amp; Ingliz tili</span></a>
+      <a href="sat.html" class="sidebar-link" data-nav="sat.html"><i class="fa-solid fa-chart-line" aria-hidden="true"></i><span>SAT &amp; Math</span></a>
+      <a href="admission.html" class="sidebar-link" data-nav="admission.html"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span>Admission</span></a>
+      <a href="services.html" class="sidebar-link" data-nav="services.html"><i class="fa-solid fa-briefcase" aria-hidden="true"></i><span>Xizmatlar</span></a>
+      <a href="ai-courses.html" class="sidebar-link" data-nav="ai-courses.html"><i class="fa-solid fa-robot" aria-hidden="true"></i><span>AI Kurslar</span></a>
+      <a href="school-lessons.html" class="sidebar-link" data-nav="school-lessons.html"><i class="fa-solid fa-school" aria-hidden="true"></i><span>Maktab darslari</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Vositalar</div>
+      <a href="sat-dsat.html" class="sidebar-link" data-nav="sat-dsat.html"><i class="fa-solid fa-square-root-variable" aria-hidden="true"></i><span>Digital SAT Hub</span></a>
+      <a href="sat-mock.html" class="sidebar-link" data-nav="sat-mock.html"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i><span>SAT Mock Test</span></a>
+      <a href="general-english-beginner.html" class="sidebar-link" data-nav="general-english-beginner.html"><i class="fa-solid fa-feather" aria-hidden="true"></i><span>General English</span></a>
+      <a href="admission-essay-personal-statement.html" class="sidebar-link" data-nav="admission-essay-personal-statement.html"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i><span>Personal Statement</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Ishonch</div>
+      <a href="index.html#trust" class="sidebar-link" data-nav="trust"><i class="fa-solid fa-medal" aria-hidden="true"></i><span>Natijalar</span></a>
+      <a href="sitemap.html" class="sidebar-link" data-nav="sitemap.html"><i class="fa-solid fa-sitemap" aria-hidden="true"></i><span>Vizual Sitemap</span></a>
+      <a href="robots.html" class="sidebar-link" data-nav="robots.html"><i class="fa-solid fa-robot" aria-hidden="true"></i><span>Robots</span></a>
+    </div>
+    <div class="sidebar-cta">
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Telegram'da Ariza</a>
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-telegram" aria-hidden="true"></i> Kanal</a>
+    </div>
+  </div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
 
     <!-- Top Announcement Bar -->
     <div class="top-announcement-bar liquid-glass">
@@ -328,11 +437,11 @@
                 </div>
 
                 <!-- Question Grid Navigator Modal -->
-                <div class="sim-modal hidden" id="qGridModal">
+                <div class="sim-modal hidden" id="qGridModal" role="dialog" aria-modal="true" aria-labelledby="qGridModalTitle">
                     <div class="modal-content liquid-glass">
                         <div class="modal-header">
-                            <h3><i class="fa-solid fa-list-check"></i> Savollar Navigatsiyasi</h3>
-                            <button class="close-modal-btn" onclick="toggleQuestionGridModal()">&times;</button>
+                            <h3 id="qGridModalTitle"><i class="fa-solid fa-list-check"></i> Savollar Navigatsiyasi</h3>
+                            <button class="close-modal-btn" onclick="toggleQuestionGridModal()" aria-label="Savollar navigatsiyasini yopish">&times;</button>
                         </div>
                         <div class="modal-body">
                             <p>Siz o'tkazib yuborgan yoki ko'rib chiqish uchun belgilagan (marked) savollarga tezda o'tishingiz mumkin:</p>
@@ -344,11 +453,11 @@
                 </div>
 
                 <!-- Math Formulas Modal -->
-                <div class="sim-modal hidden" id="formulaModal">
+                <div class="sim-modal hidden" id="formulaModal" role="dialog" aria-modal="true" aria-labelledby="formulaModalTitle">
                     <div class="modal-content liquid-glass formula-modal-content">
                         <div class="modal-header">
-                            <h3><i class="fa-solid fa-square-root-variable"></i> SAT Math Reference Sheet</h3>
-                            <button class="close-modal-btn" onclick="toggleSimFormulas()">&times;</button>
+                            <h3 id="formulaModalTitle"><i class="fa-solid fa-square-root-variable"></i> SAT Math Reference Sheet</h3>
+                            <button class="close-modal-btn" onclick="toggleSimFormulas()" aria-label="Formulalar oynasini yopish">&times;</button>
                         </div>
                         <div class="modal-body text-center">
                             <div class="formula-grid">
@@ -382,11 +491,11 @@
                 </div>
 
                 <!-- Desmos Scientific/Graphing Calculator Modal -->
-                <div class="sim-modal hidden" id="calcModal">
+                <div class="sim-modal hidden" id="calcModal" role="dialog" aria-modal="true" aria-labelledby="calcModalTitle">
                     <div class="modal-content liquid-glass calc-modal-content">
                         <div class="modal-header">
-                            <h3><i class="fa-solid fa-calculator"></i> Built-in Scientific Calculator</h3>
-                            <button class="close-modal-btn" onclick="toggleSimCalculator()">&times;</button>
+                            <h3 id="calcModalTitle"><i class="fa-solid fa-calculator"></i> Built-in Scientific Calculator</h3>
+                            <button class="close-modal-btn" onclick="toggleSimCalculator()" aria-label="Kalkulyatorni yopish">&times;</button>
                         </div>
                         <div class="modal-body">
                             <div class="calc-display-screen" id="calcDisplay">0</div>
@@ -641,10 +750,10 @@
     </main>
 
     <!-- Parent / Teacher Login Modal -->
-    <div class="sim-modal hidden" id="parentModal">
+    <div class="sim-modal hidden" id="parentModal" role="dialog" aria-modal="true" aria-labelledby="parentModalTitle">
         <div class="modal-content liquid-glass parent-modal-content">
             <div class="modal-header">
-                <h3><i class="fa-solid fa-user-lock"></i> Ota-ona / O'qituvchi Portaliga Kirish</h3>
+                <h3 id="parentModalTitle"><i class="fa-solid fa-user-lock"></i> Ota-ona / O'qituvchi Portaliga Kirish</h3>
                 <button class="close-modal-btn" onclick="closeParentModal()">&times;</button>
             </div>
             <div class="modal-body">
@@ -709,6 +818,27 @@
     </footer>
 
     <!-- JavaScript -->
+    <!-- YAGONA MA'LUMOTLAR MANBAI (kurslar soni): script.js'dan OLDIN -->
+    <script src="courses-data.js" defer></script>
     <script src="script.js" defer></script>
+<script>
+/* Accessibility: Escape + backdrop close for .sim-modal; keyboard flip for flashcard */
+(function () {
+  function visibleSimModal() { return document.querySelector('.sim-modal:not(.hidden)'); }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { var m = visibleSimModal(); if (m) m.classList.add('hidden'); }
+  });
+  document.addEventListener('click', function (e) {
+    var m = visibleSimModal();
+    if (m && e.target === m) m.classList.add('hidden');
+  });
+  document.addEventListener('keydown', function (e) {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target && e.target.id === 'vocabFlashcard') {
+      e.preventDefault(); e.target.click();
+    }
+  });
+})();
+</script>
+    <script src="nav.js" defer></script>
 </body>
 </html>

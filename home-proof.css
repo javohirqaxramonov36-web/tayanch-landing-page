@@ -1,0 +1,155 @@
+/* ============================================================
+   home-proof.css — Tayanch bosh sahifa uchun qo'shimcha bo'limlar
+   (PROMPT 10: ishonch signallari / PROMPT 11: risk reversal)
+   ------------------------------------------------------------
+   Saytning mavjud qora-shisha (dark glass) estetikasiga mos.
+   Faqat index.html da ishlatiladi.
+   ============================================================ */
+
+/* ---------------- PROMPT 11: Risk Reversal / Kafolat ---------------- */
+.guarantee-section { padding: 24px 0 0; }
+.guarantee-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(79, 70, 229, 0.10)), rgba(18, 22, 34, 0.7);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: var(--radius-lg, 24px);
+  padding: 30px 28px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+.guarantee-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 12% 20%, rgba(16, 185, 129, 0.18), transparent 55%);
+  pointer-events: none;
+}
+.guarantee-icon {
+  flex: 0 0 auto;
+  width: 64px; height: 64px;
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 30px; color: #fff;
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 8px 22px rgba(16, 185, 129, 0.35);
+}
+.guarantee-body { flex: 1 1 320px; min-width: 0; position: relative; z-index: 1; }
+.guarantee-tag {
+  display: inline-block;
+  background: rgba(16, 185, 129, 0.18);
+  color: #34d399;
+  font-size: 12px; font-weight: 700;
+  padding: 4px 12px; border-radius: 20px;
+  margin-bottom: 8px;
+}
+.guarantee-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 24px; font-weight: 800; color: #f3f4f6;
+  margin: 0 0 6px; line-height: 1.2;
+}
+.guarantee-desc { font-size: 14.5px; color: #a1a1aa; margin: 0; line-height: 1.5; }
+.guarantee-desc strong { color: #f3f4f6; }
+.guarantee-cta { flex: 0 0 auto; position: relative; z-index: 1; }
+.guarantee-cta .btn { white-space: nowrap; }
+
+@media (max-width: 640px) {
+  .guarantee-card { flex-direction: column; text-align: center; padding: 26px 20px; }
+  .guarantee-cta { width: 100%; }
+  .guarantee-cta .btn { width: 100%; }
+}
+
+/* ---------------- PROMPT 10: Placeholder natija kartalari ---------------- */
+.proof-placeholder-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 26px;
+}
+.proof-ph-card {
+  border: 2px dashed rgba(148, 163, 184, 0.4);
+  border-radius: var(--radius-md, 16px);
+  padding: 22px 18px;
+  text-align: center;
+  background: rgba(18, 22, 34, 0.45);
+  color: #94a3b8;
+}
+.proof-ph-card .ph-icon {
+  font-size: 26px; opacity: 0.6; margin-bottom: 8px;
+}
+.proof-ph-card .ph-title { font-size: 14px; font-weight: 700; color: #cbd5e1; margin: 0 0 4px; }
+.proof-ph-card .ph-sub { font-size: 12px; color: #94a3b8; margin: 0; line-height: 1.4; }
+.proof-ph-note {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 12.5px;
+  color: #71717a;
+  margin-top: 2px;
+}
+@media (max-width: 640px) {
+  .proof-placeholder-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------------- PROMPT 10: AI tekshirgan essay (before/after demo) ---------------- */
+.aiessay-section { padding-top: 30px; }
+.aiessay-wrap {
+  background: rgba(18, 22, 34, 0.65);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: var(--radius-lg, 24px);
+  padding: 26px 24px;
+}
+.aiessay-head { text-align: center; margin-bottom: 20px; }
+.aiessay-head .aiessay-tag-demo {
+  display: inline-block;
+  background: rgba(168, 85, 247, 0.18);
+  color: #c084fc; font-size: 12px; font-weight: 700;
+  padding: 4px 12px; border-radius: 20px; margin-bottom: 8px;
+}
+.aiessay-head h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 22px; font-weight: 800; color: #f3f4f6; margin: 0 0 6px;
+}
+.aiessay-head p { font-size: 14px; color: #a1a1aa; margin: 0; }
+.aiessay-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.aiessay-col {
+  border-radius: var(--radius-md, 16px);
+  padding: 18px;
+  border: 1px solid var(--border-subtle, rgba(255,255,255,0.08));
+}
+.aiessay-col.before { background: rgba(239, 68, 68, 0.08); border-color: rgba(239, 68, 68, 0.3); }
+.aiessay-col.after  { background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.3); }
+.aiessay-col .col-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12.5px; font-weight: 700; padding: 4px 10px; border-radius: 20px; margin-bottom: 12px;
+}
+.aiessay-col.before .col-tag { background: rgba(239, 68, 68, 0.18); color: #fca5a5; }
+.aiessay-col.after .col-tag  { background: rgba(16, 185, 129, 0.18); color: #6ee7b7; }
+.aiessay-doc {
+  font-size: 13.5px; line-height: 1.7; color: #d1d5db;
+  background: rgba(10, 12, 18, 0.5);
+  border-radius: 10px;
+  padding: 14px;
+}
+.aiessay-doc .err {
+  color: #fca5a5; text-decoration: line-through; text-decoration-color: #ef4444;
+}
+.aiessay-doc .fix { color: #6ee7b7; font-weight: 600; }
+.aiessay-doc .cmt {
+  display: block; font-size: 12px; color: #93c5fd; margin-top: 8px;
+  padding-left: 10px; border-left: 2px solid rgba(147, 197, 253, 0.4);
+}
+.aiessay-foot {
+  margin-top: 18px; text-align: center;
+  font-size: 12.5px; color: #71717a;
+}
+
+@media (max-width: 640px) {
+  .aiessay-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,294 @@
+/* =========================================================================
+   sidebar.css — GLOBAL SIDEBAR (Prompt 8)
+   -------------------------------------------------------------------------
+   Bitta qayta ishlatiladigan komponent:
+     • Mobil: hamburger orqali ochiladigan off-canvas yon panel (overlay).
+     • Desktop (hub sahifalar): doimiy chap sidebar (body.hub-page bilan).
+   Hammasi nav.js tomonidan boshqariladi. Aktiv sahifa URL orqali aniqlanadi.
+   ========================================================================= */
+
+:root{
+  --sidebar-w: 274px;
+  --sidebar-bg: rgba(13, 14, 20, 0.97);
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-z: 1060;
+}
+
+/* ---------- Hamburger toggle (mobil + desktop content pages) ---------- */
+.sidebar-toggle{
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 1050;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(18, 22, 34, 0.82);
+  border: 1px solid var(--sidebar-border);
+  color: var(--text-main);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: color .2s ease, border-color .2s ease, transform .2s ease;
+}
+.sidebar-toggle:hover{
+  color: var(--primary-cyan);
+  border-color: var(--border-bright);
+}
+.sidebar-toggle:active{ transform: scale(.94); }
+.sidebar-toggle .bars{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 20px;
+}
+.sidebar-toggle .bars span{
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform .28s cubic-bezier(.16,1,.3,1), opacity .2s ease;
+}
+body.sidebar-open .sidebar-toggle .bars span:nth-child(1){ transform: translateY(6px) rotate(45deg); }
+body.sidebar-open .sidebar-toggle .bars span:nth-child(2){ opacity: 0; }
+body.sidebar-open .sidebar-toggle .bars span:nth-child(3){ transform: translateY(-6px) rotate(-45deg); }
+
+/* ---------- Backdrop (mobil overlay) ---------- */
+.sidebar-backdrop{
+  position: fixed;
+  inset: 0;
+  z-index: 1040;
+  background: rgba(5, 6, 11, 0.62);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease, visibility .3s ease;
+}
+body.sidebar-open .sidebar-backdrop{ opacity: 1; visibility: visible; }
+
+/* ---------- Sidebar shell ---------- */
+.global-sidebar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--sidebar-z);
+  width: var(--sidebar-w);
+  height: 100vh;
+  height: 100dvh;
+  background: var(--sidebar-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-right: 1px solid var(--sidebar-border);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform .32s cubic-bezier(.16, 1, .3, 1);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+body.sidebar-open .global-sidebar{ transform: translateX(0); }
+
+.sidebar-inner{
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 20px 16px 22px;
+  gap: 4px;
+}
+
+/* Brand */
+.sidebar-brand{
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 6px 10px 16px;
+  text-decoration: none;
+}
+.sidebar-brand img{
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  object-fit: contain;
+}
+.sidebar-brand .brand-name{
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.32rem;
+  letter-spacing: .02em;
+  color: var(--text-main);
+}
+.sidebar-brand .brand-dot{ color: var(--primary-cyan); }
+
+/* Groups */
+.sidebar-group{ margin-top: 12px; }
+.sidebar-group + .sidebar-group{
+  border-top: 1px solid var(--sidebar-border);
+  padding-top: 12px;
+}
+.sidebar-group-title{
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 2px 10px 8px;
+}
+.sidebar-link{
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  padding: .6rem .8rem;
+  border-radius: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: .97rem;
+  text-decoration: none;
+  position: relative;
+  transition: background .2s ease, color .2s ease;
+}
+.sidebar-link i{
+  width: 20px;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  transition: color .2s ease;
+}
+.sidebar-link .badge-count{
+  margin-left: auto;
+  font-size: .72rem;
+  background: rgba(0, 242, 254, 0.14);
+  color: var(--primary-cyan);
+  padding: 1px 7px;
+  border-radius: 999px;
+}
+.sidebar-link:hover{
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+}
+.sidebar-link:hover i{ color: var(--primary-cyan); }
+.sidebar-link.active{
+  background: linear-gradient(90deg, rgba(0, 242, 254, 0.14), rgba(168, 85, 247, 0.05));
+  color: var(--text-main);
+}
+.sidebar-link.active::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 18%;
+  bottom: 18%;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--primary-cyan);
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
+}
+.sidebar-link.active i{ color: var(--primary-cyan); }
+
+/* CTA */
+.sidebar-cta{
+  margin-top: auto;
+  padding-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sidebar-cta .btn{ width: 100%; justify-content: center; }
+
+/* ---------- Desktop: persistent sidebar on hub pages ---------- */
+@media (min-width: 1024px){
+  body.hub-page{ padding-left: var(--sidebar-w); }
+  body.hub-page .global-sidebar{
+    transform: none;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.45);
+  }
+  body.hub-page .sidebar-toggle{ display: none; }
+  body.hub-page .sidebar-backdrop{ display: none; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  .global-sidebar,
+  .sidebar-backdrop,
+  .sidebar-toggle .bars span{ transition: none !important; }
+}
+
+/* =========================================================================
+   HUB SAHIFALAR UCHUN QO'SHIMCHA STILLAR (Prompt 8)
+   Mavjud styles.css klasslarini qayta ishlatadi, faqat hub-maxsus
+   joylashuvlar bu yerda.
+   ========================================================================= */
+
+/* Mobil: toggle tugmasi birinchi blok ustiga tushmasligi uchun havoni qoldiramiz */
+@media (max-width: 1023px){
+  .hero-section{ padding-top: 92px; }
+}
+
+/* 4 ta yo'nalish kartasi (index hub) */
+.directions-grid{
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 12px;
+}
+@media (min-width: 1024px){
+  .directions-grid{ grid-template-columns: repeat(4, 1fr); }
+}
+.direction-card{ min-height: 210px; display: flex; flex-direction: column; }
+.direction-card p{ flex: 1; }
+
+/* Hub hero */
+.hub-hero{ padding: 104px 0 52px; }
+.hub-hero-inner{ max-width: 780px; margin: 0 auto; text-align: center; }
+.hub-hero h1{
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.1;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+.hub-hero .lead{ color: var(--text-muted); font-size: 1.12rem; margin-bottom: 1.7rem; }
+.hub-cta-row{ display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* Link/kontent kartochkalari */
+.link-cards{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+.link-card{
+  display: block;
+  background: var(--bg-card, rgba(18,22,34,.6));
+  border: 1px solid var(--sidebar-border);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  text-decoration: none;
+  color: var(--text-main);
+  transition: border-color .2s ease, transform .2s ease, background .2s ease;
+}
+.link-card:hover{
+  border-color: var(--border-bright);
+  transform: translateY(-3px);
+  background: var(--bg-card-hover, rgba(26,33,52,.85));
+}
+.link-card h3{ margin-bottom: 8px; }
+.link-card p{ color: var(--text-muted); font-size: .95rem; margin: 0; }
+.link-card .arrow{ color: var(--primary-cyan); margin-top: 12px; display: inline-block; font-weight: 600; }
+.link-card .lc-ico{
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 12px; margin-bottom: 14px;
+  background: rgba(0,242,254,.12); color: var(--primary-cyan); font-size: 1.2rem;
+}
+
+/* Hub footer biroz ko'proq havo */
+.hub-footer{ margin-top: 40px; border-top: 1px solid var(--sidebar-border); padding-top: 36px; }
+
+/* Hub bo'lmagan sahifalarda (kontent/detail) yon panel toggleri
+   kontent ustiga chiqib qolmasligi uchun tepadan bo'shliq. */
+body:not(.hub-page){ padding-top: 64px; }
+@media (min-width:1024px){
+  body:not(.hub-page){ padding-top: 64px; }
+}

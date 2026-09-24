@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="General English A1-C1 ko'p jihatli darslari: leksika, grammatika, gapirish, eshitish, yozish, o'qish.">
     <title>General English Multi-Aspect Hub (A1-C1) — Tayanch</title>
+    <meta name="description" content="General English Multi-Aspect Hub (A1-C1): CEFR standartlari asosidagi 6 ta interaktiv aspekt — Flashcardlar, Grammatika FMP, Speaking va boshqa bepul o'quv modullari.">
     <!-- Canonical & Favicon -->
     <link rel="canonical" href="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/general-english-beginner.html">
-    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png?v=1788409946">
     <link rel="apple-touch-icon" href="assets/images/founder.jpg">
 
     <!-- Open Graph & Twitter Cards -->
@@ -19,6 +20,35 @@
     <meta name="twitter:description" content="CEFR va CEFR-J standartlari asosida 6 ta aspekt interaktiv o'quv moduli.">
     <meta name="twitter:image" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/assets/images/flashcard_hello.jpg">
 
+    <!-- Schema.org: General English kursi (Google indekslashi uchun statik JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Course",
+          "@id": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/general-english-beginner.html#course-16",
+          "name": "General English B1 to B2 Accelerator",
+          "description": "Grammatika bo'shliqlarini yopish, so'z boyligini 2000+ ga oshirish va erkin muloqot bosqichiga o'tish (A1–C1).",
+          "provider": {
+            "@type": "Organization",
+            "name": "Tayanch Educational Platform",
+            "sameAs": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/"
+          },
+          "educationalLevel": "B1 - C1",
+          "inLanguage": "uz",
+          "isAccessibleForFree": true,
+          "url": "https://javohirqaxramonov36-web.github.io/tayanch-landing-page/general-english-beginner.html",
+          "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": "online",
+            "courseWorkload": "6 Hafta"
+          }
+        }
+      ]
+    }
+    </script>
+
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,6 +57,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sidebar.css">
     <style>
         .aspect-tabs-bar {
             display: flex;
@@ -252,38 +283,57 @@
 <meta property="og:url" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/general-english-beginner.html">
 </head>
 <body class="liquid-theme">
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Menyu ochish" aria-expanded="false" aria-controls="globalSidebar">
+  <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+</button>
+<aside class="global-sidebar" id="globalSidebar" aria-label="Asosiy navigatsiya">
+  <div class="sidebar-inner">
+    <a href="index.html" class="sidebar-brand">
+      <img src="assets/images/logo-header.png" alt="" aria-hidden="true" width="34" height="34">
+      <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
+    </a>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Asosiy</div>
+      <a href="index.html" class="sidebar-link" data-nav="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Bosh sahifa</span></a>
+      <a href="index.html#mission" class="sidebar-link" data-nav="mission"><i class="fa-solid fa-star" aria-hidden="true"></i><span>Nega Tayanch</span></a>
+      <a href="courses.html" class="sidebar-link" data-nav="courses.html"><i class="fa-solid fa-book" aria-hidden="true"></i><span>Kurslar <span class="badge-count" data-course-count="all">30</span></span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Yo'nalishlar</div>
+      <a href="ielts.html" class="sidebar-link" data-nav="ielts.html"><i class="fa-solid fa-language" aria-hidden="true"></i><span>IELTS &amp; Ingliz tili</span></a>
+      <a href="sat.html" class="sidebar-link" data-nav="sat.html"><i class="fa-solid fa-chart-line" aria-hidden="true"></i><span>SAT &amp; Math</span></a>
+      <a href="admission.html" class="sidebar-link" data-nav="admission.html"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span>Admission</span></a>
+      <a href="services.html" class="sidebar-link" data-nav="services.html"><i class="fa-solid fa-briefcase" aria-hidden="true"></i><span>Xizmatlar</span></a>
+      <a href="ai-courses.html" class="sidebar-link" data-nav="ai-courses.html"><i class="fa-solid fa-robot" aria-hidden="true"></i><span>AI Kurslar</span></a>
+      <a href="school-lessons.html" class="sidebar-link" data-nav="school-lessons.html"><i class="fa-solid fa-school" aria-hidden="true"></i><span>Maktab darslari</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Vositalar</div>
+      <a href="sat-dsat.html" class="sidebar-link" data-nav="sat-dsat.html"><i class="fa-solid fa-square-root-variable" aria-hidden="true"></i><span>Digital SAT Hub</span></a>
+      <a href="sat-mock.html" class="sidebar-link" data-nav="sat-mock.html"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i><span>SAT Mock Test</span></a>
+      <a href="general-english-beginner.html" class="sidebar-link" data-nav="general-english-beginner.html"><i class="fa-solid fa-feather" aria-hidden="true"></i><span>General English</span></a>
+      <a href="admission-essay-personal-statement.html" class="sidebar-link" data-nav="admission-essay-personal-statement.html"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i><span>Personal Statement</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Ishonch</div>
+      <a href="index.html#trust" class="sidebar-link" data-nav="trust"><i class="fa-solid fa-medal" aria-hidden="true"></i><span>Natijalar</span></a>
+      <a href="sitemap.html" class="sidebar-link" data-nav="sitemap.html"><i class="fa-solid fa-sitemap" aria-hidden="true"></i><span>Vizual Sitemap</span></a>
+      <a href="robots.html" class="sidebar-link" data-nav="robots.html"><i class="fa-solid fa-robot" aria-hidden="true"></i><span>Robots</span></a>
+    </div>
+    <div class="sidebar-cta">
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Telegram'da Ariza</a>
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-telegram" aria-hidden="true"></i> Kanal</a>
+    </div>
+  </div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
 
     <!-- Scrollcraft Top Progress Line -->
     <div class="global-scroll-progress" id="globalScrollProgress"></div>
 
     <!-- Navbar -->
-    <header class="navbar liquid-navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-brand">
-                <div class="brand-icon liquid-glow-icon"><i class="fa-solid fa-compass-drafting"></i></div>
-                <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
-            </a>
-            
-            <!-- Gamification HUD Bar -->
-            <div class="gamify-hud-container">
-                <div class="hud-pill star" title="To'plangan Yulduzlar">⭐ <span id="starValHUD">0</span></div>
-                <div class="hud-pill coin" title="To'plangan Tanganiz">🪙 <span id="coinValHUD">0</span></div>
-                <div class="hud-pill streak" title="Ketma-ket Kunlar (Combo)">🔥 <span id="streakValHUD">0</span></div>
-                <div class="hud-pill xp" title="Tajriba Ballari"><i class="fa-solid fa-bolt"></i> <span id="userXPVal">250 XP</span></div>
-                <button class="hud-pill" id="dictTriggerBtn" style="cursor:pointer; background:rgba(168,85,247,0.2); border-color:rgba(168,85,247,0.4); color:#fff;" title="Tezkor Lug'at Modalini Ochish">
-                    <i class="fa-solid fa-book-bookmark"></i> ⌘K Lug'at
-                </button>
-                <button class="badges-hud-btn" id="badgesHudBtn">
-                    <i class="fa-solid fa-trophy"></i> Yutuqlar
-                </button>
-            </div>
-
-            <div class="nav-actions">
-                <a href="sat-dsat.html" class="btn btn-primary" style="margin-right:8px;"><i class="fa-solid fa-calculator"></i> Digital SAT Hub</a>
-                <a href="courses.html" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Kurslarga qaytish</a>
-            </div>
-        </div>
-    </header>
+    
 
     <main class="container section">
                     <!-- P13-B5: Breadcrumb -->
@@ -687,12 +737,12 @@
     </main>
 
     <!-- Badges Modal Drawer -->
-    <div class="modal-overlay" id="badgesModal">
+    <div class="modal-overlay" id="badgesModal" role="dialog" aria-modal="true" aria-labelledby="badgesModalTitle">
         <div class="modal-card liquid-card" style="max-width: 600px;">
-            <button class="modal-close-btn" id="badgesModalCloseBtn">&times;</button>
+            <button class="modal-close-btn" id="badgesModalCloseBtn" aria-label="Yutuqlar oynasini yopish">&times;</button>
             <div class="text-center">
                 <span class="category-tag cat-ai">Gamification Unlocks</span>
-                <h2 style="color:#fff; margin-top:0.5rem;"><i class="fa-solid fa-trophy" style="color:#fbbf24;"></i> Erishilgan Yutuq Nishonlari</h2>
+                <h2 id="badgesModalTitle" style="color:#fff; margin-top:0.5rem;"><i class="fa-solid fa-trophy" style="color:#fbbf24;"></i> Erishilgan Yutuq Nishonlari</h2>
                 <p class="text-muted text-sm">Darslik va portal topshiriqlarini bajarib, barcha nishonlarni oching!</p>
             </div>
             <div class="badges-modal-grid" id="badgesGridContent">
@@ -702,11 +752,11 @@
     </div>
 
     <!-- Gamification Interactive Exercise Panel Modal -->
-    <div class="exercise-modal-overlay" id="exercisePanelModal">
+    <div class="exercise-modal-overlay" id="exercisePanelModal" role="dialog" aria-modal="true" aria-labelledby="exercisePanelTitle">
         <div class="exercise-panel-box">
             <div class="panel-head">
                 <h3 id="exercisePanelTitle">Modul Topshiriqlar</h3>
-                <button class="panel-close-btn" id="exercisePanelCloseBtn">&times;</button>
+                <button class="panel-close-btn" id="exercisePanelCloseBtn" aria-label="Mashq panelini yopish">&times;</button>
             </div>
             <div class="exercise-progress-track">
                 <div class="exercise-progress-fill" id="exerciseProgressFill"></div>
@@ -716,7 +766,7 @@
     </div>
 
     <!-- CEFR Level Transition Confirmation Lock Modal -->
-    <div class="cefr-lock-modal-overlay" id="cefrLockModal">
+    <div class="cefr-lock-modal-overlay" id="cefrLockModal" role="dialog" aria-modal="true" aria-labelledby="cefrLockTargetTitle" aria-describedby="cefrLockTargetDesc">
         <div class="cefr-lock-modal-box">
             <div class="cefr-lock-icon">
                 <i class="fa-solid fa-lock"></i>
@@ -731,11 +781,11 @@
     </div>
 
     <!-- ⌘K Quick Dictionary Modal (Command Palette) -->
-    <div class="dict-modal-overlay" id="dictModal">
+    <div class="dict-modal-overlay" id="dictModal" role="dialog" aria-modal="true" aria-labelledby="dictModalTitle">
         <div class="dict-modal-box">
             <div class="dict-modal-head">
-                <h3><i class="fa-solid fa-book-bookmark" style="color:var(--accent-purple);"></i> Shaxsiy ⌘K Lug'at Hub</h3>
-                <button class="panel-close-btn" id="dictCloseBtn">&times;</button>
+                <h3 id="dictModalTitle"><i class="fa-solid fa-book-bookmark" style="color:var(--accent-purple);"></i> Shaxsiy ⌘K Lug'at Hub</h3>
+                <button class="panel-close-btn" id="dictCloseBtn" aria-label="Lug'at oynasini yopish">&times;</button>
             </div>
             <div class="dict-search-wrapper">
                 <i class="fa-solid fa-magnifying-glass dict-search-icon"></i>
@@ -767,11 +817,11 @@
 
         // --- 2. VOCABULARY FLASHCARDS ENGINE ---
         const a1Words = [
-            { word: "Hello", pos: "exclamation", level: "CEFR-J A1.1", uz: "Salom / Assalomu alaykum", ex: "Hello! Nice to meet you.", img: "assets/images/flashcard_hello.jpg" },
-            { word: "Welcome", pos: "verb / noun", level: "CEFR-J A1.1", uz: "Xush kelibsiz", ex: "Welcome to our English class.", img: "assets/images/flashcard_welcome.jpg" },
-            { word: "Student", pos: "noun", level: "CEFR-J A1.1", uz: "Talaba / O'quvchi", ex: "She is an ambitious student.", img: "assets/images/flashcard_student.jpg" },
-            { word: "Learn", pos: "verb", level: "CEFR-J A1.2", uz: "O'rganmoq", ex: "We learn new words every day.", img: "assets/images/flashcard_learn.jpg" },
-            { word: "Future", pos: "noun / adj", level: "CEFR-J A1.2", uz: "Kelajak", ex: "AI tools shape the future of education.", img: "assets/images/flashcard_future.jpg" }
+            { word: "Hello", pos: "exclamation", level: "CEFR-J A1.1", uz: "Salom / Assalomu alaykum", ex: "Hello! Nice to meet you.", img: "assets/images/flashcard_hello.webp" },
+            { word: "Welcome", pos: "verb / noun", level: "CEFR-J A1.1", uz: "Xush kelibsiz", ex: "Welcome to our English class.", img: "assets/images/flashcard_welcome.webp" },
+            { word: "Student", pos: "noun", level: "CEFR-J A1.1", uz: "Talaba / O'quvchi", ex: "She is an ambitious student.", img: "assets/images/flashcard_student.webp" },
+            { word: "Learn", pos: "verb", level: "CEFR-J A1.2", uz: "O'rganmoq", ex: "We learn new words every day.", img: "assets/images/flashcard_learn.webp" },
+            { word: "Future", pos: "noun / adj", level: "CEFR-J A1.2", uz: "Kelajak", ex: "AI tools shape the future of education.", img: "assets/images/flashcard_future.webp" }
         ];
 
         let currentIndex = 0;
@@ -852,5 +902,6 @@
             }
         }, { passive: true });
     </script>
+    <script src="nav.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,66 @@
+================================================================================
+TAYANCH — OCHIQ MANBA AUDIT LOG (Open Source / Asset Compliance)
+Prompt 1 / 2 / 4 — Matematika, Fizika, Startup bo'limlari
+Yaratildi: 2026-09-07
+Branch: prompt-1-2-4-math-physics-startup  (PR #4)
+================================================================================
+
+MAQSAD
+--------------------------------------------------------------------------------
+Ushbu log fayli "Matematika / Fizika / Startup" bo'limlarini qo'shishda
+ishlatilgan barcha uchinchi tomon (third-party) resurslari, kutubxonalar va
+aktivlarning litsenziyalarini hujjatlashtiradi. Maqsad — loyiha 100% ochiq
+formatda ekanligini va hech qanday tijorat/yopiq kod qismi ishlatilmaganligini
+tasdiqlash.
+
+QO'LLANILGAN RESURSLAR
+--------------------------------------------------------------------------------
+[1] Font Awesome 6.4.0
+    - Qayerda: school-lessons.html, ai-courses.html, courses.html (CDN link)
+    - Manba: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css
+    - Litsenziya: Font Awesome Free — CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+    - Holat: OCHIQ (attribution talab qilinadi, loyiha footer'da kredit berilgan)
+    - Izoh: Faqat CSS ikonka to'plami; hech qanday yopiq-kod komponenti yo'q.
+
+[2] Google Fonts — Outfit & Plus Jakarta Sans
+    - Qayerda: barcha sahifalar (styles.css orqali)
+    - Manba: https://fonts.googleapis.com/css2?family=Outfit...&family=Plus+Jakarta+Sans...
+    - Litsenziya: SIL Open Font License 1.1 (OFL) — tijorat va bepul foydalanishga ruxsat
+    - Holat: OCHIQ
+
+[3] Fizika simulyatsiyalari (Erkin tushish, Mayatnik, Om qonuni)
+    - Qayerda: school-lessons.html (inline <script>)
+    - Kutubxona: YO'Q — sof vanilla JavaScript (hech qanday 3-party JS kutubxonasi)
+    - Formulalar: Nyuton mexanikasi (ommaviy fanga oid, patentlanmagan)
+    - Holat: OCHIQ / O'Z MUALLIFLIGIMIZ (original kod)
+    - Izoh: Tashqi dependency YO'Q, shuning uchun litsenziya xavfi yo'q.
+
+[4] AI Kurslar — "Startup boshlash" moduli
+    - Qayerda: ai-courses.html (module-grid, static markup)
+    - Kutubxona: YO'Q — static HTML + scoped <style>
+    - Holat: OCHIQ / O'Z MUALLIFLIGIMIZ
+
+[5] Kurs katalog kartalari (Matematika / Fizika / Startup)
+    - Qayerda: courses.html (5 ta yangi .course-card)
+    - Kutubxona: YO'Q — mavjud katalog markup'iga qo'shimcha
+    - Holat: OCHIQ / O'Z MUALLIFLIGIMIZ
+
+MAHSULOT AKTIVLARI (rasmlar)
+--------------------------------------------------------------------------------
+[6] assets/images/favicon.png
+    - Holat: Original / loyiha egasi tomonidan taqdim etilgan
+    - Litsenziya: Tayanch Educational Platform (ichki foydalanish)
+[7] assets/images/logo-header.png
+    - Holat: Original brend logotipi
+[8] assets/images/founder.jpg
+    - Holat: Original (asoschi rasmi)
+
+XULOSA
+--------------------------------------------------------------------------------
+- Tashqi JS kutubxonasi ishlatilmadi (0 dependency).
+- Barcha 3-party resurslar OCHIQ litsenziyalarga ega (CC BY 4.0 / OFL 1.1).
+- Barcha interaktiv elementlar original vanilla JS kodidir.
+- Loyiha "Ochiq Ta'lim Platformasi" talablariga to'liq mos.
+
+TEKSHIRILGAN: 2026-09-07
+================================================================================

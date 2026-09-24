@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Kurslar — Tayanch</title>
+  <meta name="description" content="Sun'iy Intelekt (AI) kurslari: ChatGPT, Midjourney, akademik tadqiqot va amaliy AI vositalari.">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png?v=1788409946">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css?v=1788363528">
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="lead-form.css">
+  <style>
+    .module-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:34px}
+    .module-card{background:var(--bg-card,rgba(18,22,34,.6));border:1px solid var(--border-subtle,rgba(255,255,255,.08));border-radius:16px;padding:22px;transition:transform .25s cubic-bezier(.16,1,.3,1),border-color .25s}
+    .module-card:hover{transform:translateY(-4px);border-color:var(--border-glow,rgba(168,85,247,.5))}
+    .module-num{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--accent-purple,#a855f7),var(--primary-cyan,#00f2fe));color:#0a0b10;font-weight:700;margin-bottom:12px}
+    .module-card h3{font-size:1.05rem;margin-bottom:8px}
+    .module-card p{color:var(--text-muted,#a1a1aa);font-size:.92rem}
+  </style>
+  <script src="site-config.js"></script>
+  <script src="ga4.js" defer></script>
+</head>
+<body>
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Menyu ochish" aria-expanded="false" aria-controls="globalSidebar">
+  <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+</button>
+<aside class="global-sidebar" id="globalSidebar" aria-label="Asosiy navigatsiya">
+  <div class="sidebar-inner">
+    <a href="index.html" class="sidebar-brand">
+      <img src="assets/images/logo-header.png" alt="" aria-hidden="true" width="34" height="34">
+      <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
+    </a>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Asosiy</div>
+      <a href="index.html" class="sidebar-link" data-nav="index.html"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Bosh sahifa</span></a>
+      <a href="index.html#mission" class="sidebar-link" data-nav="mission"><i class="fa-solid fa-star" aria-hidden="true"></i><span>Nega Tayanch</span></a>
+      <a href="courses.html" class="sidebar-link" data-nav="courses.html"><i class="fa-solid fa-book" aria-hidden="true"></i><span>Kurslar <span class="badge-count" data-course-count="all">35</span></span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Yo'nalishlar</div>
+      <a href="ielts.html" class="sidebar-link" data-nav="ielts.html"><i class="fa-solid fa-language" aria-hidden="true"></i><span>IELTS &amp; Ingliz tili</span></a>
+      <a href="sat.html" class="sidebar-link" data-nav="sat.html"><i class="fa-solid fa-chart-line" aria-hidden="true"></i><span>SAT &amp; Math</span></a>
+      <a href="admission.html" class="sidebar-link" data-nav="admission.html"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span>Admission</span></a>
+      <a href="services.html" class="sidebar-link" data-nav="services.html"><i class="fa-solid fa-briefcase" aria-hidden="true"></i><span>Xizmatlar</span></a>
+      <a href="ai-courses.html" class="sidebar-link" data-nav="ai-courses.html"><i class="fa-solid fa-robot" aria-hidden="true"></i><span>AI Kurslar</span></a>
+      <a href="school-lessons.html" class="sidebar-link" data-nav="school-lessons.html"><i class="fa-solid fa-school" aria-hidden="true"></i><span>Maktab darslari</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Vositalar</div>
+      <a href="sat-dsat.html" class="sidebar-link" data-nav="sat-dsat.html"><i class="fa-solid fa-square-root-variable" aria-hidden="true"></i><span>Digital SAT Hub</span></a>
+      <a href="sat-mock.html" class="sidebar-link" data-nav="sat-mock.html"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i><span>SAT Mock Test</span></a>
+      <a href="general-english-beginner.html" class="sidebar-link" data-nav="general-english-beginner.html"><i class="fa-solid fa-feather" aria-hidden="true"></i><span>General English</span></a>
+      <a href="admission-essay-personal-statement.html" class="sidebar-link" data-nav="admission-essay-personal-statement.html"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i><span>Personal Statement</span></a>
+      <a href="ai-practical-productivity.html" class="sidebar-link" data-nav="ai-practical-productivity.html"><i class="fa-solid fa-bolt" aria-hidden="true"></i><span>AI Amaliy Dars</span></a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Ishonch</div>
+      <a href="index.html#trust" class="sidebar-link" data-nav="trust"><i class="fa-solid fa-medal" aria-hidden="true"></i><span>Natijalar</span></a>
+      <a href="sitemap.html" class="sidebar-link" data-nav="sitemap.html"><i class="fa-solid fa-sitemap" aria-hidden="true"></i><span>Vizual Sitemap</span></a>
+      <a href="robots.html" class="sidebar-link" data-nav="robots.html"><i class="fa-solid fa-robot" aria-hidden="true"></i><span>Robots</span></a>
+    </div>
+    <div class="sidebar-cta">
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Telegram'da Ariza</a>
+      <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-telegram" aria-hidden="true"></i> Kanal</a>
+    </div>
+  </div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<main>
+<section class="section hub-hero">
+  <div class="container">
+    <div class="hub-hero-inner">
+      <div class="section-tag">Sun'iy Intelekt (AI)</div>
+      <h1>AI bilan <span class="gradient-text">5x tezroq</span> ishlang</h1>
+      <p class="lead">ChatGPT, Midjourney va akademik tadqiqot AI vositalari orqali o'qish, ish va loyihalaringizni tezlashtiring.</p>
+      <div class="hub-cta-row">
+        <a href="courses.html" class="btn btn-primary btn-glow"><i class="fa-solid fa-book" aria-hidden="true"></i> AI Kurslari</a>
+        <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fa-brands fa-telegram" aria-hidden="true"></i> Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header text-center">
+      <div class="section-tag">Mavzular</div>
+      <h2 class="section-title">AI yo'nalishidagi <span class="gradient-text">kurslar</span></h2>
+    </div>
+    <div class="link-cards">
+      <a href="courses.html" class="link-card">
+        <span class="lc-ico"><i class="fa-solid fa-robot"></i></span>
+        <h3>ChatGPT &amp; Prompt Engineering</h3>
+        <p>Mukammal promptlar, Custom GPTs va kognitiv topshiriqlarni AI ga topshirish.</p>
+        <span class="arrow">Kurslarga o'tish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="courses.html" class="link-card">
+        <span class="lc-ico"><i class="fa-solid fa-image"></i></span>
+        <h3>Midjourney &amp; Visual AI</h3>
+        <p>Fotorealistik tasvir va visual kontent yaratish.</p>
+        <span class="arrow">Kurslarga o'tish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="courses.html" class="link-card">
+        <span class="lc-ico"><i class="fa-solid fa-flask"></i></span>
+        <h3>AI for Research</h3>
+        <p>Ilmiy maqolalar, iqtiboslar va tadqiqot AI vositalari.</p>
+        <span class="arrow">Kurslarga o'tish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="#startupBootcamp" class="link-card">
+        <span class="lc-ico"><i class="fa-solid fa-rocket"></i></span>
+        <h3>Startup boshlash (AI bilan)</h3>
+        <p>G'oya validatsiyasi, MVP va O'zbekiston bozorida AI yordamida biznes ishga tushirish.</p>
+        <span class="arrow">Kursga o'tish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="aiLessons">
+  <div class="container">
+    <div class="section-header text-center">
+      <div class="section-tag">Bepul darslar</div>
+      <h2 class="section-title">AI darslari — <span class="gradient-text">9 ta bepul dars</span></h2>
+      <p class="lead">Har bir AI kursining kirish qismi ochiq: nazariya shu sahifalarda, amaliyot esa kursning jonli mashg'ulotlarida.</p>
+    </div>
+    <div class="link-cards">
+      <a href="ai-practical-productivity.html" class="link-card">
+        <span class="lc-ico"><i class="fa-solid fa-bolt"></i></span>
+        <h3>ChatGPT &amp; Prompt Engineering</h3>
+        <p>Prompt Engineering asoslari, kundalik tayyor promptlar va ChatGPT / Claude / Perplexity solishtirmasi.</p>
+        <span class="arrow">Darsni o'qish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="ai-midjourney-visual.html" class="link-card">
+        <span class="lc-ico"><i class="fa-solid fa-palette"></i></span>
+        <h3>Midjourney &amp; Visual AI</h3>
+        <p>Midjourney v6 parametrlari, fotorealistik tasvir va SMM uchun vizual kontent yaratish.</p>
+        <span class="arrow">Darsni o'qish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="ai-academic-research.html" class="link-card">
+        <span class="lc-ico"><i class="fa-solid fa-book-open-reader"></i></span>
+        <h3>AI for Research &amp; Writing</h3>
+        <p>Consensus va Elicit bilan maqola izlash, Litmaps bilan adabiyot sharhi, akademik tahrir.</p>
+        <span class="arrow">Darsni o'qish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="ai-python-foundations.html" class="link-card">
+        <span class="lc-ico"><i class="fa-brands fa-python"></i></span>
+        <h3>Python + AI Foundations</h3>
+        <p>Dasturlashsiz boshlang: Python sintaksisi, OpenAI API va birinchi AI loyihangiz.</p>
+        <span class="arrow">Darsni o'qish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="ai-automation-workflows.html" class="link-card">
+        <span class="lc-ico"><i class="fa-solid fa-gears"></i></span>
+        <h3>Automation (Make / Zapier)</h3>
+        <p>Kodsiz avtomatlashtirish: Telegram botlar, Google Sheets va AI ma'lumotlar oqimi.</p>
+        <span class="arrow">Darsni o'qish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="ai-data-analysis.html" class="link-card">
+        <span class="lc-ico"><i class="fa-solid fa-chart-pie"></i></span>
+        <h3>AI Data Analysis &amp; Excel</h3>
+        <p>Code Interpreter, Excel formulalari va ma'lumotlarni vizuallashtirib hisobot tayyorlash.</p>
+        <span class="arrow">Darsni o'qish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="ai-content-creation.html" class="link-card">
+        <span class="lc-ico"><i class="fa-solid fa-video"></i></span>
+        <h3>Content Creation with AI</h3>
+        <p>Kopirayting, ElevenLabs ovoz va HeyGen / CapCut bilan qisqa videolar yaratish.</p>
+        <span class="arrow">Darsni o'qish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="ai-for-students.html" class="link-card">
+        <span class="lc-ico"><i class="fa-solid fa-graduation-cap"></i></span>
+        <h3>Generative AI for Students</h3>
+        <p>PDF dan flashcard va test yasash, Feynman usuli, til o'rganish va vaqt boshqaruvi.</p>
+        <span class="arrow">Darsni o'qish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="ai-coding-assistant.html" class="link-card">
+        <span class="lc-ico"><i class="fa-solid fa-laptop-code"></i></span>
+        <h3>AI Coding Assistant</h3>
+        <p>Cursor IDE va GitHub Copilot bilan tezroq kod yozish, bug topish va refactoring.</p>
+        <span class="arrow">Darsni o'qish <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="startupBootcamp">
+  <div class="container">
+    <div class="section-header text-center">
+      <div class="section-tag">Yangi kurs</div>
+      <h2 class="section-title">Startup boshlash <span class="gradient-text">(AI bilan)</span></h2>
+      <p class="lead">Noldan o'z biznesingizni: g'oyadan birinchi foydalanuvchigacha AI vositalari bilan.</p>
+    </div>
+    <div class="module-grid">
+      <div class="module-card">
+        <span class="module-num">1</span>
+        <h3>G'oya validatsiyasi va bozor tahlili</h3>
+        <p>Problem–Solution mosligini tekshirish, raqiblarni tahlil qilish va minimal bozor testi (MVP test) o'tkazish.</p>
+      </div>
+      <div class="module-card">
+        <span class="module-num">2</span>
+        <h3>MVP (Minimum Viable Product) yaratish</h3>
+        <p>No-code/low-code va AI vositalari bilan 2 haftada ishlaydigan birinchi mahsulot prototipini yig'ish.</p>
+      </div>
+      <div class="module-card">
+        <span class="module-num">3</span>
+        <h3>O'zbekiston startap ekotizimi va grantlar</h3>
+        <p>Mahalliy inkubatorlar, IT-park imtiyozlari va xalqaro grantlarga (Startup, Venture) ariza yo'nalari.</p>
+      </div>
+      <div class="module-card">
+        <span class="module-num">4</span>
+        <h3>AI vositalari bilan tez prototiplash</h3>
+        <p>ChatGPT, Cursor va generativ AI yordamida landing, pitch-deck va marketing-kontentni avtomatlashtirish.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-card liquid-cta-card text-center">
+      <div class="cta-content">
+        <h2 class="cta-title">AI ko'nikmalarini <span class="gradient-text">bugun egallang</span></h2>
+        <p class="cta-desc">Bepul kurslar katalogidan boshlang.</p>
+        <div class="cta-actions">
+          <a href="courses.html" class="btn btn-xl btn-primary btn-glow"><i class="fa-solid fa-book" aria-hidden="true"></i> Barcha Kurslar</a>
+          <a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer" class="btn btn-xl btn-secondary"><i class="fa-brands fa-telegram" aria-hidden="true"></i> Telegram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="footer hub-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-brand"><span class="brand-name">TAYANCH<span class="brand-dot">.</span></span></a>
+        <p class="footer-text">AI, IELTS va Admission bo'yicha O'zbekistondagi yetakchi amaliy ta'lim platformasi.</p>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-col">
+          <h4>Yo'nalishlar</h4>
+          <ul>
+            <li><a href="ielts.html">IELTS &amp; Ingliz tili</a></li>
+            <li><a href="sat.html">SAT &amp; Math</a></li>
+            <li><a href="admission.html">Admission</a></li>
+            <li><a href="services.html">Xizmatlar</a></li>
+            <li><a href="courses.html">Barcha kurslar</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Havolalar</h4>
+          <ul>
+            <li><a href="ai-courses.html">AI Kurslar</a></li>
+            <li><a href="school-lessons.html">Maktab darslari</a></li>
+            <li><a href="sitemap.html">Vizual Sitemap</a></li>
+            <li><a href="robots.html">Robots</a></li>
+            <li><a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer">Telegram</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Tayanch Educational Platform. Barcha huquqlar himoyalangan.</p>
+      <p class="text-muted text-xs" style="font-size:.74rem;color:var(--text-dim);">* SAT&reg; — College Board'ning ro'yxatdan o'tgan savdo belgisi. Tayanch College Board bilan bog'liq emas.</p>
+    </div>
+  </div>
+</footer>
+    <!-- JS Engine -->
+    <script src="courses-data.js" defer></script>
+    <script src="script.js?v=1788363528" defer></script>
+    <script src="modal.js" defer></script>
+    <script src="nav.js" defer></script>
+    <script src="lead-form.js" defer></script>
+</body>
+</html>

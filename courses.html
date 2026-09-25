@@ -1202,40 +1202,14 @@
                 <a href="https://t.me/tayanch_go" class="nav-link" target="_blank" rel="noopener noreferrer">Telegram</a>
             </nav>
 
-  <div class="courses-grid" id="coursesGrid">
-    
-    <!-- 1. Frontend Dasturlash -->
-    <article class="course-card" data-category="dev" data-keywords="frontend react javascript html css web dasturlash">
-      <div class="card-header-bar">
-        <span class="course-cat-tag tag-dev">Dasturlash</span>
-        <span class="discount-badge">-22% Chegirma</span>
-      </div>
-      <div class="card-body">
-        <h3 class="course-title">Frontend Dasturlash (Modern Web)</h3>
-        <p class="course-desc">Zamonaviy veb-saytlar va interaktiv ilovalar yaratishni noldan o'rganing. Portfolio uchun 4 ta real loyiha.</p>
-        <div class="course-meta-list">
-          <span class="meta-pill">⏱ 4 oy</span>
-          <span class="meta-pill">📊 Noldan O'rtagacha</span>
-          <span class="meta-pill">🏛 Oflayn & Onlayn</span>
-        </div>
-    </header>
-
     <main style="padding-top: 130px; padding-bottom: 80px;">
-        <div class="container">
-                        <!-- P13-B5: Breadcrumb -->
-            <nav class="breadcrumb" aria-label="Sahifa yo'li">
-                <a href="index.html"><i class="fa-solid fa-house"></i> Bosh sahifa</a>
-                <span class="breadcrumb-sep">/</span>
-                <span class="breadcrumb-current">Kurslar</span>
-            </nav>
-            <div class="section-header text-center">
+    <div class="container">
+<div class="section-header text-center">
                 <span class="cta-tag liquid-pill"><i class="fa-solid fa-route"></i> Uchta yo'nalish</span>
                 <h1 class="hero-title mt-2">AI, IELTS va <span class="gradient-text liquid-gradient">SAT</span></h1>
                 <p class="section-desc">Har bir tugma o'z sahifasiga olib boradi. AI hub hali ochilmagan — beginner English'ga tushmaydi.</p>
             </div>
-
-            <!-- Live AI Prompt Playground Widget -->
-            <div class="ai-prompt-playground mt-4">
+<div class="ai-prompt-playground mt-4">
                 <div class="ai-playground-header">
                     <div>
                         <span class="category-tag cat-ai"><i class="fa-solid fa-bolt"></i> Live AI Prompt Playground (+50 XP)</span>
@@ -1266,8 +1240,7 @@
 
                 <div class="prompt-output-terminal" id="promptTerminalOutput">🤖 Prompt simulyatoriga xush kelibsiz! Yuqoridagi "AI Promptni Run Qilish" tugmasini bosing...</div>
             </div>
-
-            <!-- Three honest tracks (JS catalog renderer skipped: no #coursesGrid) -->
+<!-- Three honest tracks (JS catalog renderer skipped: no #coursesGrid) -->
                             <!-- P13-B3: Kurs qidiruv -->
                 <div class="course-search-wrapper">
                     <div class="search-input-wrap">
@@ -1342,9 +1315,39 @@
           Yozilish ➔
         </button>
       </div>
+    <div class="courses-grid" id="coursesGrid">
+    <!-- 1. Frontend Dasturlash -->
+    <article class="course-card" data-category="dev" data-keywords="frontend react javascript html css web dasturlash">
+      <div class="card-header-bar">
+        <span class="course-cat-tag tag-dev">Dasturlash</span>
+        <span class="discount-badge">-22% Chegirma</span>
+      </div>
+      <div class="card-body">
+        <h3 class="course-title">Frontend Dasturlash (Modern Web)</h3>
+        <p class="course-desc">Zamonaviy veb-saytlar va interaktiv ilovalar yaratishni noldan o'rganing. Portfolio uchun 4 ta real loyiha.</p>
+        <div class="course-meta-list">
+          <span class="meta-pill">⏱ 4 oy</span>
+          <span class="meta-pill">📊 Noldan O'rtagacha</span>
+          <span class="meta-pill">🗛 Oflayn & Onlayn</span>
+        </div>
+      </div>
+      <div class="mentor-box">
+        <div class="mentor-avatar">AR</div>
+        <div class="mentor-info">
+          <h4>Azizbek Rahimov</h4>
+          <p>Senior Frontend Dev (4+ yil tajriba)</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="price-block">
+          <span class="old-price">900 000 so'm</span>
+          <span class="curr-price">700 000 <small>so'm/oy</small></span>
+        </div>
+        <button type="button" class="btn-enroll-card open-modal-btn" data-course="Frontend Dasturlash (React / JS)">Yozilish ⟲</button>
+        <button type="button" class="btn-syllabus-trigger" data-syllabus="frontend">Dastur (Syllabus) 📋</button>
+      </div>
     </article>
-
-    <!-- 2. Backend Dasturlash -->
+<!-- 2. Backend Dasturlash -->
     <article class="course-card" data-category="dev" data-keywords="backend python django sql postgresql api rest docker bot">
       <div class="card-header-bar">
         <span class="course-cat-tag tag-dev">Dasturlash</span>
@@ -1697,69 +1700,11 @@
           Yozilish ➔
         </button>
       </div>
-    </article>
+    </article>    </div>
+<p id="noResults" class="no-results-msg" style="display: none;">Qidiruvingiz bo'yicha kurs topilmadi. Boshqa so'z bilan qidirib ko'ring.</p>
+    </div>
+  </main>
 
-  </div>
-  <p id="noResults" class="no-results-msg" style="display: none;">Qidiruvingiz bo'yicha kurs topilmadi. Boshqa so'z bilan qidirib ko'ring.</p>
-</section>
-
-<script>
-// Filter va Jonli Qidiruv mantiqi
-document.addEventListener('DOMContentLoaded', () => {
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const searchInput = document.getElementById('courseSearchInput');
-  const cards = document.querySelectorAll('.course-card');
-  const noResults = document.getElementById('noResults');
-
-  let activeCategory = 'all';
-
-  function applyFilter() {
-    const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
-    let visibleCount = 0;
-
-    cards.forEach(card => {
-      const category = card.getAttribute('data-category');
-      const keywords = (card.getAttribute('data-keywords') + ' ' + card.innerText).toLowerCase();
-
-      const matchesCat = (activeCategory === 'all' || category === activeCategory);
-      const matchesSearch = (!query || keywords.includes(query));
-
-      if (matchesCat && matchesSearch) {
-        card.style.display = 'flex';
-        visibleCount++;
-      } else {
-        card.style.display = 'none';
-      }
-    });
-
-    if (noResults) {
-      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-    }
-  }
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeCategory = btn.getAttribute('data-category');
-      applyFilter();
-    });
-  });
-
-  
-  // Qidiruvda tasodifiy Enter bosilganda sahifa yangilanib ketishini to'xtatish
-  if (searchInput) {
-    searchInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') e.preventDefault();
-    });
-  }
-
-  if (searchInput) {
-    searchInput.addEventListener('input', applyFilter);
-  }
-});
-</script>
-</main>
 
     <!-- Course Details Modal -->
     <div class="modal-overlay" id="courseModal" role="dialog" aria-modal="true" aria-labelledby="modalCourseTitle">
@@ -1867,6 +1812,8 @@ document.addEventListener('DOMContentLoaded', () => {
     <!-- JS Engine -->
     <!-- YAGONA MA'LUMOTLAR MANBAI: script.js'dan OLDIN yuklanishi shart -->
     <script src="courses-data.js" defer></script>
+    <!-- Global sidebar + breadcrumb (P13-B5/B6) -->
+    <script src="nav.js" defer></script>
     <script src="script.js" defer></script>
     <script>
     /* P13-B3+B4: Search + Badge colors */

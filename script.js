@@ -533,10 +533,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         coursesGrid.innerHTML = '';
 
-        if (filtered.length === 0) {
-            noResultsMsg.style.display = 'block';
-        } else {
-            noResultsMsg.style.display = 'none';
+        if (noResultsMsg) {
+            noResultsMsg.style.display = (filtered.length === 0) ? 'block' : 'none';
+        }
+
+        if (filtered.length > 0) {
             filtered.forEach(course => {
                 const card = createCourseCard(course);
                 coursesGrid.appendChild(card);

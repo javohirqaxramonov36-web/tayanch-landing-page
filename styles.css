@@ -4714,4 +4714,17 @@ input, button, select, textarea {
 .breadcrumb a:focus-visible{outline:2px solid #7C6FFF;outline-offset:2px;border-radius:2px}
 .breadcrumb-sep{color:rgba(255,255,255,.25);user-select:none}
 .breadcrumb-current{color:var(--text-primary,#E8E8F0);font-weight:500}
+
+/* P13-B6: Founder Story section (layout only — glass uslub .liquid-card orqali) */
+.founder-grid { margin-top: 2.5rem; }
+.founder-card { padding: 1.6rem 1.5rem; display: flex; flex-direction: column; gap: .9rem; }
+.founder-card .feature-icon-box { margin-bottom: .1rem; }
+.founder-card-title { margin: 0; font-size: 1.15rem; color: #fff; font-weight: 700; }
+.founder-card-text { margin: 0; color: var(--text-muted, #aab); font-size: .92rem; line-height: 1.6; }
+.founder-quote { max-width: 820px; margin: 3rem auto 0; padding: 2rem 2.2rem; text-align: center; }
+.founder-quote .quote-mark { text-align: center; }
+.founder-quote .trust-quote { margin-bottom: 0; }
+.founder-cta { margin-top: 2.5rem; display: flex; justify-content: center; }
+.founder-cta .btn-lg { font-size: 1.02rem; padding: 1rem 1.8rem; }
+
 @media(max-width:640px){.hero-feature-cards{flex-direction:column}.feature-cta-card{flex:1 1 100%}.ai-demo-tabs{overflow-x:auto}.search-input-wrap{max-width:100%}.crit-row{flex-wrap:wrap}}

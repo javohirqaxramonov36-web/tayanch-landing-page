@@ -201,7 +201,10 @@ body.sidebar-open .global-sidebar{ transform: translateX(0); }
 
 /* ---------- Desktop: persistent sidebar on hub pages ---------- */
 @media (min-width: 1024px){
-  body.hub-page{ padding-left: var(--sidebar-w); }
+  /* MUHIM: styles.css dagi `html, body { padding: 0 !important; }` (commit 72d6574)
+     shu offsetni bekor qilib, hub sahifalarda kontentni sidebar ostiga surib qo'ygan edi.
+     !important + global box-sizing: border-box (styles.css:45) bilan qaytarildi. */
+  body.hub-page{ padding-left: var(--sidebar-w) !important; }
   body.hub-page .global-sidebar{
     transform: none;
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.45);

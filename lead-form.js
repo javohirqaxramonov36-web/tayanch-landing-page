@@ -33,6 +33,12 @@
     { id: 'school',  label: 'Maktab Darslari',       sub: 'Matematika, Fizika, EN',   icon: 'fa-solid fa-school',            match: /school-lessons/ }
   ];
 
+  /* PROMPT 24: "Xizmatlar" yo'nalishi ichidagi tayyor xizmatlar (done-for-you) */
+  var SERVICES = [
+    { id: 'second-brain', label: 'Ikkinchi Miya',     sub: 'Obsidian bilim bazasi' },
+    { id: 'website',      label: 'Sayt yasab berish', sub: 'Statik sayt (GitHub Pages)' }
+  ];
+
   function currentDirectionId() {
     var path = (global.location && global.location.pathname) || '';
     for (var i = 0; i < DIRECTIONS.length; i++) {
@@ -70,6 +76,13 @@
         '</button>';
     }).join('');
 
+    var serviceButtons = SERVICES.map(function (s) {
+      return '' +
+        '<button type="button" class="lf-svc-btn" data-service="' + s.id + '" aria-pressed="false">' +
+          '<strong>' + s.label + '</strong><span>' + s.sub + '</span>' +
+        '</button>';
+    }).join('');
+
     var overlay = document.createElement('div');
     overlay.className = 'lf-overlay';
     overlay.id = 'lfLeadModal';
@@ -93,6 +106,10 @@
           /* STEP 1 */
           '<div class="lf-panel lf-show" id="lfStep1">' +
             '<div class="lf-dir-grid" id="lfDirGrid">' + dirButtons + '</div>' +
+            '<div class="lf-svc-wrap" id="lfServiceWrap" hidden>' +
+              '<p class="lf-svc-title">Qaysi xizmat kerak?</p>' +
+              '<div class="lf-svc-grid" id="lfServiceGrid">' + serviceButtons + '</div>' +
+            '</div>' +
             '<button type="button" class="lf-btn lf-btn-primary" id="lfNextBtn" disabled>Davom etish</button>' +
           '</div>' +
 
@@ -142,7 +159,27 @@
     wireModal();
   }
 
-  var state = { step: 1, direction: null };
+  var state = { step: 1, direction: null, service: null };
+
+  /* PROMPT 24: xizmat sub-tanlovini ko'rsatish/yashirish + Next tugmasini yangilash */
+  function syncService() {
+    var wrap = document.getElementById('lfServiceWrap');
+    if (!wrap) return;
+    var isServices = state.direction === 'services';
+    wrap.hidden = !isServices;
+    if (!isServices) state.service = null;
+    var grid = document.getElementById('lfServiceGrid');
+    if (grid) {
+      var btns = grid.querySelectorAll('.lf-svc-btn');
+      for (var i = 0; i < btns.length; i++) {
+        var on = btns[i].getAttribute('data-service') === state.service;
+        btns[i].classList.toggle('lf-selected', on);
+        btns[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+      }
+    }
+    var next = document.getElementById('lfNextBtn');
+    if (next) next.disabled = !state.direction || (isServices && !state.service);
+  }
 
   function showStep(n) {
     state.step = n;
@@ -160,19 +197,21 @@
       dot1.className = 'lf-step-dot lf-done'; dot2.className = 'lf-step-dot lf-on'; bar.className = 'lf-step-bar lf-on';
       var chosen = document.getElementById('lfChosen');
       var d = DIRECTIONS.filter(function (x) { return x.id === state.direction; })[0];
-      if (chosen && d) chosen.textContent = 'Tanlangan yo\'nalish: ' + d.label;
+      var s = SERVICES.filter(function (x) { return x.id === state.service; })[0];
+      if (chosen && d) chosen.textContent = 'Tanlangan yo\'nalish: ' + d.label + (s ? ' — ' + s.label : '');
       var nameInput = document.getElementById('lfName');
       if (nameInput) setTimeout(function () { nameInput.focus(); }, 120);
     }
   }
 
-  function openForm(presetDir) {
+  function openForm(presetDir, presetService) {
     injectMarkupIfNeeded();
     var overlay = document.getElementById('lfLeadModal');
     var succ = document.getElementById('lfSuccess');
     if (succ) succ.classList.remove('lf-show');
     // reset
     state.direction = presetDir || currentDirectionId();
+    state.service = presetService || null;
     var grid = document.getElementById('lfDirGrid');
     if (grid) {
       var btns = grid.querySelectorAll('.lf-dir-btn');
@@ -182,8 +221,7 @@
         btns[i].setAttribute('aria-pressed', on ? 'true' : 'false');
       }
     }
-    var next = document.getElementById('lfNextBtn');
-    if (next) next.disabled = !state.direction;
+    syncService();
     showStep(1);
     overlay.classList.add('lf-active');
     document.body.style.overflow = 'hidden';
@@ -228,6 +266,8 @@
     var finalContact = isPhone ? formatPhone(contact) : (contact.charAt(0) === '@' ? contact : '@' + contact);
     var dir = DIRECTIONS.filter(function (x) { return x.id === state.direction; })[0];
     var dirLabel = dir ? dir.label : 'Umumiy';
+    var svc = SERVICES.filter(function (x) { return x.id === state.service; })[0];
+    var svcLabel = svc ? svc.label : '';
 
     var btn = document.getElementById('lfSubmitBtn');
     if (btn) { btn.disabled = true; btn.textContent = 'Yuborilmoqda...'; }
@@ -236,6 +276,7 @@
       '👤 <b>Ism:</b> ' + escapeHTML(name) + '\n' +
       '📞 <b>Aloqa:</b> ' + escapeHTML(finalContact) + '\n' +
       '📚 <b>Yo\'nalish:</b> ' + escapeHTML(dirLabel) + '\n' +
+      (svcLabel ? '🧩 <b>Xizmat:</b> ' + escapeHTML(svcLabel) + '\n' : '') +
       '📅 <b>Vaqt:</b> ' + new Date().toLocaleString('uz-UZ', { timeZone: 'Asia/Tashkent' });
 
     fetch(TELEGRAM_URL, {
@@ -289,8 +330,17 @@
           all[i].classList.toggle('lf-selected', on);
           all[i].setAttribute('aria-pressed', on ? 'true' : 'false');
         }
-        var next = document.getElementById('lfNextBtn');
-        if (next) next.disabled = false;
+        syncService();
+      });
+    }
+
+    var svcGrid = document.getElementById('lfServiceGrid');
+    if (svcGrid) {
+      svcGrid.addEventListener('click', function (e) {
+        var b = e.target.closest('.lf-svc-btn');
+        if (!b) return;
+        state.service = b.getAttribute('data-service');
+        syncService();
       });
     }
 
@@ -336,7 +386,8 @@
       el.addEventListener('click', function (e) {
         e.preventDefault();
         var preset = el.getAttribute('data-open-lead') || directionFromText(el.getAttribute('data-course') || '');
-        openForm(preset);
+        var svc = el.getAttribute('data-service') || null;
+        openForm(preset, svc);
       });
     });
 

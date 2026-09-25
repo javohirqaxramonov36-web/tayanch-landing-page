@@ -949,8 +949,6 @@
 
 </footer>
 
-
-
     <!-- Profile Address Modal -->
     <div class="modal-overlay profile-modal-overlay" id="addressModal" role="dialog" aria-modal="true" aria-labelledby="addressModalTitle" aria-hidden="true">
         <div class="modal-card profile-modal-card liquid-modal">
@@ -1089,29 +1087,5 @@
     <!-- JS Engine -->
     <script src="script.js?v=1788000003" defer></script>
 
-<script>
-window.addEventListener('load', function(){
-  setTimeout(function(){
-    var b = document.body;
-    var cs = getComputedStyle(b);
-    var wide = [];
-    document.querySelectorAll('body *').forEach(function(el){
-      var r = el.getBoundingClientRect();
-      if (r.right > window.innerWidth + 1 && !/liquid-blob|liquid-wave|blob-/.test(el.className || '')) {
-        wide.push((el.tagName.toLowerCase()) + '.' + (el.className || '').toString().split(' ').slice(0,2).join('.') + '=>' + Math.round(r.right));
-      }
-    });
-    var t = document.createElement('title');
-    t.textContent = 'PROBE iw=' + window.innerWidth
-      + ' scrollW=' + document.documentElement.scrollWidth
-      + ' padL=' + cs.paddingLeft
-      + ' padT=' + cs.paddingTop
-      + ' hub=' + b.classList.contains('hub-page')
-      + ' mq1024=' + window.matchMedia('(min-width:1024px)').matches
-      + ' || OVERFLOW: ' + (wide.slice(0,10).join(' , ') || 'none');
-    document.head.appendChild(t);
-  }, 1200);
-});
-</script>
 </body>
 </html>

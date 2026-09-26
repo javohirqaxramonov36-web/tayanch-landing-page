@@ -774,7 +774,7 @@ a {
     cursor: pointer;
 }
 
-/* Mobile Drawer */
+/* Mobile Drawer — Prompt 16: guruhli mundarija (table-of-contents) */
 .mobile-drawer {
     position: fixed;
     top: 0;
@@ -789,6 +789,8 @@ a {
     transition: right var(--transition-smooth);
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    overscroll-behavior: contain;
 }
 
 .mobile-drawer.open {
@@ -799,7 +801,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.75rem;
 }
 
 .drawer-close {
@@ -808,24 +810,157 @@ a {
     color: var(--text-muted);
     font-size: 1.5rem;
     cursor: pointer;
+    line-height: 1;
+    padding: 0.25rem;
+    border-radius: 8px;
+}
+
+.drawer-close:hover {
+    color: var(--primary-cyan);
 }
 
 .drawer-links {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 0.15rem;
+    flex: 1 1 auto;
+}
+
+/* Guruh sarlavhalari — sidebar'dagi .sidebar-group-title bilan izchil */
+.drawer-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.drawer-group + .drawer-group {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 0.9rem;
+    margin-top: 1.1rem;
+}
+
+.drawer-group-title {
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin: 0 0 0.45rem 0.7rem;
 }
 
 .drawer-link {
-    font-size: 1.15rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--text-muted);
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--border-subtle);
+    text-decoration: none;
+    padding: 0.62rem 0.7rem;
+    border-radius: 11px;
+    position: relative;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.drawer-link i:first-child {
+    width: 20px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    flex-shrink: 0;
+    transition: color 0.2s ease;
 }
 
 .drawer-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+}
+
+.drawer-link:hover i:first-child {
     color: var(--primary-cyan);
+}
+
+/* Sahifa havolasi (→) va ichki-scroll havolasi (↓) — vizual farq */
+.drawer-link .drawer-arrow {
+    margin-left: auto;
+    font-size: 0.72rem;
+    opacity: 0.45;
+    color: inherit;
+}
+
+.drawer-link[data-type="anchor"] .drawer-arrow {
+    opacity: 0.6;
+}
+
+.drawer-link .badge-count {
+    margin-left: auto;
+}
+
+.drawer-link .badge-count + .drawer-arrow {
+    margin-left: 0.5rem;
+}
+
+/* Tashqi havola belgisi (↗) */
+.drawer-link.is-external .drawer-ext {
+    margin-left: auto;
+    font-size: 0.78rem;
+    color: var(--primary-cyan);
+    opacity: 0.85;
+}
+
+/* Joriy sahifa / bo'lim — sidebar'dagi .sidebar-link.active bilan izchil */
+.drawer-link.active,
+.drawer-link.is-active {
+    background: linear-gradient(90deg, rgba(0, 242, 254, 0.14), rgba(168, 85, 247, 0.05));
+    color: var(--text-main);
+}
+
+.drawer-link.active i:first-child,
+.drawer-link.is-active i:first-child {
+    color: var(--primary-cyan);
+}
+
+.drawer-link.active::before,
+.drawer-link.is-active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 18%;
+    bottom: 18%;
+    width: 3px;
+    border-radius: 3px;
+    background: var(--primary-cyan);
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
+}
+
+.drawer-cta {
+    margin-top: auto;
+    padding-top: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.drawer-cta .btn {
+    width: 100%;
+    justify-content: center;
+}
+
+.drawer-close:focus-visible,
+.drawer-link:focus-visible {
+    outline: 2px solid var(--primary-cyan);
+    outline-offset: 2px;
+    border-radius: 10px;
+}
+
+@media (max-width: 380px) {
+    .mobile-drawer {
+        padding: 1.4rem 1.1rem;
+    }
+
+    .drawer-link {
+        font-size: 0.95rem;
+    }
 }
 
 /* Hero Section */

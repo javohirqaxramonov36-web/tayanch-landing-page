@@ -281,6 +281,7 @@
         }
     </style>
 <meta property="og:url" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/general-english-beginner.html">
+<link rel="manifest" href="manifest.json">
 </head>
 <body class="liquid-theme">
 <button class="sidebar-toggle" id="sidebarToggle" aria-label="Menyu ochish" aria-expanded="false" aria-controls="globalSidebar">
@@ -425,7 +426,7 @@
                 <div class="flashcard liquid-card" id="flashcard">
                     <span class="category-tag cat-ai" id="cardLevel">CEFR-J A1.1</span>
                     <div class="card-img-wrapper">
-                        <img id="cardImg" class="card-img" src="assets/images/flashcard_hello.jpg" alt="Hello Flashcard Illustration" width="350" height="140" loading="lazy" decoding="async">
+                        <picture><source srcset="assets/images/flashcard_hello.webp" type="image/webp"><img src="assets/images/flashcard_hello.jpg" alt="Hello Flashcard Illustration" loading="lazy"></picture>
                     </div>
                     <div class="card-word-row" style="display:flex; align-items:center; justify-content:center; gap:8px;">
                         <div class="card-word" id="cardWord">Hello</div>
@@ -910,5 +911,6 @@
         }, { passive: true });
     </script>
     <script src="nav.js" defer></script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(e){});});}</script>
 </body>
 </html>

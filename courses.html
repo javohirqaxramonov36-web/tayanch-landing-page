@@ -1134,6 +1134,7 @@
 <meta name="twitter:title" content="Uchta yo'nalish — Tayanch">
 <meta name="twitter:description" content="AI, IELTS va SAT yo'nalishlari. Har biri o'z sahifasiga olib boradi.">
 <meta name="twitter:image" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/assets/images/founder.jpg">
+<link rel="manifest" href="manifest.json">
 </head>
 <body class="liquid-theme">
 <button class="sidebar-toggle" id="sidebarToggle" aria-label="Menyu ochish" aria-expanded="false" aria-controls="globalSidebar">
@@ -1263,7 +1264,7 @@
                 <article class="course-card liquid-card">
                     <div class="course-top">
                         <div class="course-thumb-wrapper">
-                            <img loading="lazy" decoding="async" src="assets/images/ai_hero.jpg" alt="Sun'iy intellekt yo'nalishi" class="course-thumb-img" width="350" height="140">
+                            <picture><source srcset="assets/images/ai_hero.webp" type="image/webp"><img src="assets/images/ai_hero.jpg" alt="Sun'iy intellekt yo'nalishi" loading="eager"></picture>
                             <div class="course-thumb-overlay"></div>
                             <span class="category-tag cat-ai thumb-tag">Sun'iy intellekt</span>
                         </div>
@@ -1278,7 +1279,7 @@
                 <article class="course-card liquid-card">
                     <div class="course-top">
                         <div class="course-thumb-wrapper">
-                            <img loading="lazy" decoding="async" src="assets/images/founder.jpg" alt="IELTS va ingliz tili yo'nalishi" class="course-thumb-img" width="350" height="140">
+             <picture><source srcset="assets/images/founder.webp" type="image/webp"><img src="assets/images/founder.jpg" alt="IELTS va ingliz tili yo'nalishi" loading="lazy"></picture>" height="140">
                             <div class="course-thumb-overlay"></div>
                             <span class="category-tag cat-ielts thumb-tag">IELTS va ingliz tili</span>
                         </div>
@@ -1292,8 +1293,7 @@
                 </article>
                 <article class="course-card liquid-card">
                     <div class="course-top">
-                        <div class="course-thumb-wrapper">
-                            <img loading="lazy" decoding="async" src="assets/images/university_grant.jpg" alt="Digital SAT va admission yo'nalishi" class="course-thumb-img" width="350" height="140">
+                        <div class="course-thumb-wrapper"><picture><source srcset="assets/images/university_grant.webp" type="image/webp"><img src="assets/images/university_grant.jpg" alt="Digital SAT va admission yo'nalishi" loading="lazy"></picture>mg" width="350" height="140">
                             <div class="course-thumb-overlay"></div>
                             <span class="category-tag cat-admission thumb-tag">Admission va SAT</span>
                         </div>
@@ -1829,5 +1829,6 @@
     (function(){var inp=document.getElementById('courseSearchInput');if(inp){inp.addEventListener('input',function(){var v=this.value.toLowerCase().trim();document.querySelectorAll('.course-card').forEach(function(c){c.style.display=(v===''||(c.innerText||'').toLowerCase().includes(v))?'':'none'})})}
     document.querySelectorAll('.course-badge').forEach(function(b){var t=(b.innerText||'').trim();if(/Top/i.test(t))b.classList.add('badge-top');else if(/Yangi|New/i.test(t))b.classList.add('badge-new')})})();
     </script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(e){});});}</script>
 </body>
 </html>

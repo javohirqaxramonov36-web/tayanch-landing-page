@@ -272,6 +272,32 @@ document.addEventListener('DOMContentLoaded', () => {
             navMission: 'Nega Tayanch',
             navCourses: 'Kurslar',
             navProof: 'Natijalar',
+            /* Prompt 16 — mobil drawer (mundarija) guruh sarlavhalari */
+            drwMain: 'Asosiy',
+            drwTracks: "Yo'nalishlar",
+            drwCourses: 'Kurslar',
+            drwTools: 'Vositalar',
+            drwTrust: 'Ishonch',
+            drwProfile: 'XP va Profil',
+            drwTelegram: 'Telegram kanal',
+            /* Prompt 16 — mobil drawer bandlari */
+            navIelts: 'IELTS va Ingliz tili',
+            navSat: 'SAT',
+            navAdmission: 'Admission Process',
+            navServices: 'Xizmatlar',
+            navAiCourses: 'AI kurslari',
+            navSchoolLessons: 'Maktab darslari',
+            navPersonalStatement: 'Personal Statement',
+            navAiHub: 'AI hub (tez orada)',
+            navDsat: 'Digital SAT Hub',
+            navSatMock: 'SAT Mock Test',
+            navGenEnglish: 'General English',
+            navGrantCalc: 'Grant Kalkulyatori',
+            navAiLevelTest: 'AI Daraja Testi',
+            navSupport: 'Yordam',
+            navProofCerts: 'Natijalar &amp; Sertifikatlar',
+            navNews: 'Yangiliklar',
+            navSitemap: 'Sayt xaritasi',
             navApply: "Kursga a'zo bo'lish",
             founderPill: "Asoschi: <strong>IELTS 7.0</strong> va <strong>SAT 1420</strong> natijalariga erishgan",
             heroTitle: 'AI, IELTS va Admission\'ni <br><span class="gradient-text liquid-gradient">bir joyda o\'rganing</span>',
@@ -297,6 +323,32 @@ document.addEventListener('DOMContentLoaded', () => {
             navMission: 'Why Tayanch',
             navCourses: 'Courses',
             navProof: 'Results',
+            /* Prompt 16 — mobile drawer (table-of-contents) group titles */
+            drwMain: 'Main',
+            drwTracks: 'Tracks',
+            drwCourses: 'Courses',
+            drwTools: 'Tools',
+            drwTrust: 'Trust',
+            drwProfile: 'XP &amp; Profile',
+            drwTelegram: 'Telegram channel',
+            /* Prompt 16 — mobile drawer items */
+            navIelts: 'IELTS &amp; English',
+            navSat: 'SAT',
+            navAdmission: 'Admission Process',
+            navServices: 'Services',
+            navAiCourses: 'AI Courses',
+            navSchoolLessons: 'School Lessons',
+            navPersonalStatement: 'Personal Statement',
+            navAiHub: 'AI hub (coming soon)',
+            navDsat: 'Digital SAT Hub',
+            navSatMock: 'SAT Mock Test',
+            navGenEnglish: 'General English',
+            navGrantCalc: 'Grant Calculator',
+            navAiLevelTest: 'AI Level Test',
+            navSupport: 'Support',
+            navProofCerts: 'Results &amp; Certificates',
+            navNews: 'News',
+            navSitemap: 'Sitemap',
             navApply: 'Enroll Now',
             founderPill: "Founder: Achieved <strong>IELTS 7.0</strong> & <strong>SAT 1420</strong>",
             heroTitle: 'Master AI, IELTS & Admission <br><span class="gradient-text liquid-gradient">All in One Place</span>',
@@ -1352,17 +1404,72 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileDrawer = document.getElementById('mobileDrawer');
     const drawerCloseBtn = document.getElementById('drawerCloseBtn');
 
+    /* Prompt 16: drawer ochish/yopish + Esc + aria-expanded */
+    function openDrawer() {
+        mobileDrawer.classList.add('open');
+        if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeDrawer() {
+        mobileDrawer.classList.remove('open');
+        if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    }
     if (mobileMenuBtn && mobileDrawer) {
-        mobileMenuBtn.addEventListener('click', () => mobileDrawer.classList.add('open'));
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.addEventListener('click', openDrawer);
     }
     if (drawerCloseBtn && mobileDrawer) {
-        drawerCloseBtn.addEventListener('click', () => mobileDrawer.classList.remove('open'));
+        drawerCloseBtn.addEventListener('click', closeDrawer);
     }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileDrawer && mobileDrawer.classList.contains('open')) closeDrawer();
+    });
     document.querySelectorAll('.drawer-link').forEach(link => {
         link.addEventListener('click', () => {
-            if (mobileDrawer) mobileDrawer.classList.remove('open');
+            if (mobileDrawer) closeDrawer();
         });
     });
+
+    /* Prompt 16: joriy sahifa/bo'limni active state bilan ajratib ko'rsatish.
+       Ichki-scroll havolalari uchun scroll-spy; hech biri ko'rinmasa —
+       joriy sahifa havolasi (aria-current="page") aktiv qoladi. */
+    if (mobileDrawer) {
+        const currentPageLink = mobileDrawer.querySelector('.drawer-link[aria-current="page"]');
+        const anchorLinks = Array.from(mobileDrawer.querySelectorAll('.drawer-link[data-type="anchor"]'))
+            .map(link => {
+                const id = (link.getAttribute('href') || '').replace(/^#/, '');
+                const section = id ? document.getElementById(id) : null;
+                return section ? { link, section } : null;
+            })
+            .filter(Boolean);
+
+        const setActiveDrawerLink = (link) => {
+            mobileDrawer.querySelectorAll('.drawer-link').forEach(el => el.classList.remove('active'));
+            if (link) {
+                link.classList.add('active');
+                if (currentPageLink) currentPageLink.classList.remove('is-active');
+            } else if (currentPageLink) {
+                currentPageLink.classList.add('is-active');
+            }
+        };
+
+        if (anchorLinks.length && 'IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                const visible = entries
+                    .filter(entry => entry.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+                if (!visible) return;
+                const match = anchorLinks.find(({ section }) => section === visible.target);
+                if (match) setActiveDrawerLink(match.link);
+            }, { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.5, 1] });
+
+            anchorLinks.forEach(({ section }) => observer.observe(section));
+
+            /* Sahifa eng tepasida bo'lsa — sahifa havolasiga qaytish */
+            window.addEventListener('scroll', () => {
+                if (window.scrollY < 120) setActiveDrawerLink(null);
+            }, { passive: true });
+        }
+    }
 
     // Smooth Scrolling & Hash Navigation Handler
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

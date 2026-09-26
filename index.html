@@ -281,34 +281,113 @@
                     <i class="fa-paper-plane fa-solid"></i>
                     <div class="liquid-wave"></div>
                 </button>
-                <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Menu ochish">
-                    <i class="fa-solid fa-bars-staggered"></i>
+                <button class="mobile-menu-toggle" id="mobileMenuBtn" type="button" aria-label="Menyu ochish" aria-expanded="false" aria-controls="mobileDrawer">
+                    <i class="fa-solid fa-bars-staggered" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Navigation Drawer -->
+    <!-- Mobile Navigation Drawer (Prompt 16: mundarija / table-of-contents) -->
     <div class="mobile-drawer" id="mobileDrawer">
         <div class="drawer-header">
             <span class="brand-name">TAYANCH<span class="brand-dot">.</span></span>
-            <button class="drawer-close" id="drawerCloseBtn"><i class="fa-solid fa-xmark"></i></button>
-</div>
-<div class="drawer-links">
-            <a href="#profileCompletionSection" class="drawer-link" id="drawerXpLink"><i class="fa-solid fa-bolt"></i> XP va Profil</a>
-            <a href="#courses" class="drawer-link" data-i18n="navCourses">Kurslar</a>
-            <a href="#trust" class="drawer-link" data-i18n="navProof">Natijalar</a>
-            <a href="general-english-beginner.html" class="drawer-link"><i class="fa-solid fa-graduation-cap"></i> English Hub</a>
-            <a href="sat-dsat.html" class="drawer-link"><i class="fa-solid fa-calculator"></i> SAT Hub</a>
-            <a href="ai-hub.html" class="drawer-link"><i class="fa-solid fa-robot"></i> AI hub (tez orada)</a>
-            <a href="#placement-quiz" class="drawer-link">Daraja testi</a>
-            <a href="#calculator" class="drawer-link">Grant kalkulyatori</a>
-            <a href="support.html" class="drawer-link">Yordam</a>
-            <a href="https://t.me/tayanch_go" class="drawer-link" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i> Telegram</a>
-            <button class="btn btn-primary w-full mt-4 open-lead-modal-btn" data-course="Mobile Drawer">
-                <i class="fa-solid fa-pen-to-square"></i> <span data-i18n="applyNow">Ariza Qoldirish</span>
-            </button>
+            <button class="drawer-close" id="drawerCloseBtn" type="button" aria-label="Menyuni yopish"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
         </div>
+        <nav class="drawer-links" aria-label="Mobil navigatsiya">
+
+            <div class="drawer-group" role="group" aria-labelledby="drwGrpMain">
+                <div class="drawer-group-title" id="drwGrpMain" data-i18n="drwMain">Asosiy</div>
+                <a href="index.html" class="drawer-link is-active" data-nav="index.html" data-type="page" aria-current="page">
+                    <i class="fa-solid fa-house" aria-hidden="true"></i><span data-i18n="navHome">Bosh sahifa</span><i class="fa-solid fa-chevron-right drawer-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="#mission" class="drawer-link" data-nav="mission" data-type="anchor">
+                    <i class="fa-solid fa-star" aria-hidden="true"></i><span data-i18n="navMission">Nega Tayanch</span><i class="fa-solid fa-arrow-down drawer-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="#profileCompletionSection" class="drawer-link" data-nav="profile" data-type="anchor" id="drawerXpLink">
+                    <i class="fa-solid fa-bolt" aria-hidden="true"></i><span data-i18n="drwProfile">XP va Profil</span><i class="fa-solid fa-arrow-down drawer-arrow" aria-hidden="true"></i>
+                </a>
+            </div>
+
+            <div class="drawer-group" role="group" aria-labelledby="drwGrpTracks">
+                <div class="drawer-group-title" id="drwGrpTracks" data-i18n="drwTracks">Yo'nalishlar</div>
+                <a href="ielts.html" class="drawer-link" data-nav="ielts.html" data-type="page">
+                    <i class="fa-solid fa-language" aria-hidden="true"></i><span data-i18n="navIelts">IELTS va Ingliz tili</span><i class="fa-solid fa-chevron-right drawer-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="sat.html" class="drawer-link" data-nav="sat.html" data-type="page">
+                    <i class="fa-solid fa-chart-line" aria-hidden="true"></i><span data-i18n="navSat">SAT</span><i class="fa-solid fa-chevron-right drawer-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="admission.html" class="drawer-link" data-nav="admission.html" data-type="page">
+                    <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span data-i18n="navAdmission">Admission Process</span><i class="fa-solid fa-chevron-right drawer-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="services.html" class="drawer-link" data-nav="services.html" data-type="page">
+                    <i class="fa-solid fa-briefcase" aria-hidden="true"></i><span data-i18n="navServices">Xizmatlar</span><i class="fa-solid fa-chevron-right drawer-arrow" aria-hidden="true"></i>
+                </a>
+            </div>
+
+            <div class="drawer-group" role="group" aria-labelledby="drwGrpCourses">
+                <div class="drawer-group-title" id="drwGrpCourses" data-i18n="drwCourses">Kurslar</div>
+                <a href="courses.html" class="drawer-link" data-nav="courses.html" data-type="page">
+                    <i class="fa-solid fa-book" aria-hidden="true"></i><span data-i18n="navCourses">Kurslar</span><span class="badge-count" data-course-count="all">35</span><i class="fa-solid fa-chevron-right drawer-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="ai-courses.html" class="drawer-link" data-nav="ai-courses.html" data-type="page">
+                    <i class="fa-solid fa-robot" aria-hidden="true"></i><span data-i18n="navAiCourses">AI kurslari</span><i class="fa-solid fa-chevron-right drawer-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="school-lessons.html" class="drawer-link" data-nav="school-lessons.html" data-type="page">
+                    <i class="fa-solid fa-school" aria-hidden="true"></i><span data-i18n="navSchoolLessons">Maktab darslari</span><i class="fa-solid fa-chevron-right drawer-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="admission-essay-personal-statement.html" class="drawer-link" data-nav="admission-essay-personal-statement.html" data-type="page">
+                    <i class="fa-solid fa-pen-nib" aria-hidden="true"></i><span data-i18n="navPersonalStatement">Personal Statement</span><i class="fa-solid fa-chevron-right drawer-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="ai-hub.html" class="drawer-link" data-nav="ai-hub.html" data-type="page">
+                    <i class="fa-solid fa-microchip" aria-hidden="true"></i><span data-i18n="navAiHub">AI hub (tez orada)</span><i class="fa-solid fa-chevron-right drawer-arrow" aria-hidden="true"></i>
+                </a>
+            </div>
+
+            <div class="drawer-group" role="group" aria-labelledby="drwGrpTools">
+                <div class="drawer-group-title" id="drwGrpTools" data-i18n="drwTools">Vositalar</div>
+                <a href="sat-dsat.html" class="drawer-link" data-nav="sat-dsat.html" data-type="page">
+                    <i class="fa-solid fa-square-root-variable" aria-hidden="true"></i><span data-i18n="navDsat">Digital SAT Hub</span><i class="fa-solid fa-chevron-right drawer-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="sat-mock.html" class="drawer-link" data-nav="sat-mock.html" data-type="page">
+                    <i class="fa-solid fa-clipboard-check" aria-hidden="true"></i><span data-i18n="navSatMock">SAT Mock Test</span><i class="fa-solid fa-chevron-right drawer-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="general-english-beginner.html" class="drawer-link" data-nav="general-english-beginner.html" data-type="page">
+                    <i class="fa-solid fa-feather" aria-hidden="true"></i><span data-i18n="navGenEnglish">General English</span><i class="fa-solid fa-chevron-right drawer-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="admission.html#calculator" class="drawer-link" data-nav="grant-calculator" data-type="page">
+                    <i class="fa-solid fa-calculator" aria-hidden="true"></i><span data-i18n="navGrantCalc">Grant Kalkulyatori</span><i class="fa-solid fa-chevron-right drawer-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="#placement-quiz" class="drawer-link" data-nav="ai-level-test" data-type="anchor">
+                    <i class="fa-solid fa-brain" aria-hidden="true"></i><span data-i18n="navAiLevelTest">AI Daraja Testi</span><i class="fa-solid fa-arrow-down drawer-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="support.html" class="drawer-link" data-nav="support.html" data-type="page">
+                    <i class="fa-solid fa-life-ring" aria-hidden="true"></i><span data-i18n="navSupport">Yordam</span><i class="fa-solid fa-chevron-right drawer-arrow" aria-hidden="true"></i>
+                </a>
+            </div>
+
+            <div class="drawer-group" role="group" aria-labelledby="drwGrpTrust">
+                <div class="drawer-group-title" id="drwGrpTrust" data-i18n="drwTrust">Ishonch</div>
+                <a href="#trust" class="drawer-link" data-nav="trust" data-type="anchor">
+                    <i class="fa-solid fa-medal" aria-hidden="true"></i><span data-i18n="navProofCerts">Natijalar &amp; Sertifikatlar</span><i class="fa-solid fa-arrow-down drawer-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="news.html" class="drawer-link" data-nav="news.html" data-type="page">
+                    <i class="fa-solid fa-newspaper" aria-hidden="true"></i><span data-i18n="navNews">Yangiliklar</span><i class="fa-solid fa-chevron-right drawer-arrow" aria-hidden="true"></i>
+                </a>
+                <a href="sitemap.html" class="drawer-link" data-nav="sitemap.html" data-type="page">
+                    <i class="fa-solid fa-sitemap" aria-hidden="true"></i><span data-i18n="navSitemap">Sayt xaritasi</span><i class="fa-solid fa-chevron-right drawer-arrow" aria-hidden="true"></i>
+                </a>
+            </div>
+
+            <div class="drawer-cta">
+                <a href="https://t.me/tayanch_go" class="drawer-link is-external" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-telegram" aria-hidden="true"></i><span data-i18n="drwTelegram">Telegram kanal</span><i class="fa-solid fa-arrow-up-right-from-square drawer-ext" aria-hidden="true"></i>
+                </a>
+                <button class="btn btn-primary w-full mt-4 open-lead-modal-btn" type="button" data-course="Mobile Drawer">
+                    <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> <span data-i18n="applyNow">Ariza Qoldirish</span>
+                </button>
+            </div>
+        </nav>
     </div>
 <main data-page-node-id="9tOuf34cBqp0FfJiu454o5">
         <!-- Hero Section (Stitch Liquid Obsidian Glass Integration) -->
@@ -915,7 +994,7 @@
                         <ul>
                             <li><a href="#profileCompletionSection">XP va Profil</a></li>
                             <li><a href="#placement-quiz">Daraja testi</a></li>
-                            <li><a href="#calculator">Grant kalkulyatori</a></li>
+                            <li><a href="admission.html#calculator">Grant kalkulyatori</a></li>
                             <li><a href="support.html">Yordam</a></li>
                             <li><a href="https://t.me/tayanch_go" target="_blank" rel="noopener noreferrer">Telegram</a></li>
                         </ul>

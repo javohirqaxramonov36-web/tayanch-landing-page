@@ -8,25 +8,17 @@
     <script src="site-config.js"></script>
     <script src="ga4.js" defer></script>
     <script>
-        /* Force-unregister any stale Service Worker AND clear all caches so the browser
-           stops serving cached (pre-fix) old pages. Runs on every fresh load. */
-        (function () {
-            try {
-                if ('caches' in window) {
-                    caches.keys().then(function (ks) {
-                        ks.forEach(function (k) { try { caches.delete(k); } catch (e) {} });
-                    });
-                }
-            } catch (e) {}
-            if (!('serviceWorker' in navigator)) return;
-            navigator.serviceWorker.getRegistration && navigator.serviceWorker.getRegistration().then(function (reg) {
-                if (reg) {
-                    reg.unregister().then(function () {
-                        if (navigator.serviceWorker.controller) window.location.reload();
-                    });
-                }
-            }).catch(function () {});
-        })();
+        /* Register the Tayanch service worker (cache-first assets + network-first pages,
+           auto-updates on new deploy via skipWaiting + clients.claim + versioned cache). */
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('sw.js').then(function (reg) {
+                    console.log('[SW] registered:', reg.scope);
+                }).catch(function (e) {
+                    console.warn('[SW] registration failed:', e);
+                });
+            });
+        }
     </script>
     <script>
         /* Failsafe: script.js xato bersa yoki GSAP yuklanmasa ham barcha kontent
@@ -678,7 +670,7 @@
                     <article class="course-card liquid-card tilt-card">
                         <div class="course-top">
                             <div class="course-thumb-wrapper">
-                                <img loading="lazy" decoding="async" src="assets/images/ai_hero.jpg" alt="Sun'iy intellekt yo'nalishi" class="course-thumb-img" width="350" height="140">
+                                <picture><source srcset="assets/images/ai_hero.webp" type="image/webp"><img src="assets/images/ai_hero.jpg" alt="Sun'iy intellekt yo'nalishi" loading="eager"></picture>
                                 <div class="course-thumb-overlay"></div>
                                 <span class="category-tag cat-ai thumb-tag">Sun'iy intellekt</span>
                             </div>
@@ -699,7 +691,7 @@
                     <article class="course-card liquid-card tilt-card">
                         <div class="course-top">
                             <div class="course-thumb-wrapper">
-                                <img loading="lazy" decoding="async" src="assets/images/founder.jpg" alt="IELTS va ingliz tili yo'nalishi" class="course-thumb-img" width="350" height="140">
+                 <picture><source srcset="assets/images/founder.webp" type="image/webp"><img src="assets/images/founder.jpg" alt="IELTS va ingliz tili yo'nalishi" loading="lazy"></picture>" height="140">
                                 <div class="course-thumb-overlay"></div>
                                 <span class="category-tag cat-ielts thumb-tag">IELTS va ingliz tili</span>
                             </div>
@@ -720,7 +712,7 @@
                     <article class="course-card liquid-card tilt-card">
                         <div class="course-top">
                             <div class="course-thumb-wrapper">
-                                <img loading="lazy" decoding="async" src="assets/images/university_grant.jpg" alt="Digital SAT va admission yo'nalishi" class="course-thumb-img" width="350" height="140">
+   <picture><source srcset="assets/images/university_grant.webp" type="image/webp"><img src="assets/images/university_grant.jpg" alt="Digital SAT va admission yo'nalishi" loading="lazy"></picture>mg" width="350" height="140">
                                 <div class="course-thumb-overlay"></div>
                                 <span class="category-tag cat-admission thumb-tag">Admission va SAT</span>
                             </div>
@@ -806,8 +798,7 @@
                 <div class="trust-box liquid-glass-card gsap-reveal">
                     <div class="trust-grid">
                         <div class="trust-profile">
-                            <div class="profile-avatar-frame">
-                                <img loading="lazy" decoding="async" src="assets/images/founder.jpg" alt="Tayanch Asoschisi - IELTS 7.0 & SAT 1420 Holder" class="founder-img" width="160" height="160" fetchpriority="high">
+                            <div class="pro<picture><source srcset="assets/images/founder.webp" type="image/webp"><img src="assets/images/founder.jpg" alt="Tayanch Asoschisi - IELTS 7.0 & SAT 1420 Holder" loading="lazy"></picture>-img" width="160" height="160" fetchpriority="high">
                                 <div class="verified-badge"><i class="fa-solid fa-check"></i></div>
                             </div>
                             <h3 class="profile-name">Tayanch Asoschisi</h3>

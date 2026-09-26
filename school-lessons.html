@@ -59,6 +59,7 @@
   </style>
   <script src="site-config.js"></script>
   <script src="ga4.js" defer></script>
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
 <button class="sidebar-toggle" id="sidebarToggle" aria-label="Menyu ochish" aria-expanded="false" aria-controls="globalSidebar">
@@ -500,5 +501,6 @@
     <script src="modal.js" defer></script>
     <script src="nav.js" defer></script>
     <script src="lead-form.js" defer></script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(e){});});}</script>
 </body>
 </html>

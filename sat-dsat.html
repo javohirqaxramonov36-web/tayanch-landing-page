@@ -99,6 +99,7 @@
 <meta name="twitter:title" content="Digital SAT (DSAT) Hub & Bluebook Simulator — Tayanch">
 <meta name="twitter:description" content="Digital SAT uchun 320 ta mashq, Bluebook simulator va 500+ vocab builder.">
 <meta name="twitter:image" content="https://javohirqaxramonov36-web.github.io/tayanch-landing-page/assets/images/founder.jpg">
+<link rel="manifest" href="manifest.json">
 </head>
 <body class="liquid-theme">
 <button class="sidebar-toggle" id="sidebarToggle" aria-label="Menyu ochish" aria-expanded="false" aria-controls="globalSidebar">
@@ -847,5 +848,6 @@
 })();
 </script>
     <script src="nav.js" defer></script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(e){});});}</script>
 </body>
 </html>

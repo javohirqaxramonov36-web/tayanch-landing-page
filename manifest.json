@@ -1,8 +1,8 @@
 {
-  "name": "Tayanch Educational Platform",
+  "name": "Tayanch - AI, IELTS va Admission",
   "short_name": "Tayanch",
-  "start_url": "./index.html",
-  "scope": "./",
+  "start_url": "/tayanch-landing-page/",
+  "scope": "/tayanch-landing-page/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#0e0f15",

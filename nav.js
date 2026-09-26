@@ -51,6 +51,7 @@
     'ielts-speaking.html': 'IELTS Speaking',
     'ielts-writing-task2.html': 'IELTS Writing Task 2',
     'ielts.html': 'IELTS',
+    'news.html': 'Yangiliklar',
     'personal-statement.html': 'Personal Statement',
     'results.html': 'Natijalar',
     'robots.html': 'Robots',

@@ -73,4 +73,22 @@
     <changefreq>monthly</changefreq>
     <priority>0.40</priority>
   </url>
+  <url>
+    <loc>https://javohirqaxramonov36-web.github.io/tayanch-landing-page/privacy-policy.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+  </url>
+  <url>
+    <loc>https://javohirqaxramonov36-web.github.io/tayanch-landing-page/terms-of-service.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+  </url>
+  <url>
+    <loc>https://javohirqaxramonov36-web.github.io/tayanch-landing-page/refund-policy.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+  </url>
 </urlset>

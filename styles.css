@@ -5129,3 +5129,12 @@ input, button, select, textarea {
 
 /* sub-heading inside compare blocks (replaces removed inline style) */
 .lesson-page .compare-subhead{font-size:15.5px;color:var(--text-main);margin-bottom:10px;font-weight:600}
+
+/* Legal pages (PROMPT 21.6 — huquqiy sahifalar) */
+.legal-content[hidden]{display:none !important;}
+.legal-meta{font-size:.85rem;color:var(--text-dim);margin-bottom:1.75rem;display:inline-flex;align-items:center;gap:.4rem;flex-wrap:wrap;}
+.legal-section{margin-bottom:1.5rem;}
+.legal-section h2{font-size:1.25rem;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem;}
+.legal-section p{line-height:1.7;color:var(--text-main);margin:0 0 .5rem;}
+.legal-section ul{margin:.25rem 0 .5rem 1.1rem;line-height:1.7;}
+.legal-section li{margin-bottom:.3rem;}

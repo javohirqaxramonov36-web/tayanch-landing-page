@@ -3051,6 +3051,7 @@ function initBluebookSimulator() {
     renderSatQuestion();
     startSatTimer();
     updateQuestionGridNav();
+    renderSatAttempts();
 }
 
 // Render current question
@@ -3365,6 +3366,115 @@ function submitCurrentModule() {
     if (typeof addXP === 'function') {
         addXP(150, "Digital SAT Mock Test Yakunlandi");
     }
+
+    // 4-BAND (21.8): urinishni localStorage'ga saqlash + solishtirish panelini yangilash
+    saveSatAttempt({
+        correct: correctCount,
+        total: totalQuestions,
+        accuracy: accuracyRatio,
+        totalScore: estimatedTotalScore,
+        rwScore: rwScore,
+        mathScore: mathScore,
+        domains: domainStats
+    });
+}
+
+// 4-BAND (21.8): localStorage asosidagi mock-test urinishlarini saqlash va solishtirish
+const SAT_ATTEMPTS_KEY = 'tayanch_sat_attempts';
+const SAT_ATTEMPTS_MAX = 20;
+
+function getSatAttempts() {
+    try {
+        const raw = localStorage.getItem(SAT_ATTEMPTS_KEY);
+        const arr = raw ? JSON.parse(raw) : [];
+        return Array.isArray(arr) ? arr : [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function saveSatAttempt(attempt) {
+    const rec = Object.assign({ ts: Date.now() }, attempt);
+    const arr = getSatAttempts();
+    arr.push(rec);
+    const trimmed = arr.slice(-SAT_ATTEMPTS_MAX);
+    try {
+        localStorage.setItem(SAT_ATTEMPTS_KEY, JSON.stringify(trimmed));
+    } catch (e) {
+        // storage to'la yoki bloklangan — joriy sessiyada ko'rsatish uchun davom etamiz
+    }
+    renderSatAttempts();
+}
+
+function clearSatAttempts() {
+    try { localStorage.removeItem(SAT_ATTEMPTS_KEY); } catch (e) {}
+    renderSatAttempts();
+}
+
+function renderSatAttempts() {
+    const container = document.getElementById('satAttemptsContainer');
+    if (!container) return;
+    const attempts = getSatAttempts();
+
+    if (!attempts.length) {
+        container.innerHTML = '<p class="attempts-empty"><i class="fa-solid fa-chart-line"></i> Hozircha urinish qayd etilmagan. Mock testni yakunlang — natijangiz avtomatik shu yerda saqlanadi.</p>';
+        return;
+    }
+
+    const best = Math.max.apply(null, attempts.map(function (a) { return a.totalScore; }));
+    const latest = attempts[attempts.length - 1];
+    const first = attempts[0];
+    const improvement = latest.totalScore - first.totalScore;
+
+    function fmtDate(ts) {
+        try {
+            return new Date(ts).toLocaleDateString('uz-UZ', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        } catch (e) {
+            return new Date(ts).toLocaleString();
+        }
+    }
+
+    const rows = attempts.slice().reverse().map(function (a, i) {
+        const pct = Math.round(a.accuracy * 100);
+        const barW = Math.max(4, Math.round((a.totalScore - 400) / 1200 * 100));
+        const isBest = a.totalScore === best;
+        return '' +
+            '<tr class="' + (isBest ? 'attempt-best' : '') + '">' +
+                '<td class="attempt-idx">#' + (attempts.length - i) + '</td>' +
+                '<td class="attempt-date">' + fmtDate(a.ts) + '</td>' +
+                '<td>' + a.correct + '/' + a.total + '</td>' +
+                '<td>' +
+                    '<div class="attempt-bar-wrap">' +
+                        '<div class="attempt-bar" style="width:' + barW + '%"></div>' +
+                        '<span class="attempt-bar-label">' + pct + '%</span>' +
+                    '</div>' +
+                '</td>' +
+                '<td class="attempt-score ' + (isBest ? 'is-best' : '') + '">' + a.totalScore + '</td>' +
+                '<td>' + a.rwScore + '</td>' +
+                '<td>' + a.mathScore + '</td>' +
+            '</tr>';
+    }).join('');
+
+    const impClass = improvement > 0 ? 'up' : (improvement < 0 ? 'down' : 'flat');
+    const impText = (improvement > 0 ? '+' : '') + improvement;
+
+    container.innerHTML = '' +
+        '<div class="attempts-summary">' +
+            '<div class="attempt-stat"><span class="attempt-stat-label">Urinishlar</span><strong>' + attempts.length + '</strong></div>' +
+            '<div class="attempt-stat"><span class="attempt-stat-label">Eng yaxshi</span><strong>' + best + '</strong></div>' +
+            '<div class="attempt-stat"><span class="attempt-stat-label">Oxirgi</span><strong>' + latest.totalScore + '</strong></div>' +
+            '<div class="attempt-stat"><span class="attempt-stat-label">O\'sish</span><strong class="' + impClass + '">' + impText + '</strong></div>' +
+        '</div>' +
+        '<div class="attempts-table-wrap">' +
+            '<table class="attempts-table">' +
+                '<thead><tr><th>#</th><th>Sana</th><th>To\'g\'ri</th><th>Aniqlik</th><th>Umumiy</th><th>R&amp;W</th><th>Math</th></tr></thead>' +
+                '<tbody>' + rows + '</tbody>' +
+            '</table>' +
+        '</div>' +
+        '<div class="attempts-foot">' +
+            '<p class="attempts-note"><i class="fa-solid fa-circle-info"></i> Ballar 10 savol asosida taxminiy hisoblanadi (College Board 400–1600 shkalasi). Natijalar faqat shu qurilmada saqlanadi.</p>' +
+            '<button type="button" class="btn btn-ghost btn-sm" onclick="clearSatAttempts()"><i class="fa-solid fa-trash-can"></i> Tarixni tozalash</button>' +
+        '</div>';
 }
 
 function restartSatTest() {

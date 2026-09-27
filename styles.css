@@ -5145,3 +5145,35 @@ input, button, select, textarea {
 .cefr-a1a2{background:rgba(34,197,94,.15);color:#22c55e;border-color:rgba(34,197,94,.4);}
 .cefr-b1b2{background:rgba(251,191,36,.16);color:#fbbf24;border-color:rgba(251,191,36,.45);}
 .cefr-c1c2{background:rgba(239,68,68,.16);color:#f87171;border-color:rgba(239,68,68,.45);}
+
+/* 4-BAND (21.8) — Urinishlarni solishtirish paneli */
+.sat-attempts-section{padding:3.5rem 0;}
+.attempts-card{padding:1.75rem 1.5rem;margin-top:1.5rem;}
+.attempts-empty{color:#cbd5e1;font-size:.95rem;text-align:center;padding:1.5rem 0;margin:0;}
+.attempts-empty i{margin-right:.4rem;color:var(--accent-gold,#fbbf24);}
+.attempts-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-bottom:1.4rem;}
+.attempt-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:.85rem .9rem;display:flex;flex-direction:column;gap:.25rem;}
+.attempt-stat-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:#94a3b8;}
+.attempt-stat strong{font-size:1.5rem;font-weight:800;color:#f1f5f9;}
+.attempt-stat strong.up{color:#34d399;}
+.attempt-stat strong.down{color:#f87171;}
+.attempt-stat strong.flat{color:#94a3b8;}
+.attempts-table-wrap{overflow-x:auto;border-radius:14px;border:1px solid rgba(255,255,255,.08);}
+.attempts-table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:520px;}
+.attempts-table th,.attempts-table td{padding:.7rem .8rem;text-align:left;white-space:nowrap;}
+.attempts-table thead th{background:rgba(255,255,255,.05);color:#cbd5e1;font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.03em;}
+.attempts-table tbody tr{border-top:1px solid rgba(255,255,255,.06);}
+.attempts-table tbody tr.attempt-best{background:rgba(251,191,36,.08);}
+.attempt-idx{color:#94a3b8;font-weight:600;}
+.attempt-date{color:#cbd5e1;}
+.attempt-score{font-weight:800;font-size:1.05rem;color:#f1f5f9;}
+.attempt-score.is-best{color:#fbbf24;}
+.attempt-bar-wrap{position:relative;background:rgba(255,255,255,.08);border-radius:20px;height:20px;width:130px;overflow:hidden;display:flex;align-items:center;}
+.attempt-bar{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#22c55e,#fbbf24);border-radius:20px;}
+.attempt-bar-label{position:relative;z-index:1;padding-left:.55rem;font-size:.72rem;font-weight:700;color:#0f172a;}
+.attempts-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.2rem;}
+.attempts-note{margin:0;font-size:.8rem;color:#94a3b8;flex:1 1 320px;display:flex;align-items:center;gap:.4rem;}
+.attempts-note i{color:#fbbf24;}
+@media (max-width:640px){
+  .attempts-summary{grid-template-columns:repeat(2,1fr);}
+}

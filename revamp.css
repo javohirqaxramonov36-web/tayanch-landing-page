@@ -1,0 +1,315 @@
+/* =============================================================
+   TAYANCH — Design Revamp (scoped to .design-revamp)
+   Maqsad: "liquid-theme" gradient/glow/glass generic AI ko'rinishini
+   olib tashlab, aniq strukturaviy "asos/poydevor" (foundation) tilini
+   joriy qilish. Faqat .design-revamp ostidagi elementlarga ta'sir qiladi —
+   styles.css (global) o'zgarmaydi, shuning uchun boshqa sahifalar eski.
+   ============================================================= */
+
+/* ---- 1. Design tokens (faqat .design-revamp ostida) ---- */
+.design-revamp {
+  --tr-ink: #15191F;
+  --tr-ink-2: #1C222B;
+  --tr-paper: #F5F7FB;
+  --tr-surface: #FFFFFF;
+  --tr-surface-2: #EEF2F8;
+  --tr-hairline: #DCE2EC;
+  --tr-hairline-strong: #C3CCDA;
+  --tr-beacon: #2C5BD9;
+  --tr-beacon-ink: #1B3E9E;
+  --tr-amber: #E8A317;
+  --tr-amber-soft: #FBE9C2;
+  --tr-teal: #0E9C8A;
+  --tr-muted: #5B6472;
+  --tr-radius: 14px;
+  --tr-radius-sm: 10px;
+  --tr-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --tr-shadow: 0 1px 2px rgba(20,25,31,.06), 0 10px 30px rgba(20,25,31,.06);
+  --tr-blueprint: linear-gradient(rgba(44,91,217,.06) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(44,91,217,.06) 1px, transparent 1px);
+}
+
+/* ---- 2. Global neutralisation of generic "liquid" decorations ---- */
+.design-revamp body { background: var(--tr-paper) !important; }
+
+/* plasma blobs, ambient grid, ripple canvas — o'chiriladi (generic belgi) */
+.design-revamp .liquid-blob,
+.design-revamp .bg-grid-pattern { display: none !important; }
+.design-revamp #fluidRippleCanvas { opacity: 0 !important; pointer-events: none !important; }
+
+/* glow / wave / glass — olib tashlanadi */
+.design-revamp .btn-glow,
+.design-revamp .liquid-wave,
+.design-revamp .cta-glow,
+.design-revamp .card-glow,
+.design-revamp .liquid-glow-icon { box-shadow: none !important; background-image: none !important; }
+
+.design-revamp .gradient-text {
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: var(--tr-beacon) !important;
+  color: var(--tr-beacon) !important;
+}
+
+/* glass/liquid surfaces -> tekis surface + hairline */
+.design-revamp .liquid-glass-card,
+.design-revamp .liquid-cta-card,
+.design-revamp .liquid-card,
+.design-revamp .glass-panel,
+.design-revamp .liquid-modal {
+  background: var(--tr-surface) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: var(--tr-shadow) !important;
+  border: 1px solid var(--tr-hairline) !important;
+}
+
+/* ---- 3. Typography (data-precise feel) ---- */
+.design-revamp h1, .design-revamp h2, .design-revamp h3 { letter-spacing: -0.01em; }
+.design-revamp .section-tag,
+.design-revamp .tr-mono {
+  font-family: var(--tr-mono) !important;
+  text-transform: none !important;
+  letter-spacing: .02em;
+}
+.design-revamp .tr-num { font-family: var(--tr-mono); font-variant-numeric: tabular-nums; }
+.design-revamp .section-tag {
+  display: inline-block;
+  color: var(--tr-beacon) !important;
+  background: var(--tr-surface-2) !important;
+  border: 1px solid var(--tr-hairline) !important;
+  padding: .32rem .6rem !important;
+  border-radius: 999px !important;
+  font-size: .72rem !important;
+  font-weight: 600;
+}
+
+/* ---- 4. Buttons ---- */
+.design-revamp .btn-primary {
+  background: var(--tr-beacon) !important;
+  border: 1px solid var(--tr-beacon) !important;
+  color: #fff !important;
+  border-radius: var(--tr-radius-sm) !important;
+}
+.design-revamp .btn-primary:hover { background: var(--tr-beacon-ink) !important; }
+.design-revamp .btn-secondary {
+  background: var(--tr-surface) !important;
+  border: 1px solid var(--tr-hairline-strong) !important;
+  color: var(--tr-ink) !important;
+  border-radius: var(--tr-radius-sm) !important;
+}
+.design-revamp .btn-secondary:hover { border-color: var(--tr-beacon) !important; color: var(--tr-beacon) !important; }
+
+/* ---- 5. Hero (flat Ink + faint blueprint grid, no blob) ---- */
+.design-revamp .hub-hero,
+.design-revamp .liquid-obsidian-hero {
+  background: var(--tr-ink) !important;
+  background-image: var(--tr-blueprint) !important;
+  background-size: 28px 28px !important;
+  color: #EAF0F7 !important;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,.06) !important;
+}
+.design-revamp .hub-hero h1,
+.design-revamp .liquid-obsidian-hero h1 { color: #FFFFFF !important; }
+.design-revamp .hub-hero .lead,
+.design-revamp .liquid-obsidian-hero .lead { color: rgba(234,240,247,.78) !important; }
+.design-revamp .hub-hero .section-tag,
+.design-revamp .liquid-obsidian-hero .section-tag {
+  color: var(--tr-amber) !important;
+  background: rgba(232,163,23,.12) !important;
+  border-color: rgba(232,163,23,.3) !important;
+}
+/* dark-fonli hero/cta ichidagi accent so'z -> Amber (Beacon qorong'ida past kontrast) */
+.design-revamp .hub-hero .gradient-text,
+.design-revamp .liquid-obsidian-hero .gradient-text {
+  color: var(--tr-amber) !important;
+  -webkit-text-fill-color: var(--tr-amber) !important;
+}
+.design-revamp .cta-card.liquid-cta-card .cta-title .gradient-text {
+  color: var(--tr-amber) !important;
+  -webkit-text-fill-color: var(--tr-amber) !important;
+}
+.design-revamp .hub-hero .btn-secondary,
+.design-revamp .liquid-obsidian-hero .btn-secondary {
+  color: #EAF0F7 !important;
+  border-color: rgba(234,240,247,.32) !important;
+  background: rgba(255,255,255,.04) !important;
+}
+.design-revamp .hub-hero .btn-secondary:hover { border-color: #fff !important; color: #fff !important; }
+
+/* ---- 6. Navbar / capsule (index) -> clean ---- */
+.design-revamp .liquid-navbar,
+.design-revamp .navbar.liquid-navbar {
+  background: rgba(245,247,251,.92) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid var(--tr-hairline) !important;
+  box-shadow: none !important;
+}
+.design-revamp .liquid-nav-capsule,
+.design-revamp .nav-links.liquid-nav-capsule {
+  background: var(--tr-surface) !important;
+  border: 1px solid var(--tr-hairline) !important;
+  box-shadow: none !important;
+  border-radius: 999px !important;
+}
+.design-revamp .liquid-nav-capsule .nav-link { color: var(--tr-ink) !important; }
+.design-revamp .liquid-nav-capsule .nav-link:hover { color: var(--tr-beacon) !important; }
+.design-revamp .liquid-glow-icon { box-shadow: none !important; }
+
+/* ---- 7. Sections + cards (structural hairline, not SaaS-kit) ---- */
+.design-revamp .section { position: relative; }
+.design-revamp .link-card {
+  background: var(--tr-surface) !important;
+  border: 1px solid var(--tr-hairline) !important;
+  border-radius: var(--tr-radius) !important;
+  box-shadow: none !important;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.design-revamp .link-card:hover {
+  border-color: var(--tr-beacon) !important;
+  transform: translateY(-2px);
+}
+.design-revamp .link-card .lc-ico {
+  background: var(--tr-surface-2) !important;
+  color: var(--tr-beacon) !important;
+  border: 1px solid var(--tr-hairline) !important;
+}
+.design-revamp .link-card .arrow { color: var(--tr-beacon) !important; }
+
+/* pillar / foundation glyph accent on section headers */
+.design-revamp .section-header { position: relative; }
+.design-revamp .cta-card.liquid-cta-card,
+.design-revamp .cta-card.liquid-cta-card .cta-title .gradient-text { color: #fff !important; }
+.design-revamp .cta-card.liquid-cta-card {
+  background: var(--tr-ink) !important;
+  background-image: var(--tr-blueprint) !important;
+  background-size: 26px 26px !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+}
+.design-revamp .cta-card.liquid-cta-card .cta-desc { color: rgba(234,240,247,.8) !important; }
+
+/* ---- 8. Footer -> strong Ink finish ---- */
+.design-revamp .footer.hub-footer,
+.design-revamp .footer {
+  background: var(--tr-ink) !important;
+  color: #B9C2D0 !important;
+  border-top: 1px solid rgba(255,255,255,.08) !important;
+}
+.design-revamp .footer.hub-footer a,
+.design-revamp .footer a { color: #D7DEEA !important; }
+.design-revamp .footer .brand-name,
+.design-revamp .footer .footer-col h4 { color: #fff !important; }
+
+/* =============================================================
+   9. GAMIFICATION — "haqiqiy yutuq" tili (quiet, not center)
+   ============================================================= */
+/* HUD / XP badge (index): calm surface, amber accent */
+.design-revamp .hud-pill.xp-badge,
+.design-revamp .hud-pill.profile-hud-btn {
+  background: var(--tr-surface) !important;
+  border: 1px solid var(--tr-hairline) !important;
+  color: var(--tr-ink) !important;
+  box-shadow: none !important;
+  border-radius: 999px !important;
+}
+.design-revamp .hud-pill.xp-badge i { color: var(--tr-amber) !important; }
+.design-revamp .hud-pill .badge-count,
+.design-revamp .xp-badge #userXPVal { color: var(--tr-ink) !important; }
+
+/* profile completion progress -> beacon/amber ruler */
+.design-revamp .profile-progress-fill,
+.design-revamp .profileProgressFill { background: var(--tr-beacon) !important; }
+
+/* profile completion card surface */
+.design-revamp .profile-completion-card,
+.design-revamp .profile-card {
+  background: var(--tr-surface) !important;
+  border: 1px solid var(--tr-hairline) !important;
+  box-shadow: var(--tr-shadow) !important;
+}
+
+/* ---- Achievement band (subject pages, additive) ---- */
+.tr-achievement-band { background: var(--tr-paper); padding: 3rem 0; }
+.tr-ach-band-inner { max-width: 920px; margin: 0 auto; }
+.tr-ach-kicker {
+  display: inline-block;
+  font-family: var(--tr-mono);
+  font-size: .72rem;
+  letter-spacing: .04em;
+  color: var(--tr-beacon);
+  border: 1px solid var(--tr-hairline);
+  background: var(--tr-surface);
+  padding: .28rem .6rem;
+  border-radius: 999px;
+}
+.tr-ach-title { font-size: clamp(1.4rem, 3vw, 2rem); margin: .8rem 0 .4rem; color: var(--tr-ink); }
+.tr-ach-title .tr-accent { color: var(--tr-amber); }
+.tr-ach-desc { color: var(--tr-muted); max-width: 60ch; margin: 0 0 1.4rem; }
+
+.tr-ach-chips { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 1.6rem; }
+.tr-chip {
+  display: flex; flex-direction: column; gap: .15rem;
+  background: var(--tr-surface);
+  border: 1px solid var(--tr-hairline);
+  border-left: 3px solid var(--tr-beacon);
+  border-radius: var(--tr-radius-sm);
+  padding: .6rem .8rem;
+  min-width: 150px;
+}
+.tr-chip-ico { color: var(--tr-amber); font-size: 1rem; }
+.tr-chip-name { font-weight: 600; color: var(--tr-ink); font-size: .92rem; }
+.tr-chip-crit { font-family: var(--tr-mono); font-size: .7rem; color: var(--tr-muted); }
+
+/* XP ruler — asosiy gamification komponenti */
+.tr-xp-ruler { margin: .4rem 0 1.6rem; }
+.tr-xp-track {
+  position: relative; height: 10px; border-radius: 999px;
+  background: var(--tr-surface-2);
+  border: 1px solid var(--tr-hairline);
+}
+.tr-xp-fill {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 62%; border-radius: 999px;
+  background: linear-gradient(90deg, var(--tr-beacon), var(--tr-teal));
+}
+.tr-xp-node {
+  position: absolute; left: 62%; top: 50%; width: 14px; height: 14px;
+  transform: translate(-50%, -50%);
+  background: var(--tr-amber); border: 2px solid #fff;
+  border-radius: 50%; box-shadow: 0 0 0 2px var(--tr-amber);
+}
+.tr-xp-caption {
+  font-family: var(--tr-mono); font-size: .74rem; color: var(--tr-muted);
+  margin-top: .5rem;
+}
+.tr-ach-cta { display: inline-flex; align-items: center; gap: .4rem; margin-top: .2rem; }
+
+/* =============================================================
+   10. Accessibility — focus + reduced motion
+   ============================================================= */
+.design-revamp a:focus-visible,
+.design-revamp button:focus-visible,
+.design-revamp select:focus-visible,
+.design-revamp [tabindex]:focus-visible {
+  outline: 2px solid var(--tr-beacon) !important;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .design-revamp * {
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
+  }
+}
+
+/* =============================================================
+   11. Responsive — mobil
+   ============================================================= */
+@media (max-width: 768px) {
+  .design-revamp .hub-hero,
+  .design-revamp .liquid-obsidian-hero { background-size: 22px 22px !important; }
+  .tr-chip { min-width: 46%; flex: 1 1 46%; }
+}

@@ -2899,7 +2899,7 @@ const TAYANCH_DSAT_QUESTIONS = [
     {
         id: "rw_m1_q1",
         section: "Reading and Writing",
-        moduleName: "Module 1 of 2",
+        moduleName: "Modul 1",
         domain: "Craft and Structure",
         skill: "Context Clues",
         passage: `The researcher's claims regarding climate resilience in alpine vegetation were initially met with significant skepticism. However, recent empirical field trials conducted across mountain ranges have _______ her original hypothesis, demonstrating its reliability under varied environmental stressors.`,
@@ -2910,7 +2910,7 @@ const TAYANCH_DSAT_QUESTIONS = [
     {
         id: "rw_m1_q2",
         section: "Reading and Writing",
-        moduleName: "Module 1 of 2",
+        moduleName: "Modul 1",
         domain: "Information and Ideas",
         skill: "Central Ideas and Details",
         passage: `In a 2023 study of urban bird species, ornithologists observed that populations residing near heavy traffic corridors exhibited altered vocalization frequencies. The researchers hypothesized that these behavioral adjustments were not merely stress responses, but rather adaptive mechanisms to prevent background noise from masking critical communication signals between nesting pairs.`,
@@ -2926,7 +2926,7 @@ const TAYANCH_DSAT_QUESTIONS = [
     {
         id: "rw_m1_q3",
         section: "Reading and Writing",
-        moduleName: "Module 1 of 2",
+        moduleName: "Modul 1",
         domain: "Expression of Ideas",
         skill: "Transitions",
         passage: `High-resolution satellite imagery has enabled archaeologists to locate ancient irrigation canals concealed beneath dense rainforest canopies. _______ field teams can now conduct targeted ground excavations with unprecedented accuracy, minimizing destructive digging.`,
@@ -2937,7 +2937,7 @@ const TAYANCH_DSAT_QUESTIONS = [
     {
         id: "rw_m1_q4",
         section: "Reading and Writing",
-        moduleName: "Module 1 of 2",
+        moduleName: "Modul 1",
         domain: "Standard English Conventions",
         skill: "Boundaries & Punctuation",
         passage: `Renowned biochemist Dr. Elena Vance led the research team _______ breakthrough discovery of synthetic enzyme catalysts earned international accolades at the Stockholm symposium.`,
@@ -2948,7 +2948,7 @@ const TAYANCH_DSAT_QUESTIONS = [
     {
         id: "rw_m1_q5",
         section: "Reading and Writing",
-        moduleName: "Module 1 of 2",
+        moduleName: "Modul 1",
         domain: "Craft and Structure",
         skill: "Text Structure and Purpose",
         passage: `Many nineteenth-century historians posited that technological innovation drove socio-economic transformation in a linear fashion. Contemporary economic historians, by contrast, emphasize that social structures and policy frameworks active during the era often dictated which technological tools gained widespread adoption in the first place.`,
@@ -2966,7 +2966,7 @@ const TAYANCH_DSAT_QUESTIONS = [
     {
         id: "math_m1_q1",
         section: "Math",
-        moduleName: "Module 1 of 2",
+        moduleName: "Modul 1",
         domain: "Algebra",
         skill: "Linear Equations & Systems",
         passage: `A local tutoring academy charges a one-time registration fee of $50 plus $30 per hour for individual coaching sessions.`,
@@ -2977,7 +2977,7 @@ const TAYANCH_DSAT_QUESTIONS = [
     {
         id: "math_m1_q2",
         section: "Math",
-        moduleName: "Module 1 of 2",
+        moduleName: "Modul 1",
         domain: "Advanced Math",
         skill: "Quadratic Equations",
         passage: `Consider the quadratic function f(x) = x² - 6x + 8.`,
@@ -2988,7 +2988,7 @@ const TAYANCH_DSAT_QUESTIONS = [
     {
         id: "math_m1_q3",
         section: "Math",
-        moduleName: "Module 1 of 2",
+        moduleName: "Modul 1",
         domain: "Problem-Solving & Data Analysis",
         skill: "Percentages & Rates",
         passage: `A laptop computer originally priced at $1,200 is discounted by 15% during a seasonal sale. An additional 5% loyalty discount is then applied to the sale price.`,
@@ -2999,7 +2999,7 @@ const TAYANCH_DSAT_QUESTIONS = [
     {
         id: "math_m1_q4",
         section: "Math",
-        moduleName: "Module 1 of 2",
+        moduleName: "Modul 1",
         domain: "Geometry & Trigonometry",
         skill: "Right Triangles & Trig Ratios",
         passage: `In a right triangle ABC, angle C is the right angle. If sin(A) = 3/5, what is the value of cos(B)?`,
@@ -3010,7 +3010,7 @@ const TAYANCH_DSAT_QUESTIONS = [
     {
         id: "math_m1_q5",
         section: "Math",
-        moduleName: "Module 1 of 2",
+        moduleName: "Modul 1",
         domain: "Advanced Math",
         skill: "Exponents & Radicals",
         passage: `If 2^(3x + 1) = 32, what is the value of x?`,
@@ -3493,20 +3493,113 @@ function restartSatTest() {
 }
 
 // 2. SAT Vocabulary Builder & Spaced Repetition System (SRS)
+// 21.4 — SAT Vocabulary Builder: kengaytirilgan bank + chastota darajalari (tier) + haqiqiy SRS
+const VOCAB_TIERS = { core: 'Asosiy', high: 'Yuqori', adv: 'Murakkab' };
 const TAYANCH_SAT_VOCAB = [
-    { word: "Anomalous", pos: "adjective • /əˈnɒm.ə.ləs/", uz: "Me'yordan chetga chiqqan, g'ayrioddiy", en: "Deviating from what is standard, normal, or expected.", example: "The scientist noted an anomalous result in the lab data." },
-    { word: "Equivocal", pos: "adjective • /ɪˈkwɪv.ə.kəl/", uz: "Noaniq, ikki ma'noli, mavhum", en: "Open to more than one interpretation; ambiguous.", example: "The minister gave an equivocal response to the press." },
-    { word: "Lucid", pos: "adjective • /ˈluː.sɪd/", uz: "Tushunarli, ravshan, mantiqiy", en: "Expressed clearly; easy to understand.", example: "Her explanation of quantum physics was remarkably lucid." },
-    { word: "Precipitate", pos: "verb • /prɪˈsɪp.ɪ.teɪt/", uz: "Tezlashtirish, sabab bo'lish", en: "Cause an event or situation to happen suddenly or unexpectedly.", example: "The economic crisis precipitated widespread political reforms." },
-    { word: "Erudite", pos: "adjective • /ˈer.jə.daɪt/", uz: "Bilimdon, ilmli, zakovatli", en: "Having or showing great knowledge or learning.", example: "The professor delivered an erudite lecture on ancient Roman law." },
-    { word: "Opaque", pos: "adjective • /oʊˈpaɪk/", uz: "Tushunarsiz, shaffof bo'lmagan", en: "Not transparent; hard or impossible to understand.", example: "The government's financial reports remained opaque to the public." },
-    { word: "Prodigal", pos: "adjective • /ˈprɒd.ɪ.ɡəl/", uz: "Isrofgarchi, bexuda sarflaydigan", en: "Spending money or resources freely and recklessly.", example: "The prodigal heir spent his fortune within three years." },
-    { word: "Enervate", pos: "verb • /ˈen.ə.veɪt/", uz: "Holsizlantirmoq, quvvatdan qoldirmoq", en: "Cause someone to feel drained of energy or vitality.", example: "The intense summer heat enervated the marathon runners." }
+    { word: "Anomalous", pos: "adjective • /əˈnɒm.ə.ləs/", tier: "high", uz: "Me'yordan chetga chiqqan, g'ayrioddiy", en: "Deviating from what is standard, normal, or expected.", example: "The scientist noted an anomalous result in the lab data." },
+    { word: "Equivocal", pos: "adjective • /ɪˈkwɪv.ə.kəl/", tier: "adv", uz: "Noaniq, ikki ma'noli, mavhum", en: "Open to more than one interpretation; ambiguous.", example: "The minister gave an equivocal response to the press." },
+    { word: "Lucid", pos: "adjective • /ˈluː.sɪd/", tier: "high", uz: "Tushunarli, ravshan, mantiqiy", en: "Expressed clearly; easy to understand.", example: "Her explanation of quantum physics was remarkably lucid." },
+    { word: "Precipitate", pos: "verb • /prɪˈsɪp.ɪ.teɪt/", tier: "adv", uz: "Tezlashtirish, sabab bo'lish", en: "Cause an event or situation to happen suddenly or unexpectedly.", example: "The economic crisis precipitated widespread political reforms." },
+    { word: "Erudite", pos: "adjective • /ˈer.jə.daɪt/", tier: "adv", uz: "Bilimdon, ilmli, zakovatli", en: "Having or showing great knowledge or learning.", example: "The professor delivered an erudite lecture on ancient Roman law." },
+    { word: "Opaque", pos: "adjective • /oʊˈpaɪk/", tier: "high", uz: "Tushunarsiz, shaffof bo'lmagan", en: "Not transparent; hard or impossible to understand.", example: "The government's financial reports remained opaque to the public." },
+    { word: "Prodigal", pos: "adjective • /ˈprɒd.ɪ.ɡəl/", tier: "adv", uz: "Isrofgarchi, bexuda sarflaydigan", en: "Spending money or resources freely and recklessly.", example: "The prodigal heir spent his fortune within three years." },
+    { word: "Enervate", pos: "verb • /ˈen.ə.veɪt/", tier: "adv", uz: "Holsizlantirmoq, quvvatdan qoldirmoq", en: "Cause someone to feel drained of energy or vitality.", example: "The intense summer heat enervated the marathon runners." },
+    { word: "Aberrant", pos: "adjective • /æˈber.ənt/", tier: "adv", uz: "G'ayrioddiy, og'gan, noromal", en: "Deviating from the norm or usual course.", example: "His aberrant behavior worried the whole family." },
+    { word: "Benevolent", pos: "adjective • /bəˈnev.əl.ənt/", tier: "core", uz: "Xayrixoh, mehribon, xayrli", en: "Well meaning and kindly.", example: "A benevolent donor funded the new library." },
+    { word: "Cogent", pos: "adjective • /ˈkoʊ.dʒənt/", tier: "high", uz: "Ishontiruvchi, asosli, kuchli", en: "Clear, logical, and convincing.", example: "She presented a cogent argument for the reform." },
+    { word: "Diligent", pos: "adjective • /ˈdɪl.ɪ.dʒənt/", tier: "core", uz: "Tirishqoq, astoydil, g'ayratli", en: "Having or showing care and conscientiousness.", example: "A diligent student revises every day." },
+    { word: "Ephemeral", pos: "adjective • /ɪˈfem.ər.əl/", tier: "high", uz: "Qisqa umrli, o'tkinchi", en: "Lasting for a very short time.", example: "Social media fame can be ephemeral." },
+    { word: "Gregarious", pos: "adjective • /ɡrɪˈɡer.i.əs/", tier: "high", uz: "Jamoaviy, sirdosh, ijtimoiy", en: "Fond of company; sociable.", example: "He is a gregarious and outgoing person." },
+    { word: "Implicit", pos: "adjective • /ɪmˈplɪs.ɪt/", tier: "high", uz: "Yashirin, nazarda tutilgan", en: "Implied though not plainly expressed.", example: "There was an implicit agreement between the two sides." },
+    { word: "Inevitable", pos: "adjective • /ɪnˈev.ɪ.tə.bəl/", tier: "core", uz: "Muqarrar, qochib bo'lmas", en: "Certain to happen; unavoidable.", example: "Change is inevitable in every organization." },
+    { word: "Meticulous", pos: "adjective • /məˈtɪk.jə.ləs/", tier: "high", uz: "Sinchikay, ehtiyotkor, aniq", en: "Showing great attention to detail.", example: "She kept meticulous financial records." },
+    { word: "Pragmatic", pos: "adjective • /præɡˈmæt.ɪk/", tier: "high", uz: "Amaliy, pragmatik, foydali", en: "Dealing with things sensibly and realistically.", example: "A pragmatic approach solved the dispute quickly." },
+    { word: "Resilient", pos: "adjective • /rɪˈzɪl.i.ənt/", tier: "core", uz: "Chidamli, tiklanuvchan", en: "Able to recover quickly from difficulties.", example: "Children are remarkably resilient learners." },
+    { word: "Spontaneous", pos: "adjective • /spɑːnˈteɪ.ni.əs/", tier: "core", uz: "O'z-o'zidan, rejassiz, tabiiy", en: "Performed without premeditation.", example: "Their weekend trip was completely spontaneous." },
+    { word: "Tenacious", pos: "adjective • /təˈneɪ.ʃəs/", tier: "high", uz: "Qat'iyatli, ixcham, chidamli", en: "Holding firmly; persistent.", example: "A tenacious negotiator finally won the deal." },
+    { word: "Ubiquitous", pos: "adjective • /juːˈbɪk.wɪ.təs/", tier: "adv", uz: "Hamma joyda uchraydigan", en: "Present, appearing, or found everywhere.", example: "Smartphones are ubiquitous in modern life." },
+    { word: "Viable", pos: "adjective • /ˈvaɪ.ə.bəl/", tier: "core", uz: "Hayotiy, amalga oshiriladigan", en: "Capable of working successfully.", example: "They proposed a viable plan to reduce costs." },
+    { word: "Ambiguous", pos: "adjective • /æmˈbɪɡ.ju.əs/", tier: "core", uz: "Noaniq, ikki ma'noli", en: "Open to more than one meaning.", example: "The ambiguous wording caused a legal dispute." },
+    { word: "Candid", pos: "adjective • /ˈkæn.dɪd/", tier: "core", uz: "Ochik, rostgo'y, samimiy", en: "Truthful and straightforward.", example: "He gave a candid assessment of the risks." },
+    { word: "Eloquent", pos: "adjective • /ˈel.ə.kwənt/", tier: "high", uz: "Nutkli, ta'sirchan, shirinso'z", en: "Fluent and persuasive in speech.", example: "An eloquent speech moved the entire crowd." },
+    { word: "Fortuitous", pos: "adjective • /fɔːrˈtuː.ɪ.təs/", tier: "high", uz: "Tasodifiy, baxtli, omadli", en: "Happening by lucky chance.", example: "A fortuitous meeting changed her career path." },
+    { word: "Inherent", pos: "adjective • /ɪnˈhɪr.ənt/", tier: "high", uz: "Ichki, xos, tabiiy", en: "Existing as a permanent attribute.", example: "Some risk is inherent in any investment." },
+    { word: "Nuanced", pos: "adjective • /ˈnuː.ɑːnst/", tier: "high", uz: "Nofin, nozik farqli", en: "Characterized by subtle differences.", example: "The debate is more nuanced than it appears." },
+    { word: "Plausible", pos: "adjective • /ˈplɔː.zə.bəl/", tier: "core", uz: "Ishonarli, ehtimoliy", en: "Seeming reasonable or probable.", example: "He offered a plausible explanation for the delay." },
+    { word: "Redundant", pos: "adjective • /rɪˈdʌn.dənt/", tier: "high", uz: "Ortiqcha, keraksiz, takror", en: "No longer needed; superfluous.", example: "The redundant step was removed from the process." },
+    { word: "Scrupulous", pos: "adjective • /ˈskruː.pjə.ləs/", tier: "adv", uz: "Vijdonli, ehtiyotkor, aniq", en: "Diligent, thorough, and careful.", example: "A scrupulous editor caught the error." },
+    { word: "Tedious", pos: "adjective • /ˈtiː.di.əs/", tier: "core", uz: "Zerikarli, uzoq, charchatuvchi", en: "Too long, slow, and boring.", example: "The onboarding paperwork was tedious." },
+    { word: "Unprecedented", pos: "adjective • /ʌnˈpres.ɪ.den.tɪd/", tier: "high", uz: "Misli ko'rilmagan, yangi", en: "Never done or known before.", example: "The pandemic caused unprecedented disruption." },
+    { word: "Voracious", pos: "adjective • /vəˈreɪ.ʃəs/", tier: "adv", uz: "Ishtahasi kuchli, o'ch, behisob", en: "Wanting or devouring great quantities.", example: "A voracious reader finished the whole series." },
+    { word: "Capricious", pos: "adjective • /kəˈprɪʃ.əs/", tier: "adv", uz: "O'zgaruvchan, kayfiyatl, beqaror", en: "Given to sudden and unaccountable changes.", example: "The capricious weather confused travelers." },
+    { word: "Discern", pos: "verb • /dɪˈsɜːrn/", tier: "high", uz: "Farqlash, sezish, tushunish", en: "Perceive or recognize something.", example: "It is hard to discern the truth from rumors." },
+    { word: "Pervasive", pos: "adjective • /pərˈveɪ.sɪv/", tier: "high", uz: "Tarqalgan, hamma joyda", en: "Spreading widely throughout an area.", example: "A pervasive sense of doubt remained." },
+    { word: "Cursory", pos: "adjective • /ˈkɜːr.sər.i/", tier: "high", uz: "Shoshma-uchast, yuzaki", en: "Hasty and not thorough.", example: "A cursory glance missed the obvious error." },
+    { word: "Astute", pos: "adjective • /əˈstuːt/", tier: "high", uz: "Zakovatli, zehnli, zukko", en: "Shrewd; mentally sharp.", example: "An astute investor avoided the loss." }
 ];
+
+const VOCAB_SRS_KEY = 'tayanch_sat_vocab_srs';
+const VOCAB_STREAK_KEY = 'tayanch_sat_vocab_streak';
+
+function getVocabSRS() {
+    try { return JSON.parse(localStorage.getItem(VOCAB_SRS_KEY)) || {}; } catch (e) { return {}; }
+}
+function saveVocabSRS(state) {
+    try { localStorage.setItem(VOCAB_SRS_KEY, JSON.stringify(state)); } catch (e) {}
+}
+function getVocabStreak() {
+    try { return JSON.parse(localStorage.getItem(VOCAB_STREAK_KEY)) || { last: null, count: 0 }; } catch (e) { return { last: null, count: 0 }; }
+}
+function yesterdayISO() {
+    const d = new Date(); d.setDate(d.getDate() - 1);
+    return d.toISOString().slice(0, 10);
+}
+function bumpVocabStreak() {
+    const today = new Date().toISOString().slice(0, 10);
+    const s = getVocabStreak();
+    if (s.last === today) { /* already counted today */ }
+    else if (s.last === yesterdayISO()) { s.count = (s.count || 0) + 1; }
+    else { s.count = 1; }
+    s.last = today;
+    try { localStorage.setItem(VOCAB_STREAK_KEY, JSON.stringify(s)); } catch (e) {}
+    return s.count;
+}
+function vocabNextDueStr() {
+    const state = getVocabSRS();
+    let min = null;
+    TAYANCH_SAT_VOCAB.forEach(function (w) {
+        const rec = state[w.word];
+        if (rec && rec.due && (min === null || rec.due < min)) min = rec.due;
+    });
+    if (min === null) return null;
+    try { return new Date(min).toLocaleDateString('uz-UZ', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }); }
+    catch (e) { return new Date(min).toLocaleString(); }
+}
+function getNextDueVocabIndex(from) {
+    const now = Date.now();
+    const state = getVocabSRS();
+    for (let step = 1; step <= TAYANCH_SAT_VOCAB.length; step++) {
+        const idx = (from + step) % TAYANCH_SAT_VOCAB.length;
+        const w = TAYANCH_SAT_VOCAB[idx];
+        const rec = state[w.word];
+        if (!rec || rec.due <= now) return idx;
+    }
+    return -1;
+}
 
 let currentVocabIndex = 0;
 
 function renderVocabCard() {
+    if (currentVocabIndex < 0 || currentVocabIndex >= TAYANCH_SAT_VOCAB.length) currentVocabIndex = 0;
+    const state = getVocabSRS();
+    const now = Date.now();
+    const curWord = TAYANCH_SAT_VOCAB[currentVocabIndex];
+    const curRec = state[curWord.word];
+    if (curRec && curRec.due > now) {
+        const next = getNextDueVocabIndex(currentVocabIndex);
+        if (next === -1) { renderVocabCaughtUp(); return; }
+        currentVocabIndex = next;
+    }
     const wordObj = TAYANCH_SAT_VOCAB[currentVocabIndex];
     if (!wordObj) return;
 
@@ -3516,6 +3609,7 @@ function renderVocabCard() {
     const defUz = document.getElementById('vocabDefUz');
     const defEn = document.getElementById('vocabDefEn');
     const example = document.getElementById('vocabExample');
+    const tierBadge = document.getElementById('vocabTierBadge');
     const curIdxText = document.getElementById('currentWordIndex');
     const totalCountText = document.getElementById('totalWordsCount');
 
@@ -3524,8 +3618,33 @@ function renderVocabCard() {
     if (posFront) posFront.textContent = wordObj.pos;
     if (defUz) defUz.textContent = wordObj.uz;
     if (defEn) defEn.textContent = wordObj.en;
-    if (example) example.textContent = `"${wordObj.example}"`;
+    if (example) example.textContent = '"' + wordObj.example + '"';
+    if (tierBadge) {
+        tierBadge.textContent = (VOCAB_TIERS[wordObj.tier] || 'So\'z') + ' chastota';
+        tierBadge.className = 'vocab-tier-badge tier-' + (wordObj.tier || 'core');
+    }
     if (curIdxText) curIdxText.textContent = currentVocabIndex + 1;
+    if (totalCountText) totalCountText.textContent = TAYANCH_SAT_VOCAB.length;
+    updateVocabStats();
+}
+
+function renderVocabCaughtUp() {
+    const wordFront = document.getElementById('vocabWordFront');
+    const posFront = document.getElementById('vocabPosFront');
+    const defUz = document.getElementById('vocabDefUz');
+    const defEn = document.getElementById('vocabDefEn');
+    const example = document.getElementById('vocabExample');
+    const tierBadge = document.getElementById('vocabTierBadge');
+    const curIdxText = document.getElementById('currentWordIndex');
+    const totalCountText = document.getElementById('totalWordsCount');
+    const nd = vocabNextDueStr();
+    if (wordFront) wordFront.textContent = 'Hozircha barcha so\'zlar o\'z vaqtida ko\'rib chiqildi';
+    if (posFront) posFront.textContent = '';
+    if (defUz) defUz.textContent = nd ? ('Keyingi ko\'rik: ' + nd) : 'Barcha so\'zlar o\'qildi';
+    if (defEn) defEn.textContent = '';
+    if (example) example.textContent = '';
+    if (tierBadge) { tierBadge.textContent = ''; tierBadge.className = 'vocab-tier-badge'; }
+    if (curIdxText) curIdxText.textContent = '—';
     if (totalCountText) totalCountText.textContent = TAYANCH_SAT_VOCAB.length;
 }
 
@@ -3536,14 +3655,54 @@ function flipFlashcard() {
 
 function rateVocabCard(rating, event) {
     if (event) event.stopPropagation();
+    const wordObj = TAYANCH_SAT_VOCAB[currentVocabIndex];
+    if (!wordObj) return;
 
-    // SRS progression
-    currentVocabIndex = (currentVocabIndex + 1) % TAYANCH_SAT_VOCAB.length;
+    const state = getVocabSRS();
+    const rec = state[wordObj.word] || { due: 0, interval: 0, ease: 2.5, reps: 0, last: 0 };
+    const now = Date.now();
+    const DAY = 86400000;
+
+    // Simplified SM-2 spaced repetition
+    if (rating === 'hard') {
+        rec.ease = Math.max(1.3, rec.ease - 0.2);
+        rec.interval = 1;
+    } else if (rating === 'easy') {
+        rec.ease = Math.min(3.0, rec.ease + 0.15);
+        rec.interval = rec.reps === 0 ? 4 : Math.round(rec.interval * rec.ease * 1.3);
+    } else { // good
+        rec.interval = rec.reps === 0 ? 1 : Math.round(rec.interval * rec.ease);
+    }
+    rec.reps = (rec.reps || 0) + 1;
+    rec.due = now + rec.interval * DAY;
+    rec.last = now;
+    state[wordObj.word] = rec;
+    saveVocabSRS(state);
+
+    bumpVocabStreak();
+
+    const next = getNextDueVocabIndex(currentVocabIndex);
+    if (next !== -1) currentVocabIndex = next;
     renderVocabCard();
 
     if (typeof addXP === 'function') {
         addXP(10, "SAT Vocab Flashcard O'rganildi");
     }
+}
+
+function updateVocabStats() {
+    const state = getVocabSRS();
+    let learned = 0;
+    TAYANCH_SAT_VOCAB.forEach(function (w) {
+        const rec = state[w.word];
+        if (rec && rec.interval >= 3) learned++;
+    });
+    const mastery = TAYANCH_SAT_VOCAB.length ? Math.round(learned / TAYANCH_SAT_VOCAB.length * 100) : 0;
+    const streak = getVocabStreak().count || 0;
+    const streakEl = document.getElementById('vocabStreakCount');
+    const masteryEl = document.getElementById('vocabMasteryPerc');
+    if (streakEl) streakEl.textContent = streak + ' kun';
+    if (masteryEl) masteryEl.textContent = mastery + '%';
 }
 
 // 3. Parent / Teacher Access Modal Handler

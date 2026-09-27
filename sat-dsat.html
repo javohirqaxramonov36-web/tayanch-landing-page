@@ -226,7 +226,7 @@
                             <i class="fa-solid fa-play"></i> Bluebook Simulator Test (Bepul)
                         </a>
                         <a href="#vocab-builder" class="btn btn-secondary btn-lg">
-                            <i class="fa-solid fa-layer-group"></i> SAT Vocab Builder (500)
+                            <i class="fa-solid fa-layer-group"></i> SAT Vocab Builder
                         </a>
                         <button class="btn btn-outline btn-lg" onclick="openParentModal()">
                             <i class="fa-solid fa-user-graduate"></i> Parent & Teacher Access
@@ -354,8 +354,14 @@
             <div class="container">
                 <div class="section-header text-center">
                     <span class="section-tag"><i class="fa-solid fa-bolt"></i> AMALIY SIMULYATOR</span>
-                    <h2>Real Bluebook DSAT Mock Test Environment</h2>
-                    <p class="section-desc">Haqiqiy College Board Digital SAT imtihoni muhitida bilmingizni sinab ko'ring:</p>
+                    <h2>Digital SAT Amaliy Simulyatori</h2>
+                    <p class="section-desc">Digital SAT muhitiga o'xshash amaliy simulyatorda bilimingizni sinab ko'ring:</p>
+                    <div class="sim-honest-note">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <div>
+                            <strong>Qanday ishlaydi:</strong> Bu — <b>chiziqli (adaptiv bo'lmagan)</b> 10 ta savoldan iborat amaliy to'plam. Haqiqiy Digital SAT <b>adaptiv</b> tizimga ega: 1-moduldagi natijangiz 2-modulning qiyinligini belgilaydi. Bu amaliy to'plam esa belgilangan savollar bilan tanishish uchun mo'ljallangan. Ball 400–1600 shkalasida <b>taxminiy</b> hisoblanadi.
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Bluebook Simulator Container -->
@@ -365,7 +371,7 @@
                     <div class="bluebook-topbar">
                         <div class="bluebook-section-info">
                             <span class="section-title-badge" id="simSectionTitle">Reading and Writing</span>
-                            <span class="module-title-badge" id="simModuleTitle">Module 1 of 2</span>
+                            <span class="module-title-badge" id="simModuleTitle">Modul 1</span>
                         </div>
                         <div class="bluebook-top-tools">
                             <button class="tool-btn" id="toggleTimerBtn" onclick="toggleSimTimer()">
@@ -667,6 +673,7 @@
                         <div class="flashcard-inner" id="flashcardInner">
                             <div class="flashcard-front">
                                 <span class="vocab-badge"><i class="fa-solid fa-spell-check"></i> SAT Word</span>
+                                <span class="vocab-tier-badge" id="vocabTierBadge"></span>
                                 <h3 class="vocab-word" id="vocabWordFront">Anomalous</h3>
                                 <p class="vocab-pos" id="vocabPosFront">adjective • /əˈnɒm.ə.ləs/</p>
                                 <div class="flip-hint"><i class="fa-solid fa-arrows-rotate"></i> Ma'nosini ko'rish uchun bosing</div>

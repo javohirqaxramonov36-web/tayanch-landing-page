@@ -567,6 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentCategory = 'all';
     let currentSearchQuery = '';
+    let currentCefr = 'all';
 
     function renderCourses() {
         if (!coursesGrid) return;
@@ -580,7 +581,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 course.catName.toLowerCase().includes(query) ||
                 course.badge.toLowerCase().includes(query);
             
-            return matchesCategory && matchesSearch;
+            const matchesCefr = (currentCefr === 'all') || (course.cefr === currentCefr);
+            return matchesCategory && matchesSearch && matchesCefr;
         });
 
         coursesGrid.innerHTML = '';
@@ -623,6 +625,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function createCourseCard(course) {
         const card = document.createElement('div');
         card.className = 'course-card liquid-card tilt-card';
+        card.dataset.category = course.category;
+        card.dataset.cefr = course.cefr || '';
         const catClass = course.category === 'ai' ? 'cat-ai' : (course.category === 'ielts' ? 'cat-ielts' : 'cat-admission');
         const catImg = course.category === 'ai' ? 'assets/images/ai_hero.jpg' : (course.category === 'ielts' ? 'assets/images/founder.jpg' : 'assets/images/university_grant.jpg');
         const href = courseHref(course);
@@ -642,6 +646,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="liquid-wave"></div>
                </button>`;
 
+        const CEFR = { a1a2: {label:'A1–A2', cls:'cefr-a1a2'}, b1b2: {label:'B1–B2', cls:'cefr-b1b2'}, c1c2: {label:'C1–C2', cls:'cefr-c1c2'} };
+        const cefrBadgeHtml = (course.cefr && CEFR[course.cefr])
+            ? '<span class="cefr-badge ' + CEFR[course.cefr].cls + '" title="Ingliz tili darajasi (CEFR)"><i class="fa-solid fa-globe"></i> ' + CEFR[course.cefr].label + '</span>'
+            : '';
+
         card.innerHTML = `
             <div class="course-top">
                 <div class="course-thumb-wrapper">
@@ -651,6 +660,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="course-meta">
                     <span class="course-badge"><i class="${course.icon}"></i> ${course.badge}</span>
+                    ${cefrBadgeHtml}
                 </div>
                 <h3 class="course-title">${course.title}</h3>
                 <p class="course-desc">${course.desc}</p>
@@ -712,6 +722,18 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.tab-btn').forEach(b => {
                 b.classList.toggle('active', b.dataset.category === 'all');
             });
+            renderCourses();
+        });
+    }
+
+    const cefrFilterBar = document.getElementById('cefrFilterBar');
+    if (cefrFilterBar) {
+        cefrFilterBar.addEventListener('click', (e) => {
+            const btn = e.target.closest('.cefr-tab-btn');
+            if (!btn) return;
+            cefrFilterBar.querySelectorAll('.cefr-tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCefr = btn.dataset.cefr || 'all';
             renderCourses();
         });
     }
